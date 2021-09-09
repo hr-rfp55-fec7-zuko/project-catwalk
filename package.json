@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start-dev": "npx nodemon server/index.js -w",
+    "build-dev": "webpack -w",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -22,12 +24,14 @@
     "@babel/preset-env": "^7.15.4",
     "@babel/preset-react": "^7.14.5",
     "babel-loader": "^8.2.2",
+    "jest": "^27.1.1",
     "webpack": "^5.52.0",
     "webpack-cli": "^4.8.0"
   },
   "dependencies": {
     "axios": "^0.21.4",
     "bluebird": "^3.7.2",
+    "express": "^4.17.1",
     "jquery": "^3.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
