@@ -7,7 +7,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        Hello from React!
+        Hello from React! This is a test for merge conflict from Iris.
         <ProductOverview />
       </div>
     );
