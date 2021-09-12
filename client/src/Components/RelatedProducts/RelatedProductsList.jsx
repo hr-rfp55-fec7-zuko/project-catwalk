@@ -19,7 +19,6 @@ class RelatedProductsList extends React.Component {
     let authorization = { headers: { Authorization: `${config.TOKEN}` } };
 
     const { productID } = this.props;
-
     axios.get(`${APIurl}/products/${productID}`, authorization)
       // axios.get(`/products/?product_id=${productID}`)
       .then(({ data }) => {
@@ -29,7 +28,7 @@ class RelatedProductsList extends React.Component {
         });
       })
       .catch((error) => {
-        console.log('Error fetching product details in relatedProductsList', error);
+        console.log('Error getting product details in relatedProductsList', error);
       });
   }
 

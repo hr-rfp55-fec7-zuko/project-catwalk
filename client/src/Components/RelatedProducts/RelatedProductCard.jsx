@@ -12,6 +12,7 @@ class RelatedProductCard extends React.Component {
       productIDInfo: '',
       //parentProductIDInfo,
       salePrice: '',
+      featuredURL: '/images/default-placeholder.png',
     };
   }
 
@@ -26,69 +27,55 @@ class RelatedProductCard extends React.Component {
         console.log(data);
         this.setState({
           productIDInfo: data,
-          //parentProductFeatures: parentProductIDInfo.features,
           currentProductFeatures: data.features,
-          // eslint-disable-next-line react/destructuring-assignment
-          //loaded: this.state.loaded + 1,
         });
       })
       .catch((error) => {
         console.log('Error fetching product details in relatedProductCard', error);
       });
 
-    // axios.get(`/products/?product_id=${productID}&flag=styles`)
-    //   .then(({ data }) => {
-    //     const defaultProduct = data.results.find((product) => product['default?'] === true);
-    //     let url;
-    //     if (!defaultProduct) {
-    //       url = data.results[0].photos[0].thumbnail_url;
-    //       this.setState({
-    //         salePrice: data.results[0].sale_price,
-    //       });
-    //     } else {
-    //       url = defaultProduct.photos[0].thumbnail_url;
-    //       this.setState({
-    //         salePrice: defaultProduct.sale_price,
-    //       });
-    //     }
-    //     if (!url) {
-    //       this.setState({
-    //         loaded: this.state.loaded + 1,
-    //         featuredURL: 'https://www.westernheights.k12.ok.us/wp-content/uploads/2020/01/No-Photo-Available.jpg',
-    //       });
-    //     } else {
-    //       this.setState({
-    //         loaded: this.state.loaded + 1,
-    //         featuredURL: url,
-    //       });
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.log('Error fetching product styles in relatedProductCard', error);
-    //   });
+    axios.get(`${APIurl}/products/${productID}/styles`, authorization)
+    //axios.get(`/products/?product_id=${productID}&flag=styles`)
+      .then(({ data }) => {
+        const defaultProduct = data.results.find((product) => product['default?'] === true);
+        let url;
+        if (!defaultProduct) {
+          url = data.results[0].photos[0].thumbnail_url;
+          this.setState({
+            salePrice: data.results[0].sale_price,
+          });
+        } else {
+          url = defaultProduct.photos[0].thumbnail_url;
+          this.setState({
+            salePrice: defaultProduct.sale_price,
+          });
+        }
+        if (!url) {
+          this.setState({
 
-    // // get reviews
-    // axios.get(`/reviews/?product_id=${productID}&meta=meta`)
-    //   .then((results) => {
-    //     this.setState({
-    //       averageStarRating: Number(averageRating(results.data.ratings)),
-    //       averageRatingLoaded: true,
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     console.log('error on meta GET request', err);
-    //   });
+          });
+        } else {
+          this.setState({
+            featuredURL: url,
+          });
+        }
+      })
+      .catch((error) => {
+        console.log('Error fetching product styles in relatedProductCard', error);
+      });
   }
 
   render() {
     const {
       salePrice,
+      featuredURL,
       productIDInfo,
+      //parentProductIDInfo
     } = this.state;
     return (
       <div className='card' id='{productIDInfo.id}'>
         <div className='pic'>
-          <img src="https://m.media-amazon.com/images/I/41sxUiYQxFL._AC_SR160,200_.jpg" />
+          <img src={featuredURL} alt={productIDInfo.name} />
         </div>
         <div className='info'>
           <p className='category'>{productIDInfo.category}</p>
