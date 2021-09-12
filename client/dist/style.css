@@ -32,20 +32,23 @@ h3 {
   margin: auto;
 }
 
-.RelatedProductsList > div{
-  /* display: flex;
-  flex-wrap: nowrap;
-  overflow:  hidden;
-  justify-content: flex-start space-around; */
+.RelatedProductsList {
+  display: flex;
+  flex-wrap: wrap;
   width: 100%;
-  justify-content: left !important;
+  column-gap: 20px;
+  height: 300px;
+  justify-content: left;
+  row-gap: 20px;
+
 }
 
 
 .RelatedProductsList .card {
-  border: 1px solid #ccc;
-  width: 292px;
-  float:left;
+  border-bottom: 1px solid #ccc;
+  width: calc(100%/4 - 20px);
+  height: 300px;
+  padding-bottom: 30px;
 }
 
 .RelatedProductsList .card .info{
@@ -54,12 +57,12 @@ h3 {
 
 .RelatedProductsList .card .pic {
   overflow: hidden;
-  height: 300px;
   width: 100%;
-  background-color: #eee;
+  text-align: center;
+  /* background-color: #eee; */
 }
 
 .RelatedProductsList .card .pic img {
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 200px;
 }
