@@ -32,7 +32,7 @@ h3 {
   margin: auto;
 }
 
-.relatedItemsList > div{
+.RelatedProductsList > div{
   /* display: flex;
   flex-wrap: nowrap;
   overflow:  hidden;
@@ -42,20 +42,21 @@ h3 {
 }
 
 
-.relatedItemsList .card {
+.RelatedProductsList .card {
   border: 1px solid #ccc;
   width: 292px;
+  float:left;
 }
 
-.relatedItemsList .card .info{
+.RelatedProductsList .card .info{
   padding: 20px;
 }
 
-.relatedItemsList .card .pic {
+.RelatedProductsList .card .pic {
   overflow: hidden;
 }
 
-.relatedItemsList .card .pic img {
+.RelatedProductsList .card .pic img {
   width :100%;
   max-height: 300px;
 }
