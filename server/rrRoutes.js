@@ -19,6 +19,7 @@ let APIQuery = function(method, endpath, query, data = null) {
   })
     .then((results) => {
       results = results.data;
+      /***********Remove 1 line below during cleanup!********/
       console.log('Successful api request. Results', results);
       return results;
     })
@@ -36,7 +37,7 @@ router.get('/meta', (req, res) => {
 
   APIQuery('GET', endpath, query)
     .then((data) => res.status(200).send(data))
-    .catch((error) => res.status(418).send(error));
+    .catch((error) => res.status(401).send(error));
 });
 
 router.get('/', (req, res) => {
@@ -45,25 +46,25 @@ router.get('/', (req, res) => {
 
   APIQuery('GET', endpath, query)
     .then((data) => res.status(200).send(data))
-    .catch((error) => res.status(500).send(error));
+    .catch((error) => res.status(401).send(error));
 });
 
 //Create new review
-router.post('/:review_id/helpful', (req, res) => {
+router.post('/', (req, res) => {
   let endpath = '/';
-  let query = `product_id=${req.query.product_id}`;
+  let query = '';
   let data = req.body;
 
-  APIQuery('PUT', endpath, query, data)
+  APIQuery('POST', endpath, query, data)
     .then((data) => res.status(201).send(data))
-    .catch((error) => res.status(500).send(error));
+    .catch((error) => res.status(401).send(error));
 });
 
 //Flag as helpful
 router.put('/:review_id/helpful', (req, res) => {
   let endpath = '/';
-  let query = `product_id=${req.query.product_id}`;
-  let body = req.body;
+  let query = '';
+  let body = '';
 
   APIQuery('PUT', endpath, query, body)
     .then((data) => res.status(201).send(data))
