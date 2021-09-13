@@ -6,9 +6,10 @@ var router = express.Router();
 
 /* API Query Helper */
 let APIQuery = function(method, endpath, query, data = null) {
+  console.log(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews${endpath}${query}`);
   return axios({
     method: method,
-    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews${endpath}?${query}`,
+    url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews${endpath}${query}`,
     timeout: 3000,
     headers: {
       'Authorization': `${config.TOKEN}`,
@@ -33,7 +34,7 @@ let APIQuery = function(method, endpath, query, data = null) {
 /*** Routes ***/
 router.get('/meta', (req, res) => {
   let endpath = '/meta';
-  let query = `product_id=${req.query.product_id}`;
+  let query = `?product_id=${req.query.product_id}`;
 
   APIQuery('GET', endpath, query)
     .then((data) => res.status(200).send(data))
@@ -42,7 +43,7 @@ router.get('/meta', (req, res) => {
 
 router.get('/', (req, res) => {
   let endpath = '/';
-  let query = `product_id=${req.query.product_id}`;
+  let query = `?product_id=${req.query.product_id}`;
 
   APIQuery('GET', endpath, query)
     .then((data) => res.status(200).send(data))
@@ -62,25 +63,37 @@ router.post('/', (req, res) => {
 
 //Flag as helpful
 router.put('/:review_id/helpful', (req, res) => {
-  let endpath = '/';
+
+  let endIdIndex = req.url.indexOf('/', 1);
+  let reviewId = req.url.slice(1, endIdIndex);
+
+  let endpath = `/${reviewId}/helpful`;
   let query = '';
   let body = '';
 
   APIQuery('PUT', endpath, query, body)
     .then((data) => res.status(201).send(data))
-    .catch((error) => res.status(500).send(error));
+    .catch((error) => res.status(401).send(error));
+
+
 });
 
 //Report review
 router.put('/:review_id/report', (req, res) => {
-  let endpath = '/';
-  let query = `product_id=${req.query.product_id}`;
-  let body = req.body;
+
+  let endIdIndex = req.url.indexOf('/', 1);
+  let reviewId = req.url.slice(1, endIdIndex);
+
+  let endpath = `/${reviewId}/report`;
+  let query = '';
+  let body = '';
 
   APIQuery('PUT', endpath, query, body)
     .then((data) => res.status(201).send(data))
-    .catch((error) => res.status(500).send(error));
+    .catch((error) => res.status(401).send(error));
 });
 
 //Export
 module.exports = router;
+
+
