@@ -22,7 +22,7 @@ class RelatedProductsView extends React.Component {
     axios.get(`${APIurl}/products/40346/related`, authorization)
     //axios.get(`${APIurl}/products/?product_id=${productID}&flag=related`, authorization)
       .then(({ data }) => {
-        // console.log(data);
+        console.log(data);
         const related = new Set();
         data.forEach((element) => {
           related.add(element);

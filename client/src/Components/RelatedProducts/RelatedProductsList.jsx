@@ -22,7 +22,7 @@ class RelatedProductsList extends React.Component {
     axios.get(`${APIurl}/products/${productID}`, authorization)
       // axios.get(`/products/?product_id=${productID}`)
       .then(({ data }) => {
-       // console.log(data);
+        // console.log(data);
         this.setState({
           parentProductIDInfo: data,
         });
@@ -33,7 +33,7 @@ class RelatedProductsList extends React.Component {
   }
 
   render() {
-    const { parentProductIDInfo} = this.state;
+    const { parentProductIDInfo } = this.state;
     const { relatedProducts, productID } = this.props;
     if (parentProductIDInfo.length === 0) {
       return (

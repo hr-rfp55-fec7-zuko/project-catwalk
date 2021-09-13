@@ -10,7 +10,7 @@ class RelatedProductCard extends React.Component {
     this.state = {
       productIDInfo: '',
       salePrice: '',
-      featuredURL: '/images/default-placeholder.png',
+      featuredURL: '',
       averageStarRating: ''
     };
   }
@@ -19,7 +19,6 @@ class RelatedProductCard extends React.Component {
     let APIurl = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
     let authorization = { headers: { Authorization: `${config.TOKEN}` } };
     const { productID, parentProductIDInfo } = this.props;
-
     // axios.get(`/products/?product_id=${productID}`)
     axios.get(`${APIurl}/products/${productID}`, authorization)
       .then(({ data }) => {
@@ -54,7 +53,7 @@ class RelatedProductCard extends React.Component {
         }
         if (!url) {
           this.setState({
-
+            featuredURL: '/images/default-placeholder.png',
           });
         } else {
           this.setState({
@@ -82,16 +81,16 @@ class RelatedProductCard extends React.Component {
     const { salePrice, featuredURL, productIDInfo, averageStarRating } = this.state;
 
     return (
-      <div className='card' id='{productIDInfo.id}'>
+      <div className='card' id={productIDInfo.id}>
         <div className='pic'>
           <img src={featuredURL} alt={productIDInfo.name} />
         </div>
         <div className='info'>
           <p className='category'>{productIDInfo.category}</p>
-          <h3 className='title'><a href='#'>{productIDInfo.name}</a></h3>
+          <h3 className='title' onClick={this.changeProduct}><a href='#'>{productIDInfo.name}</a></h3>
           <p className='price'> ${productIDInfo.default_price}</p>
           {salePrice ? <p className='price'> ${salePrice}</p> : null}
-          <div className='eviewLink'>*****</div>
+          <div className='reviewLink'>*****</div>
         </div>
       </div>
     );
