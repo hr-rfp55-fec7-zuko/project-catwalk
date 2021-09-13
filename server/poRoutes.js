@@ -11,7 +11,7 @@ var router = express.Router();
 let getProductInfo = (productId, styles = false) => {
   let options = {
     method: 'get',
-    baseURL: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/${productId}`,
+    baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products',
     headers: {
       'User-Agent': 'request',
       'Authorization': TOKEN
@@ -19,7 +19,9 @@ let getProductInfo = (productId, styles = false) => {
   };
 
   if (styles) {
-    options.url = '/styles';
+    options.url = `/${productId}/styles`;
+  } else {
+    options.url = `/${productId}`;
   }
 
   return axios(options);
