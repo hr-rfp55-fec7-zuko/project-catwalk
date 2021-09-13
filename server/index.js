@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 app.use('/reviews', reviews);
-app.use('/products', productInfo);
+app.use('/products', products);
 
 app.listen(PORT, () => {
   console.log('Listening on port: ', PORT);
