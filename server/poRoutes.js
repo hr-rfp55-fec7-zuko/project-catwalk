@@ -22,7 +22,7 @@ let getProductInfo = (productId, styles = false) => {
     options.url = '/styles';
   }
 
-  return axios(options); //run callback or reurn axios to promise chain somewhere else?
+  return axios(options);
 };
 
 // GET product information
