@@ -8,7 +8,7 @@ var router = express.Router();
 
 //Axios with Options config
 
-let getProductInfo = (productId, styles = false) => {
+let getProductInfo = (productId, flag = null) => {
   let options = {
     method: 'get',
     baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products',
@@ -18,8 +18,10 @@ let getProductInfo = (productId, styles = false) => {
     }
   };
 
-  if (styles) {
+  if (flag === 'styles') {
     options.url = `/${productId}/styles`;
+  } else if (flag === 'related') {
+    options.url = `/${productId}/related`;
   } else {
     options.url = `/${productId}`;
   }
@@ -41,7 +43,7 @@ router.get('/:id', (req, res) => {
 
 // GET product style information
 router.get('/:id/styles', (req, res) => {
-  getProductInfo(req.params.id, true)
+  getProductInfo(req.params.id, 'styles')
     .then((data) => {
       res.send(data.results);
     })
@@ -51,4 +53,15 @@ router.get('/:id/styles', (req, res) => {
     });
 });
 
+// GET related product information
+router.get('/:id/related', (req, res) => {
+  getProductInfo(req.params.id, 'related')
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((error) => {
+      console.error('error from poRoutes get id/related', error);
+      res.sendStatus(404);
+    });
+});
 module.exports = router;
