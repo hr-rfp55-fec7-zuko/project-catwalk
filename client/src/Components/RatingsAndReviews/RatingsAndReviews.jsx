@@ -81,7 +81,7 @@ class RatingsAndReviews extends React.Component {
         {this.state.reviews !== null &&
          <>
            <SortBar reviewCount={this.state.reviews.count}/>
-           <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics}/>
+           <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews}/>
            <RatingBreakdown metaData={this.state.metaData} reviewCount={this.state.reviews.count}/>
            <ProductBreakdown characteristics={this.state.metaData.characteristics}/>
          </>

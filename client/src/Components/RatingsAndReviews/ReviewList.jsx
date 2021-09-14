@@ -16,6 +16,7 @@ class ReviewList extends React.Component {
     };
 
     this.toggleAddReviewFormVisible = this.toggleAddReviewFormVisible.bind(this);
+    this.requestProductReviews = this.requestProductReviews.bind(this);
   }
 
   toggleAddReviewFormVisible() {
@@ -24,9 +25,10 @@ class ReviewList extends React.Component {
     });
   }
 
-  handleMoreReviewsClick(){
+  requestProductReviews(){
     //if needed, prevent default
     //call this.props.requestProductReviews()
+    this.props.requestProductReviews();
   }
 
   render() {
@@ -39,7 +41,7 @@ class ReviewList extends React.Component {
         {reviews.results.map((review) => {
           return <ReviewTile key={review.review_id} review={review}/>;
         })}
-        <button type="button" id="more-reviews">More Reviews</button>
+        <button type="button" id="more-reviews" onClick={this.requestProductReviews}>More Reviews</button>
         <button type="button" id="add-review" onClick={this.toggleAddReviewFormVisible}>Add A Review</button>
         {this.state.addReviewFormVisible && <AddReviewForm characteristics={characteristics}/>}
       </div>
