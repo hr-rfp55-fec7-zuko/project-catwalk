@@ -1,5 +1,5 @@
 import React from 'react';
-import ky from 'ky';
+import axios from 'axios';
 import ImageGallery from './POComponents/ImageGallery.jsx';
 import StarRating from './POComponents/StarRating.jsx';
 import StyleSelector from './POComponents/StyleSelector.jsx';
@@ -30,8 +30,8 @@ class ProductOverview extends React.Component {
   }
 
   componentDidMount() {
-    ky.get('http://localhost:3000/products/40344').json()
-      .then((response) => console.log(response));
+    axios.get('http://localhost:3000/products/40344')
+      .then((response) => console.log(response.data));
   }
 }
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import 'regenerator-runtime/runtime';
 
 import ProductOverview from './Components/ProductOverview/ProductOverview.jsx';
 import QuestionAnswer from './Components/QuestionAnswer/QuestionAnswer.jsx';
