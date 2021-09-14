@@ -11,10 +11,12 @@ class ProductOverview extends React.Component {
     super(props);
     this.state = {
       id: this.props.productId,
-      features: []
+      features: [],
+      styles: []
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getStyleInfo = this.getStyleInfo.bind(this);
+    this.setStyleSelection = this.setStyleSelection.bind(this);
   }
 
   getProductInfo(id) {
@@ -41,6 +43,10 @@ class ProductOverview extends React.Component {
       });
   }
 
+  setStyleSelection(style) {
+    this.setState({ style });
+  }
+
   render() {
     return (
       <div className='po-main'>
@@ -50,7 +56,7 @@ class ProductOverview extends React.Component {
         <p>{this.state.category}</p>
         <p>{this.state.name}</p>
         <p>{this.state.price}</p>
-        <StyleSelector />
+        <StyleSelector styles={this.state.styles} setStyleSelection={this.setStyleSelection} />
         <AddToCart />
         <p>{this.state.slogan}</p>
         <p>{this.state.description}</p>
