@@ -13,22 +13,8 @@ class RelatedProductsList extends React.Component {
     };
   }
 
-  componentDidMount() {
-    // const { productID } = this.props;
-    // axios.get(`/products/${productID}`)
-    //   .then(({ data }) => {
-    //     this.setState({
-    //       parentProductIDInfo: data,
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.log('Error getting product details in relatedProductsList', error);
-    //   });
-  }
 
   render() {
-    // const { parentProductIDInfo, relatedProducts } = this.state;
-    // const { productID } = this.props;
     return (
       <div className='RelatedProductsList'>
         <RelatedProductCard />
