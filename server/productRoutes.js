@@ -45,7 +45,6 @@ router.get('/:id', (req, res) => {
 router.get('/:id/styles', (req, res) => {
   getProductInfo(req.params.id, 'styles')
     .then((response) => {
-      console.log(response.data);
       res.send(response.data.results);
     })
     .catch((error) => {
