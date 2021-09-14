@@ -12,8 +12,8 @@ class AddToCart extends React.Component {
   render() {
     return (
       <div id='po-add-cart'>
-        <QuantitySelector />
         <SizeSelector />
+        <QuantitySelector />
         <button>Add to Cart</button>
       </div>
     );

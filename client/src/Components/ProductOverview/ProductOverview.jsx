@@ -17,9 +17,9 @@ class ProductOverview extends React.Component {
         <ImageGallery />
         <StarRating />
         <button>Read all Reviews</button>
-        Category Stand in
-        Product Name Stand in
-        Product Price
+        <p>Category Stand in</p>
+        <p>Product Name Stand in</p>
+        <p>Product Price</p>
         <StyleSelector />
         <AddToCart />
         Product description
