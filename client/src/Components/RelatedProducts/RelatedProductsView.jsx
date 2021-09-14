@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDom from 'react-dom';
 import RelatedProductsList from './RelatedProductsList.jsx';
 
 const axios = require('axios');
@@ -13,9 +12,10 @@ class RelatedProductsView extends React.Component {
   }
 
   componentDidMount() {
-    const { productID } = this.props;
-    axios.get('products/40346/related')
+    const { productId } = this.props;
+    axios.get(`products/${productId}/related`)
       .then(({ data }) => {
+        console.log(data);
         this.setState({
           relatedProducts: data,
         });
@@ -27,12 +27,12 @@ class RelatedProductsView extends React.Component {
 
   render() {
     const { relatedProducts } = this.state;
-    const { productID } = this.props;
+    const { productId } = this.props;
     return (
       <div className="relatedProducts">
         <h2>Related Products</h2>
         <RelatedProductsList
-          productID={productID}
+          productId={productId}
           relatedProducts={relatedProducts}
         />
       </div>
