@@ -13,7 +13,12 @@ class StyleSelector extends React.Component {
     return (
       <div id='po-style-select'>
         <h4>Style Selected: {this.state.styleName}</h4>
-        {this.state.styles.map((style) => <img className='style-img' src={style.photos[0].thumbnail_url} />)}
+        {this.state.styles.map((style) => <img className='style-img' src={style.photos[0].thumbnail_url} onClick={(event) => {
+          event.preventDefault();
+          console.log('clicked');
+          this.props.setStyleSelection(style);
+          this.setState({styleName: style.name});
+        }} />)}
       </div>
     );
   }
@@ -22,7 +27,7 @@ class StyleSelector extends React.Component {
     if (this.props.styles !== prevProps.styles) {
       this.setState({ styles: this.props.styles });
       for (var i = 0; i < this.props.styles.length; i++) {
-        console.log('going into for loop');
+        // console.log('going into for loop');
         if (this.props.styles[i]['default?']) {
           this.setState({ styleName: this.props.styles[i].name });
           this.props.setStyleSelection(this.props.styles[i]);
