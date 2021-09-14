@@ -2,11 +2,10 @@ const express = require('express');
 const router = express.Router();
 const axios = require('axios');
 const token = require('../client/config.js');
-const Promise = require('bluebird');
 
 
-var AtelierAPI = (method, endpoint, params = null, data = null, cb) => {
-  axios({
+var AtelierAPI = (method, endpoint, params = null, data = null) => {
+  return (axios({
     method: method,
     url: endpoint,
     baseURL: 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/',
@@ -14,28 +13,20 @@ var AtelierAPI = (method, endpoint, params = null, data = null, cb) => {
     params: params,
     data: data,
     headers: { Authorization: token.TOKEN},
-  })
-    .then(response => {
-      cb(null, response);
-    })
-    .catch(error => {
-      cb(error, null);
-    });
+  }));
 };
-
-var AtelierAPIAsync = Promise.promisify(AtelierAPI);
 
 //TO DO DURING INTEGRATION: DYNAMICALLY UPDATE PARAMS (TO BE DELETED AFTER INTEGRATION)
 
 router.get('/questions', (req, res) => {
-  AtelierAPI('GET', '/qa/questions', {'product_id': '40344', 'page': 1, 'count': 5}, null, (err, response) => {
-    if (err) {
-      res.send(err).status(500);
-    } else {
+  AtelierAPI('GET', '/qa/questions', {'product_id': '40344', 'page': 1, 'count': 5})
+    .then(response => {
       var final = response.data.results.sort((a, b) => (b.question_helpfulness - a.question_helpfulness));
       res.send(final).status(200);
-    }
-  });
+    })
+    .catch(err => {
+      res.send(err).status(500);
+    });
 });
 
 module.exports = router;
