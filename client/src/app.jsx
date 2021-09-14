@@ -1,4 +1,6 @@
 import React from 'react';
+import 'regenerator-runtime/runtime';
+//import 'core-js/stable';
 
 import ProductOverview from './Components/ProductOverview/ProductOverview.jsx';
 import RelatedProductsView from './Components/RelatedProducts/RelatedProductsView.jsx';
