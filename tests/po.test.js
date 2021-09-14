@@ -6,6 +6,6 @@ import App from '../client/src/app.jsx';
 describe('App', () => {
   test('renders App component', () => {
     render(<App />);
-    screen.debug();
+    // screen.debug();
   });
 });
