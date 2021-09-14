@@ -41,7 +41,7 @@ class RatingBreakdown extends React.Component {
       ratingBars.push (
         <div className='rating-breakdown'>
           <div className='rating-bar-outer'>
-            <div className='rating-bar-inner'>
+            Bar Here<div className='rating-bar-inner'>
             </div>
           </div>
           {metaData.ratings[rating]}

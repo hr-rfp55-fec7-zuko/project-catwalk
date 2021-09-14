@@ -16,10 +16,15 @@
 }
 
 .review-tile, .reviews-list {
-  background-color: lightgrey;
+  background-color: lightseagreen;
   border: 1px solid black;
 }
 
 .rating-breakdown {
   background-color: lightskyblue;
+}
+
+.product-breakdown {
+  background-color: lightpink;
+
 }

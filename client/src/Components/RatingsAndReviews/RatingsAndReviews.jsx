@@ -22,7 +22,7 @@ class RatingsAndReviews extends React.Component {
     super(props);
 
     this.state = {
-      productId: exampleProductId,
+      productId: this.props.product_id,
       metaData: exampleMetaData, /*When requesting from API, should be null to start*/
       reviews: exampleReviews /*When requesting from API, should be null to start*/
     };
@@ -40,7 +40,14 @@ class RatingsAndReviews extends React.Component {
   }
 
   requestProductMetaData() {
-
+    /*
+    $.ajax({
+      url: ,
+      method: ,
+      success: ,
+      error:
+    });
+    */
   }
 
   requestProductReviews() {
@@ -66,7 +73,7 @@ class RatingsAndReviews extends React.Component {
         <SortBar reviewCount={this.state.reviews.count}/>
         <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics}/>
         <RatingBreakdown metaData={this.state.metaData} reviewCount={this.state.reviews.count}/>
-        <ProductBreakdown metaData={this.state.metaData}/>
+        <ProductBreakdown characteristics={this.state.metaData.characteristics}/>
       </div>
     );
   }

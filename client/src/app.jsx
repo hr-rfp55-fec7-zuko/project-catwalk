@@ -16,14 +16,9 @@ class App extends React.Component {
   render() {
     return (
       <div>
-<<<<<<< HEAD
-        Hello from React! This is a test for merge conflict from Iris.
-        <ProductOverview />
-        <RatingsAndReviews />
-=======
-        <ProductOverview productId={this.state.product_id} />
-        <QuestionAnswer productId={this.state.product_id} />
->>>>>>> master
+        {/* <ProductOverview productId={this.state.product_id} /> */}
+        {/* <QuestionAnswer productId={this.state.product_id} /> */}
+        <RatingsAndReviews productId={this.state.product_id} />
       </div>
     );
   }
