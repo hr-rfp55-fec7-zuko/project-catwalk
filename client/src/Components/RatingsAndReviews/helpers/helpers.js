@@ -7,8 +7,8 @@ const helpers = {
   determineTotalReviews: function(reviewsObject) {
     let totalReviewCount = 0;
 
-    for (var reviewProp in reviewsObj) {
-      totalReviewCount += reviewsObj[reviewProp];
+    for (var reviewProp in reviewsObject) {
+      totalReviewCount += parseInt(reviewsObject[reviewProp]);
     }
 
     return totalReviewCount;

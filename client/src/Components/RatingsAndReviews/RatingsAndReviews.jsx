@@ -26,7 +26,6 @@ class RatingsAndReviews extends React.Component {
     this.state = {
       'product_id': this.props.product_id,
       reviewLimit: 2,
-      reviewCount: 0,
       metaData: exampleMetaData,
       reviews: exampleReviews,
       receivedInitialData: false
@@ -41,29 +40,24 @@ class RatingsAndReviews extends React.Component {
     this.requestProductMetaData();
     this.requestProductReviews();
 
+    // const initialDataLoad = function() {
+    //   return new Promise((resolve, reject) => {
+    //     this.requestProductMetaData((error, data) => {
 
-    /*
-    const loadProductMetaData = function() {
-    return new Promise((resolve, reject) => {
-      this.requestProductMetaData();
-      this.requestProductReviews();
-    });
-    loadProductMetaData
-      .then(() => this.setState({receivedInitialData: true}))
-      .catch((error) => console.log('requestError', error));
-    */
+    //       if (error) {
+    //         reject(error);
+    //       } else {
+    //         resolve(data);
+    //       }
+
+    //     });
+
+    //   });
+    // }
+    //   .then((data) => console.log('made it to the next step!'));
   }
 
-
-
   requestProductMetaData() {
-    // $.ajax({
-    //   url: `/reviews/meta?product_id=${this.state.product_id}`,
-    //   method: 'GET',
-    //   success: (data) => this.setState({metaData: data}),
-    //   error: (error) => console.log('ERROR in METADATA AJAX Request: ', error)
-    // });
-
     return axios({
       url: `/reviews/meta?product_id=${this.state.product_id}`,
       method: 'GET'
@@ -74,15 +68,6 @@ class RatingsAndReviews extends React.Component {
   }
 
   requestProductReviews() {
-    console.log('this.state.reviewLimit', this.state.reviewLimit);
-
-
-    // $.ajax({
-    //   url: `/reviews/?product_id=${this.state.product_id}&count=${this.state.reviewLimit}`,
-    //   method: 'GET',
-    //   success: (data) => this.setState({reviews: data, reviewLimit: this.state.reviewLimit + 2}),
-    //   error: (error) => console.log('ERROR in REVIEWS AJAX Request: ', error)
-    // });
 
     return axios({
       url: `/reviews/?product_id=${this.state.product_id}&count=${this.state.reviewLimit}`,
@@ -90,13 +75,7 @@ class RatingsAndReviews extends React.Component {
     })
       .then((results) => this.setState({reviews: results.data, reviewLimit: this.state.reviewLimit + 2}))
       .catch((error) => console.log('ERROR in REVIEWS AJAX Request: ', error));
-
-
-
-
   }
-
-
 
   //submit review form
   submitReviewForm() {
@@ -104,14 +83,17 @@ class RatingsAndReviews extends React.Component {
   }
 
   render() {
+
+    let reviewCount = helpers.determineTotalReviews(this.state.metaData.ratings);
+
     return (
       <div className="ratings-and-reviews">
         <h2>Ratings and Reviews</h2>
         {this.state.reviews !== null &&
          <>
-           <SortBar reviewCount={this.state.reviews.count}/>
-           <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews}/>
-           <RatingBreakdown metaData={this.state.metaData} reviewCount={this.state.reviews.count}/>
+           <SortBar reviewCount={reviewCount}/>
+           <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount}/>
+           <RatingBreakdown metaData={this.state.metaData} reviewCount={reviewCount}/>
            <ProductBreakdown characteristics={this.state.metaData.characteristics}/>
          </>
         }
