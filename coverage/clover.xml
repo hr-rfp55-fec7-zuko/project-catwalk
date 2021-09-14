@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1631579429464" clover="3.2.0">
+  <project timestamp="1631579429464" name="All files">
+    <metrics statements="34" coveredstatements="34" conditionals="3" coveredconditionals="3" methods="3" coveredmethods="3" elements="40" coveredelements="40" complexity="0" loc="34" ncloc="34" packages="2" files="2" classes="2"/>
+    <package name="src">
+      <metrics statements="16" coveredstatements="16" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <file name="app.jsx" path="/Users/ilee/Documents/HackReactor/project-catwalk/client/src/app.jsx">
+        <metrics statements="16" coveredstatements="16" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.Components.ProductOverview">
+      <metrics statements="18" coveredstatements="18" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+      <file name="ProductOverview.jsx" path="/Users/ilee/Documents/HackReactor/project-catwalk/client/src/Components/ProductOverview/ProductOverview.jsx">
+        <metrics statements="18" coveredstatements="18" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="9" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>
