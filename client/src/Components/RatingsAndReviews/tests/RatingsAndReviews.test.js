@@ -1,4 +1,25 @@
-const RatingsAndReviewsModule = require('./tests/RatingsAndReviews.jsx');
+import React from 'react';
+import {render, screen} from '@testing-library/react';
+import RatingsAndReviews from '../RatingsAndReviews.jsx';
+
+describe('RatingsAndReviews', () => {
+  test('Renders Widget Component', () => {
+    render(<RatingsAndReviews />);
+  });
+
+  test('Should have a header called Ratings And Reviews', () => {
+    render(<RatingsAndReviews />);
+    expect(screen.getByText('Ratings and Reviews')).toBeInTheDocument();
+  });
+
+  test('Should have a header called Ratings And Reviews', () => {
+    render(<RatingsAndReviews />);
+    expect(screen.getByText(/Ratings and Reviews/)).toBeInTheDocument();
+  });
+
+});
+
+
 
 
 /*#####ARCHITECTURE#####*/

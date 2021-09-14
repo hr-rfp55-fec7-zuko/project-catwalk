@@ -45,8 +45,6 @@ class AddReviewForm extends React.Component {
           <input type="radio" id="5" name="Placeholder Characteristic"></input>
           <br></br>
 
-
-
           <label className="form-category">Review Summary</label>
           <input type="text" id="review-summary" name="review-summary" placeholder="Best purchase ever!"></input>
           <br></br>
