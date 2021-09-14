@@ -1,9 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 import ProductOverview from './Components/ProductOverview/ProductOverview.jsx';
 import RelatedProductsView from './Components/RelatedProducts/RelatedProductsView.jsx';
 import YourOutfitList from './Components/YourOutfitList/YourOutfitList.jsx';
+
 
 
 class App extends React.Component {
@@ -19,4 +19,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+export default App;

@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 
 import axios from 'axios';
 
-class RelatedProductCard extends React.Component {
+class YourOutfitCard extends React.Component {
   constructor({ props }) {
     super(props);
     this.state = {
@@ -30,4 +30,4 @@ class RelatedProductCard extends React.Component {
   }
 }
 
-export default RelatedProductCard;
+export default YourOutfitCard;

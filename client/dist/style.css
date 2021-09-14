@@ -11,9 +11,7 @@ body, div, p, h1, h2, h3 {
   margin: 0px;
 }
 
-h1 {
 
-}
 
 h2 {
   font-weight:700;
@@ -32,7 +30,7 @@ h3 {
   margin: auto;
 }
 
-.RelatedProductsList {
+.RelatedProductsList, .YourOutfit {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -42,12 +40,12 @@ h3 {
   overflow: scroll;
   position: relative;
   height: 350px;
-  transitions: .5s;
+  /* transitions: .5s; */
   scroll-behavior: smooth;
 }
 
 
-.RelatedProductsList .card {
+.RelatedProductsList .card, .YourOutfit .card{
   /* border-bottom: 1px solid #ccc; */
   width: calc(100%/4 - 20px);
   height: 300px;
@@ -55,18 +53,30 @@ h3 {
   box-shadow:-1px 6px 4px -2px rgba(94, 74, 74, 0.2);
 }
 
-.RelatedProductsList .card .info{
+.RelatedProductsList .card .info, .YourOutfit .card .info{
   padding: 20px;
 }
 
-.RelatedProductsList .card .pic {
+.RelatedProductsList .card .pic, .YourOutfit .card .pic {
   overflow: hidden;
   width: 100%;
   text-align: center;
   /* background-color: #eee; */
 }
 
-.RelatedProductsList .card .pic img {
+.RelatedProductsList .card .pic img, .YourOutfit .card .pic img  {
   width: auto;
   height: 200px;
 }
+
+.AddOutfitContent {
+  background: linear-gradient(180deg, rgb(250, 250, 250), hsl(240,60%,100%));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+ .AddOutfitContent:hover {
+    background: linear-gradient(180deg, hsl(190,45%,95%), hsl(240,60%,100%));
+  }
