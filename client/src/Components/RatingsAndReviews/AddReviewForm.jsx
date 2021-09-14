@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 class AddReviewForm extends React.Component {
   constructor(props) {
     super(props);
@@ -10,6 +11,8 @@ class AddReviewForm extends React.Component {
   }
 
   render() {
+    let characteristics = this.props.characteristics;
+
     return (
       <div className="add-review-form">
         <h3>Write Your Review</h3>
@@ -42,6 +45,8 @@ class AddReviewForm extends React.Component {
           <input type="radio" id="5" name="Placeholder Characteristic"></input>
           <br></br>
 
+
+
           <label className="form-category">Review Summary</label>
           <input type="text" id="review-summary" name="review-summary" placeholder="Best purchase ever!"></input>
           <br></br>
@@ -51,11 +56,9 @@ class AddReviewForm extends React.Component {
           <small><p>Placeholder: Minimum required characters left: ## OR Minimum Reached</p></small>
           <br></br>
 
-          <form action='placeholder'>
-            <label className="form-category">Uplaod your photos</label>
-            <input type="file" id="" name="filename"></input>
-            <input type="submit"></input>
-          </form>
+          <label className="form-category">Uplaod your photos</label>
+          <input type="file" id="" name="filename"></input>
+          <input type="button"></input>
           <br></br>
 
           <label className='form-category'>What is your nickmake?*</label>
@@ -71,9 +74,6 @@ class AddReviewForm extends React.Component {
 
           <button type="submit">Submit Reivew</button>
 
-
-
-
         </form>
       </div>
     );
@@ -84,7 +84,7 @@ export default AddReviewForm;
 
 /*
 
-{this.state.characteristics.map((characteristic) => {
+{characteristics.map((characteristic) => {
             <>
               <label htmlFor="none-selected">None Selected</label>
               <input type="radio" id="none-selected" name={characteristic}></input>
@@ -102,5 +102,44 @@ export default AddReviewForm;
           })
         }
 
+         {characteristics.map((characteristic) => {
+            characteristic = characteristic.
+
+            return (
+              <>
+                <label htmlFor="none-selected">None Selected</label>
+                <input type="radio" id="none-selected" name={characteristic}></input>
+                <label htmlFor="1">1</label>
+                <input type="radio" id="1" name={characteristic}></input>
+                <label htmlFor="1">2</label>
+                <input type="radio" id="2" name={characteristic}></input>
+                <label htmlFor="1">3</label>
+                <input type="radio" id="3" name={characteristic}></input>
+                <label htmlFor="1">4</label>
+                <input type="radio" id="4" name={characteristic}></input>
+                <label htmlFor="1">5</label>
+                <input type="radio" id="5" name={characteristic}></input>
+              </>
+            );
+          })
+          }
+
+
+
+        <label className="form-category">Characteristics*</label>
+          <div>Placeholder Characteristic</div>
+          <label htmlFor="none-selected">None Selected</label>
+          <input type="radio" id="none-selected" name="Placeholder Characteristic"></input>
+          <label htmlFor="1">1</label>
+          <input type="radio" id="1" name="Placeholder Characteristic"></input>
+          <label htmlFor="1">2</label>
+          <input type="radio" id="2" name="Placeholder Characteristic"></input>
+          <label htmlFor="1">3</label>
+          <input type="radio" id="3" name="Placeholder Characteristic"></input>
+          <label htmlFor="1">4</label>
+          <input type="radio" id="4" name="Placeholder Characteristic"></input>
+          <label htmlFor="1">5</label>
+          <input type="radio" id="5" name="Placeholder Characteristic"></input>
+          <br></br>
 
 */

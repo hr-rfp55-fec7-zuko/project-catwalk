@@ -12,5 +12,10 @@
 
 /* Ratings & Reviews */
 .ratings-and-reviews {
+  border: 1px solid black;
+}
+
+.review-tile, .reviews-list {
   background-color: lightgrey;
+  border: 1px solid black;
 }
