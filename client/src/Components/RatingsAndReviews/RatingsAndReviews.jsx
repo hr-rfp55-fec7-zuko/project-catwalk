@@ -3,7 +3,9 @@ import SortBar from './SortBar.jsx';
 import ReviewList from './ReviewList.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
 import ProductBreakdown from './ProductBreakdown.jsx';
+import helpers from './helpers/helpers.js';
 import $ from 'jquery';
+import axios from 'axios';
 
 
 //****PLACEHOLDER DATA - DELETE DURING CLEANUP */
@@ -24,6 +26,7 @@ class RatingsAndReviews extends React.Component {
     this.state = {
       'product_id': this.props.product_id,
       reviewLimit: 2,
+      reviewCount: 0,
       metaData: exampleMetaData,
       reviews: exampleReviews,
       receivedInitialData: false
@@ -37,6 +40,8 @@ class RatingsAndReviews extends React.Component {
   componentDidMount() {
     this.requestProductMetaData();
     this.requestProductReviews();
+
+
     /*
     const loadProductMetaData = function() {
     return new Promise((resolve, reject) => {
@@ -46,28 +51,52 @@ class RatingsAndReviews extends React.Component {
     loadProductMetaData
       .then(() => this.setState({receivedInitialData: true}))
       .catch((error) => console.log('requestError', error));
-      */
+    */
   }
 
+
+
   requestProductMetaData() {
-    $.ajax({
+    // $.ajax({
+    //   url: `/reviews/meta?product_id=${this.state.product_id}`,
+    //   method: 'GET',
+    //   success: (data) => this.setState({metaData: data}),
+    //   error: (error) => console.log('ERROR in METADATA AJAX Request: ', error)
+    // });
+
+    return axios({
       url: `/reviews/meta?product_id=${this.state.product_id}`,
-      method: 'GET',
-      success: (data) => this.setState({metaData: data}),
-      error: (error) => console.log('ERROR in METADATA AJAX Request: ', error)
-    });
+      method: 'GET'
+    })
+      .then((results) => this.setState({metaData: results.data}))
+      .catch((error) => console.log('ERROR in METADATA AJAX Request: ', erro));
+
   }
 
   requestProductReviews() {
     console.log('this.state.reviewLimit', this.state.reviewLimit);
-    $.ajax({
+
+
+    // $.ajax({
+    //   url: `/reviews/?product_id=${this.state.product_id}&count=${this.state.reviewLimit}`,
+    //   method: 'GET',
+    //   success: (data) => this.setState({reviews: data, reviewLimit: this.state.reviewLimit + 2}),
+    //   error: (error) => console.log('ERROR in REVIEWS AJAX Request: ', error)
+    // });
+
+    return axios({
       url: `/reviews/?product_id=${this.state.product_id}&count=${this.state.reviewLimit}`,
-      method: 'GET',
-      success: (data) => this.setState({reviews: data, reviewLimit: this.state.reviewLimit + 2}),
-      error: (error) => console.log('ERROR in METADATA AJAX Request: ', error)
-    });
-    //Reset limit in callback state. confirm this works
+      method: 'GET'
+    })
+      .then((results) => this.setState({reviews: results.data, reviewLimit: this.state.reviewLimit + 2}))
+      .catch((error) => console.log('ERROR in REVIEWS AJAX Request: ', error));
+
+
+
+
   }
+
+
 
   //submit review form
   submitReviewForm() {
