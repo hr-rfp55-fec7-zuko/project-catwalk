@@ -6,7 +6,7 @@ import axios from 'axios';
 
 describe('App', () => {
   test('renders App component', () => {
-    // render(<App />);
+    render(<App />);
     // screen.debug();
   });
 });
