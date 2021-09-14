@@ -1,5 +1,5 @@
 import React from 'react';
-import QuestionAnswerEntryList from './QuestionAnswerEntryList.jsx';
+import QuestionEntryList from './QuestionEntryList.jsx';
 import $ from 'jquery';
 
 
@@ -32,7 +32,7 @@ class QuestionAnswer extends React.Component {
       <div className="qa-main">
         QUESTIONS & ANSWERS <br />
         <input type="text" className="qa-searchBar" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
-        <QuestionAnswerEntryList lists={this.state.questionsList}/>
+        <QuestionEntryList lists={this.state.questionsList}/>
       </div>
     );
   }

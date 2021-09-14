@@ -1,7 +1,8 @@
 import React from 'react';
+import AnswerEntryList from './AnswerEntryList.jsx';
 
 
-class QuestionAnswerEntryList extends React.Component {
+class QuestionEntryList extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -13,6 +14,9 @@ class QuestionAnswerEntryList extends React.Component {
           <li className="qa-questions">{'Q: ' + list.question_body}</li>
           <div>
             Helpful? Yes ({list.question_helpfulness})
+          </div>
+          <div>
+            <AnswerEntryList />
           </div>
         </div>
       );
@@ -27,4 +31,4 @@ class QuestionAnswerEntryList extends React.Component {
   }
 }
 
-export default QuestionAnswerEntryList;
+export default QuestionEntryList;

@@ -32,8 +32,8 @@ router.get('/questions', (req, res) => {
     if (err) {
       res.send(err).status(500);
     } else {
-      // console.log('🥰', response.data.results);
-      res.send(response.data.results).status(200);
+      var final = response.data.results.sort((a, b) => (b.question_helpfulness - a.question_helpfulness));
+      res.send(final).status(200);
     }
   });
 });
