@@ -22,9 +22,10 @@ class RatingsAndReviews extends React.Component {
     super(props);
 
     this.state = {
-      productId: this.props.product_id,
+      'product_id': this.props.product_id,
       metaData: exampleMetaData, /*When requesting from API, should be null to start*/
-      reviews: exampleReviews /*When requesting from API, should be null to start*/
+      reviews: exampleReviews, /*When requesting from API, should be null to start*/
+      receivedData: false
     };
 
     this.requestProductMetaData = this.requestProductMetaData.bind(this);
@@ -33,25 +34,36 @@ class RatingsAndReviews extends React.Component {
   }
 
   componentDidMount() {
-    /*When requesting from API...
+
     this.requestProductMetaData();
     this.requestProductReviews();
-    */
+    this.setState({receivedData: true});
+
+
   }
 
   requestProductMetaData() {
-    /*
     $.ajax({
-      url: ,
-      method: ,
-      success: ,
-      error:
+      url: `/reviews/meta?product_id=${this.state.product_id}`,
+      method: 'GET',
+      success: (data) => console.log('successful meta:', data),
+      error: (error) => console.log('ERROR in METADATA AJAX Request: ', error)
+
+      // this.setState({metaData: data})
     });
-    */
+
+    // this.setState({metaData: data})
   }
 
   requestProductReviews() {
+    $.ajax({
+      url: `/reviews/?product_id=${this.state.product_id}`,
+      method: 'GET',
+      success: (data) => console.log('success product:', data),
+      error: (error) => console.log('ERROR in METADATA AJAX Request: ', error)
+    });
 
+    //this.setState({revies: data})
   }
 
   //submit review form
@@ -67,13 +79,36 @@ class RatingsAndReviews extends React.Component {
 
 
   render() {
+
+    // if () {
+    //   var modules =
+    //   <>
+    //     <SortBar reviewCount={this.state.reviews.count}/>
+    //     <ReviewList reviews={this.state.reviews} characteristics=
+    //       {this.state.metaData.characteristics}/>
+    //     <RatingBreakdown metaData={this.state.metaData} reviewCount={this.state.reviews.count}/>
+    //     <ProductBreakdown characteristics={this.state.metaData.characteristics}/>
+    //   </>;
+    // } else {
+    //   var modules = <></>;
+    // }
+
+
+
+
+
+
     return (
       <div className="ratings-and-reviews">
         <h2>Ratings and Reviews</h2>
-        <SortBar reviewCount={this.state.reviews.count}/>
-        <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics}/>
-        <RatingBreakdown metaData={this.state.metaData} reviewCount={this.state.reviews.count}/>
-        <ProductBreakdown characteristics={this.state.metaData.characteristics}/>
+        {this.state.receivedData === true &&
+         <>
+           <SortBar reviewCount={this.state.reviews.count}/>
+           <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics}/>
+           <RatingBreakdown metaData={this.state.metaData} reviewCount={this.state.reviews.count}/>
+           <ProductBreakdown characteristics={this.state.metaData.characteristics}/>
+         </>
+        }
       </div>
     );
   }
