@@ -18,6 +18,7 @@ class QuestionAnswer extends React.Component {
     $.ajax({
       type: 'GET',
       url: '/qa/questions',
+      data: {'product_id': this.props.productId, page: 1, count: 5},
       error: (err) => {
         console.log('Client GET Err:', err);
       },

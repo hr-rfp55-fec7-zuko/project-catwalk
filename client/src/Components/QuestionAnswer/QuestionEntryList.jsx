@@ -1,5 +1,5 @@
 import React from 'react';
-import AnswerEntryList from './AnswerEntryList.jsx';
+import {AnswerEntryList, GetAnswerList} from './AnswerEntryList.jsx';
 
 
 class QuestionEntryList extends React.Component {
@@ -8,6 +8,7 @@ class QuestionEntryList extends React.Component {
   }
 
   render() {
+    console.log(this.props.lists);
     var list = this.props.lists.map(list => {
       return (
         <div>
@@ -16,7 +17,7 @@ class QuestionEntryList extends React.Component {
             Helpful? Yes ({list.question_helpfulness})
           </div>
           <div>
-            <AnswerEntryList />
+            <AnswerEntryList questionId={list.question_id}/>
           </div>
         </div>
       );
