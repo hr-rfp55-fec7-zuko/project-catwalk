@@ -8,6 +8,11 @@ class ImageGallery extends React.Component {
   }
 
   render() {
+    return (
+      <div id='po-image-gallery' >
+        Image Gallery Stand In
+      </div>
+    );
   }
 }
 
