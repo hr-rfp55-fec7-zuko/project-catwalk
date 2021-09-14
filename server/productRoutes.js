@@ -29,18 +29,6 @@ let getProductInfo = (productId, flag = null) => {
   return axios(options);
 };
 
-// GET products
-router.get('/', (req, res) => {
-  getProductInfo('')
-    .then((response) => {
-      res.send(response.data);
-    })
-    .catch((error) => {
-      console.error('error from poRoutes get', error);
-      res.sendStatus(404);
-    });
-});
-
 // GET product information
 router.get('/:id', (req, res) => {
   getProductInfo(req.params.id)
