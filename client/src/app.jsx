@@ -1,6 +1,5 @@
 import React from 'react';
 import 'regenerator-runtime/runtime';
-//import 'core-js/stable';
 
 import ProductOverview from './Components/ProductOverview/ProductOverview.jsx';
 import RelatedProductsView from './Components/RelatedProducts/RelatedProductsView.jsx';
@@ -9,6 +8,12 @@ import YourOutfitList from './Components/YourOutfitList/YourOutfitList.jsx';
 
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      'product_id': '40344'
+    };
+  }
   render() {
     return (
       <div>
