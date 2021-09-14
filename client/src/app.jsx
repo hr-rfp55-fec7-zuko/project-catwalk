@@ -19,8 +19,8 @@ class App extends React.Component {
     return (
       <div>
         Hello from React! This is a test for merge conflict from Iris.
-        <ProductOverview />
-        <RelatedProductsView />
+        <ProductOverview productId={this.state.product_id} />
+        <QuestionAnswer productId={this.state.product_id} />
         <YourOutfitList />
       </div>
     );
