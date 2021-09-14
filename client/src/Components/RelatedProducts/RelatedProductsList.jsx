@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDom from 'react-dom';
 import RelatedProductCard from './RelatedProductCard.jsx';
 
 const axios = require('axios');
@@ -8,18 +7,25 @@ class RelatedProductsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      relatedProducts: this.props.relatedProducts,
       parentProductIDInfo: '',
     };
   }
 
-
   render() {
+    const { parentProductIDInfo } = this.state;
+    const { productId, relatedProducts } = this.props;
     return (
       <div className='RelatedProductsList'>
-        <RelatedProductCard />
+        {relatedProducts.map((product, index) => (
+          <RelatedProductCard
+            parentProductID={productId}
+            productId={product}
+            key={product}
+          />
+        ))}
       </div>
     );
+
   }
 }
 
