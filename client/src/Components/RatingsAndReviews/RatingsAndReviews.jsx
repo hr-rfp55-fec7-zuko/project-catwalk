@@ -13,11 +13,6 @@ import exampleMetaData from './exampleData/exampleMetaData.js';
 import exampleReviews from './exampleData/exampleReviews.js';
 const exampleProductId = 40344;
 
-/*DATA FLOW NOTES*/
-//Receives product_id from App
-//Requests all reviews for provided product id. Stores in state.
-//SortBar and ReviewList receive App.state.productReviews
-//Product Breakdown and ratingBreakdown receive product id
 class RatingsAndReviews extends React.Component {
 
   constructor(props) {
@@ -39,22 +34,6 @@ class RatingsAndReviews extends React.Component {
   componentDidMount() {
     this.requestProductMetaData();
     this.requestProductReviews();
-
-    // const initialDataLoad = function() {
-    //   return new Promise((resolve, reject) => {
-    //     this.requestProductMetaData((error, data) => {
-
-    //       if (error) {
-    //         reject(error);
-    //       } else {
-    //         resolve(data);
-    //       }
-
-    //     });
-
-    //   });
-    // }
-    //   .then((data) => console.log('made it to the next step!'));
   }
 
   requestProductMetaData() {
@@ -68,7 +47,6 @@ class RatingsAndReviews extends React.Component {
   }
 
   requestProductReviews() {
-
     return axios({
       url: `/reviews/?product_id=${this.state.product_id}&count=${this.state.reviewLimit}`,
       method: 'GET'

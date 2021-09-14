@@ -25,26 +25,28 @@ class ReviewList extends React.Component {
     });
   }
 
-  requestProductReviews(){
-    //if needed, prevent default
-    //call this.props.requestProductReviews()
+  requestProductReviews() {
     this.props.requestProductReviews();
   }
 
   render() {
-
+    //star icon: <i class="far fa-star"></i>
     let reviews = this.props.reviews;
     let characteristics = this.props.characteristics;
+
     return (
-      <div className="reviews-list">
+      // <div className="review-list">
+      <>
         <h3>Review List Here</h3>
-        {reviews.results.map((review) => {
-          return <ReviewTile key={review.review_id} review={review}/>;
-        })}
-        <button type="button" id="more-reviews" onClick={this.requestProductReviews}>More Reviews</button>
-        <button type="button" id="add-review" onClick={this.toggleAddReviewFormVisible}>Add A Review</button>
-        {this.state.addReviewFormVisible && <AddReviewForm characteristics={characteristics}/>}
-      </div>
+        <div className="review-list">
+          {reviews.results.map((review) => {
+            return <ReviewTile key={review.review_id} review={review}/>;
+          })}
+          <button type="button" id="more-reviews" onClick={this.requestProductReviews}>More Reviews</button>
+          <button type="button" id="add-review" onClick={this.toggleAddReviewFormVisible}>Add A Review</button>
+          {this.state.addReviewFormVisible && <AddReviewForm characteristics={characteristics}/>}
+        </div>
+      </>
     );
   }
 }

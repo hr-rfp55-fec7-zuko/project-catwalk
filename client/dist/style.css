@@ -15,10 +15,29 @@
   border: 1px solid black;
 }
 
-.review-tile, .reviews-list {
-  background-color: lightseagreen;
+/* .review-list {
+  height: fixed;
+
+} */
+
+.review-list, .review-tile {
   border: 1px solid black;
 }
+
+.review-list {
+  margin: 10px;
+  padding:10px;
+  background-color: lightseagreen;
+  max-height: 100vh;
+  overflow: scroll;
+
+}
+
+.review-tile {
+  background-color: lightgreen;
+  margin: 5px;
+}
+
 
 .rating-breakdown {
   background-color: lightskyblue;
