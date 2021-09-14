@@ -1,6 +1,7 @@
 const express = require('express');
 
 const reviews = require('./rrRoutes.js');
+const products = require('./productRoutes.js');
 
 const qa = require('./qaRoutes.js');
 
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 app.use('/reviews', reviews);
+app.use('/products', products);
 
 app.use('/qa', qa);
 
