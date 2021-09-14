@@ -3,23 +3,20 @@ import {render, screen} from '@testing-library/react';
 import RatingsAndReviews from '../RatingsAndReviews.jsx';
 
 describe('RatingsAndReviews', () => {
-  test('Renders Widget Component', () => {
+  test('Should Render Widget Component', () => {
     render(<RatingsAndReviews />);
   });
 
-  test('Should have a header called Ratings And Reviews', () => {
+  test('Should Include Text "Ratings And Reviews"', () => {
     render(<RatingsAndReviews />);
-    expect(screen.getByText('Ratings and Reviews')).toBeInTheDocument();
+    expect(screen.getAllByText('Ratings and Reviews')).toBeTruthy();
   });
 
-  test('Should have a header called Ratings And Reviews', () => {
+  test('Should Render ProductBreakdown Module', () => {
     render(<RatingsAndReviews />);
-    expect(screen.getByText(/Ratings and Reviews/)).toBeInTheDocument();
+    expect(screen.getAllByText('')).toBeTruthy();
   });
-
 });
-
-
 
 
 /*#####ARCHITECTURE#####*/

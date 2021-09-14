@@ -10,6 +10,7 @@ class ReviewList extends React.Component {
     super(props);
 
     this.state = {
+      totalReviews: 0,
       reviewLimit: 2,
       addReviewFormVisible: false
     };
@@ -21,8 +22,11 @@ class ReviewList extends React.Component {
     this.setState({
       addReviewFormVisible: !this.state.addReviewFormVisible
     });
+  }
 
-
+  handleMoreReviewsClick(){
+    //if needed, prevent default
+    //call this.props.requestProductReviews()
   }
 
   render() {

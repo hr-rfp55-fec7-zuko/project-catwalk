@@ -15,18 +15,18 @@ const exampleReviews = {
       'helpfulness': 2,
       'photos': []
     },
-    {
-      'review_id': 840804,
-      'rating': 5,
-      'summary': 'Very good',
-      'recommend': true,
-      'response': null,
-      'body': 'lorem ipsum',
-      'date': '2021-09-13T00:00:00.000Z',
-      'reviewer_name': 'tester',
-      'helpfulness': 0,
-      'photos': []
-    },
+    // {
+    //   'review_id': 840804,
+    //   'rating': 5,
+    //   'summary': 'Very good',
+    //   'recommend': true,
+    //   'response': null,
+    //   'body': 'lorem ipsum',
+    //   'date': '2021-09-13T00:00:00.000Z',
+    //   'reviewer_name': 'tester',
+    //   'helpfulness': 0,
+    //   'photos': []
+    // },
     // {
     //   'review_id': 840803,
     //   'rating': 5,
