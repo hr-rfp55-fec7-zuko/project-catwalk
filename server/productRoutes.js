@@ -32,8 +32,8 @@ let getProductInfo = (productId, flag = null) => {
 // GET product information
 router.get('/:id', (req, res) => {
   getProductInfo(req.params.id)
-    .then((data) => {
-      res.send(data);
+    .then((response) => {
+      res.send(response.data);
     })
     .catch((error) => {
       console.error('error from poRoutes get id', error);
@@ -44,8 +44,9 @@ router.get('/:id', (req, res) => {
 // GET product style information
 router.get('/:id/styles', (req, res) => {
   getProductInfo(req.params.id, 'styles')
-    .then((data) => {
-      res.send(data.results);
+    .then((response) => {
+      console.log(response.data);
+      res.send(response.data.results);
     })
     .catch((error) => {
       console.error('error from poRoutes get id/styles', error);
@@ -56,12 +57,13 @@ router.get('/:id/styles', (req, res) => {
 // GET related product information
 router.get('/:id/related', (req, res) => {
   getProductInfo(req.params.id, 'related')
-    .then((data) => {
-      res.send(data);
+    .then((response) => {
+      res.send(response.data);
     })
     .catch((error) => {
       console.error('error from poRoutes get id/related', error);
       res.sendStatus(404);
     });
 });
+
 module.exports = router;
