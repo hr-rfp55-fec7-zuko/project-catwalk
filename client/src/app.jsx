@@ -2,6 +2,7 @@ import React from 'react';
 import 'regenerator-runtime/runtime';
 
 import ProductOverview from './Components/ProductOverview/ProductOverview.jsx';
+import QuestionAnswer from './Components/QuestionAnswer/QuestionAnswer.jsx';
 import RelatedProductsView from './Components/RelatedProducts/RelatedProductsView.jsx';
 import YourOutfitList from './Components/YourOutfitList/YourOutfitList.jsx';
 
