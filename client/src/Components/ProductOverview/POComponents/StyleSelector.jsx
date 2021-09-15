@@ -1,4 +1,5 @@
 import React from 'react';
+import SingleStyle from './SingleStyle.jsx';
 
 class StyleSelector extends React.Component {
   constructor(props) {
@@ -12,13 +13,16 @@ class StyleSelector extends React.Component {
   render() {
     return (
       <div id='po-style-select'>
-        <h4>Style Selected: {this.state.styleName}</h4>
-        {this.state.styles.map((style) => <img className='style-img' src={style.photos[0].thumbnail_url} onClick={(event) => {
-          event.preventDefault();
-          console.log('clicked');
-          this.props.setStyleSelection(style);
-          this.setState({styleName: style.name});
-        }} />)}
+        <b>Style &gt;</b> {this.state.styleName}
+        <br />
+        <div className='style-container'>
+          {this.state.styles.map((style) => <SingleStyle key={style.name} style={style} onClick={(event) => {
+            event.preventDefault();
+            console.log('clicked');
+            this.props.setStyleSelection(style);
+            this.setState({ styleName: style.name });
+          }} selected={style.name === this.state.styleName} />)}
+        </div>
       </div>
     );
   }

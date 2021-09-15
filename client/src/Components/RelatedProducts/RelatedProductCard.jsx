@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import ComparisonModal from './ComparisonModal.jsx';
 
 class RelatedProductCard extends React.Component {
   constructor({ props }) {
@@ -7,12 +8,16 @@ class RelatedProductCard extends React.Component {
     this.state = {
       productIDInfo: '',
       featuredURL: '',
-      salePrice: ''
+      salePrice: '',
+      parentProductIDInfo: '',
+      openCompareModal: false,
     };
+
+    this.handleCompareClick = this.handleCompareClick.bind(this);
   }
 
   componentDidMount() {
-    const { productId } = this.props;
+    const { productId, parentProductID } = this.props;
     // Get the information for a related product
     axios.get(`/products/${productId}`)
       .then(({ data }) => {
@@ -56,27 +61,45 @@ class RelatedProductCard extends React.Component {
         console.log('Error fetching product styles in relatedProductCard', error);
       });
   }
+
+  handleCompareClick() {
+    const { openCompareModal } = this.state;
+    this.setState({
+      openCompareModal: !openCompareModal,
+    });
+  }
+
   render() {
-    const { productIDInfo, featuredURL, salePrice, urlFeaturePic } = this.state;
+    const { productIDInfo, featuredURL, salePrice, urlFeaturePic, openCompareModal } = this.state;
     const { relatedProducts, productID } = this.props;
     return (
-      <div className='card' id={productIDInfo.id}>
-        <div className='CompareButton'><i className="far fa-star"></i></div>
-        <div className='pic'>
-          <img src={featuredURL} alt={productIDInfo.name}></img>
-        </div>
-        <div className='info'>
-          <p className='category'>{productIDInfo.category}</p>
-          <h3 className='title'>{productIDInfo.name}</h3>
-          <p className='price'>${productIDInfo.default_price}</p>
-          {salePrice ? <p className='price sale'>{salePrice}</p> : null}
-          <div className='reviewLink'>
-            <i className="fas fa-star"></i>
-            <i className="fas fa-star-half-alt"></i>
-            <i className="far fa-star"></i>
+      <div className='cardWrapper'>
+        <div className='card' id={productIDInfo.id}>
+          <div className='CompareButton' onClick={this.handleCompareClick}><i className="far fa-star"></i></div>
+          <div className='pic'>
+            <img src={featuredURL} alt={productIDInfo.name}></img>
+          </div>
+          <div className='info'>
+            <p className='category'>{productIDInfo.category}</p>
+            <h3 className='title'>{productIDInfo.name}</h3>
+            <p className='price'>${productIDInfo.default_price}</p>
+            {salePrice ? <p className='price sale'>{salePrice}</p> : null}
+            <div className='reviewLink'>
+              <i className="fas fa-star"></i>
+              <i className="fas fa-star-half-alt"></i>
+              <i className="far fa-star"></i>
+            </div>
           </div>
         </div>
+        {openCompareModal && (
+          <div>
+            <ComparisonModal
+              closeModal={this.handleCompareClick}
+            />
+          </div>
+        )}
       </div>
+
     );
   }
 }

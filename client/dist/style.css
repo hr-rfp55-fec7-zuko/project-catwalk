@@ -1,53 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-/*========= CSS for Relatived Products & Your Outfit ===========*/
-.ratings-and-reviews {
-  border: 1px solid black;
-  max-width: 50%
-}
-
-/* .review-list {
-  height: fixed;
-
-} */
-
-.review-list, .review-tile {
-  border: 1px solid black;
-}
-
-.review-list {
-  margin: 10px;
-  padding:10px;
-  background-color: lightseagreen;
-  max-height: 100vh;
-  overflow: scroll;
-
-}
-
-.review-tile {
-  background-color: lightgreen;
-  margin: 5px;
-}
-
-
-.rating-breakdown {
-  background-color: lightskyblue;
-}
-
-.product-breakdown {
-  background-color: lightpink;
-
-}
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 body {
@@ -56,12 +6,12 @@ body {
   color: #000;
 }
 
-body, div, p, h1, h2, h3 {
+body, div, p, h1, h2, h3, h4 {
   padding: 0px;
   margin: 0px;
 }
 
-h2 {
+h2, h4 {
   font-weight:700;
   font-size: 20px;
   text-transform: uppercase;
@@ -94,10 +44,13 @@ h3 {
   scroll-behavior: smooth;
 }
 
+.cardWrapper {
+  width: calc(100%/4 - 20px);
+}
 
 .RelatedProductsList .card, .YourOutfit .card{
   /* border-bottom: 1px solid #ccc; */
-  width: calc(100%/4 - 20px);
+  width: 100%;
   height: 300px;
   padding-bottom: 30px;
   box-shadow:-1px 3px 2px 1px rgb(94,74,74,0.15);
@@ -120,6 +73,9 @@ h3 {
 
 .CompareButton:hover{
   opacity: 1
+}
+.RelatedProductsList {
+  position: relative;
 }
 
 .RelatedProductsList .card .info, .YourOutfit .card .info{
@@ -157,10 +113,170 @@ h3 {
 .info .category,.info .title,.info .price{
   margin-bottom: 3px;
 }
+
+.ModalWrapper {
+  background-color: rgba(0,0,0,0.5);
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* backdrop-filter: blur(8px) contrast(70%); */
+}
+
+.Comparison {
+  background-color: white;
+  width: 75%;
+  max-width: 600px;
+  height: 35%;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid black;
+}
+
+.Comparison .headerTitle {
+  font-size: 14px;
+  position: relative;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0px;
+  right: -10px;
+  width: 30px;
+  height: 30px;
+}
 /*========= ======================== ===========*/
 
 .style-img {
   width: 50px;
   height: 50px;
+  border-radius: 50%;
+  margin: 10px;
 }
 
+/* ======= */
+.style-container {
+  display: flex;
+  width: 300px;
+  flex-wrap: wrap;
+}
+
+.sale-price {
+  color: red;
+}
+
+.price {
+  margin: 10px 0;
+}
+
+.po-reviews {
+  display: flex;
+}
+
+.po-desc {
+  display: flex;
+}
+
+.select-menus {
+  display: flex;
+}
+
+.po-desc-text {
+  width: 70%
+}
+
+.po-desc-list {
+  width: 30%;
+  margin: 0, 5%;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+li {
+  margin: 0 10px;
+}
+
+.selected {
+  border: solid red;
+}
+
+/* .style-element { position: relative; }
+.style-element .style-img { display: block; }
+.style-element .selected { position: absolute; top:0; right:0; } */
+
+
+
+
+/*========= CSS FOR Ratings & Reviews ===========*/
+.ratings-and-reviews {
+  border: 1px solid black;
+  max-width: 50%
+}
+
+/* .review-list {
+  height: fixed;
+
+} */
+
+.review-list, .review-tile {
+  border: 1px solid black;
+}
+
+.review-list {
+  margin: 10px;
+  padding:10px;
+  background-color: lightseagreen;
+  max-height: 100vh;
+  overflow: scroll;
+
+}
+
+.review-tile {
+  background-color: lightgreen;
+  margin: 5px;
+}
+
+
+.rating-breakdown {
+  background-color: lightskyblue;
+}
+
+.product-breakdown {
+  background-color: lightpink;
+
+}
+
+.stars-outer{
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome;
+  font-weight: 1000;
+}
+
+.stars-outer::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  font-weight: 100;
+  /* width:25%; */
+}
+
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  color: #f8ce0b;
+}
