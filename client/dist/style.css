@@ -101,3 +101,30 @@ h3 {
 .price {
   margin: 20px 0;
 }
+
+.po-reviews {
+  display: flex;
+}
+
+.po-desc {
+  display: flex;
+}
+
+.po-desc-text {
+  width: 70%
+}
+
+.po-desc-list {
+  width: 30%;
+  margin: 0, 5%;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+li {
+  margin: 0 10px;
+}
