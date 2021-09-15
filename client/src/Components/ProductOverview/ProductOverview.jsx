@@ -64,9 +64,9 @@ class ProductOverview extends React.Component {
       <div className='po-main'>
         <ImageGallery />
         <StarRating />
-        <button>Read all Reviews</button>
-        <p>{this.state.category}</p>
-        <p>{this.state.name}</p>
+        <button className='btn all-reviews'>Read all reviews</button>
+        <h3>{this.state.category}</h3>
+        <h1>{this.state.name}</h1>
         <Price price={this.state.price} sale={this.state.sale} salePrice={this.state.salePrice} />
         <StyleSelector styles={this.state.styles} setStyleSelection={this.setStyleSelection} />
         <AddToCart />

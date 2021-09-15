@@ -85,8 +85,19 @@ h3 {
   width: 50px;
   height: 50px;
   border-radius: 50%;
+  margin: 10px;
+}
+
+.style-container {
+  display: flex;
+  width: 280px;
+  flex-wrap: wrap;
 }
 
 .sale-price {
   color: red;
+}
+
+.price {
+  margin: 20px 0;
 }

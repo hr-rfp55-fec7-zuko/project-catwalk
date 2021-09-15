@@ -12,14 +12,16 @@ class StyleSelector extends React.Component {
   render() {
     return (
       <div id='po-style-select'>
-        <b>Style `&gt;`</b> {this.state.styleName}
-        <br/>
-        {this.state.styles.map((style) => <img className='style-img' src={style.photos[0].thumbnail_url} onClick={(event) => {
-          event.preventDefault();
-          console.log('clicked');
-          this.props.setStyleSelection(style);
-          this.setState({styleName: style.name});
-        }} />)}
+        <b>Style &gt;</b> {this.state.styleName}
+        <br />
+        <div className='style-container'>
+          {this.state.styles.map((style) => <img className='style-img' src={style.photos[0].thumbnail_url} onClick={(event) => {
+            event.preventDefault();
+            console.log('clicked');
+            this.props.setStyleSelection(style);
+            this.setState({ styleName: style.name });
+          }} />)}
+        </div>
       </div>
     );
   }
