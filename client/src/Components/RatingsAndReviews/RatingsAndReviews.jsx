@@ -18,17 +18,19 @@ class RatingsAndReviews extends React.Component {
     super(props);
 
     this.state = {
-      'product_id': this.props.product_id,
-      // 'product_id': 40342, //DELETE THIS AND UNCOMMENT LINE ABOVE WHEN NOT TESTING SAMPLE DATA
+      // 'product_id': this.props.product_id,
+      'product_id': 40345, //DELETE THIS AND UNCOMMENT LINE ABOVE WHEN NOT TESTING SAMPLE DATA
       reviewLimit: 2,
       metaData: exampleMetaData,
       reviews: exampleReviews,
       receivedInitialData: false
     };
 
+
     this.requestProductMetaData = this.requestProductMetaData.bind(this);
     this.requestProductReviews = this.requestProductReviews.bind(this);
     this.submitReviewForm = this.submitReviewForm.bind(this);
+    this.submitHelpfulOrReport = this.submitHelpfulOrReport.bind(this);
   }
 
   componentDidMount() {
@@ -42,7 +44,7 @@ class RatingsAndReviews extends React.Component {
       method: 'GET'
     })
       .then((results) => this.setState({metaData: results.data}))
-      .catch((error) => console.log('ERROR in METADATA AJAX Request: ', erro));
+      .catch((error) => console.log('ERROR in METADATA AJAX Request: ', error));
   }
 
   requestProductReviews() {
@@ -59,6 +61,21 @@ class RatingsAndReviews extends React.Component {
 
   }
 
+  submitHelpfulOrReport(review_id, action) {
+    return axios({
+      url: `/reviews/${review_id}/${action}`,
+      method: 'PUT'
+    })
+    .then((results) => {
+      console.log('Successful PUT request. Results?', results)
+      this.requestProductReviews()
+     })
+    .catch((error) => console.log('ERROR in SUBMITHELPFULORREPORT AJAX Request: ', error));
+  }
+
+
+
+
   render() {
 
     let reviewCount = helpers.determineTotalReviews(this.state.metaData.ratings);
@@ -69,7 +86,7 @@ class RatingsAndReviews extends React.Component {
         {this.state.reviews !== null &&
          <>
            <SortBar reviewCount={reviewCount}/>
-           <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount}/>
+           <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount} submitHelpfulOrReport={this.submitHelpfulOrReport}/>
            <RatingBreakdown metaData={this.state.metaData} reviewCount={reviewCount}/>
            <ProductBreakdown characteristics={this.state.metaData.characteristics}/>
          </>
