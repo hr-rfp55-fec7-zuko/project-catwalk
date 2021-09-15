@@ -30,7 +30,7 @@ h3 {
 
 
 /*========= CSS for Relatived Products & Your Outfit ===========*/
-.RelatedProductsList, .YourOutfit, .QuestionAnswer {
+.RelatedProductsList, .YourOutfit {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
