@@ -6,7 +6,6 @@ import ProductBreakdown from './ProductBreakdown.jsx';
 import helpers from './helpers/helpers.js';
 import $ from 'jquery';
 import axios from 'axios';
-import AvgRatingStars from './helpers/AvgRatingStars.jsx';
 
 
 //****PLACEHOLDER DATA - DELETE DURING WHEN FINALIZED */
@@ -67,14 +66,13 @@ class RatingsAndReviews extends React.Component {
     return (
       <div className="ratings-and-reviews">
         <h2>Ratings and Reviews</h2>
-        <AvgRatingStars avgRating={4.2}/>
 
         {this.state.reviews !== null &&
          <>
+           <RatingBreakdown metaData={this.state.metaData} reviewCount={reviewCount} setAvgRating={this.setAvgRating}/>
+           <ProductBreakdown characteristics={this.state.metaData.characteristics}/>
            <SortBar reviewCount={reviewCount}/>
            <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount}/>
-           <RatingBreakdown metaData={this.state.metaData} reviewCount={reviewCount}/>
-           <ProductBreakdown characteristics={this.state.metaData.characteristics}/>
          </>
         }
       </div>
