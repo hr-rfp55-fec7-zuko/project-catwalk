@@ -13,11 +13,10 @@ class RelatedProductCard extends React.Component {
 
   componentDidMount() {
     const { productId } = this.props;
-    //const { productIDInfo, salePrice} = this.state;
-
     // Get the information for a related product
-    axios.get(`/products/${productId}`)
+    axios.get(`http://localhost:3000/products/${productId}`)
       .then(({ data }) => {
+        // console.log(data);
         this.setState({
           productIDInfo: data,
         });
@@ -27,9 +26,9 @@ class RelatedProductCard extends React.Component {
       });
 
     // Get the feature picture and price for a related product
-    axios.get(`/products/${productId}/styles`)
+    axios.get(`http://localhost:3000/products/${productId}/styles`)
       .then(({ data }) => {
-        console.log(data);
+        // console.log(data);
         const defaultProduct = data.find((product) => product['default?'] === false);
         let url;
         if (!defaultProduct) {
@@ -62,6 +61,7 @@ class RelatedProductCard extends React.Component {
     const { relatedProducts, productID } = this.props;
     return (
       <div className='card' id={productIDInfo.id}>
+        <div className='CompareButton'><i class="far fa-star"></i></div>
         <div className='pic'>
           <img src={featuredURL} alt={productIDInfo.name}></img>
         </div>
@@ -69,7 +69,12 @@ class RelatedProductCard extends React.Component {
           <p className='category'>{productIDInfo.category}</p>
           <h3 className='title'>{productIDInfo.name}</h3>
           <p className='price'>${productIDInfo.default_price}</p>
-          <div className='reviewLink'>*****</div>
+          {salePrice ? <p className='price sale'>{salePrice}</p> : null}
+          <div className='reviewLink'>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+            <i class="far fa-star"></i>
+          </div>
         </div>
       </div>
     );

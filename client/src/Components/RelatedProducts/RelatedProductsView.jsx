@@ -13,9 +13,9 @@ class RelatedProductsView extends React.Component {
 
   componentDidMount() {
     const { productId } = this.props;
-    axios.get(`products/${productId}/related`)
+    axios.get(`http://localhost:3000/products/${productId}/related`)
       .then(({ data }) => {
-        console.log(data);
+        // console.log(data);
         this.setState({
           relatedProducts: data,
         });
