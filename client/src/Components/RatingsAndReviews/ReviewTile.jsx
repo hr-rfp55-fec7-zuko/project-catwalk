@@ -55,7 +55,10 @@ class ReviewTile extends React.Component {
 
         <div className="review-summary"><h2>{review.summary}</h2></div>
         <div>{review.body}</div>
-        <div>{review.recommend}</div>
+
+        {review.recommend &&
+          <div> Chekmark placeholder: I recommend this product</div>
+        }
 
         {photos}
 
