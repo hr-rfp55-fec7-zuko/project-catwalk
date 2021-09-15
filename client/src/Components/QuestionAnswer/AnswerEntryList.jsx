@@ -22,14 +22,14 @@ var AnswerEntryList = (props) => {
       {answerList.map(item => {
         console.log(moment(item.date).format('LL'));
         return (
-          <div>
+          <li>
             <div className="qa-answers-main">
               {item.body}
             </div>
             <div className="qa-answers-side">
               {'by' + item.answerer_name + ', ' + moment(item.date).format('LL')}
             </div>
-          </div>
+          </li>
         );
       }
       )}

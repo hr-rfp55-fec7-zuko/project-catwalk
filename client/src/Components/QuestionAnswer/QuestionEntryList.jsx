@@ -16,9 +16,9 @@ class QuestionEntryList extends React.Component {
           <div>
             Helpful? Yes ({list.question_helpfulness})
           </div>
-          <div>
+          <ul>
             <AnswerEntryList questionId={list.question_id}/>
-          </div>
+          </ul>
         </div>
       );
     });
