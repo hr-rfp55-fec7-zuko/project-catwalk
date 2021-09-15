@@ -79,4 +79,9 @@ h3 {
 
  .AddOutfitContent:hover {
     background: linear-gradient(180deg, hsl(190,45%,95%), hsl(240,60%,100%));
-  }
+}
+
+.style-img {
+  width: 50px;
+  height: 50px;
+}
