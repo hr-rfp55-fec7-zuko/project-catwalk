@@ -118,7 +118,7 @@ h3 {
 
 .style-container {
   display: flex;
-  width: 280px;
+  width: 300px;
   flex-wrap: wrap;
 }
 
@@ -159,4 +159,8 @@ ul {
 
 li {
   margin: 0 10px;
+}
+
+.selected {
+  border: solid red;
 }
