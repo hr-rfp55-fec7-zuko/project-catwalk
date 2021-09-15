@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import AnswerCountList from './AnswerCountList.jsx';
+import AnswerReportList from './AnswerReportList.jsx';
 import axios from 'axios';
 import moment from 'moment';
 
 var AnswerEntryList = (props) => {
   const [answerList, setAnswerList] = useState([]);
-  const dateFormat = { year: 'numeric', month: 'long', day: 'numeric' };
+
   useEffect(()=> {
     let mounted = true;
     GetAnswerList(props.questionId)
@@ -22,11 +24,13 @@ var AnswerEntryList = (props) => {
         return (
           <li>
             <div className="qa-answers-main">
-              {item.body}
+              A: {item.body}
             </div>
             <div className="qa-answers-side">
-              {'by' + item.answerer_name + ', ' + moment(item.date).format('LL')}
+              by {item.answerer_name}, {moment(item.date).format('LL')}
             </div>
+            <AnswerCountList helpfulness={item.helpfulness} answerId={item.answer_id}/>
+            <AnswerReportList answerId={item.answer_id}/>
           </li>
         );
       }

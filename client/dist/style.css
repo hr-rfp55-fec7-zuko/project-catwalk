@@ -20,12 +20,12 @@ body {
   color: #000;
 }
 
-body, div, p, h1, h2, h3 {
+body, div, p, h1, h2, h3, h4 {
   padding: 0px;
   margin: 0px;
 }
 
-h2 {
+h2, h4 {
   font-weight:700;
   font-size: 20px;
   text-transform: uppercase;

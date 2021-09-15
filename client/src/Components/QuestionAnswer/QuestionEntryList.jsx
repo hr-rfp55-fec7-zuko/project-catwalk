@@ -1,6 +1,8 @@
 import React from 'react';
 import {AnswerEntryList, GetAnswerList} from './AnswerEntryList.jsx';
-
+import QuestionCountList from './QuestionCountList.jsx';
+import QuestionReportList from './QuestionReportList.jsx';
+import AddAnswerList from './AddAnswerList.jsx';
 
 class QuestionEntryList extends React.Component {
   constructor(props) {
@@ -12,9 +14,9 @@ class QuestionEntryList extends React.Component {
       return (
         <div>
           <li className="qa-questions">{'Q: ' + list.question_body}</li>
-          <div>
-            Helpful? Yes ({list.question_helpfulness})
-          </div>
+          <QuestionCountList helpfulness={list.question_helpfulness} questionId={list.question_id}/>
+          <QuestionReportList questionId={list.question_id}/>
+          <AddAnswerList questionId={list.question_id} questionBody={list.question_body}/>
           <ul>
             <AnswerEntryList questionId={list.question_id}/>
           </ul>
