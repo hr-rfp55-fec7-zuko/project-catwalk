@@ -6,6 +6,7 @@ import StyleSelector from './POComponents/StyleSelector.jsx';
 import AddToCart from './POComponents/AddToCart.jsx';
 import SocialMediaButtons from './POComponents/SocialMediaButtons.jsx';
 import Price from './POComponents/Price.jsx';
+import AvgRatingStars from '../RatingsAndReviews/helpers/AvgRatingStars.jsx';
 
 class ProductOverview extends React.Component {
   constructor(props) {
@@ -65,7 +66,9 @@ class ProductOverview extends React.Component {
       <div className='po-main'>
         <ImageGallery />
         <div className='po-reviews'>
-          <StarRating />
+          {/* <StarRating /> */}
+          <AvgRatingStars avgRating={this.props.avgRating} />
+          {/* <span>The rating is {this.props.avgRating}</span> */}
           <button className='btn all-reviews'>Read all reviews</button>
         </div>
         <h3>{this.state.category}</h3>
