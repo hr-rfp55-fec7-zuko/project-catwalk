@@ -1,11 +1,5 @@
 import React from 'react';
 
-
-
-
-
-
-//Receives meta-data object from index.js
 class ProductBreakdown extends React.Component {
   constructor(props) {
     super(props);

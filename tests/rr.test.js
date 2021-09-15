@@ -1,6 +1,6 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react';
-import RatingsAndReviews from '../RatingsAndReviews.jsx';
+import RatingsAndReviews from '../client/src/Components/RatingsAndReviews/RatingsAndReviews.jsx';
 
 describe('RatingsAndReviews', () => {
   test('Should Render Widget Component', () => {
