@@ -66,12 +66,13 @@ class RatingsAndReviews extends React.Component {
     return (
       <div className="ratings-and-reviews">
         <h2>Ratings and Reviews</h2>
+
         {this.state.reviews !== null &&
          <>
+           <RatingBreakdown metaData={this.state.metaData} reviewCount={reviewCount} setAvgRating={this.setAvgRating}/>
+           <ProductBreakdown characteristics={this.state.metaData.characteristics}/>
            <SortBar reviewCount={reviewCount}/>
            <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount}/>
-           <RatingBreakdown metaData={this.state.metaData} reviewCount={reviewCount}/>
-           <ProductBreakdown characteristics={this.state.metaData.characteristics}/>
          </>
         }
       </div>

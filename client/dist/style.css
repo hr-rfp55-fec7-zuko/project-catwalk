@@ -254,3 +254,29 @@ li {
   background-color: lightpink;
 
 }
+
+.stars-outer{
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome;
+  font-weight: 1000;
+}
+
+.stars-outer::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  font-weight: 100;
+  /* width:25%; */
+}
+
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  color: #f8ce0b;
+}
