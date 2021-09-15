@@ -15,12 +15,10 @@ var AnswerEntryList = (props) => {
       });
     return () => mounted = false;
   }, [props.questionId]);
-  console.log('🥰🥰', answerList);
 
   return (
     <div>
       {answerList.map(item => {
-        console.log(moment(item.date).format('LL'));
         return (
           <li>
             <div className="qa-answers-main">

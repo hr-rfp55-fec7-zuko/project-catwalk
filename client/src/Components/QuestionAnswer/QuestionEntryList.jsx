@@ -8,7 +8,6 @@ class QuestionEntryList extends React.Component {
   }
 
   render() {
-    console.log(this.props.lists);
     var list = this.props.lists.map(list => {
       return (
         <div>
