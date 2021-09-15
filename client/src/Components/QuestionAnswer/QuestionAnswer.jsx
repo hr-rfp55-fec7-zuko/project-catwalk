@@ -14,11 +14,15 @@ class QuestionAnswer extends React.Component {
     this.updateQuestionsList();
   }
 
+  // componentDidUpdate() {
+  //   this.updateQuestionsList();
+  // }
+
   updateQuestionsList() {
     $.ajax({
       type: 'GET',
       url: '/qa/questions',
-      data: {'product_id': this.props.productId, page: 1, count: 5},
+      data: {'product_id': this.props.productId, page: 1, count: 4},
       error: (err) => {
         console.log('Client GET Err:', err);
       },

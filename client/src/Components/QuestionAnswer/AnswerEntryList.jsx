@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AnswerCountList from './AnswerCountList.jsx';
+import AnswerReportList from './AnswerReportList.jsx';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -29,7 +30,7 @@ var AnswerEntryList = (props) => {
               by {item.answerer_name}, {moment(item.date).format('LL')}
             </div>
             <AnswerCountList helpfulness={item.helpfulness} answerId={item.answer_id}/>
-            <a className="qa-answers-report">Report</a>
+            <AnswerReportList answerId={item.answer_id}/>
           </li>
         );
       }
