@@ -1,22 +1,18 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
-
 
 //props should include an average star rating (int.)
+
 const AvgRatingStars = function AvgRatingStars(props) {
 
-  let star = <FontAwesomeIcon icon={faStar}/>;
+  let avgRating = props.avgRating;
+  let convertedRating = avgRating / 5 * 100;
+  let roundedRating = Math.round(convertedRating / 5) * 5;
+
   return (
-    <div>I'm a star! The avg is {props.avgRating}
-
+    <div>I'm a star! The avg is {avgRating}
       <div class="stars-outer">
-
-        <div class="stars-inner"></div>
+        <div class="stars-inner" style={{width: roundedRating}}></div>
       </div>
-
-
-
     </div>
   );
 };

@@ -67,7 +67,7 @@ class RatingsAndReviews extends React.Component {
     return (
       <div className="ratings-and-reviews">
         <h2>Ratings and Reviews</h2>
-        <AvgRatingStars avgRating={4.25}/>
+        <AvgRatingStars avgRating={4.2}/>
 
         {this.state.reviews !== null &&
          <>
