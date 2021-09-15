@@ -1,26 +1,28 @@
 import React from 'react';
-import axios from 'axios';
 
 const ComparisonModal = (props) => {
   const closeModal = (event) => {
     event.stopPropagation();
     props.closeModal();
   };
+  const { parentProduct, compareProduct } = props;
 
   return (
-    // const { parentProduct, compareProduct } = this.props
-    <div className="ModalWrapper"  onClick={closeModal}>
+    <div className="ModalWrapper" onClick={closeModal}>
       <div className="Comparison">
         <div className="headerTitle">COMPARING
           <p className="closeButton" onClick={closeModal}><i class="fas fa-times"></i></p>
         </div>
         <div className="titleBox">
-          <h3 className="title">Morning Joggers</h3>
-          <h3 className="title">Morning Joggers</h3>
+          <h3 className="title">{parentProduct}</h3>
+          <h3 className="title right">{compareProduct}</h3>
         </div>
         <div className="featuresList">
-          <div>fdh</div>
-        </div></div>
+          <div>&#10003;</div>
+          <div>Fabric</div>
+          <div>&#10003;</div>
+        </div>
+      </div>
     </div>
   )
 }

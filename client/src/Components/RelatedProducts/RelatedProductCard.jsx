@@ -73,7 +73,7 @@ class RelatedProductCard extends React.Component {
     this.setState({
       openCompareModal: !openCompareModal,
     });
-    this.compareFeatures(parentProductFeatures, currentProductFeatures);
+    //this.compareFeatures(parentProductFeatures, currentProductFeatures);
   }
 
   compareFeatures(parentFeature, productFeature) {
@@ -92,7 +92,8 @@ class RelatedProductCard extends React.Component {
   }
 
   render() {
-    const { productIdInfo, featuredURL, salePrice, urlFeaturePic, openCompareModal, compareFeatures } = this.state;
+    //this.compareFeatures(parentProductFeatures, currentProductFeatures);
+    const { productIdInfo, featuredURL, salePrice, urlFeaturePic, openCompareModal, compareFeatures, parentProductIdInfo} = this.state;
     return (
       <div className='cardWrapper'>
         <div className='card' id={productIdInfo.id}>
