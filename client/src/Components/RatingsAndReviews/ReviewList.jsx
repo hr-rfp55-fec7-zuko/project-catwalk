@@ -2,9 +2,6 @@ import React from 'react';
 import ReviewTile from './ReviewTile.jsx';
 import AddReviewForm from './AddReviewForm.jsx';
 
-//Receives product ID from RatingsAndReveiws
-
-//Passes review object down to review tile.
 class ReviewList extends React.Component {
   constructor(props) {
     super(props);
@@ -30,10 +27,10 @@ class ReviewList extends React.Component {
   }
 
   render() {
-    //star icon: <i class="far fa-star"></i>
     let reviews = this.props.reviews;
     let characteristics = this.props.characteristics;
 
+    //If there are no reviews, don't render the list.
     if (reviews.results.length > 0) {
       var reviewList =
       reviews.results.map((review) => {
@@ -43,7 +40,7 @@ class ReviewList extends React.Component {
       var reviewList = <></>;
     }
 
-
+    //If the total number of reviews has been reached, don't render the addreviews button
     if (reviews.results.length < this.props.reviewCount) {
       var moreReviewsButton =
         <button type="button" id="more-reviews" onClick={this.requestProductReviews}>More Reviews</button>;
@@ -52,7 +49,6 @@ class ReviewList extends React.Component {
     }
 
     return (
-      // <div className="review-list">
       <>
         <h3>Review List Here</h3>
         <div className="review-list">
@@ -63,9 +59,7 @@ class ReviewList extends React.Component {
 
           <button type="button" id="add-review" onClick={this.toggleAddReviewFormVisible}>Add A Review</button>
 
-
           {this.state.addReviewFormVisible && <AddReviewForm characteristics={characteristics}/>}
-
 
         </div>
       </>
@@ -74,18 +68,3 @@ class ReviewList extends React.Component {
 }
 
 export default ReviewList;
-
-
-/*
-
-
-          {reviews.results.length <= this.props.reviewCount &&
-            <button type="button" id="more-reviews" onClick={this.requestProductReviews}>More Reviews</button>
-          }
-
-
-
-                    {reviews.results.length <= this.props.reviewCount &&
-            <button type="button" id="more-reviews" onClick={this.requestProductReviews}>More Reviews</button>
-          }
-*/

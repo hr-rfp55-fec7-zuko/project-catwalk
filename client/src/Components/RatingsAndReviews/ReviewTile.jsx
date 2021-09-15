@@ -1,6 +1,5 @@
 import React from 'react';
 
-//Received data for individual review from reviewList.state
 class ReviewTile extends React.Component {
   constructor(props) {
     super(props);

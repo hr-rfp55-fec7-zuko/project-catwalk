@@ -14,6 +14,8 @@ const helpers = {
     return totalReviewCount;
   },
 
+
+  //Takes in metaData ratings object and returns average rating
   determineAverageRating: function(ratingsObject) {
     let total = 0;
     let reviewCount = 0;
@@ -27,6 +29,7 @@ const helpers = {
 
   },
 
+  //Takes in metaData recommended object and returns percent "true" of total recommendations
   determinePercentageRecommend: function(recommendedObject) {
     let totalReviews = recommendedObject[true] + recommendedObject[false];
 

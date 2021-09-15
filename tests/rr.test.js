@@ -1,5 +1,13 @@
 import React from 'react';
 import {render, screen} from '@testing-library/react';
+
+// import exampleMetaData from '../client/src/Components/RatingsAndReviews/exampleData/exampleMetaData.js';
+
+// import exampleReviews from '../client/src/Components/RatingsAndReviews/exampleData/exampleReviews.js';
+
+// import helpers from '../client/src/Components/RatingsAndReviews/helpers/helpers.js';
+
+
 import RatingsAndReviews from '../client/src/Components/RatingsAndReviews/RatingsAndReviews.jsx';
 
 describe('RatingsAndReviews', () => {
@@ -12,32 +20,54 @@ describe('RatingsAndReviews', () => {
     expect(screen.getAllByText('Ratings and Reviews')).toBeTruthy();
   });
 
-  test('Should Render ProductBreakdown Module', () => {
-    render(<RatingsAndReviews />);
-    expect(screen.getAllByText('')).toBeTruthy();
+});
+
+import ProductBreakdown from '../client/src/Components/RatingsAndReviews/ProductBreakdown.jsx';
+
+describe('Product Breakdown', () => {
+  test('Should Render Module', () => {
+    render(<ProductBreakdown />);
+  });
+
+  test('Should Include Text "Product Breakdown"', () => {
+    render(<ProductBreakdown />);
+    expect(screen.getAllByText('Product Breakdown')).toBeTruthy();
+  });
+
+});
+
+// import RatingBreakdown from '../client/src/Components/RatingsAndReviews/RatingBreakdown.jsx';
+
+// describe('RatingBreakdown', () => {
+//   test('Should Render Module', () => {
+//     render(<RatingBreakdown />);
+//   });
+// });
+
+import AddReviewForm from '../client/src/Components/RatingsAndReviews/AddReviewForm.jsx';
+
+describe('AddReviewForm', () => {
+  test('Should Render Module', () => {
+    render(<AddReviewForm />);
+  });
+});
+
+import ReviewTile from '../client/src/Components/RatingsAndReviews/AddReviewForm.jsx';
+
+describe('ReviewTile', () => {
+  test('Should Render Module', () => {
+    render(<ReviewTile />);
   });
 });
 
 
-/*#####ARCHITECTURE#####*/
-//RatingsAndReviews Component should exist
-
-//RR - should have a ProductBreakdown component
-
-//RR - should have a RatingBreakdown component
-
-//RR - should have a SortBar component
-
-//RR - should have a ReviewList component
+// import ReviewList from '../client/src/Components/RatingsAndReviews/ReviewList.jsx';
 
 
-/*#####ReviewList#####*/
-//On render, ReviewList should have 2x review tiles as children
+import SortBar from '../client/src/Components/RatingsAndReviews/SortBar.jsx';
 
-//The number of childElements in ReviewList should match RR.state ProductReviews
-
-//There should be a button with id "more-reviews"
-
-//There should be a button with id "add-review"
-
-
+describe('SortBar', () => {
+  test('Should Render Module', () => {
+    render(<SortBar />);
+  });
+});

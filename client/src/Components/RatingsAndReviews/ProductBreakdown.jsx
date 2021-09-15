@@ -13,7 +13,7 @@ class ProductBreakdown extends React.Component {
 
     for (var characteristic in characteristics) {
       characteristicBars.push(
-        <div className='characteristic-breakdown'>
+        <div className='characteristic-breakdown' data-testid="characteristic-breakdown">
           {characteristic}
           <div className='characteristic-bar-outer'>Bar Here: {characteristics[characteristic].value}</div>
           <span>label low</span> <span>label high</span>

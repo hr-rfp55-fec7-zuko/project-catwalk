@@ -7,7 +7,6 @@ class AddReviewForm extends React.Component {
     this.state = {
       prodtuctId: null
     };
-
   }
 
   render() {
@@ -17,7 +16,7 @@ class AddReviewForm extends React.Component {
       <div className="add-review-form">
         <h3>Write Your Review</h3>
         <h4>About **Product Name Here**</h4>
-        <form >
+        <form id="review-form">
           <label className="form-category">Overall Rating*</label>
           <div>1-5 star rating here</div>
           <label className="form-category">Do You Recommend This Product?*</label>
@@ -79,65 +78,3 @@ class AddReviewForm extends React.Component {
 }
 
 export default AddReviewForm;
-
-/*
-
-{characteristics.map((characteristic) => {
-            <>
-              <label htmlFor="none-selected">None Selected</label>
-              <input type="radio" id="none-selected" name={characteristic}></input>
-              <label htmlFor="1">1</label>
-              <input type="radio" id="1" name={characteristic}></input>
-              <label htmlFor="1">2</label>
-              <input type="radio" id="2" name={characteristic}></input>
-              <label htmlFor="1">3</label>
-              <input type="radio" id="3" name={characteristic}></input>
-              <label htmlFor="1">4</label>
-              <input type="radio" id="4" name={characteristic}></input>
-              <label htmlFor="1">5</label>
-              <input type="radio" id="5" name={characteristic}></input>
-            </>;
-          })
-        }
-
-         {characteristics.map((characteristic) => {
-            characteristic = characteristic.
-
-            return (
-              <>
-                <label htmlFor="none-selected">None Selected</label>
-                <input type="radio" id="none-selected" name={characteristic}></input>
-                <label htmlFor="1">1</label>
-                <input type="radio" id="1" name={characteristic}></input>
-                <label htmlFor="1">2</label>
-                <input type="radio" id="2" name={characteristic}></input>
-                <label htmlFor="1">3</label>
-                <input type="radio" id="3" name={characteristic}></input>
-                <label htmlFor="1">4</label>
-                <input type="radio" id="4" name={characteristic}></input>
-                <label htmlFor="1">5</label>
-                <input type="radio" id="5" name={characteristic}></input>
-              </>
-            );
-          })
-          }
-
-
-
-        <label className="form-category">Characteristics*</label>
-          <div>Placeholder Characteristic</div>
-          <label htmlFor="none-selected">None Selected</label>
-          <input type="radio" id="none-selected" name="Placeholder Characteristic"></input>
-          <label htmlFor="1">1</label>
-          <input type="radio" id="1" name="Placeholder Characteristic"></input>
-          <label htmlFor="1">2</label>
-          <input type="radio" id="2" name="Placeholder Characteristic"></input>
-          <label htmlFor="1">3</label>
-          <input type="radio" id="3" name="Placeholder Characteristic"></input>
-          <label htmlFor="1">4</label>
-          <input type="radio" id="4" name="Placeholder Characteristic"></input>
-          <label htmlFor="1">5</label>
-          <input type="radio" id="5" name="Placeholder Characteristic"></input>
-          <br></br>
-
-*/

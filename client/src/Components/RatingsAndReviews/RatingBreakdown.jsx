@@ -14,7 +14,6 @@ class RatingBreakdown extends React.Component {
 
     let percentageRecommended = helpers.determinePercentageRecommend(metaData.recommended);
 
-
     const ratingBars = [];
 
     for (var rating in metaData.ratings) {
@@ -29,7 +28,7 @@ class RatingBreakdown extends React.Component {
       );
     }
 
-
+    //NOTE: for star icon: <i class="far fa-star"></i>
     return (
       <div className="rating-breakdown">
         <h3>Ratings and Reviews</h3>
