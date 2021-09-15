@@ -1,5 +1,7 @@
 import React from 'react';
 import moment from 'moment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 class ReviewTile extends React.Component {
   constructor(props) {
@@ -7,45 +9,45 @@ class ReviewTile extends React.Component {
 
     this.state = {
       helpfulOrReported: false
-    }
+    };
 
     this.handleHelpfulOrReportClick = this.handleHelpfulOrReportClick.bind(this);
   }
 
-  handleHelpfulOrReportClick(event){
-    event.preventDefault()
-    let action = event.target.textContent
+  handleHelpfulOrReportClick(event) {
+    event.preventDefault();
+    let action = event.target.textContent;
 
 
     if (!this.state.helpfulOrReported) {
 
       if (action === 'Yes') {
-        action = 'helpful'
+        action = 'helpful';
       }
 
-      console.log('action - handleHelpfulOrReportClick', action)
+      console.log('action - handleHelpfulOrReportClick', action);
 
-      this.setState({helpfulOrReported: true})
+      this.setState({helpfulOrReported: true});
 
-      console.log(this.props.review.review_id, action)
+      console.log(this.props.review.review_id, action);
 
-      this.props.submitHelpfulOrReport(this.props.review.review_id, action)
+      this.props.submitHelpfulOrReport(this.props.review.review_id, action);
 
     }
   }
 
   render() {
     let review = this.props.review;
-    let date = moment(review.date).format('LL')
+    let date = moment(review.date).format('LL');
 
     if (review.photos.length > 0) {
       var photos = review.photos.map((photo) => {
         return (
           <img src={photo.url} id={photo.id} width='20' height ='20' aria-label="customer's product"></img>
-        )
-      })
+        );
+      });
     } else {
-      var photos = <></>
+      var photos = <></>;
     }
 
 
@@ -69,9 +71,9 @@ class ReviewTile extends React.Component {
 
         <div>Helpful?
           <span class="helpful-or-report">
-          <a href="" onClick={this.handleHelpfulOrReportClick}>
+            <a href="" onClick={this.handleHelpfulOrReportClick}>
             Yes
-          </a>
+            </a>
           </span>
           ({review.helpfulness}) |
 
@@ -79,7 +81,7 @@ class ReviewTile extends React.Component {
             <a href="" onClick={this.handleHelpfulOrReportClick}>
             Report
             </a>
-            </span>
+          </span>
 
           <br></br>
 
