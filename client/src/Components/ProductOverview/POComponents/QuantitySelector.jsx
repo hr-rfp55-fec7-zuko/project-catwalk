@@ -17,14 +17,16 @@ var QuantitySelector = ({totalQuantity = 0, setQuantity}) => {
         </select>
       </div>
     );
+  } else {
+    //setQuantity(0);
+    return (
+      <div>
+        <select id='po-select-qty' >
+          <option value=''>-</option>
+        </select>
+      </div>
+    );
   }
-  return (
-    <div>
-      <select id='po-select-qty' >
-        <option value=''>-</option>
-      </select>
-    </div>
-  );
 };
 
 export default QuantitySelector;

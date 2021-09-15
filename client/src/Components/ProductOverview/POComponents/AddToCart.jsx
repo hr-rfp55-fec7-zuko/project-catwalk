@@ -19,6 +19,10 @@ class AddToCart extends React.Component {
       selectedSize: this.state.style.skus[sku].size,
       totalQuantity: this.state.style.skus[sku].quantity
     });
+    if (this.state.quantity || this.state.style.skus[sku].quantity < this.state.quantity) {
+      var quantity = (this.state.style.skus[sku].quantity > 0) ? 1 : 0;
+      this.setState({quantity});
+    }
   }
 
   setQuantity(quantity) {
