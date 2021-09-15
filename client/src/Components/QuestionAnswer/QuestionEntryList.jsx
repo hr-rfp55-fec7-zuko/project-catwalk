@@ -1,5 +1,5 @@
 import React from 'react';
-import AnswerEntryList from './AnswerEntryList.jsx';
+import {AnswerEntryList, GetAnswerList} from './AnswerEntryList.jsx';
 
 
 class QuestionEntryList extends React.Component {
@@ -15,9 +15,9 @@ class QuestionEntryList extends React.Component {
           <div>
             Helpful? Yes ({list.question_helpfulness})
           </div>
-          <div>
-            <AnswerEntryList />
-          </div>
+          <ul>
+            <AnswerEntryList questionId={list.question_id}/>
+          </ul>
         </div>
       );
     });

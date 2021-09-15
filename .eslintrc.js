@@ -23,6 +23,9 @@ module.exports = {
       'jsx': true
     }
   },
+  plugins: [
+    'react-hooks'
+  ],
   rules: {
     /* Indentation */
     'no-mixed-spaces-and-tabs': 2,
@@ -50,6 +53,8 @@ module.exports = {
     'one-var': [1, { 'uninitialized': 'always', 'initialized': 'never' }],
     /* Minuta */
     'comma-style': [2, 'last'],
-    'quotes': [1, 'single']
+    'quotes': [1, 'single'],
+    'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
+    'react-hooks/exhaustive-deps': 'warn' // Checks effect dependencies
   }
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import ky from 'ky';
+import axios from 'axios';
 import ImageGallery from './POComponents/ImageGallery.jsx';
 import StarRating from './POComponents/StarRating.jsx';
 import StyleSelector from './POComponents/StyleSelector.jsx';
@@ -9,7 +9,42 @@ import SocialMediaButtons from './POComponents/SocialMediaButtons.jsx';
 class ProductOverview extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      id: this.props.productId,
+      features: [],
+      styles: []
+    };
+    this.getProductInfo = this.getProductInfo.bind(this);
+    this.getStyleInfo = this.getStyleInfo.bind(this);
+    this.setStyleSelection = this.setStyleSelection.bind(this);
+  }
+
+  getProductInfo(id) {
+    axios.get(`http://localhost:3000/products/${id}`)
+      .then((response) => {
+        var data = response.data;
+        this.setState({
+          name: data.name,
+          slogan: data.slogan,
+          description: data.description,
+          category: data.category,
+          price: data.default_price,
+          features: data.features
+        });
+      });
+  }
+
+  getStyleInfo(id) {
+    axios.get(`http://localhost:3000/products/${id}/styles`)
+      .then((response) => {
+        this.setState({
+          styles: response.data
+        });
+      });
+  }
+
+  setStyleSelection(style) {
+    this.setState({ style });
   }
 
   render() {
@@ -18,20 +53,24 @@ class ProductOverview extends React.Component {
         <ImageGallery />
         <StarRating />
         <button>Read all Reviews</button>
-        <p>Category Stand in</p>
-        <p>Product Name Stand in</p>
-        <p>Product Price</p>
-        <StyleSelector />
+        <p>{this.state.category}</p>
+        <p>{this.state.name}</p>
+        <p>{this.state.price}</p>
+        <StyleSelector styles={this.state.styles} setStyleSelection={this.setStyleSelection} />
         <AddToCart />
-        Product description
+        <p>{this.state.slogan}</p>
+        <p>{this.state.description}</p>
+        <ul>Features
+          {this.state.features.map((feat) => <li key={feat.feature} >{feat.feature}: {feat.value}</li>)}
+        </ul>
         <SocialMediaButtons />
       </div>
     );
   }
 
   componentDidMount() {
-    ky.get('http://localhost:3000/products/40344').json()
-      .then((response) => console.log(response));
+    this.getProductInfo(this.state.id);
+    this.getStyleInfo(this.state.id);
   }
 }
 
