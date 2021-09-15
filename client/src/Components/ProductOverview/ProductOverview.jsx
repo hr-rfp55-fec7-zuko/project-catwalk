@@ -5,6 +5,7 @@ import StarRating from './POComponents/StarRating.jsx';
 import StyleSelector from './POComponents/StyleSelector.jsx';
 import AddToCart from './POComponents/AddToCart.jsx';
 import SocialMediaButtons from './POComponents/SocialMediaButtons.jsx';
+import Price from './POComponents/Price.jsx';
 
 class ProductOverview extends React.Component {
   constructor(props) {
@@ -45,24 +46,43 @@ class ProductOverview extends React.Component {
 
   setStyleSelection(style) {
     this.setState({ style });
+    if (style.sale_price) {
+      this.setState({
+        sale: true,
+        salePrice: style.sale_price
+      });
+    } else {
+      this.setState({
+        sale: false,
+        salePrice: style.sale_price
+      });
+    }
   }
 
   render() {
     return (
       <div className='po-main'>
         <ImageGallery />
-        <StarRating />
-        <button>Read all Reviews</button>
-        <p>{this.state.category}</p>
-        <p>{this.state.name}</p>
-        <p>{this.state.price}</p>
+        <div className='po-reviews'>
+          <StarRating />
+          <button className='btn all-reviews'>Read all reviews</button>
+        </div>
+        <h3>{this.state.category}</h3>
+        <h1>{this.state.name}</h1>
+        <Price price={this.state.price} sale={this.state.sale} salePrice={this.state.salePrice} />
         <StyleSelector styles={this.state.styles} setStyleSelection={this.setStyleSelection} />
         <AddToCart />
-        <p>{this.state.slogan}</p>
-        <p>{this.state.description}</p>
-        <ul>Features
-          {this.state.features.map((feat) => <li key={feat.feature} >{feat.feature}: {feat.value}</li>)}
-        </ul>
+        <div className='po-desc'>
+          <div className='po-desc-text'>
+            <p><b>{this.state.slogan}</b></p>
+            <p>{this.state.description}</p>
+          </div>
+          <div className='po-desc-list'>
+            <ul><b>Features</b>
+              {this.state.features.map((feat) => <li key={feat.feature} >{feat.feature}: {feat.value}</li>)}
+            </ul>
+          </div>
+        </div>
         <SocialMediaButtons />
       </div>
     );

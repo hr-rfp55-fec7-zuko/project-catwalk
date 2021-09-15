@@ -18,7 +18,7 @@ class QuestionAnswer extends React.Component {
     $.ajax({
       type: 'GET',
       url: '/qa/questions',
-      data: {'product_id': this.props.productId, page: 1, count: 5},
+      data: {'product_id': this.props.productId, page: 1, count: 4},
       error: (err) => {
         console.log('Client GET Err:', err);
       },
@@ -31,7 +31,7 @@ class QuestionAnswer extends React.Component {
   render() {
     return (
       <div className="qa-main">
-        QUESTIONS & ANSWERS <br />
+        <h4>QUESTIONS & ANSWERS</h4>
         <input type="text" className="qa-searchBar" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
         <QuestionEntryList lists={this.state.questionsList}/>
       </div>
