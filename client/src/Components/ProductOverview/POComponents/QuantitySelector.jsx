@@ -2,7 +2,6 @@ import React from 'react';
 
 var QuantitySelector = ({totalQuantity = 0, setQuantity}) => {
   if (totalQuantity > 0) {
-    console.log(totalQuantity);
     var maxLimit = (totalQuantity <= 15 ) ? totalQuantity : 15;
     var quantOptions = [];
     for (var i = 1; i <= maxLimit; i++) {

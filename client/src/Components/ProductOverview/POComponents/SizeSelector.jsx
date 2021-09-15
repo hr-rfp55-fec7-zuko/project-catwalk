@@ -8,7 +8,7 @@ var SizeSelector = ({ skus, setSKU }) => {
           e.preventDefault();
           setSKU(event.target.value);
         }}>
-          <option value=''>Select Size</option>
+          <option value='0'>Select Size</option>
           {Object.keys(skus).map((sku) => {
             var size = skus[sku].size;
             var quantity = skus[sku].quantity;
