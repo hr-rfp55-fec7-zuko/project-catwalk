@@ -33,7 +33,6 @@ class ReviewList extends React.Component {
     //star icon: <i class="far fa-star"></i>
     let reviews = this.props.reviews;
     let characteristics = this.props.characteristics;
-    console.log(reviews.results.length, this.props.reviewCount);
 
     if (reviews.results.length > 0) {
       var reviewList =
