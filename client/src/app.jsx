@@ -5,6 +5,8 @@ import QuestionAnswer from './Components/QuestionAnswer/QuestionAnswer.jsx';
 import RelatedProductsView from './Components/RelatedProducts/RelatedProductsView.jsx';
 import YourOutfitList from './Components/YourOutfitList/YourOutfitList.jsx';
 
+import RatingsAndReviews from './Components/RatingsAndReviews/RatingsAndReviews.jsx';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -20,6 +22,7 @@ class App extends React.Component {
         <QuestionAnswer productId={this.state.product_id} />
         <RelatedProductsView productId={this.state.product_id} />
         <YourOutfitList productId={this.state.product_id}/>
+        <RatingsAndReviews product_id={this.state.product_id} />
       </div>
     );
   }

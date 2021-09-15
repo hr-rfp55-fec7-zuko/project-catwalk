@@ -43,7 +43,8 @@ router.get('/meta', (req, res) => {
 
 router.get('/', (req, res) => {
   let endpath = '/';
-  let query = `?product_id=${req.query.product_id}`;
+  let query = `?product_id=${req.query.product_id}&count=${req.query.count}`;
+  console.log('query', query);
 
   APIQuery('GET', endpath, query)
     .then((data) => res.status(200).send(data))

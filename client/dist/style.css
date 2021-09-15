@@ -6,12 +6,12 @@ body {
   color: #000;
 }
 
-body, div, p, h1, h2, h3 {
+body, div, p, h1, h2, h3, h4 {
   padding: 0px;
   margin: 0px;
 }
 
-h2 {
+h2, h4 {
   font-weight:700;
   font-size: 20px;
   text-transform: uppercase;
@@ -155,5 +155,102 @@ h3 {
 .style-img {
   width: 50px;
   height: 50px;
+  border-radius: 50%;
+  margin: 10px;
 }
 
+/* ======= */
+.style-container {
+  display: flex;
+  width: 300px;
+  flex-wrap: wrap;
+}
+
+.sale-price {
+  color: red;
+}
+
+.price {
+  margin: 10px 0;
+}
+
+.po-reviews {
+  display: flex;
+}
+
+.po-desc {
+  display: flex;
+}
+
+.select-menus {
+  display: flex;
+}
+
+.po-desc-text {
+  width: 70%
+}
+
+.po-desc-list {
+  width: 30%;
+  margin: 0, 5%;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+li {
+  margin: 0 10px;
+}
+
+.selected {
+  border: solid red;
+}
+
+/* .style-element { position: relative; }
+.style-element .style-img { display: block; }
+.style-element .selected { position: absolute; top:0; right:0; } */
+
+
+
+
+/*========= CSS FOR Ratings & Reviews ===========*/
+.ratings-and-reviews {
+  border: 1px solid black;
+  max-width: 50%
+}
+
+/* .review-list {
+  height: fixed;
+
+} */
+
+.review-list, .review-tile {
+  border: 1px solid black;
+}
+
+.review-list {
+  margin: 10px;
+  padding:10px;
+  background-color: lightseagreen;
+  max-height: 100vh;
+  overflow: scroll;
+
+}
+
+.review-tile {
+  background-color: lightgreen;
+  margin: 5px;
+}
+
+
+.rating-breakdown {
+  background-color: lightskyblue;
+}
+
+.product-breakdown {
+  background-color: lightpink;
+
+}
