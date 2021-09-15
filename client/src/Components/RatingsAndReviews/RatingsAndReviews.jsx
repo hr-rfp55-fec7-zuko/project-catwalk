@@ -11,7 +11,7 @@ import axios from 'axios';
 //****PLACEHOLDER DATA - DELETE DURING CLEANUP */
 import exampleMetaData from './exampleData/exampleMetaData.js';
 import exampleReviews from './exampleData/exampleReviews.js';
-const exampleProductId = 40344;
+const exampleProductId = 40347;
 
 class RatingsAndReviews extends React.Component {
 
@@ -20,6 +20,7 @@ class RatingsAndReviews extends React.Component {
 
     this.state = {
       'product_id': this.props.product_id,
+      // 'product_id': 40342, //DELETE THIS AND UNCOMMENT LINE ABOVE WHEN NOT USING SAMPLE DATA
       reviewLimit: 2,
       metaData: exampleMetaData,
       reviews: exampleReviews,

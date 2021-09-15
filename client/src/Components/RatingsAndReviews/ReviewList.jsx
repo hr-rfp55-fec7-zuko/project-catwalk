@@ -33,18 +33,41 @@ class ReviewList extends React.Component {
     //star icon: <i class="far fa-star"></i>
     let reviews = this.props.reviews;
     let characteristics = this.props.characteristics;
+    console.log(reviews.results.length, this.props.reviewCount);
+
+    if (reviews.results.length > 0) {
+      var reviewList =
+      reviews.results.map((review) => {
+        return <ReviewTile key={review.review_id} review={review}/>;
+      });
+    } else {
+      var reviewList = <></>;
+    }
+
+
+    if (reviews.results.length < this.props.reviewCount) {
+      var moreReviewsButton =
+        <button type="button" id="more-reviews" onClick={this.requestProductReviews}>More Reviews</button>;
+    } else {
+      var moreReviewsButton = <></>;
+    }
 
     return (
       // <div className="review-list">
       <>
         <h3>Review List Here</h3>
         <div className="review-list">
-          {reviews.results.map((review) => {
-            return <ReviewTile key={review.review_id} review={review}/>;
-          })}
-          <button type="button" id="more-reviews" onClick={this.requestProductReviews}>More Reviews</button>
+
+          {reviewList}
+
+          {moreReviewsButton}
+
           <button type="button" id="add-review" onClick={this.toggleAddReviewFormVisible}>Add A Review</button>
+
+
           {this.state.addReviewFormVisible && <AddReviewForm characteristics={characteristics}/>}
+
+
         </div>
       </>
     );
@@ -52,3 +75,18 @@ class ReviewList extends React.Component {
 }
 
 export default ReviewList;
+
+
+/*
+
+
+          {reviews.results.length <= this.props.reviewCount &&
+            <button type="button" id="more-reviews" onClick={this.requestProductReviews}>More Reviews</button>
+          }
+
+
+
+                    {reviews.results.length <= this.props.reviewCount &&
+            <button type="button" id="more-reviews" onClick={this.requestProductReviews}>More Reviews</button>
+          }
+*/
