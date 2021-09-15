@@ -17,7 +17,7 @@ class YourOutfitList extends React.Component {
       <div>
         <h2>Your outfit</h2>
         <div className="YourOutfit">
-          <div className='AddOutfitContent card'><span>+ Add To Your Outfit</span></div>
+          <div className="cardWrapper"><div className='AddOutfitContent card '><span>+ Add To Your Outfit</span></div></div>
           <YourOutfitCard />
         </div>
       </div>
