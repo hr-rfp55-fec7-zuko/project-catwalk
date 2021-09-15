@@ -5,6 +5,7 @@ import StarRating from './POComponents/StarRating.jsx';
 import StyleSelector from './POComponents/StyleSelector.jsx';
 import AddToCart from './POComponents/AddToCart.jsx';
 import SocialMediaButtons from './POComponents/SocialMediaButtons.jsx';
+import Price from './POComponents/Price.jsx';
 
 class ProductOverview extends React.Component {
   constructor(props) {
@@ -45,6 +46,17 @@ class ProductOverview extends React.Component {
 
   setStyleSelection(style) {
     this.setState({ style });
+    if (style.sale_price) {
+      this.setState({
+        sale: true,
+        salePrice: style.sale_price
+      });
+    } else {
+      this.setState({
+        sale: false,
+        salePrice: style.sale_price
+      });
+    }
   }
 
   render() {
@@ -55,7 +67,7 @@ class ProductOverview extends React.Component {
         <button>Read all Reviews</button>
         <p>{this.state.category}</p>
         <p>{this.state.name}</p>
-        <p>{this.state.price}</p>
+        <Price price={this.state.price} sale={this.state.sale} salePrice={this.state.salePrice} />
         <StyleSelector styles={this.state.styles} setStyleSelection={this.setStyleSelection} />
         <AddToCart />
         <p>{this.state.slogan}</p>

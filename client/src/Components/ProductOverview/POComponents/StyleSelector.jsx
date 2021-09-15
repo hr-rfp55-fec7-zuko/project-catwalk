@@ -12,7 +12,8 @@ class StyleSelector extends React.Component {
   render() {
     return (
       <div id='po-style-select'>
-        <h4>Style Selected: {this.state.styleName}</h4>
+        <b>Style `&gt;`</b> {this.state.styleName}
+        <br/>
         {this.state.styles.map((style) => <img className='style-img' src={style.photos[0].thumbnail_url} onClick={(event) => {
           event.preventDefault();
           console.log('clicked');
