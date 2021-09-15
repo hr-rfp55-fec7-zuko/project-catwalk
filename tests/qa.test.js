@@ -1,6 +1,12 @@
 import React from 'react';
-// import { render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import App from '../client/src/app.jsx';
 import $ from 'jquery';
+
+test ('Client Testing: Render Questions and Answers section', () => {
+  render(<App />);
+  expect(screen.getByText('QUESTIONS & ANSWERS')).toBeTruthy();
+});
 
 test ('Server Testing: GET Questions List Method Works', () => {
   $.ajax({
