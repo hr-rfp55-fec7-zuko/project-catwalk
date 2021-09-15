@@ -216,10 +216,11 @@ li {
   display: inline-block;
   position: relative;
   font-family: FontAwesome;
+  font-weight: 1000;
 }
 
 .stars-outer::before {
-  content: "\f006 \f006 \f006 \f006 \f006";
+  content: "\f005 \f005 \f005 \f005 \f005";
 }
 
 .stars-inner {
@@ -228,10 +229,11 @@ li {
   left: 0;
   white-space: nowrap;
   overflow: hidden;
-  width: 0;
+  font-weight: 100;
+  width:25%;
 }
 
-/* .stars-inner::before {
+.stars-inner::before {
   content: "\f005 \f005 \f005 \f005 \f005";
   color: #f8ce0b;
-} */
+}

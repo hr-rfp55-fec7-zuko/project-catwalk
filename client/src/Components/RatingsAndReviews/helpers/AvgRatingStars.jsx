@@ -12,7 +12,7 @@ const AvgRatingStars = function AvgRatingStars(props) {
 
       <div class="stars-outer">
 
-        <div classs="stars-inner"></div>
+        <div class="stars-inner"></div>
       </div>
 
 
