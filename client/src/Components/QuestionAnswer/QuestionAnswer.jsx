@@ -14,10 +14,6 @@ class QuestionAnswer extends React.Component {
     this.updateQuestionsList();
   }
 
-  // componentDidUpdate() {
-  //   this.updateQuestionsList();
-  // }
-
   updateQuestionsList() {
     $.ajax({
       type: 'GET',
