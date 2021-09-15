@@ -99,7 +99,7 @@ h3 {
 }
 
 .price {
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
 .po-reviews {
@@ -107,6 +107,10 @@ h3 {
 }
 
 .po-desc {
+  display: flex;
+}
+
+.select-menus {
   display: flex;
 }
 
