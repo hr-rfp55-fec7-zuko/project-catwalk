@@ -1,3 +1,17 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 body {
@@ -116,6 +130,7 @@ h3 {
   margin: 10px;
 }
 
+=======
 .style-container {
   display: flex;
   width: 300px;
@@ -168,3 +183,45 @@ li {
 /* .style-element { position: relative; }
 .style-element .style-img { display: block; }
 .style-element .selected { position: absolute; top:0; right:0; } */
+
+
+
+
+/*========= CSS FOR Ratings & Reviews ===========*/
+.ratings-and-reviews {
+  border: 1px solid black;
+  max-width: 50%
+}
+
+/* .review-list {
+  height: fixed;
+
+} */
+
+.review-list, .review-tile {
+  border: 1px solid black;
+}
+
+.review-list {
+  margin: 10px;
+  padding:10px;
+  background-color: lightseagreen;
+  max-height: 100vh;
+  overflow: scroll;
+
+}
+
+.review-tile {
+  background-color: lightgreen;
+  margin: 5px;
+}
+
+
+.rating-breakdown {
+  background-color: lightskyblue;
+}
+
+.product-breakdown {
+  background-color: lightpink;
+
+}
