@@ -57,7 +57,7 @@ h3 {
   position: relative;
 }
 
-.CompareButton {
+.CompareButton, .DeleteButton {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -66,12 +66,14 @@ h3 {
   right: 0px;
   width: 30px;
   height: 30px;
-  background-color: rgba(94, 74, 74, 0.4);
+  background-color: rgba(0, 0, 0, 0.7);
   opacity: 0.6;
   transition: 0.3s;
+  color: #fff;
+
 }
 
-.CompareButton:hover{
+.CompareButton:hover, .DeleteButton:hover{
   opacity: 1
 }
 .RelatedProductsList {

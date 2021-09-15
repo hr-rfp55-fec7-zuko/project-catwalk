@@ -3,27 +3,33 @@ import axios from 'axios';
 import ComparisonModal from './ComparisonModal.jsx';
 
 class RelatedProductCard extends React.Component {
-  constructor({ props }) {
+  constructor(props) {
     super(props);
+    const { parentProductIdInfo } = this.props;
     this.state = {
-      productIDInfo: '',
+      productIdInfo: '',
+      parentProductIdInfo,
       featuredURL: '',
-      salePrice: '',
-      parentProductIDInfo: '',
       openCompareModal: false,
+      compareFeatures: '',
+      salePrice: '',
     };
 
     this.handleCompareClick = this.handleCompareClick.bind(this);
+    this.compareFeatures = this.compareFeatures.bind(this);
   }
 
   componentDidMount() {
-    const { productId, parentProductID } = this.props;
+    const { productId, parentProductIdInfo } = this.props;
+
     // Get the information for a related product
     axios.get(`/products/${productId}`)
       .then(({ data }) => {
-        console.log(data);
+        //console.log(data);
         this.setState({
-          productIDInfo: data,
+          productIdInfo: data,
+          parentProductFeatures: parentProductIdInfo.features,
+          currentProductFeatures: data.features,
         });
       })
       .catch((err) => {
@@ -33,7 +39,7 @@ class RelatedProductCard extends React.Component {
     // Get the feature picture and price for a related product
     axios.get(`/products/${productId}/styles`)
       .then(({ data }) => {
-        console.log(data);
+        // console.log(data);
         const defaultProduct = data.find((product) => product['default?'] === false);
         let url;
         if (!defaultProduct) {
@@ -67,27 +73,42 @@ class RelatedProductCard extends React.Component {
     this.setState({
       openCompareModal: !openCompareModal,
     });
+    this.compareFeatures(parentProductFeatures, currentProductFeatures);
+  }
+
+  compareFeatures(parentFeature, productFeature) {
+    let compareFeatures = {};
+    console.log('this is a list of features');
+    // parentFeature.forEach(() => {
+
+    // });
+    // parentFeature
+    // go though each of the feature
+    // if not exit compareFeatures
+    // if it is null
+    // add '✔️'
+    // add value
+
   }
 
   render() {
-    const { productIDInfo, featuredURL, salePrice, urlFeaturePic, openCompareModal } = this.state;
-    const { relatedProducts, productID } = this.props;
+    const { productIdInfo, featuredURL, salePrice, urlFeaturePic, openCompareModal, compareFeatures } = this.state;
     return (
       <div className='cardWrapper'>
-        <div className='card' id={productIDInfo.id}>
+        <div className='card' id={productIdInfo.id}>
           <div className='CompareButton' onClick={this.handleCompareClick}><i className="far fa-star"></i></div>
           <div className='pic'>
-            <img src={featuredURL} alt={productIDInfo.name}></img>
+            <img src={featuredURL} alt={productIdInfo.name}></img>
           </div>
           <div className='info'>
-            <p className='category'>{productIDInfo.category}</p>
-            <h3 className='title'>{productIDInfo.name}</h3>
-            <p className='price'>${productIDInfo.default_price}</p>
+            <p className='category'>{productIdInfo.category}</p>
+            <h3 className='title'>{productIdInfo.name}</h3>
+            <p className='price'>${productIdInfo.default_price}</p>
             {salePrice ? <p className='price sale'>{salePrice}</p> : null}
             <div className='reviewLink'>
-              <i className="fas fa-star"></i>
-              <i className="fas fa-star-half-alt"></i>
-              <i className="far fa-star"></i>
+              <i className='fas fa-star'></i>
+              <i className='fas fa-star-half-alt'></i>
+              <i className='far fa-star'></i>
             </div>
           </div>
         </div>
@@ -95,6 +116,9 @@ class RelatedProductCard extends React.Component {
           <div>
             <ComparisonModal
               closeModal={this.handleCompareClick}
+              parentProduct={parentProductIdInfo.name}
+              compareProduct={productIdInfo.name}
+              compareFeatures={compareFeatures}
             />
           </div>
         )}
