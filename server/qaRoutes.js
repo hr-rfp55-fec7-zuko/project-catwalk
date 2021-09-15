@@ -50,5 +50,25 @@ router.get('/questions/:question_id/answers', (req, res) => {
     });
 });
 
+router.put('/questions/:question_id/helpful', (req, res) => {
+  AtelierAPI('PUT', '/qa/questions/' + req.body.params.qId + '/helpful')
+    .then(response => {
+      res.sendStatus(response.status);
+    })
+    .catch(err => {
+      res.send(err).status(500);
+    });
+});
+
+router.put('/answers/:answer_id/helpful', (req, res) => {
+  AtelierAPI('PUT', '/qa/answers/' + req.body.params.aId + '/helpful')
+    .then(response => {
+      res.sendStatus(response.status);
+    })
+    .catch(err => {
+      res.send(err).status(500);
+    });
+});
+
 
 module.exports = router;
