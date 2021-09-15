@@ -13,7 +13,8 @@ class ProductOverview extends React.Component {
     this.state = {
       id: this.props.productId,
       features: [],
-      styles: []
+      styles: [],
+      style: {}
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getStyleInfo = this.getStyleInfo.bind(this);
@@ -71,7 +72,7 @@ class ProductOverview extends React.Component {
         <h1>{this.state.name}</h1>
         <Price price={this.state.price} sale={this.state.sale} salePrice={this.state.salePrice} />
         <StyleSelector styles={this.state.styles} setStyleSelection={this.setStyleSelection} />
-        <AddToCart />
+        <AddToCart style={this.state.style} />
         <div className='po-desc'>
           <div className='po-desc-text'>
             <p><b>{this.state.slogan}</b></p>
