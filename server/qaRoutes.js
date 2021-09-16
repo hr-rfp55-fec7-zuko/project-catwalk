@@ -90,5 +90,18 @@ router.put('/answers/:answer_id/report', (req, res) => {
     });
 });
 
+router.post('/questions/:question_id/answers', (req, res) => {
+  console.log('Get Here!', req.body.params);
+  AtelierAPI('POST', '/qa/questions/' + req.body.params.qId + '/answers', req.body.params.inner)
+    .then(response => {
+      console.log('response', response);
+      res.sendStatus(response.status);
+    })
+    .catch(err => {
+      console.log('err', err);
+      res.send(err).status(500);
+    });
+});
+
 
 module.exports = router;

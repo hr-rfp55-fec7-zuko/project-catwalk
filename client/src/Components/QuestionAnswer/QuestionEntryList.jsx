@@ -13,18 +13,18 @@ class QuestionEntryList extends React.Component {
     var list = this.props.lists.map(list => {
       return (
         <div>
-          <li className="qa-questions">{'Q: ' + list.question_body}</li>
+          <p className="qa-questions">{'Q: ' + list.question_body}</p>
           <QuestionCountList helpfulness={list.question_helpfulness} questionId={list.question_id}/>
           <QuestionReportList questionId={list.question_id}/>
-          <AddAnswerList questionId={list.question_id} questionBody={list.question_body}/>
-          <ul>
+          <AddAnswerList questionId={list.question_id} questionBody={list.question_body} pName={this.props.prodName}/>
+          <div>
             <AnswerEntryList questionId={list.question_id}/>
-          </ul>
+          </div>
         </div>
       );
     });
     return (
-      <div>
+      <div className="qa-list">
         {list}
         <div className="qa-load">
         </div>
