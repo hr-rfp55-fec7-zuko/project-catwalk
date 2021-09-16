@@ -299,6 +299,8 @@ li {
   top: 0;
   left: 0;
   margin: 0;
+  cursor: zoom-in;
+
 }
 
 .carousel__track {
@@ -317,12 +319,22 @@ li {
 }
 
 .carousel__button--left {
-  left: -30px;
+  left: 50px;
+  z-index: 10;
 }
 
 .carousel__button--right {
-  right: -30px;
+  right: 20px;
 }
+
+.fa-arrow-right .fa-arrow-left {
+  transition: all .2s ease-in-out;
+}
+
+.fa-arrow-right:hover .fa-arrow-left:hover {
+  transform: scale(1.1);
+}
+
 
 
 

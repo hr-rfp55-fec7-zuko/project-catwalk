@@ -4,8 +4,25 @@ class ImageGallery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      photos: {}
+      photos: {},
+      current: 0
     };
+    this.nextSlide = this.nextSlide.bind(this);
+    this.prevSlide = this.prevSlide.bind(this);
+  }
+
+  nextSlide() {
+    var length = this.state.photos[`${this.props.selectedStyle}_full`].length;
+    if (this.state.current < length - 1) {
+      this.setState({ current: this.state.current + 1 });
+    }
+  }
+
+  prevSlide() {
+    var length = this.state.photos[`${this.props.selectedStyle}_full`].length;
+    if (this.state.current > 0) {
+      this.setState({ current: this.state.current - 1 });
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -30,23 +47,31 @@ class ImageGallery extends React.Component {
     var thumbPhotos = this.state.photos[`${this.props.selectedStyle}_thumb`];
     var fullPhotos = this.state.photos[`${this.props.selectedStyle}_full`];
     if (this.state.photos[`${this.props.selectedStyle}_full`]) {
+      var length = fullPhotos.length;
       return (
         <div id='po-image-gallery' >
           <div className='image-thumbnails' >
 
           </div>
           <div className='carousel'>
-            <button className='carousel__button carousel__button--left'>
-              <i className="fas fa-chevron-left"></i>
+            {this.state.current !== 0 && (<button className='carousel__button carousel__button--left' onClick={this.prevSlide} >
+              <i className="fas fa-arrow-left fa-lg"></i>
             </button>
+            )}
             <div className='carousel__track-container' >
               <ul className='carousel__track'>
-                {fullPhotos.map((image) => <li className='carousel__slide'><img className='carousel__image' src={image} /></li>)}
+                {fullPhotos.map((image, index) => {
+                  return (
+                    <li key={index} className={index === this.state.current ? 'carousel__slide current_slide' : 'carousel__slide'}>
+                      {index === this.state.current && (<img className='carousel__image' src={image} />)}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
-            <button className='carousel__button carousel__button--right'>
-              <i className="fas fa-chevron-right"></i>
-            </button>
+            {this.state.current !== length - 1 && (<button className='carousel__button carousel__button--right' onClick={this.nextSlide} >
+              <i className="fas fa-arrow-right fa-lg"></i>
+            </button>)}
           </div>
         </div>
       );
