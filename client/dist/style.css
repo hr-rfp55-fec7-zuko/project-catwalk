@@ -182,6 +182,19 @@ h3 {
 }
 /*========= ======================== ===========*/
 
+.po-main-top {
+  display: flex;
+  height: 80%;
+}
+
+.po-main-left {
+  width: 60%;
+}
+
+.po-main-right {
+  width: 40%;
+}
+
 .style-img {
   width: 50px;
   height: 50px;
@@ -258,6 +271,79 @@ li {
 /* .style-element { position: relative; }
 .style-element .style-img { display: block; }
 .style-element .selected { position: absolute; top:0; right:0; } */
+
+.carousel {
+  position: relative;
+  height: 500px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.carousel__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel__track-container {
+  position: relative;
+  background-color: rosybrown;
+  height: 100%;
+  width: 100%;
+}
+
+.carousel__slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  margin: 0;
+  cursor: zoom-in;
+
+}
+
+.carousel__track {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.carousel__button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.carousel__button--left {
+  left: 50px;
+  z-index: 10;
+}
+
+.carousel__button--right {
+  right: 20px;
+}
+
+.carousel__button--expand {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.fa-arrow-right .fa-arrow-left {
+  transition: all .2s ease-in-out;
+}
+
+.fa-arrow-right:hover .fa-arrow-left:hover {
+  transform: scale(1.1);
+}
+
 
 
 
