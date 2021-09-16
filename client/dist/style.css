@@ -372,7 +372,7 @@ li {
   order: 3;
 }
 
-.product-bar-inner-fill.target::before {
+.product-bar-inner-fill.target::after {
   content: "\f005";
   color: blue;
 }
@@ -384,9 +384,10 @@ li {
 }
 
 /*doesn't do anything right now*/
-.target-buffer {
+.target-buffer:empty {
   background-color: lightgray;
-  width: 30%;
+  /* width: 30%; */
+  /* padding: 25px; */
 }
 
 
