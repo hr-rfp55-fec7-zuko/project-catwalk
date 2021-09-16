@@ -74,8 +74,6 @@ class RatingsAndReviews extends React.Component {
   }
 
 
-
-
   render() {
 
     let reviewCount = helpers.determineTotalReviews(this.state.metaData.ratings);

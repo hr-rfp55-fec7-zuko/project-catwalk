@@ -1,5 +1,6 @@
 import React from 'react';
 import helpers from './helpers/helpers.js';
+import AvgRatingStars from './helpers/AvgRatingStars.jsx';
 
 class RatingBreakdown extends React.Component {
   constructor(props) {
@@ -10,7 +11,7 @@ class RatingBreakdown extends React.Component {
     let metaData = this.props.metaData;
     let reviewCount = this.props.reviewCount;
 
-    let averageRating = helpers.determineAverageRating(metaData.ratings, reviewCount);
+    let avgRating = helpers.determineAverageRating(metaData.ratings, reviewCount);
 
     let percentageRecommended = helpers.determinePercentageRecommend(metaData.recommended);
 
@@ -33,7 +34,8 @@ class RatingBreakdown extends React.Component {
       <div className="rating-breakdown">
         <h3>Ratings and Reviews</h3>
 
-        <div>{averageRating}</div>
+        {/* <div>{averageRating}</div> */}
+        <AvgRatingStars avgRating={avgRating}/>
 
         <div> {percentageRecommended}% of reviews recommend this product</div>
 
