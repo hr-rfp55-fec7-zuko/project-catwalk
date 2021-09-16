@@ -9,8 +9,8 @@ class ReviewList extends React.Component {
     this.state = {
       totalReviews: 0,
       reviewLimit: 2,
-      // addReviewFormVisible: false
-      addReviewFormVisible: true
+      addReviewFormVisible: false
+      // addReviewFormVisible: true
 
     };
 

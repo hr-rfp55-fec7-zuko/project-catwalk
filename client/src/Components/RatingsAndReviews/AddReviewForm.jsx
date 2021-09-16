@@ -29,7 +29,6 @@ class AddReviewForm extends React.Component {
   }
 
   handleRadioFormChange(event){
-    console.log(event.target)
     this.setStateProperty(event.target.name, event.target.id)
   }
 
