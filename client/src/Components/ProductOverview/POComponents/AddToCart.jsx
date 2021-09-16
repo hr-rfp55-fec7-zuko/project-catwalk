@@ -1,6 +1,7 @@
 import React from 'react';
 import SizeSelector from './SizeSelector.jsx';
 import QuantitySelector from './QuantitySelector.jsx';
+import axios from 'axios';
 
 class AddToCart extends React.Component {
   constructor(props) {
@@ -33,9 +34,10 @@ class AddToCart extends React.Component {
     e.preventDefault();
     var cartItem = {
       'sku_id': this.state.selectedSKU,
-      count: this.state.quantity
     };
-    console.log('you want to add to cart:', cartItem);
+    for (var i = 0; i < this.state.quantity; i++) {
+      axios.post('http://localhost:3000/cart/', cartItem);
+    }
   }
 
   render() {
