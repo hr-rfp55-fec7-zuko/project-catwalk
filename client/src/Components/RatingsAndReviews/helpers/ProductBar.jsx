@@ -12,7 +12,7 @@ const ratingMeanings = {
 //props should include
 const ProductBar = function ProductBar(props) {
   let characteristic = props.characteristic;
-  let score = props.score;
+  let score = parseFloat(props.score);
 
   console.log(characteristic, score);
 
