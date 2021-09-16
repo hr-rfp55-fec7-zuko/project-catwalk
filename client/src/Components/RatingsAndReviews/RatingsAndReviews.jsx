@@ -61,9 +61,9 @@ class RatingsAndReviews extends React.Component {
 
   }
 
-  submitHelpfulOrReport(review_id, action) {
+  submitHelpfulOrReport(reviewId, action) {
     return axios({
-      url: `/reviews/${review_id}/${action}`,
+      url: `/reviews/${reviewId}/${action}`,
       method: 'PUT'
     })
       .then((results) => {

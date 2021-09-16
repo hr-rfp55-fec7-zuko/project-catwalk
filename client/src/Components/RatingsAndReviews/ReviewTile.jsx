@@ -1,7 +1,9 @@
 import React from 'react';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+// import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import AvgRatingStars from './helpers/AvgRatingStars.jsx';
+
 
 class ReviewTile extends React.Component {
   constructor(props) {
@@ -53,7 +55,8 @@ class ReviewTile extends React.Component {
 
     return (
       <div className="review-tile">
-        <div>{review.rating} <span className="review-user-date">{review.reviewer_name}, {date}</span> </div>
+        <div><AvgRatingStars avgRating={review.rating} /><span className="review-user-date">{review.reviewer_name}, {date}</span>
+        </div>
 
         <div className="review-summary"><h2>{review.summary}</h2></div>
         <div>{review.body}</div>
@@ -70,14 +73,14 @@ class ReviewTile extends React.Component {
         }
 
         <div>Helpful?
-          <span class="helpful-or-report">
+          <span className="helpful-or-report">
             <a href="" onClick={this.handleHelpfulOrReportClick}>
             Yes
             </a>
           </span>
           ({review.helpfulness}) |
 
-          <span class="helpful-or-report">
+          <span className="helpful-or-report">
             <a href="" onClick={this.handleHelpfulOrReportClick}>
             Report
             </a>
