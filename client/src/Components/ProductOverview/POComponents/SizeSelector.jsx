@@ -8,14 +8,14 @@ var SizeSelector = ({ skus, setSKU, needSize }) => {
           e.preventDefault();
           setSKU(event.target.value);
         }}>
-          <option value='0'>Select Size</option>
+          <option value='0' key='select-size' >Select Size</option>
           {Object.keys(skus).map((sku) => {
             var size = skus[sku].size;
             var quantity = skus[sku].quantity;
             if (size === 0) {
-              return (<option value={sku} disabled >{size} OUT OF STOCK</option>);
+              return (<option value={sku} key={sku} disabled >{size} OUT OF STOCK</option>);
             } else {
-              return (<option value={sku} >{size}</option>);
+              return (<option value={sku} key={sku} >{size}</option>);
             }
           })}
         </select>
