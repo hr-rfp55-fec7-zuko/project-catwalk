@@ -182,6 +182,19 @@ h3 {
 }
 /*========= ======================== ===========*/
 
+.po-main-top {
+  display: flex;
+  height: 80%;
+}
+
+.po-main-left {
+  width: 60%;
+}
+
+.po-main-right {
+  width: 40%;
+}
+
 .style-img {
   width: 50px;
   height: 50px;
@@ -261,7 +274,7 @@ li {
 
 .carousel {
   position: relative;
-  height: 600px;
+  height: 500px;
   width: 80%;
   margin: 0 auto;
 }
