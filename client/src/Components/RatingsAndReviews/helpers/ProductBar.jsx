@@ -55,7 +55,7 @@ const buildBarSegment = function(barNumber, isTargetBar, innerPercentage) {
 
   let className = `product-bar-inner-fill ${barNumber} ${target}`
 
-  var bar =  <div className={className}/>
+  var bar = isTargetBar ? <div className={className}><div className='target-buffer' style={{width: innerPercentage}}/></div> : <div className={className}/>
 
   return (bar)
 

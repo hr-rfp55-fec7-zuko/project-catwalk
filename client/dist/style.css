@@ -319,7 +319,7 @@ li {
   width: 300px;
   height: 30px;
   /* display: inline-block; */
-  background-color: orange;
+  background-color: white;
 
 }
 
@@ -327,7 +327,7 @@ li {
   display: block;
   height: 100%;
   width: 30%;
-  background-color: gray;
+  background-color: lightgray;
 }
 
 .product-bar-inner-fill.one {
@@ -344,9 +344,20 @@ li {
 
 .product-bar-inner-fill.target::before {
   content: "\f005";
+  color: blue;
 }
 
+.target {
+  background-color: lightgray;
+  height: 100%;
+  width: 30%;
+}
 
+/*doesn't do anything right now*/
+.target-buffer {
+  background-color: lightgray;
+  width: 30%;
+}
 
 
 /*
