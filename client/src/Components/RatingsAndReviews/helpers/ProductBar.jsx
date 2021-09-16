@@ -42,31 +42,17 @@ const ProductBar = function ProductBar(props) {
   var nonTargetBar = <div className='product-bar-inner-fill' />;
   var targetBar = <div className='product-bar-inner-fill target' style={style} />;
 
-  // return (
-  //   <>
-  //     <div className="product-bar-container">
-  //       <div className='product-bar-outer'>
-  //         {fill1 === true ? targetBar : nonTargetBar}
-  //         {ratingMeanings[characteristic][0]}
-  //         {fill2 === true ? targetBar : nonTargetBar}
-  //         {fill3 === true ? targetBar : nonTargetBar}
-  //         {ratingMeanings[characteristic][1]}
-  //       </div>
-  //     </div>
-  //     <br/>
-  //   </>
-
 
 return (
   <>
     <div className="product-bar-container">
+    {ratingMeanings[characteristic][0]}
       <div className='product-bar-outer'>
-        {buildBarSegment('1', fill1)}
-        {ratingMeanings[characteristic][0]}
-        {buildBarSegment('2', fill2)}
-        {buildBarSegment('3', fill3)}
-        {ratingMeanings[characteristic][1]}
+        {buildBarSegment('one', fill1)}
+        {buildBarSegment('two', fill2)}
+        {buildBarSegment('three', fill3)}
       </div>
+      {ratingMeanings[characteristic][1]}
     </div>
     <br/>
   </>
@@ -88,4 +74,18 @@ const buildBarSegment = function(barNumber, isTargetBar) {
 export default ProductBar;
 
 // style={{width: `${percentage}%`}}
+
+// return (
+  //   <>
+  //     <div className="product-bar-container">
+  //       <div className='product-bar-outer'>
+  //         {fill1 === true ? targetBar : nonTargetBar}
+  //         {ratingMeanings[characteristic][0]}
+  //         {fill2 === true ? targetBar : nonTargetBar}
+  //         {fill3 === true ? targetBar : nonTargetBar}
+  //         {ratingMeanings[characteristic][1]}
+  //       </div>
+  //     </div>
+  //     <br/>
+  //   </>
 
