@@ -280,3 +280,43 @@ li {
   content: "\f005 \f005 \f005 \f005 \f005";
   color: #f8ce0b;
 }
+
+/*========= CSS for Questions & Answers ===========*/
+
+.qa-questions-modal-wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.qa-questions-modal-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: rgba(0,0,0,0.3);
+}
+
+.qa-questions-modal-box {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow-y: auto;
+  height: 70%;
+  width: 60%;
+  background-color:white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+  z-index: 101;
+  padding: 40px;
+}
+
+.qa-questions-modal-button {
+  font-family:'Montserrat',sans-serif;
+  font-size: 16px;
+  color: #000;
+}
