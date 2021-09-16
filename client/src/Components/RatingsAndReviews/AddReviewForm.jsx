@@ -11,11 +11,30 @@ class AddReviewForm extends React.Component {
 
     this.handleStringFormChange = this.handleStringFormChange.bind(this)
     this.handleRadioFormChange = this.handleRadioFormChange.bind(this)
+
+    this.submitReviewForm = this.submitReviewForm.bind(this)
   }
 
   submitReviewForm(event){
     event.preventDefault()
-    this.props.submitReviewForm()
+    //grab product_id
+
+    //format data object
+
+    //if any mandatory fields are blank display an error (h)
+
+    let temp = {
+      "product_id": 40344,
+      "rating": 5,
+      "summary": "Very good",
+      "body": "lorem ipsum",
+      "recommend": true,
+      "name": "tester",
+      "email": "tester@tester.com",
+      "photos": [],
+      "characteristics": {}
+    }
+    this.props.submitReviewForm(temp)
 
   }
 
@@ -54,7 +73,7 @@ class AddReviewForm extends React.Component {
 
           <div className="form-question">
             <label className='form-category'>What is your nickmake?*</label><br/>
-            <input type="text" maxLength="60" placeholder="jackson11!" id= "name" name="name" value={this.state.name} onChange={this.handleStringFormChange}/>
+            <input type="text" maxLength="60" placeholder="jackson11!" id= "name" name="name" value={this.state.name} onChange={this.handleStringFormChange} required/>
             <small><p>For privacy reasons, do not use your full name or email address</p></small>
             </div>
 

@@ -7,6 +7,7 @@ var router = express.Router();
 /* API Query Helper */
 let APIQuery = function(method, endpath, query, data = null) {
   // console.log(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews${endpath}${query}`);
+  // console.log('data:', data)
   return axios({
     method: method,
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews${endpath}${query}`,
@@ -55,7 +56,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   let endpath = '/';
   let query = '';
-  let data = req.body;
+  let data = req.body.params;
 
   APIQuery('POST', endpath, query, data)
     .then((data) => res.status(201).send(data))
