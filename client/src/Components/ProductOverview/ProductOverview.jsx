@@ -6,6 +6,7 @@ import StyleSelector from './POComponents/StyleSelector.jsx';
 import AddToCart from './POComponents/AddToCart.jsx';
 import SocialMediaButtons from './POComponents/SocialMediaButtons.jsx';
 import Price from './POComponents/Price.jsx';
+import AvgRatingStars from '../RatingsAndReviews/helpers/AvgRatingStars.jsx';
 
 class ProductOverview extends React.Component {
   constructor(props) {
@@ -13,7 +14,8 @@ class ProductOverview extends React.Component {
     this.state = {
       id: this.props.productId,
       features: [],
-      styles: []
+      styles: [],
+      style: {}
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getStyleInfo = this.getStyleInfo.bind(this);
@@ -64,14 +66,16 @@ class ProductOverview extends React.Component {
       <div className='po-main'>
         <ImageGallery />
         <div className='po-reviews'>
-          <StarRating />
+          {/* <StarRating /> */}
+          <AvgRatingStars avgRating={this.props.avgRating} />
+          {/* <span>The rating is {this.props.avgRating}</span> */}
           <button className='btn all-reviews'>Read all reviews</button>
         </div>
         <h3>{this.state.category}</h3>
         <h1>{this.state.name}</h1>
         <Price price={this.state.price} sale={this.state.sale} salePrice={this.state.salePrice} />
         <StyleSelector styles={this.state.styles} setStyleSelection={this.setStyleSelection} />
-        <AddToCart />
+        <AddToCart style={this.state.style} />
         <div className='po-desc'>
           <div className='po-desc-text'>
             <p><b>{this.state.slogan}</b></p>
