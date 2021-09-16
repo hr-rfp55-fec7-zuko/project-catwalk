@@ -65,13 +65,13 @@ class AddToCart extends React.Component {
   render() {
     return (
       <div className='po-add-cart'>
-        {this.state.needSize ? <div>You need to select a size first!</div> : null}
+        {this.state.needSize ? <div>You need to select a size first!</div> : <br/>}
         <div className='select-menus'>
           <SizeSelector skus={this.state.style.skus} setSKU={this.setSKU} needSize={this.state.needSize} />
           <QuantitySelector totalQuantity={this.state.totalQuantity} setQuantity={this.setQuantity} />
         </div>
         <button onClick={this.handleAddToCart} >Add to Cart</button>
-        {this.state.addedToCart ? `You added ${this.state.quantity} items to your cart!` : null}
+        <p>{this.state.addedToCart ? `You added ${this.state.quantity} items to your cart!` : <br/>}</p>
       </div>
     );
   }
