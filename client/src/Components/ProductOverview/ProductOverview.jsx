@@ -64,7 +64,7 @@ class ProductOverview extends React.Component {
   render() {
     return (
       <div className='po-main'>
-        <ImageGallery />
+        <ImageGallery styles={this.state.styles} selectedStyle={this.state.style.style_id} />
         <div className='po-reviews'>
           {/* <StarRating /> */}
           <AvgRatingStars avgRating={this.props.avgRating} />
