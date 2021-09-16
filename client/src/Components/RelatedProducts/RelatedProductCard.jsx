@@ -11,7 +11,7 @@ class RelatedProductCard extends React.Component {
       parentProductIdInfo,
       featuredURL: '',
       openCompareModal: false,
-      compareFeatures: '',
+      comparedFeatures: '',
       salePrice: '',
     };
 
@@ -25,12 +25,12 @@ class RelatedProductCard extends React.Component {
     // Get the information for a related product
     axios.get(`/products/${productId}`)
       .then(({ data }) => {
-        //console.log(data);
         this.setState({
           productIdInfo: data,
           parentProductFeatures: parentProductIdInfo.features,
           currentProductFeatures: data.features,
         });
+
       })
       .catch((err) => {
         console.log('Error geting products detail in a relatived product', err);
@@ -39,7 +39,6 @@ class RelatedProductCard extends React.Component {
     // Get the feature picture and price for a related product
     axios.get(`/products/${productId}/styles`)
       .then(({ data }) => {
-        // console.log(data);
         const defaultProduct = data.find((product) => product['default?'] === false);
         let url;
         if (!defaultProduct) {
@@ -69,31 +68,23 @@ class RelatedProductCard extends React.Component {
   }
 
   handleCompareClick() {
-    const { openCompareModal } = this.state;
+    const { openCompareModal, parentProductFeatures, currentProductFeatures } = this.state;
     this.setState({
       openCompareModal: !openCompareModal,
     });
-    //this.compareFeatures(parentProductFeatures, currentProductFeatures);
+    this.compareFeatures(parentProductFeatures, currentProductFeatures);
   }
 
   compareFeatures(parentFeature, productFeature) {
-    let compareFeatures = {};
-    console.log('this is a list of features');
-    // parentFeature.forEach(() => {
-
-    // });
-    // parentFeature
-    // go though each of the feature
-    // if not exit compareFeatures
-    // if it is null
-    // add '✔️'
-    // add value
-
+    let combinedObj = parentFeature.concat(productFeature);
+    let combinedFeatures = combinedObj.filter((item) => item.value !== null)
+    this.setState({
+      comparedFeatures: combinedFeatures,
+    });
   }
 
   render() {
-    //this.compareFeatures(parentProductFeatures, currentProductFeatures);
-    const { productIdInfo, featuredURL, salePrice, urlFeaturePic, openCompareModal, compareFeatures, parentProductIdInfo} = this.state;
+    const { productIdInfo, featuredURL, salePrice, urlFeaturePic, openCompareModal, comparedFeatures, parentProductIdInfo } = this.state;
     return (
       <div className='cardWrapper'>
         <div className='card' id={productIdInfo.id}>
@@ -117,9 +108,9 @@ class RelatedProductCard extends React.Component {
           <div>
             <ComparisonModal
               closeModal={this.handleCompareClick}
-              parentProduct={parentProductIdInfo.name}
-              compareProduct={productIdInfo.name}
-              compareFeatures={compareFeatures}
+              parentProduct={parentProductIdInfo}
+              compareProduct={productIdInfo}
+              comparedFeatures={comparedFeatures}
             />
           </div>
         )}
