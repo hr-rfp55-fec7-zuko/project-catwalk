@@ -18,7 +18,6 @@ class StyleSelector extends React.Component {
         <div className='style-container'>
           {this.state.styles.map((style) => <SingleStyle key={style.name} style={style} onClick={(event) => {
             event.preventDefault();
-            console.log('clicked');
             this.props.setStyleSelection(style);
             this.setState({ styleName: style.name });
           }} selected={style.name === this.state.styleName} />)}
