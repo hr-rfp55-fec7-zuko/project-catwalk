@@ -212,8 +212,24 @@ h3 {
   display: flex;
 }
 
+.po-add-cart {
+  display: grid;
+}
+
+.select-parent{
+  position: relative;
+}
+
 .select-menus {
   display: flex;
+  position: absolute;
+  z-index: 10;
+  /* top:20px */
+}
+
+.add-cart-feat {
+  position: absolute;
+  top: 20px
 }
 
 .po-desc-text {
