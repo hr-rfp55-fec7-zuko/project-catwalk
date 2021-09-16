@@ -6,7 +6,7 @@ var router = express.Router();
 
 /* API Query Helper */
 let APIQuery = function(method, endpath, query, data = null) {
-  console.log(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews${endpath}${query}`);
+  // console.log(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews${endpath}${query}`);
   return axios({
     method: method,
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews${endpath}${query}`,
@@ -21,7 +21,7 @@ let APIQuery = function(method, endpath, query, data = null) {
     .then((results) => {
       results = results.data;
       /***********Remove 1 line below during cleanup!********/
-      console.log('Successful api request. Results', results);
+      // console.log('Successful api request. Results', results);
       return results;
     })
     .catch((error) => {
@@ -44,7 +44,7 @@ router.get('/meta', (req, res) => {
 router.get('/', (req, res) => {
   let endpath = '/';
   let query = `?product_id=${req.query.product_id}&count=${req.query.count}`;
-  console.log('query', query);
+  // console.log('query', query);
 
   APIQuery('GET', endpath, query)
     .then((data) => res.status(200).send(data))
@@ -74,7 +74,7 @@ router.put('/:review_id/helpful', (req, res) => {
 
   APIQuery('PUT', endpath, query, body)
     .then((data) => {
-      console.log('put request data', data)
+      // console.log('put request data', data)
       res.status(205).send(data)})
     .catch((error) => res.status(401).send(error));
 
