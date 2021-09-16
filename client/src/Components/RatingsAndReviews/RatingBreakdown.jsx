@@ -16,37 +16,37 @@ class RatingBreakdown extends React.Component {
     let percentageRecommended = helpers.determinePercentageRecommend(metaData.recommended);
 
     const ratingBars = [];
+    for (var i = 1; i <= 5; i++ ) {
+      var rating = i;
+      if (metaData.ratings[i] === undefined) {
+        metaData.ratings[i] = 0;
+      }
 
-    for (var rating in metaData.ratings) {
+      let percentage = (metaData.ratings[rating] / this.props.reviewCount) * 100;
+
       ratingBars.push (
-        <div className='rating-breakdown'>
-          <div className='rating-bar-outer'>
-            Bar Here<div className='rating-bar-inner'>
+        <>
+          <div className="rating-bar-container">
+            {rating} Stars
+            <div className='rating-bar-outer'>
+              <div className='rating-bar-inner-fill' style={{width: `${percentage}%`}}></div>
             </div>
+            {metaData.ratings[rating]}
           </div>
-          {metaData.ratings[rating]}
-        </div>
+          <br/>
+        </>
       );
     }
+
 
     //NOTE: for star icon: <i class="far fa-star"></i>
     return (
       <div className="rating-breakdown">
         <h3>Ratings and Reviews</h3>
-
-        {/* <div>{averageRating}</div> */}
-        <AvgRatingStars avgRating={avgRating}/>
-
         <div> {percentageRecommended}% of reviews recommend this product</div>
-
-        <div className="star-review-outer">
-          star star star star star
-          <div className="star-review-inner">
-          </div>
-        </div>
-
+        <AvgRatingStars avgRating={avgRating}/>
+        <br/>
         {ratingBars}
-
       </div>
 
     );
@@ -54,3 +54,6 @@ class RatingBreakdown extends React.Component {
 }
 
 export default RatingBreakdown;
+
+
+
