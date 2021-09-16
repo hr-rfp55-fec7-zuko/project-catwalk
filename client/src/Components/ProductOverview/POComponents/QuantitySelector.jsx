@@ -13,7 +13,7 @@ var QuantitySelector = ({totalQuantity = 0, setQuantity}) => {
           e.preventDefault();
           setQuantity(parseInt(event.target.value));
         }} >
-          {quantOptions.map((opt) => (<option value={opt} >{opt}</option>))}
+          {quantOptions.map((opt) => (<option value={opt} key={opt} >{opt}</option>))}
         </select>
       </div>
     );

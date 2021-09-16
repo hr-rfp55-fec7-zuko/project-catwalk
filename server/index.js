@@ -2,7 +2,7 @@ const express = require('express');
 
 const reviews = require('./rrRoutes.js');
 const products = require('./productRoutes.js');
-
+const cart = require('./cartRoutes.js');
 const qa = require('./qaRoutes.js');
 
 const app = express();
@@ -15,7 +15,7 @@ app.use(express.urlencoded({extended: true}));
 
 app.use('/reviews', reviews);
 app.use('/products', products);
-
+app.use('/cart', cart);
 app.use('/qa', qa);
 
 app.listen(PORT, () => {

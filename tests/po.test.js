@@ -19,7 +19,7 @@ describe('Product Server Routes', () => {
         expect(typeof response).toBe('object');
         expect(response.id).toBe('40344');
       })
-      .catch((error) => {});
+      .catch((error) => { });
   });
   test('can GET a product\'s styles by ID', () => {
     axios.get('http://localhost:3000/products/40344/styles')
@@ -28,7 +28,7 @@ describe('Product Server Routes', () => {
         expect(typeof response).toBe('array');
         expect(response.id).toBe('40344');
       })
-      .catch((error) => {});
+      .catch((error) => { });
   });
   test('can GET a page of products', () => {
     axios.get('http://localhost:3000/products/40344/styles')
@@ -38,6 +38,27 @@ describe('Product Server Routes', () => {
         expect(response).toHaveLength(5);
         expext(response[0].id).toBeDefined();
       })
-      .catch((error) => {});
+      .catch((error) => { });
+  });
+});
+
+describe('Cart Server Routes', () => {
+  test('can GET the cart', () => {
+    axios.get('http://localhost:3000/cart/')
+      .then((response) => JSON.stringify(response.data))
+      .then((response) => {
+        expect(Array.isArray(response)).toBe(true);
+      })
+      .catch((error) => { });
+  });
+  test('can POST to the cart', () => {
+    axios.post('http://localhost:3000/cart/', {'sku_id': 1394770})
+      .then(() => axios.get('http://localhost:3000/cart/'))
+      .then((response) => {
+        expect(Array.isArray(response.data)).toBe(true);
+        expect(response.data[0][sku_id]).toBe('1394770');
+        expect(response.data[0][count]).toBeGreaterThan(0);
+      })
+      .catch((error) => { });
   });
 });
