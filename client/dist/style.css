@@ -259,6 +259,15 @@ li {
 .style-element .style-img { display: block; }
 .style-element .selected { position: absolute; top:0; right:0; } */
 
+.carousel {
+  height: 50%;
+  width: 50%;
+}
+
+.carousel__image {
+  width: 100%
+}
+
 
 
 

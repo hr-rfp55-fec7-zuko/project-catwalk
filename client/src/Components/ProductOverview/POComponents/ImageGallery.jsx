@@ -27,13 +27,26 @@ class ImageGallery extends React.Component {
   }
 
   render() {
-    if (this.state.photos[this.props.selectedStyle]) {
+    var thumbPhotos = this.state.photos[`${this.props.selectedStyle}_thumb`];
+    var fullPhotos = this.state.photos[`${this.props.selectedStyle}_full`];
+    if (this.state.photos[`${this.props.selectedStyle}_full`]) {
       return (
         <div id='po-image-gallery' >
           <div className='image-thumbnails' >
 
           </div>
-          <div className='image-carousel'>
+          <div className='carousel'>
+            <button className='carousel__button carousel__button--left'>
+              <i className="fas fa-chevron-left"></i>
+            </button>
+            <div className='carousel__track-container' >
+              <ul className='carousel__track'>
+                {fullPhotos.map((image) => <li className='carousel__slide'><img className='carousel__image' src={image} /></li>)}
+              </ul>
+            </div>
+            <button className='carousel__button carousel__button--right'>
+              <i className="fas fa-chevron-right"></i>
+            </button>
           </div>
         </div>
       );
