@@ -11,6 +11,7 @@ class QuestionEntryList extends React.Component {
 
   render() {
     var list = this.props.lists.map(list => {
+      console.log('🥰', list);
       return (
         <div>
           <li className="qa-questions">{'Q: ' + list.question_body}</li>
