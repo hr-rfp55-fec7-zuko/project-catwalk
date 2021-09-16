@@ -1,10 +1,10 @@
 import React from 'react';
 
-var SizeSelector = ({ skus, setSKU }) => {
+var SizeSelector = ({ skus, setSKU, needSize }) => {
   if (skus) {
     return (
       <div>
-        <select className='po-select-size' onChange={(e) => {
+        <select className='po-select-size' size={needSize ? Object.keys(skus).length : 1 } onChange={(e) => {
           e.preventDefault();
           setSKU(event.target.value);
         }}>

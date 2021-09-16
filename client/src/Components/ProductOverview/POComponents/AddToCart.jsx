@@ -8,7 +8,8 @@ class AddToCart extends React.Component {
     super(props);
     this.state = {
       style: this.props.style,
-      addedToCart: false
+      addedToCart: false,
+      needSize: false
     };
     this.setSKU = this.setSKU.bind(this);
     this.setQuantity = this.setQuantity.bind(this);
@@ -20,16 +21,17 @@ class AddToCart extends React.Component {
       selectedSKU: sku,
       selectedSize: this.state.style.skus[sku].size,
       totalQuantity: this.state.style.skus[sku].quantity,
-      addedToCart: false
+      addedToCart: false,
+      needSize: false
     });
     if (this.state.quantity || this.state.style.skus[sku].quantity < this.state.quantity) {
       var quantity = (this.state.style.skus[sku].quantity > 0) ? 1 : 0;
-      this.setState({quantity});
+      this.setState({ quantity });
     }
   }
 
   setQuantity(quantity) {
-    this.setState({quantity, addedToCart: false});
+    this.setState({ quantity, addedToCart: false });
   }
 
   handleAddToCart(e) {
@@ -45,19 +47,20 @@ class AddToCart extends React.Component {
         addedToCart: true
       });
     } else {
-
+      this.setState({ needSize: true });
     }
   }
 
   render() {
     return (
       <div className='po-add-cart'>
+        {this.state.needSize ? <div>You need to select a size first!</div> : null}
         <div className='select-menus'>
-          <SizeSelector skus={this.state.style.skus} setSKU={this.setSKU} />
+          <SizeSelector skus={this.state.style.skus} setSKU={this.setSKU} needSize={this.state.needSize} />
           <QuantitySelector totalQuantity={this.state.totalQuantity} setQuantity={this.setQuantity} />
         </div>
         <button onClick={this.handleAddToCart} >Add to Cart</button>
-        {this.state.addedToCart ? `You added ${this.state.quantity} items to your cart!` : null }
+        {this.state.addedToCart ? `You added ${this.state.quantity} items to your cart!` : null}
       </div>
     );
   }
@@ -68,7 +71,7 @@ class AddToCart extends React.Component {
       if (this.state.selectedSKU || this.state.style.skus) {
         var skuArr = Object.keys(this.props.style.skus);
         for (var i = 0; i < skuArr.length; i++) {
-          if (this.props.style.skus[skuArr[i]].size === this.state.selectedSize ) {
+          if (this.props.style.skus[skuArr[i]].size === this.state.selectedSize) {
             this.setState({
               selectedSKU: skuArr[i],
               totalQuantity: this.props.style.skus[skuArr[i]].quantity
