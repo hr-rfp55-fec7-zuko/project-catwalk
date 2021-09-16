@@ -40,24 +40,50 @@ const ProductBar = function ProductBar(props) {
 
   //Variables for conditional rendering
   var nonTargetBar = <div className='product-bar-inner-fill' />;
-  var targetBar = <div className='product-bar-inner-fill-target' style={style} />;
+  var targetBar = <div className='product-bar-inner-fill target' style={style} />;
 
-  return (
-    <>
-      <div className="product-bar-container">
-        <div className='product-bar-outer'>
-          {fill1 === true ? targetBar : nonTargetBar}
-          {ratingMeanings[characteristic][0]}
-          {fill2 === true ? targetBar : nonTargetBar}
-          {fill3 === true ? targetBar : nonTargetBar}
-          {ratingMeanings[characteristic][1]}
-        </div>
+  // return (
+  //   <>
+  //     <div className="product-bar-container">
+  //       <div className='product-bar-outer'>
+  //         {fill1 === true ? targetBar : nonTargetBar}
+  //         {ratingMeanings[characteristic][0]}
+  //         {fill2 === true ? targetBar : nonTargetBar}
+  //         {fill3 === true ? targetBar : nonTargetBar}
+  //         {ratingMeanings[characteristic][1]}
+  //       </div>
+  //     </div>
+  //     <br/>
+  //   </>
+
+
+return (
+  <>
+    <div className="product-bar-container">
+      <div className='product-bar-outer'>
+        {buildBarSegment('1', fill1)}
+        {ratingMeanings[characteristic][0]}
+        {buildBarSegment('2', fill2)}
+        {buildBarSegment('3', fill3)}
+        {ratingMeanings[characteristic][1]}
       </div>
-      <br/>
-    </>
+    </div>
+    <br/>
+  </>
   );
 };
 
+const buildBarSegment = function(barNumber, isTargetBar) {
+
+  var target = isTargetBar ? 'target' : ''
+
+  let className = `product-bar-inner-fill ${barNumber} ${target}`
+
+  var bar =  <div className={className}/>
+
+  return (bar)
+
+}
 
 export default ProductBar;
 

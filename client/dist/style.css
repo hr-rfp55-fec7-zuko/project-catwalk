@@ -226,7 +226,7 @@ li {
 
 } */
 
-.review-list, .review-tile {
+.review-list, .review-tile .rating-breakdown .product-breakdown {
   border: 1px solid black;
 }
 
