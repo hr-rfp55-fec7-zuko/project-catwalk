@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import AvgRatingStars from '../RatingsAndReviews/helpers/AvgRatingStars.jsx';
 import ComparisonModal from './ComparisonModal.jsx';
 
 class RelatedProductCard extends React.Component {
@@ -13,6 +14,7 @@ class RelatedProductCard extends React.Component {
       openCompareModal: false,
       comparedFeatures: '',
       salePrice: '',
+      avgRating: '',
     };
 
     this.handleCompareClick = this.handleCompareClick.bind(this);
@@ -20,7 +22,7 @@ class RelatedProductCard extends React.Component {
   }
 
   componentDidMount() {
-    const { productId, parentProductIdInfo } = this.props;
+    const { productId, parentProductIdInfo, AvgRatingStars } = this.props;
 
     // Get the information for a related product
     axios.get(`/products/${productId}`)
@@ -65,6 +67,17 @@ class RelatedProductCard extends React.Component {
       .catch((error) => {
         console.log('Error fetching product styles in relatedProductCard', error);
       });
+
+    return axios({
+      url: `/reviews/meta?product_id=${productId}`,
+      method: 'GET'
+    })
+      .then((results) => {
+        console.log(results.data);
+        this.setState({ avgRating: results.data.ratings});
+      })
+
+      .catch((error) => console.log('ERROR in METADATA AJAX Request: ', error));
   }
 
   handleCompareClick() {
@@ -77,14 +90,14 @@ class RelatedProductCard extends React.Component {
 
   compareFeatures(parentFeature, productFeature) {
     let combinedObj = parentFeature.concat(productFeature);
-    let combinedFeatures = combinedObj.filter((item) => item.value !== null)
+    let combinedFeatures = combinedObj.filter((item) => item.value !== null);
     this.setState({
       comparedFeatures: combinedFeatures,
     });
   }
 
   render() {
-    const { productIdInfo, featuredURL, salePrice, urlFeaturePic, openCompareModal, comparedFeatures, parentProductIdInfo } = this.state;
+    const { productIdInfo, featuredURL, salePrice, urlFeaturePic, openCompareModal, comparedFeatures, parentProductIdInfo, avgRating } = this.state;
     return (
       <div className='cardWrapper'>
         <div className='card' id={productIdInfo.id}>
@@ -97,11 +110,7 @@ class RelatedProductCard extends React.Component {
             <h3 className='title'>{productIdInfo.name}</h3>
             <p className='price'>${productIdInfo.default_price}</p>
             {salePrice ? <p className='price sale'>{salePrice}</p> : null}
-            <div className='reviewLink'>
-              <i className='fas fa-star'></i>
-              <i className='fas fa-star-half-alt'></i>
-              <i className='far fa-star'></i>
-            </div>
+            <AvgRatingStars avgRating={avgRating} id={productIdInfo.id} />
           </div>
         </div>
         {openCompareModal && (

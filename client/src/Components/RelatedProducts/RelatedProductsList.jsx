@@ -34,7 +34,7 @@ class RelatedProductsList extends React.Component {
       );
     }
     return (
-      <div className='RelatedProductsList'>
+      <div className='RelatedProductsList' id="productCarousel">
         {relatedProducts.map((product) => (
           <RelatedProductCard
             parentProductId={productId}

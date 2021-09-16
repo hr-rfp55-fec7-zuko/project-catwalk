@@ -14,25 +14,17 @@ const ComparisonModal = (props) => {
         <td className="check1">
           {parentProduct.features.find(
             (obj) => obj.value === feature.value
-          ) ? (
-            <span className='checkMark'>&#10003;</span>
-          ) : (
-            ''
-          )}
+          ) ? (<span className='checkMark'>&#10003;</span>) : ('')}
         </td>
         <td className="check2">{feature.value}</td>
         <td>
           {compareProduct.features.find(
             (obj) => obj.value === feature.value
-          ) ? (
-            <span className='checkMark'>&#10003;</span>
-          ) : (
-            ''
-          )}
+          ) ? (<span className='checkMark'>&#10003;</span>) : ('')}
         </td>
       </tr>
     );
-  }
+  };
 
   return (
     <div className="ModalWrapper" onClick={closeModal}>
