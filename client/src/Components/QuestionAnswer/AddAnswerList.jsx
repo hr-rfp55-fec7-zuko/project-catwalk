@@ -4,7 +4,7 @@ import AddAnswerModal from './AddAnswerModal.jsx';
 
 var AddAnswerList = (props) => {
   const modalRef = React.useRef();
-  console.log('🥰🥰', props);
+
   return (
     <div>
       <a onClick={() => modalRef.current.open()}> Add Answer</a>
