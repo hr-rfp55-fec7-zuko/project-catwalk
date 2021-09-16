@@ -7,19 +7,39 @@ class RelatedProductsList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      parentProductIDInfo: '',
+      relatedProducts: this.props.relatedProducts,
+      parentProductIdInfo: ''
     };
   }
 
+  componentDidMount() {
+    const { productId } = this.props;
+    axios.get(`/products/${productId}`)
+      .then(({ data }) => {
+        this.setState({
+          parentProductIdInfo: data,
+        });
+      })
+      .catch(err => {
+        console.log('Error getting the product detail', err);
+      });
+  }
+
   render() {
-    const { parentProductIDInfo } = this.state;
-    const { productId, relatedProducts } = this.props;
+    const { parentProductIdInfo } = this.state;
+    const { relatedProducts, productId } = this.props;
+    if (parentProductIdInfo.length === 0) {
+      return (
+        null
+      );
+    }
     return (
-      <div className='RelatedProductsList'>
-        {relatedProducts.map((product, index) => (
+      <div className='RelatedProductsList' id="productCarousel">
+        {relatedProducts.map((product) => (
           <RelatedProductCard
-            parentProductID={productId}
+            parentProductId={productId}
             productId={product}
+            parentProductIdInfo={parentProductIdInfo}
             key={product}
           />
         ))}
