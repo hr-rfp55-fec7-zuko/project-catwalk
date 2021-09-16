@@ -80,6 +80,7 @@ class ProductOverview extends React.Component {
             <AddToCart style={this.state.style} />
           </div>
         </div>
+        <br/> <br/>
         <div className='po-desc'>
           <div className='po-desc-text'>
             <p><b>{this.state.slogan}</b></p>
