@@ -342,10 +342,8 @@ li {
   order: 3;
 }
 
-
-
-.product-bar-inner-fill.target {
-
+.product-bar-inner-fill.target::before {
+  content: "\f005";
 }
 
 
