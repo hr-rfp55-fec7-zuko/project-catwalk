@@ -41,11 +41,11 @@ class App extends React.Component {
       <div>
 
         Hello from React! This is a test for merge conflict from Iris.
-        <ProductOverview productId={this.state.product_id} avgRating={this.state.avgRating} />
-        <QuestionAnswer productId={this.state.product_id} />
-        <RelatedProductsView productId={this.state.product_id} />
-        <YourOutfitList productId={this.state.product_id}/>
-        <RatingsAndReviews product_id={this.state.product_id}/>
+        {/* <ProductOverview productId={this.state.product_id} avgRating={this.state.avgRating} /> */}
+        {/* <QuestionAnswer productId={this.state.product_id} /> */}
+        {/* <RelatedProductsView productId={this.state.product_id} /> */}
+        {/* <YourOutfitList productId={this.state.product_id}/> */}
+        <RatingsAndReviews product_id={this.state.product_id} product_name={this.state.product_name}/>
       </div>
     );
   }

@@ -59,7 +59,7 @@ class ReviewList extends React.Component {
 
           <button type="button" id="add-review" onClick={this.toggleAddReviewFormVisible}>Add A Review</button>
 
-          {this.state.addReviewFormVisible && <AddReviewForm characteristics={characteristics}/>}
+          {this.state.addReviewFormVisible && <AddReviewForm characteristics={characteristics} product_name={this.props.product_name}/>}
 
         </div>
       </>
