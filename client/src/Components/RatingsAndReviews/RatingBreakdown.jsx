@@ -1,6 +1,7 @@
 import React from 'react';
 import helpers from './helpers/helpers.js';
 import AvgRatingStars from './helpers/AvgRatingStars.jsx';
+import RatingBars from './helpers/RatingBar.jsx';
 
 class RatingBreakdown extends React.Component {
   constructor(props) {
@@ -38,6 +39,7 @@ class RatingBreakdown extends React.Component {
       );
     }
 
+    console.log(reviewCount, metaData.ratings);
 
     //NOTE: for star icon: <i class="far fa-star"></i>
     return (
@@ -47,6 +49,7 @@ class RatingBreakdown extends React.Component {
         <AvgRatingStars avgRating={avgRating}/>
         <br/>
         {ratingBars}
+        {/* <RatingBars reviewCount={reviewCount} ratingsObj={metaData.ratings}/> */}
       </div>
 
     );
