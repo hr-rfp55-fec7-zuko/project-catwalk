@@ -8,7 +8,7 @@ const ComparisonModal = (props) => {
   };
 
   return (
-    <div className="ModalWrapper"  onClick={closeModal}>
+    <div className="ModalWrapper" onClick={closeModal}>
       <div className="Comparison">
         <div className="headerTitle">COMPARING
           <p className="closeButton" onClick={closeModal}><i class="fas fa-times"></i></p>
@@ -21,7 +21,7 @@ const ComparisonModal = (props) => {
           <div>fdh</div>
         </div></div>
     </div>
-  )
-}
+  );
+};
 
 export default ComparisonModal;
