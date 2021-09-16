@@ -10,6 +10,7 @@ class ImageGallery extends React.Component {
     };
     this.nextSlide = this.nextSlide.bind(this);
     this.prevSlide = this.prevSlide.bind(this);
+    this.expandSlide = this.expandSlide.bind(this);
   }
 
   nextSlide() {
@@ -24,6 +25,10 @@ class ImageGallery extends React.Component {
     if (this.state.current > 0) {
       this.setState({ current: this.state.current - 1 });
     }
+  }
+
+  expandSlide() {
+    console.log('you want to expand the image');
   }
 
   componentDidUpdate(prevProps) {
@@ -63,14 +68,14 @@ class ImageGallery extends React.Component {
               <ul className='carousel__track'>
                 {fullPhotos.map((image, index) => {
                   return (
-                    <li key={index} className={index === this.state.current ? 'carousel__slide current_slide' : 'carousel__slide'}>
+                    <li key={index} className={index === this.state.current ? 'carousel__slide current_slide' : 'carousel__slide'} onClick={this.expandSlide}>
                       {index === this.state.current && (<img className='carousel__image' src={image} />)}
                     </li>
                   );
                 })}
               </ul>
             </div>
-            {!this.state.expanded && (<button className='carousel__button--expand' onClick={() => console.log('you want to expand the image')} >
+            {!this.state.expanded && (<button className='carousel__button--expand' onClick={this.expandSlide} >
               <i className="fas fa-expand fa-lg"></i>
             </button>)}
 
