@@ -1,8 +1,9 @@
 import React from 'react';
-import {AnswerEntryList, GetAnswerList} from './AnswerEntryList.jsx';
+import AnswerEntryList from './AnswerEntryList.jsx';
 import QuestionCountList from './QuestionCountList.jsx';
 import QuestionReportList from './QuestionReportList.jsx';
 import AddAnswerList from './AddAnswerList.jsx';
+import AddQuestionList from './AddQuestionList.jsx';
 
 class QuestionEntryList extends React.Component {
   constructor(props) {
@@ -26,8 +27,17 @@ class QuestionEntryList extends React.Component {
     return (
       <div className="qa-list">
         {list}
-        <div className="qa-load">
-        </div>
+        <br />
+        <button className="qa-load">
+          LOAD MORE ANSWERS
+        </button>
+        <button className="qa-button">
+          MORE ANSWERED QUESTIONS
+        </button>
+        <AddQuestionList pName={this.props.prodName} pId={this.props.prodId}/>
+        {/* <button className="qa-button">
+          ADD A QUESTION +
+        </button> */}
       </div>
     );
   }
