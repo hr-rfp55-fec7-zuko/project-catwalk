@@ -70,3 +70,15 @@ class ReviewList extends React.Component {
 }
 
 export default ReviewList;
+
+
+/*
+.button {
+  position: relative;
+}
+
+.button .icon {
+  position: absolute;
+}
+
+<button class="button"><p class="i"></button> */

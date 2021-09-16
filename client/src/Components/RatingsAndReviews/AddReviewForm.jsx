@@ -45,7 +45,7 @@ class AddReviewForm extends React.Component {
         <div className="add-review-modal-backdrop"></div>
 
         <div className="add-review-modal-box">
-        <button type="button" onClick={this.closeModal}>Close Window</button>
+        <button type="button" className="add-review-modal-button" onClick={this.closeModal}>Close Window</button>
 
         <div className="add-review-form">
           <h3>Write Your Review</h3>
@@ -113,7 +113,7 @@ class AddReviewForm extends React.Component {
             </div>
 
             <div className="form-question">
-            <button type="submit" onClick={this.submitReviewForm}>Submit Reivew</button>
+            <button type="submit" className="add-review-modal-button" onClick={this.submitReviewForm}>Submit Reivew</button>
             </div>
 
           </form>
