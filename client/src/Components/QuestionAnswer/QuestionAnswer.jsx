@@ -31,7 +31,7 @@ class QuestionAnswer extends React.Component {
   render() {
     return (
       <div className="qa-main">
-        <h4>QUESTIONS & ANSWERS</h4>
+        <h1>QUESTIONS & ANSWERS</h1>
         <input type="text" className="qa-searchBar" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
         <QuestionEntryList lists={this.state.questionsList}/>
       </div>
