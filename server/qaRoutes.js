@@ -16,7 +16,6 @@ var AtelierAPI = (method, endpoint, params = null, data = null) => {
   }));
 };
 
-//TO DO DURING INTEGRATION: DYNAMICALLY UPDATE PARAMS (TO BE DELETED AFTER INTEGRATION)
 
 router.get('/questions', (req, res) => {
   AtelierAPI('GET', '/qa/questions', req.query)
@@ -82,6 +81,26 @@ router.put('/questions/:question_id/report', (req, res) => {
 
 router.put('/answers/:answer_id/report', (req, res) => {
   AtelierAPI('PUT', '/qa/answers/' + req.body.params.aId + '/report')
+    .then(response => {
+      res.sendStatus(response.status);
+    })
+    .catch(err => {
+      res.send(err).status(500);
+    });
+});
+
+router.post('/questions/:question_id/answers', (req, res) => {
+  AtelierAPI('POST', '/qa/questions/' + req.body.params.qId + '/answers', null, req.body.params.inner)
+    .then(response => {
+      res.sendStatus(response.status);
+    })
+    .catch(err => {
+      res.send(err).status(500);
+    });
+});
+
+router.post('/questions', (req, res) => {
+  AtelierAPI('POST', '/qa/questions/', null, req.body.params)
     .then(response => {
       res.sendStatus(response.status);
     })

@@ -16,7 +16,7 @@ var QuestionCountList = (props) => {
   };
 
   return (
-    <a className="qa-questions-helpfulness" onClick={handleClick}>Helpful? Yes({count}) </a>
+    <a className="qa-questions-helpfulness" onClick={handleClick}>Helpful? <span id="qa-Yes">Yes</span>({count}) </a>
   );
 };
 
