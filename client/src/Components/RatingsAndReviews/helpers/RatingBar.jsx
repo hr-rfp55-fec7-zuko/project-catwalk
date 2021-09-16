@@ -1,40 +1,28 @@
 import React from 'react';
 
-//props should include ratingsObj and reviewCount (int)
-const RatingBars = function RatingBars(props) {
-  let reviewCount = this.props.reviewCount;
-  let ratingsObj = this.props.ratings;
+//props should include one tuple ([value, freq]) and reviewCount (int)
+const RatingBar = function RatingBar(props) {
+  let value = props.ratingTuple[0];
+  let frequency = props.ratingTuple[1];
+  let reviewCount = props.reviewCount;
+  let percentage = (frequency / reviewCount) * 100;
 
-  console.log('props', props, reviewCount, ratingsObj);
-
-  const ratingBars = [];
-  for (var i = 1; i <= 5; i++ ) {
-    var rating = i;
-    if (ratingsObj[i] === undefined) {
-      ratingsObj[i] = 0;
-    }
-
-    let percentage = (ratingsObj[rating] / reviewCount) * 100;
-
-    ratingBars.push (
-      <>
-        <div className="rating-bar-container">
-          {rating} Stars
-          <div className='rating-bar-outer'>
-            <div className='rating-bar-inner-fill' style={{width: `${percentage}%`}}></div>
-          </div>
-          {ratingsObj[rating]}
+  return (
+    <>
+      <div className="rating-bar-container">
+        {value} Stars
+        <div className='rating-bar-outer'>
+          <div className='rating-bar-inner-fill' style={{width: `${percentage}%`}}></div>
         </div>
-        <br/>
-      </>
-    );
-
-    return (
-      {ratingBars}
-    );
-  }
-
+        {frequency}
+      </div>
+      <br/>
+    </>
+  );
 };
 
 
-export default RatingBars;
+export default RatingBar;
+
+
+

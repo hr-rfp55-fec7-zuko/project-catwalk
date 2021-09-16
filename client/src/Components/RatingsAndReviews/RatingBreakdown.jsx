@@ -1,7 +1,7 @@
 import React from 'react';
 import helpers from './helpers/helpers.js';
 import AvgRatingStars from './helpers/AvgRatingStars.jsx';
-import RatingBars from './helpers/RatingBar.jsx';
+import RatingBar from './helpers/RatingBar.jsx';
 
 class RatingBreakdown extends React.Component {
   constructor(props) {
@@ -16,42 +16,24 @@ class RatingBreakdown extends React.Component {
 
     let percentageRecommended = helpers.determinePercentageRecommend(metaData.recommended);
 
-    const ratingBars = [];
+    //If there are no reviews for a certain value, set the frequency to zero.
     for (var i = 1; i <= 5; i++ ) {
-      var rating = i;
       if (metaData.ratings[i] === undefined) {
         metaData.ratings[i] = 0;
       }
-
-      let percentage = (metaData.ratings[rating] / this.props.reviewCount) * 100;
-
-      ratingBars.push (
-        <>
-          <div className="rating-bar-container">
-            {rating} Stars
-            <div className='rating-bar-outer'>
-              <div className='rating-bar-inner-fill' style={{width: `${percentage}%`}}></div>
-            </div>
-            {metaData.ratings[rating]}
-          </div>
-          <br/>
-        </>
-      );
     }
 
-    console.log(reviewCount, metaData.ratings);
+    let ratingsTuples = Object.entries(metaData.ratings);
 
-    //NOTE: for star icon: <i class="far fa-star"></i>
     return (
       <div className="rating-breakdown">
         <h3>Ratings and Reviews</h3>
         <div> {percentageRecommended}% of reviews recommend this product</div>
         <AvgRatingStars avgRating={avgRating}/>
         <br/>
-        {ratingBars}
-        {/* <RatingBars reviewCount={reviewCount} ratingsObj={metaData.ratings}/> */}
+        {ratingsTuples.map((ratingTuple) =>
+          <RatingBar key={ratingTuple[0]} reviewCount={reviewCount} ratingTuple={ratingTuple}/>)}
       </div>
-
     );
   }
 }

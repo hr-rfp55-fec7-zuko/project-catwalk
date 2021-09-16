@@ -281,10 +281,11 @@ li {
 }
 
 
-.rating-bar-container {
+/* .rating-bar-container {
   max-width: 100%;
   display: inline-block;
-}
+  position: relative;
+} */
 
 
 
@@ -293,7 +294,7 @@ li {
   height: 30px;
   background: #ccc;
   display: inline-block;
-  position: relative;
+
 }
 
 .rating-bar-inner-fill {
@@ -307,7 +308,6 @@ li {
   position: absolute;
   top: 0;
   right: 5px;
-
 }
 
 
