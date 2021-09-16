@@ -17,16 +17,24 @@ class AddToCart extends React.Component {
   }
 
   setSKU(sku) {
-    this.setState({
-      selectedSKU: sku,
-      selectedSize: this.state.style.skus[sku].size,
-      totalQuantity: this.state.style.skus[sku].quantity,
-      addedToCart: false,
-      needSize: false
-    });
-    if (this.state.quantity || this.state.style.skus[sku].quantity < this.state.quantity) {
-      var quantity = (this.state.style.skus[sku].quantity > 0) ? 1 : 0;
-      this.setState({ quantity });
+    if (sku === '0') {
+      this.setState({
+        selectedSKU: null,
+        addedToCart: false,
+        totalQuantity: 0
+      });
+    } else {
+      this.setState({
+        selectedSKU: sku,
+        selectedSize: this.state.style.skus[sku].size,
+        totalQuantity: this.state.style.skus[sku].quantity,
+        addedToCart: false,
+        needSize: false
+      });
+      if (this.state.quantity || this.state.style.skus[sku].quantity < this.state.quantity) {
+        var quantity = (this.state.style.skus[sku].quantity > 0) ? 1 : 0;
+        this.setState({ quantity });
+      }
     }
   }
 
