@@ -32,8 +32,11 @@ class AddToCart extends React.Component {
         needSize: false
       });
       if (this.state.quantity || this.state.style.skus[sku].quantity < this.state.quantity) {
+        console.log('coming into THIS CASE');
         var quantity = (this.state.style.skus[sku].quantity > 0) ? 1 : 0;
         this.setState({ quantity });
+      } else {
+        this.setState({quantity: 1});
       }
     }
   }
@@ -44,7 +47,7 @@ class AddToCart extends React.Component {
 
   handleAddToCart(e) {
     e.preventDefault();
-    if (this.state.selectedSKU || this.state.quantity <= this.state.totalQuantity) {
+    if (this.state.selectedSKU && this.state.quantity <= this.state.totalQuantity) {
       var cartItem = {
         'sku_id': this.state.selectedSKU,
       };
@@ -76,7 +79,7 @@ class AddToCart extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.style !== prevProps.style) {
       this.setState({ style: this.props.style, addedToCart: false });
-      if (this.state.selectedSKU || this.state.style.skus) {
+      if (this.state.selectedSKU && this.state.style.skus) {
         var skuArr = Object.keys(this.props.style.skus);
         for (var i = 0; i < skuArr.length; i++) {
           if (this.props.style.skus[skuArr[i]].size === this.state.selectedSize) {
