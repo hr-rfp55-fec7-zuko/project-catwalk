@@ -17,6 +17,7 @@ class YourOutfitCard extends React.Component {
     return (
       <div className='cardWrapper'>
         <div className='card'>
+        <div className='DeleteButton'><i className="fas fa-times"></i></div>
           <div className='pic'>
             <img src='https://media-cldnry.s-nbcnews.com/image/upload/t_fit-260w,f_auto,q_auto:best/newscms/2021_37/1773325/51yian5l46l-sl500--613f6a78de078.jpg' />
           </div>
