@@ -42,7 +42,7 @@ class App extends React.Component {
 
         Hello from React! This is a test for merge conflict from Iris.
         <ProductOverview productId={this.state.product_id} avgRating={this.state.avgRating} />
-        <QuestionAnswer productId={this.state.product_id} />
+        <QuestionAnswer productId={this.state.product_id} productName={this.state.product_name} />
         <RelatedProductsView productId={this.state.product_id} />
         <YourOutfitList productId={this.state.product_id}/>
         <RatingsAndReviews product_id={this.state.product_id}/>
