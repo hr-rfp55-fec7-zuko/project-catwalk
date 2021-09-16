@@ -34,7 +34,7 @@ class ReviewList extends React.Component {
     if (reviews.results.length > 0) {
       var reviewList =
       reviews.results.map((review) => {
-        return <ReviewTile key={review.review_id} review={review}/>;
+        return <ReviewTile key={review.review_id} review={review} submitHelpfulOrReport={this.props.submitHelpfulOrReport}/>;
       });
     } else {
       var reviewList = <></>;
