@@ -10,6 +10,8 @@ class ReviewList extends React.Component {
       totalReviews: 0,
       reviewLimit: 2,
       addReviewFormVisible: false
+      // addReviewFormVisible: true
+
     };
 
     this.toggleAddReviewFormVisible = this.toggleAddReviewFormVisible.bind(this);
@@ -59,7 +61,7 @@ class ReviewList extends React.Component {
 
           <button type="button" id="add-review" onClick={this.toggleAddReviewFormVisible}>Add A Review</button>
 
-          {this.state.addReviewFormVisible && <AddReviewForm characteristics={characteristics}/>}
+          {this.state.addReviewFormVisible && <AddReviewForm characteristics={characteristics} product_name={this.props.product_name} toggleAddReviewFormVisible={this.toggleAddReviewFormVisible} submitReviewForm={this.props.submitReviewForm}/>}
 
         </div>
       </>
