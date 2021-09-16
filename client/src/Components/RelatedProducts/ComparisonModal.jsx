@@ -49,7 +49,7 @@ const ComparisonModal = (props) => {
         </table>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default ComparisonModal;

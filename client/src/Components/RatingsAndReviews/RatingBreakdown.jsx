@@ -1,5 +1,7 @@
 import React from 'react';
 import helpers from './helpers/helpers.js';
+import AvgRatingStars from './helpers/AvgRatingStars.jsx';
+import RatingBar from './helpers/RatingBar.jsx';
 
 class RatingBreakdown extends React.Component {
   constructor(props) {
@@ -10,45 +12,33 @@ class RatingBreakdown extends React.Component {
     let metaData = this.props.metaData;
     let reviewCount = this.props.reviewCount;
 
-    let averageRating = helpers.determineAverageRating(metaData.ratings, reviewCount);
+    let avgRating = helpers.determineAverageRating(metaData.ratings, reviewCount);
 
     let percentageRecommended = helpers.determinePercentageRecommend(metaData.recommended);
 
-    const ratingBars = [];
-
-    for (var rating in metaData.ratings) {
-      ratingBars.push (
-        <div className='rating-breakdown'>
-          <div className='rating-bar-outer'>
-            Bar Here<div className='rating-bar-inner'>
-            </div>
-          </div>
-          {metaData.ratings[rating]}
-        </div>
-      );
+    //If there are no reviews for a certain value, set the frequency to zero.
+    for (var i = 1; i <= 5; i++ ) {
+      if (metaData.ratings[i] === undefined) {
+        metaData.ratings[i] = 0;
+      }
     }
 
-    //NOTE: for star icon: <i class="far fa-star"></i>
+    let ratingsTuples = Object.entries(metaData.ratings);
+
     return (
       <div className="rating-breakdown">
         <h3>Ratings and Reviews</h3>
-
-        <div>{averageRating}</div>
-
         <div> {percentageRecommended}% of reviews recommend this product</div>
-
-        <div className="star-review-outer">
-          star star star star star
-          <div className="star-review-inner">
-          </div>
-        </div>
-
-        {ratingBars}
-
+        <AvgRatingStars avgRating={avgRating}/>
+        <br/>
+        {ratingsTuples.map((ratingTuple) =>
+          <RatingBar key={ratingTuple[0]} reviewCount={reviewCount} ratingTuple={ratingTuple}/>)}
       </div>
-
     );
   }
 }
 
 export default RatingBreakdown;
+
+
+
