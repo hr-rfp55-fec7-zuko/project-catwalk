@@ -327,6 +327,15 @@ li {
   right: 20px;
 }
 
+.carousel__button--expand {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
 .fa-arrow-right .fa-arrow-left {
   transition: all .2s ease-in-out;
 }

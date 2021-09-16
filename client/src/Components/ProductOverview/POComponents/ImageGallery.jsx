@@ -5,7 +5,8 @@ class ImageGallery extends React.Component {
     super(props);
     this.state = {
       photos: {},
-      current: 0
+      current: 0,
+      expanded: false
     };
     this.nextSlide = this.nextSlide.bind(this);
     this.prevSlide = this.prevSlide.bind(this);
@@ -69,6 +70,10 @@ class ImageGallery extends React.Component {
                 })}
               </ul>
             </div>
+            {!this.state.expanded && (<button className='carousel__button--expand' onClick={() => console.log('you want to expand the image')} >
+              <i className="fas fa-expand fa-lg"></i>
+            </button>)}
+
             {this.state.current !== length - 1 && (<button className='carousel__button carousel__button--right' onClick={this.nextSlide} >
               <i className="fas fa-arrow-right fa-lg"></i>
             </button>)}
