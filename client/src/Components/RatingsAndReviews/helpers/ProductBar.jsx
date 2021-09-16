@@ -14,8 +14,6 @@ const ProductBar = function ProductBar(props) {
   let characteristic = props.characteristic;
   let score = parseFloat(props.score);
 
-  console.log(characteristic, score);
-
   //Math
   let overallPercentage = (score / 5 ) * 100;
   let fill1 = false;
