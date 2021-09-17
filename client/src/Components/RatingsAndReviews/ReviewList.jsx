@@ -9,8 +9,8 @@ class ReviewList extends React.Component {
     this.state = {
       totalReviews: 0,
       reviewLimit: 2,
-      // addReviewFormVisible: false
-      addReviewFormVisible: true
+      addReviewFormVisible: false
+      // addReviewFormVisible: true
 
     };
 
@@ -52,7 +52,6 @@ class ReviewList extends React.Component {
 
     return (
       <>
-        <h3>Review List Here</h3>
         <div className="review-list">
 
           {reviewList}

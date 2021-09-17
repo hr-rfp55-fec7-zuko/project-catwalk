@@ -64,18 +64,23 @@ class ProductOverview extends React.Component {
   render() {
     return (
       <div className='po-main'>
-        <ImageGallery />
-        <div className='po-reviews'>
-          {/* <StarRating /> */}
-          <AvgRatingStars avgRating={this.props.avgRating} />
-          {/* <span>The rating is {this.props.avgRating}</span> */}
-          <button className='btn all-reviews'>Read all reviews</button>
+        <div className='po-main-top'>
+          <div className='po-main-left'>
+            <ImageGallery styles={this.state.styles} selectedStyle={this.state.style.style_id} />
+          </div>
+          <div className='po-main-right'>
+            <div className='po-reviews'>
+              <AvgRatingStars avgRating={this.props.avgRating} />
+              <button className='btn all-reviews'>Read all reviews</button>
+            </div>
+            <h3>{this.state.category}</h3>
+            <h1>{this.state.name}</h1>
+            <Price price={this.state.price} sale={this.state.sale} salePrice={this.state.salePrice} />
+            <StyleSelector styles={this.state.styles} setStyleSelection={this.setStyleSelection} />
+            <AddToCart style={this.state.style} />
+          </div>
         </div>
-        <h3>{this.state.category}</h3>
-        <h1>{this.state.name}</h1>
-        <Price price={this.state.price} sale={this.state.sale} salePrice={this.state.salePrice} />
-        <StyleSelector styles={this.state.styles} setStyleSelection={this.setStyleSelection} />
-        <AddToCart style={this.state.style} />
+        <br/> <br/>
         <div className='po-desc'>
           <div className='po-desc-text'>
             <p><b>{this.state.slogan}</b></p>

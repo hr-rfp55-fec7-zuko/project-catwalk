@@ -18,8 +18,8 @@ class RatingsAndReviews extends React.Component {
     super(props);
 
     this.state = {
-      // 'product_id': this.props.product_id,
-      'product_id': 40346, //DELETE THIS AND UNCOMMENT LINE ABOVE WHEN NOT TESTING SAMPLE DATA
+      'product_id': this.props.product_id,
+      // 'product_id': 40347, //DELETE THIS AND UNCOMMENT LINE ABOVE WHEN NOT TESTING SAMPLE DATA
       reviewLimit: 2,
       metaData: exampleMetaData,
       reviews: exampleReviews,
@@ -86,7 +86,7 @@ class RatingsAndReviews extends React.Component {
     let reviewCount = helpers.determineTotalReviews(this.state.metaData.ratings);
 
     return (
-      <div className="ratings-and-reviews">
+      <div className="ratings-and-reviews" id="ratings-and-reviews">
         <h2>Ratings and Reviews</h2>
 
         {this.state.reviews !== null &&

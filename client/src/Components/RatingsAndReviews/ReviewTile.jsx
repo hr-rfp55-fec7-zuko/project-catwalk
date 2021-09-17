@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import AvgRatingStars from './helpers/AvgRatingStars.jsx';
 
 
@@ -55,38 +55,49 @@ class ReviewTile extends React.Component {
 
     return (
       <div className="review-tile">
-        <div><AvgRatingStars avgRating={review.rating} /><span className="review-user-date">{review.reviewer_name}, {date}</span>
+        <div className="star-rating">
+          <AvgRatingStars avgRating={review.rating} />
+        </div>
+        <div className="review-attribution">
+            <span className="review-user">{review.reviewer_name}, </span>
+            <span className="review-date">{date}</span>
         </div>
 
-        <div className="review-summary"><h2>{review.summary}</h2></div>
-        <div>{review.body}</div>
+        <div className="review-summary">{review.summary}</div>
+        <div className="review-body">{review.body}</div>
+
+
+        <div className="review-thumbnails">
+        {review.photos.length > 0 &&
+          review.photos.map((photo) => <img src={photo.url} id={photo.id} height="20" width="20" className="review-thumbnail"/>)
+        }
+        </div>
 
         {review.recommend &&
-          <div> Chekmark placeholder: I recommend this product</div>
+          <div className="review-recommend">
+            <FontAwesomeIcon icon={faCheck}/> I recommend this product</div>
         }
 
-        {photos}
+        {/* {photos} */}
 
 
         {review.response &&
           <div className="review-response">Response<br></br>{review.response}</div>
         }
 
-        <div>Helpful?
-          <span className="helpful-or-report">
-            <a href="" onClick={this.handleHelpfulOrReportClick}>
+        <div className="helpful-or-report">Helpful?
+          <span className="helpful">
+            <a href="" onClick={this.handleHelpfulOrReportClick} className='helpful-count'>
             Yes
             </a>
+            ({review.helpfulness}) |
           </span>
-          ({review.helpfulness}) |
 
-          <span className="helpful-or-report">
+          <span className="report">
             <a href="" onClick={this.handleHelpfulOrReportClick}>
             Report
             </a>
           </span>
-
-          <br></br>
 
           {this.state.helpfulOrReported &&
           <span>Your feedback has been submitted</span>
