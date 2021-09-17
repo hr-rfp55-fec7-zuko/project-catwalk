@@ -183,16 +183,21 @@ h3 {
 /*========= ======================== ===========*/
 
 .po-main-top {
+  position: relative;
   display: flex;
   height: 80%;
 }
 
 .po-main-left {
   width: 60%;
+  z-index: 20;
 }
 
 .po-main-right {
   width: 40%;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .style-img {
@@ -264,13 +269,29 @@ li {
   margin: 0 10px;
 }
 
-.selected {
-  border: solid red;
+.style-element {
+  width: 70px;
+  height: 74px;
 }
+
+.selected {
+  position: relative;
+  right: -65%;
+  top: -65px;
+  background: white;
+  border-radius: 50%;
+  border-width: 0;
+}
+
+
 
 /* .style-element { position: relative; }
 .style-element .style-img { display: block; }
 .style-element .selected { position: absolute; top:0; right:0; } */
+
+.po-image-gallery {
+  background: white;
+}
 
 .carousel {
   position: relative;
@@ -300,7 +321,10 @@ li {
   left: 0;
   margin: 0;
   cursor: zoom-in;
+}
 
+.expanded-slide {
+  cursor: crosshair;
 }
 
 .carousel__track {
@@ -313,9 +337,19 @@ li {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: transparent;
   border: 0;
   cursor: pointer;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0.6;
+  transition: 0.3s;
+  color: #fff;
+}
+
+.carousel__button:hover {
+  opacity: 1;
 }
 
 .carousel__button--left {
@@ -328,21 +362,11 @@ li {
 }
 
 .carousel__button--expand {
-  position: absolute;
   top: 5%;
   right: 5%;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
+  border-radius: 10%;
 }
 
-.fa-arrow-right .fa-arrow-left {
-  transition: all .2s ease-in-out;
-}
-
-.fa-arrow-right:hover .fa-arrow-left:hover {
-  transform: scale(1.1);
-}
 
 
 
