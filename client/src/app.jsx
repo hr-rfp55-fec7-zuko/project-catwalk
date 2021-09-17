@@ -39,6 +39,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <br/>LOGO HERE<br/>Sale Link Here<br/>
         <ProductOverview productId={this.state.product_id} avgRating={this.state.avgRating} />
         <QuestionAnswer productId={this.state.product_id} productName={this.state.product_name} />
         <RelatedProductsView productId={this.state.product_id} />
