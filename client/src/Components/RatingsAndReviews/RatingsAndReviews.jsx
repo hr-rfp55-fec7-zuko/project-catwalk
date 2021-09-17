@@ -58,12 +58,13 @@ class RatingsAndReviews extends React.Component {
 
   //submit review form
   submitReviewForm(body) {
-    console.log('requestreceivedinbody', body)
+    // console.log('requestreceivedinbody', body)
 
     //rembember to parse anything that's not a string
     return axios.post('/reviews/', {params: body})
 
-    .then((results) => console.log('AJAX POST RESULTS:', results))
+    // .then((results) => console.log('AJAX POST RESULTS:', results))
+    .catch((error) => console.log('error', error))
 
 
   }
@@ -74,7 +75,7 @@ class RatingsAndReviews extends React.Component {
       method: 'PUT'
     })
       .then((results) => {
-        console.log('Successful PUT request. Results?', results);
+        // console.log('Successful PUT request. Results?', results);
         this.requestProductReviews();
       })
       .catch((error) => console.log('ERROR in SUBMITHELPFULORREPORT AJAX Request: ', error));

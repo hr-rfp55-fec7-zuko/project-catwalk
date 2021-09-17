@@ -61,7 +61,7 @@ class AddReviewForm extends React.Component {
       // dataBody['photos'] = this.state.photos
     }
 
-    console.log('dataBody', dataBody)
+    // console.log('dataBody', dataBody)
 
     //format data object
 

@@ -26,7 +26,7 @@ let APIQuery = function(method, endpath, query, data = null) {
       return results;
     })
     .catch((error) => {
-      console.log('error', error);
+      // console.log('error', error);
       return error;
     });
 };
