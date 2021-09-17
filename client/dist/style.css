@@ -91,10 +91,6 @@ h3 {
   width: 50%;
 }
 
-.featuresList {
-
-}
-
 .RelatedProductsList {
   position: relative;
 }
@@ -120,7 +116,6 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
  .AddOutfitContent:hover {
@@ -180,6 +175,7 @@ h3 {
   width: 30px;
   height: 30px;
 }
+
 /*========= ======================== ===========*/
 
 .po-main-top {
