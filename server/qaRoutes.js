@@ -29,7 +29,7 @@ router.get('/questions', (req, res) => {
 });
 
 router.get('/questions/:question_id/answers', (req, res) => {
-  AtelierAPI('GET', '/qa/questions/' + req.query.qId + '/answers', {page: 1, count: 2})
+  AtelierAPI('GET', '/qa/questions/' + req.query.qId + '/answers', {page: 1, count: 10})
     .then(response => {
       var finalA = response.data.results.sort((a, b) => {
         if (a.answerer_name === 'Seller' && b.answerer_name === 'Seller') {

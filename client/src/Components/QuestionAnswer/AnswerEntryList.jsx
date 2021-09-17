@@ -6,6 +6,9 @@ import moment from 'moment';
 
 var AnswerEntryList = (props) => {
   const [answerList, setAnswerList] = useState([]);
+  const [btnVal, setBtnVal] = useState(null);
+  const [displayItem, setDisplayItem] = useState(null);
+
   useEffect(()=> {
     let mounted = true;
     GetAnswerList(props.questionId)
@@ -17,26 +20,50 @@ var AnswerEntryList = (props) => {
     return () => mounted = false;
   }, [props.questionId]);
 
+  useEffect(() => {
+    setBtnVal(true);
+    setDisplayItem(2);
+  }, []);
+
+  if (answerList.length === 0) {
+    return <div></div>;
+  }
+
+  var aList = answerList.map(item => {
+    return (
+      <div className="qa-eachA">
+        <p className="qa-answers-A">
+          A:
+        </p>
+        <p className="qa-answers-main">
+          {item.body}
+        </p>
+        <p className="break"></p>
+        <p className="qa-answers-side">
+          by {item.answerer_name}, {moment(item.date).format('LL')} |
+        </p>
+        <AnswerCountList helpfulness={item.helpfulness} answerId={item.answer_id}/>
+        <AnswerReportList answerId={item.answer_id}/>
+      </div>
+    );
+  });
+
+  var handleClick = (e) => {
+    e.preventDefault();
+    if (!btnVal) {
+      setDisplayItem(2);
+    } else {
+      setDisplayItem(aList.length);
+    }
+    setBtnVal(btnVal => !btnVal);
+  };
+
   return (
     <div>
-      {answerList.map(item => {
-        return (
-          <div>
-            <p className="qa-answers-A">
-              A:
-            </p>
-            <p className="qa-answers-main">
-              {' ' + item.body}
-            </p>
-            <p className="qa-answers-side">
-              by {item.answerer_name}, {moment(item.date).format('LL')}
-            </p>
-            <AnswerCountList helpfulness={item.helpfulness} answerId={item.answer_id}/>
-            <AnswerReportList answerId={item.answer_id}/>
-          </div>
-        );
+      {aList.slice(0, displayItem)}
+      {aList.length > 2 &&
+        <button className="qa-load" onClick={(e) => handleClick(e)}>{btnVal ? 'See More Answers' : 'Collapse Answers'}</button>
       }
-      )}
     </div>
   );
 };

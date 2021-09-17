@@ -82,7 +82,6 @@ var AddQuestionList = (props) => {
             </button>
           </form>
         </div>
-        <br />
         <p>
           <br />
           *Mandatory
