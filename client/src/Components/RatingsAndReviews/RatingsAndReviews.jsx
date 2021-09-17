@@ -18,8 +18,8 @@ class RatingsAndReviews extends React.Component {
     super(props);
 
     this.state = {
-      'product_id': this.props.product_id,
-      // 'product_id': 40347, //DELETE THIS AND UNCOMMENT LINE ABOVE WHEN NOT TESTING SAMPLE DATA
+      // 'product_id': this.props.product_id,
+      'product_id': 40345, //40347 - photos, 40435-response
       reviewLimit: 2,
       metaData: exampleMetaData,
       reviews: exampleReviews,
@@ -37,6 +37,8 @@ class RatingsAndReviews extends React.Component {
     this.requestProductMetaData();
     this.requestProductReviews();
   }
+
+  incrementReview
 
   requestProductMetaData() {
     return axios({

@@ -11,7 +11,7 @@ class SortBar extends React.Component {
     let reviewCount = this.props.reviewCount;
     return (
       <div className="sort-bar">
-        <div>{this.props.reviewCount} reviews, sorted by</div>
+        <div>{this.props.reviewCount} reviews, sorted by
         <form id="sort-bar">
           <select name="sort-type" id="sort-type">
             <option value="relevant">Relevant</option>
@@ -19,6 +19,7 @@ class SortBar extends React.Component {
             <option value="newest">Newest</option>
           </select>
         </form>
+        </div>
       </div>
     );
   }
