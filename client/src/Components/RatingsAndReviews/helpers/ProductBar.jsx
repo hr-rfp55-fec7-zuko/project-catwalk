@@ -1,4 +1,6 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretUp } from '@fortawesome/free-solid-svg-icons';
 
 const ratingMeanings = {
   'Size': ['A size too small', 'A size too wide'],
@@ -13,6 +15,7 @@ const ratingMeanings = {
 const ProductBar = function ProductBar(props) {
   let characteristic = props.characteristic;
   let score = parseFloat(props.score);
+  // console.log('char', characteristic, 'score', score)
 
   //Math
   let overallPercentage = (score / 5 ) * 100;
@@ -21,7 +24,7 @@ const ProductBar = function ProductBar(props) {
   let fill3 = false;
 
   if (overallPercentage < 34) {
-    var innerPercentage = `${(overallPercentage / 30) * 100}%`;
+    var innerPercentage = `${(overallPercentage / 30) * 100}%;`;
     fill1 = true;
 
   } else if (overallPercentage < 67) {
@@ -36,14 +39,18 @@ const ProductBar = function ProductBar(props) {
 return (
   <>
     <div className="product-bar-container">
-    {ratingMeanings[characteristic][0]}
+
       <div className='product-bar-outer'>
         {buildBarSegment('one', fill1, innerPercentage)}
         {buildBarSegment('two', fill2, innerPercentage)}
         {buildBarSegment('three', fill3, innerPercentage)}
       </div>
-      {ratingMeanings[characteristic][1]}
+
+      <div className='product-bar low-label'>{ratingMeanings[characteristic][0]}</div>
+      <div className='product-bar high-label'>{ratingMeanings[characteristic][1]}</div>
+
     </div>
+
     <br/>
   </>
   );
@@ -55,13 +62,30 @@ const buildBarSegment = function(barNumber, isTargetBar, innerPercentage) {
 
   let className = `product-bar-inner-fill ${barNumber} ${target}`
 
-  var bar = isTargetBar ? <div className={className}><div className='target-buffer' style={{width: innerPercentage}}/></div> : <div className={className}/>
+  let styleObj = {'padding-left': innerPercentage}
+
+  var bar = isTargetBar ? <div className={className} ><div className="product-bar carrat" style={ {paddingLeft: innerPercentage} }><FontAwesomeIcon icon={faCaretUp} /></div></div> : <div className={className}/>
 
   return (bar)
 
 }
 
 export default ProductBar;
+
+
+// <div className={className}>
+//   <div className="product-bar carrat" style={styleObj}>
+//     <FontAwesomeIcon icon={faCaretUp} />
+//   </div>
+// </div>
+
+// <div className='rating-bar-inner-fill' style={{width: `${percentage}%`}}></div>
+
+
+
+
+
+
 
 // style={{width: `${percentage}%`}}
 

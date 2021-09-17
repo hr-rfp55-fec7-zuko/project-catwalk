@@ -1,5 +1,7 @@
 import React from 'react';
 import ProductBar from './helpers/ProductBar.jsx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretUp } from '@fortawesome/free-solid-svg-icons';
 
 class ProductBreakdown extends React.Component {
   constructor(props) {

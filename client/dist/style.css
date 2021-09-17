@@ -368,48 +368,7 @@ li {
 
 
 
-/*========= CSS FOR Ratings & Reviews ===========*/
-.ratings-and-reviews {
-  border: 1px solid black;
-}
-
-/* .review-list {
-  height: fixed;
-
-} */
-
-.form-question {
-  padding: 10px;
-}
-
-.review-list, .review-tile {
-  border: 1px solid black;
-}
-
-.review-list {
-  margin: 10px;
-  padding:10px;
-  background-color: lightseagreen;
-  max-height: 100vh;
-  overflow: scroll;
-
-}
-
-.review-tile {
-  background-color: lightgreen;
-  margin: 5px;
-}
-
-
-.rating-breakdown {
-  background-color: lightskyblue;
-}
-
-.product-breakdown {
-  background-color: lightpink;
-
-}
-
+/*========= CSS FOR STAR COMPONENTS ===========*/
 .stars-outer{
   display: inline-block;
   position: relative;
@@ -436,6 +395,156 @@ li {
   color: #f8ce0b;
 }
 
+/*========= CSS FOR Ratings & Reviews ===========*/
+.ratings-and-reviews {
+  /* border: 1px solid black; */
+  display: grid;
+  grid-template-columns: 10fr 10fr 1fr;
+  grid-template-rows: auto 3fr 3fr;
+  font-size: 24px;
+}
+
+/* .review-list, .review-tile {
+  border: 1px solid black;
+} */
+
+.review-list {
+  /* background-color: lightseagreen; */
+  max-height: 100vh;
+  overflow: scroll;
+
+  grid-column: 2/4;
+  grid-row:2/4;
+}
+
+.rating-breakdown {
+  /* background-color: lightskyblue; */
+  grid-column: 1/2;
+  grid-row: 2/3;
+}
+
+.product-breakdown {
+  /* background-color: lightpink; */
+  grid-column: 1/2;
+  grid-row: 3/4
+}
+
+.sortBar {
+  background-color: white;
+  grid-column: 3/5;
+  grid-row: 1/2;
+}
+
+/*Review Tile Styling*/
+.review-tile {
+  border-bottom: 1px solid black;
+  padding: 5px;
+  height: 200px;
+  /* background-color: lightgreen; */
+  /* margin: 5px; */
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 2fr 2fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    /* ". . . ." */
+    "star attribution attribution"
+    "summary summary summary"
+    "body body body"
+    "thumbnails thumbnails thumbnails"
+    "recommend recommend recommend"
+    ". response response"
+    "helpful-or-report . .";
+  align-items: center;
+  font-size: 18px;
+}
+
+.star-rating {
+  grid-area: star;
+}
+
+.review-attribution {
+  grid-area: attribution;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "checkmark user date";
+  font-size: 12px;
+  align-content: right;
+}
+
+  .review-user {
+    grid-area: user;
+    justify-self: right;
+    padding-right: 15%;
+  }
+
+  .review-date {
+    grid-area: date;
+  }
+
+.review-summary {
+  grid-area: summary;
+  font-size: 20px;
+  font-weight: bold;
+  padding-top: 2%;
+  padding-left: 4%;
+}
+
+.review-body {
+  grid-area: body;
+  padding-top: 2%;
+  padding-left: 4%;
+}
+
+.review-thumbnails {
+  grid-area: thumbnail;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  /* position: fixed; */
+  grid-template-rows: 1fr;
+  grid-template-areas: "one two three four five";
+  justify-items: center;
+}
+
+.review-thumbnail {
+  grid-area: thumbnail;
+  /* position: relative; */
+}
+
+.review-recommend {
+  grid-area: recommend;
+}
+
+.review-response {
+  grid-area: response;
+  background-color: gray;
+  padding: 5px;
+}
+
+.helpful-or-report {
+  grid-area: helpful-or-report;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "helpful report";
+  font-size: 12px;
+
+}
+
+.helpful {
+  grid-area: helpful;
+  padding-right: 5%;
+}
+
+.helpful-count {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.report {
+  grid-area: report;
+}
+
+/*Rating Bar Styling*/
+
 /* .rating-bar-container {
   max-width: 100%;
   display: inline-block;
@@ -447,7 +556,10 @@ li {
   height: 30px;
   background: #ccc;
   display: inline-block;
-
+  /* display: block; */
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 2%;
 }
 
 .rating-bar-inner-fill {
@@ -462,21 +574,76 @@ li {
   top: 0;
   right: 5px;
 }
-
-.product-bar-container {
-  display: flex;
-  flex-flow: row wrap;
+/*
+.rating-bar-inner {
+  background-color: green;
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 50%;
+  display: block;
 }
 
+.rating-bar-outer {
+  background-color: gray;
+  /* display: inline-block;
+  display: block;
+  position: relative;
+  max-width: 50%;
+}
+*/
+
+/*Product Bar Styling*/
+.product-bar-container {
+  /* display: flex; */
+  /* flex-flow: row wrap; */
+
+
+  width: 80%;
+  justify-content: center;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 2fr;
+  grid-template-areas:
+  "product-bar-outer product-bar-outer product-bar-outer"
+  "low-label . high-label";
+}
+.product-bar-inner-fill {
+  overflow: hidden;
+}
 .product-bar-outer {
   display: flex;
   flex-flow: column wrap;
   justify-content: space-evenly;
-  width: 300px;
+  padding-right: 2%;
+  /* width: 300px; */
+  /* width: 90%; */
   height: 30px;
   /* display: inline-block; */
   background-color: white;
+  grid-area: product-bar-outer;
+}
 
+.product-bar.carrat {
+  /* padding:0%; */
+  color: blue;
+  padding-left: 50%;
+
+}
+
+.product-bar.low-label {
+  grid-area: low-label;
+  display: inline;
+  justify-self: start;
+}
+
+.product-bar.high-label {
+  grid-area: high-label;
+  display: inline;
+  justify-self: end;
 }
 
 .product-bar-inner-fill:empty {
@@ -488,20 +655,23 @@ li {
 
 .product-bar-inner-fill.one {
   order: 1;
+  justify-self: flex-start;
 }
 
 .product-bar-inner-fill.two {
   order: 2;
+  /* justify-self: flex-end; */
 }
 
 .product-bar-inner-fill.three {
   order: 3;
+  justify-self: flex-end;
 }
 
-.product-bar-inner-fill.target::after {
+/* .product-bar-inner-fill.target::after {
   content: "\f005";
   color: blue;
-}
+} */
 
 .target {
   background-color: lightgray;
@@ -514,6 +684,11 @@ li {
   background-color: lightgray;
   /* width: 30%; */
   /* padding: 25px; */
+}
+
+/*Form Styling*/
+.form-question {
+  padding: 10px;
 }
 
 /* .qa-questions-modal-wrapper {
@@ -555,26 +730,6 @@ li {
 }
 
 
-/*
-.rating-bar-inner {
-  background-color: green;
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 50%;
-  display: block;
-}
-
-.rating-bar-outer {
-  background-color: gray;
-  /* display: inline-block;
-  display: block;
-  position: relative;
-  max-width: 50%;
-}
-*/
 
 
 

@@ -52,7 +52,6 @@ class ReviewList extends React.Component {
 
     return (
       <>
-        <h3>Review List Here</h3>
         <div className="review-list">
 
           {reviewList}
