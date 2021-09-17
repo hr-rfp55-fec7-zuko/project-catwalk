@@ -6,7 +6,8 @@ class ImageGallery extends React.Component {
     this.state = {
       photos: {},
       current: 0,
-      expanded: false
+      expanded: false,
+      zoomed: false
     };
     this.nextSlide = this.nextSlide.bind(this);
     this.prevSlide = this.prevSlide.bind(this);
@@ -71,7 +72,7 @@ class ImageGallery extends React.Component {
               <ul className='carousel__track'>
                 {fullPhotos.map((image, index) => {
                   return (
-                    <li key={index} className={index === this.state.current ? 'carousel__slide current_slide' : 'carousel__slide'} onClick={this.expandSlide}>
+                    <li key={index} className={this.state.expanded ? 'carousel__slide expanded-slide' : 'carousel__slide'} onClick={this.expandSlide}>
                       {index === this.state.current && (<img className='carousel__image' src={image} />)}
                     </li>
                   );
