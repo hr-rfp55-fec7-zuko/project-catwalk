@@ -28,8 +28,8 @@ class RatingBreakdown extends React.Component {
     return (
       <div className="rating-breakdown">
 
-        <div className="avg-rating">{avgRating}</div>
-        <AvgRatingStars avgRating={avgRating}/>
+        <div className="avg-rating">{avgRating}<AvgRatingStars avgRating={avgRating}/></div>
+
 
         <div className="rating-percentage-recommended">{percentageRecommended}% of reviews recommend this product</div>
         <br/>

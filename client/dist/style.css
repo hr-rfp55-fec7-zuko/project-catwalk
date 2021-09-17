@@ -400,8 +400,18 @@ li {
   /* border: 1px solid black; */
   display: grid;
   grid-template-columns: 10fr 10fr 1fr;
-  grid-template-rows: auto 3fr 3fr;
+  grid-template-rows: auto 1fr 1fr;
   font-size: 24px;
+}
+
+.ratings-button {
+  font-family:'Montserrat',sans-serif;
+  padding: 15px;
+  background-color: white;
+  font-weight: 900;
+  margin-top: 20px;
+  margin-right: 20px;
+  border: 1px solid;
 }
 
 /* .review-list, .review-tile {
@@ -431,6 +441,7 @@ li {
 
 .sortBar {
   background-color: white;
+  padding-top: 5px;
   grid-column: 3/5;
   grid-row: 1/2;
 }
@@ -439,7 +450,7 @@ li {
 .review-tile {
   border-bottom: 1px solid black;
   padding: 5px;
-  height: 200px;
+  height: 300px;
   /* background-color: lightgreen; */
   /* margin: 5px; */
   display: grid;
@@ -452,13 +463,19 @@ li {
     "body body body"
     "thumbnails thumbnails thumbnails"
     "recommend recommend recommend"
-    ". response response"
-    "helpful-or-report . .";
+    "response response response"
+    "helpful-or-report helpful-or-report .";
   align-items: center;
   font-size: 18px;
 }
 
+.avg-rating {
+  font-size: 50px;
+  font-weight: bolder;
+}
+
 .star-rating {
+  font-size: 24px;
   grid-area: star;
 }
 
@@ -511,13 +528,21 @@ li {
 }
 
 .review-recommend {
+  padding: 2%;
   grid-area: recommend;
 }
 
 .review-response {
   grid-area: response;
-  background-color: gray;
+  background-color: lightgray;
   padding: 5px;
+  margin-left: 15px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+review-response h3 {
+  font-weight: bold;
 }
 
 .helpful-or-report {
@@ -526,11 +551,11 @@ li {
   grid-template-rows: 1fr;
   grid-template-areas: "helpful report";
   font-size: 12px;
-
 }
 
 .helpful {
   grid-area: helpful;
+  display: inline;
   padding-right: 5%;
 }
 
@@ -636,12 +661,14 @@ li {
 
 .product-bar.low-label {
   grid-area: low-label;
+  font-size: 12px;
   display: inline;
   justify-self: start;
 }
 
 .product-bar.high-label {
   grid-area: high-label;
+  font-size: 12px;
   display: inline;
   justify-self: end;
 }
@@ -725,8 +752,12 @@ li {
 
 .add-review-modal-button {
   font-family:'Montserrat',sans-serif;
-  font-size: 16px;
-  color: #000;
+  padding: 15px;
+  background-color: white;
+  font-weight: 900;
+  margin-top: 20px;
+  margin-right: 20px;
+  border: 1px solid;
 }
 
 
