@@ -82,7 +82,7 @@ class ReviewTile extends React.Component {
 
 
         {review.response &&
-          <div className="review-response">Response<br></br>{review.response}</div>
+          <div className="review-response"><h3>Response</h3><br></br>{review.response}</div>
         }
 
         <div className="helpful-or-report">Helpful?

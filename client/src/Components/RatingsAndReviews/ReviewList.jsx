@@ -45,7 +45,7 @@ class ReviewList extends React.Component {
     //If the total number of reviews has been reached, don't render the addreviews button
     if (reviews.results.length < this.props.reviewCount) {
       var moreReviewsButton =
-        <button type="button" id="more-reviews" onClick={this.requestProductReviews}>More Reviews</button>;
+        <button type="button" id="more-reviews" className="ratings-button" onClick={this.requestProductReviews}>More Reviews</button>;
     } else {
       var moreReviewsButton = <></>;
     }
@@ -58,7 +58,7 @@ class ReviewList extends React.Component {
 
           {moreReviewsButton}
 
-          <button type="button" id="add-review" onClick={this.toggleAddReviewFormVisible}>Add A Review</button>
+          <button type="button" id="add-review" onClick={this.toggleAddReviewFormVisible} className='ratings-button'>Add A Review  +</button>
 
           {this.state.addReviewFormVisible && <AddReviewForm characteristics={characteristics} product_name={this.props.product_name} toggleAddReviewFormVisible={this.toggleAddReviewFormVisible} submitReviewForm={this.props.submitReviewForm}product_id={this.props.product_id}/>}
 

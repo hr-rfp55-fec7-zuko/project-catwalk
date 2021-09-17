@@ -13,6 +13,7 @@ class ImageGallery extends React.Component {
     this.prevSlide = this.prevSlide.bind(this);
     this.expandSlide = this.expandSlide.bind(this);
     this.zoomSlide = this.zoomSlide.bind(this);
+    this.setSlideFromThumbnail = this.setSlideFromThumbnail.bind(this);
   }
 
   nextSlide() {
@@ -31,7 +32,7 @@ class ImageGallery extends React.Component {
 
   expandSlide() {
     if (this.state.expanded && this.state.zoomed) {
-      this.setState({zoomed: false});
+      this.setState({ zoomed: false });
     }
     console.log('you want to expand the image');
     this.setState({
@@ -44,6 +45,12 @@ class ImageGallery extends React.Component {
     //console.log('you want to zoom');
     this.setState({
       zoomed: !this.state.zoomed
+    });
+  }
+
+  setSlideFromThumbnail(index) {
+    this.setState({
+      current: index
     });
   }
 
@@ -72,30 +79,71 @@ class ImageGallery extends React.Component {
       var length = fullPhotos.length;
       return (
         <div className='po-image-gallery' >
-          <div className='image-thumbnails' >
+          <div className='thumbnail-container'>
+            {(this.state.current !== 0 && !this.state.zoomed) &&
+              (<button
+                className='thumbnail__button thumbnail__button--up'
+                onClick={this.prevSlide} >
+                <i className="fas fa-chevron-up fa-lg"></i>
+              </button>
+              )}
+            {/* thumbnail-track*/}
+            {/* each thumbnail-slide */}
+            <div className={'thumbnail__track'}>
+              {thumbPhotos.map((image, index) => {
+                return (
+                  <img
+                    key={index}
+                    src={image}
+                    className={index === this.state.current ? 'thumbnail__slide thumbnail__slide-current' : 'thumbnail__slide'}
+                    onClick={() => this.setSlideFromThumbnail(index)} />
+                );
+              })}
+            </div>
+            {(this.state.current !== length - 1 && !this.state.zoomed) && (<button
+              className='thumbnail__button thumbnail__button--down'
+              onClick={this.nextSlide} >
+              <i className="fas fa-chevron-down fa-lg"></i>
+            </button>)}
           </div>
           <div className='carousel'>
-            {(this.state.current !== 0 && !this.state.zoomed) && (<button className='carousel__button carousel__button--left' onClick={this.prevSlide} >
-              <i className="fas fa-arrow-left fa-lg"></i>
-            </button>
-            )}
+            {(this.state.current !== 0 && !this.state.zoomed) &&
+              (<button
+                className='carousel__button carousel__button--left'
+                onClick={this.prevSlide} >
+                <i className="fas fa-arrow-left fa-lg"></i>
+              </button>
+              )}
             <div className='carousel__track-container' >
               <ul className='carousel__track'>
                 {fullPhotos.map((image, index) => {
                   return (
-                    <li key={index} className={this.state.expanded ? 'carousel__slide expanded-slide' : 'carousel__slide'} onClick={!this.state.expanded ? this.expandSlide : this.zoomSlide}>
-                      {index === this.state.current && (<img className='carousel__image' src={image} />)}
+                    <li
+                      key={index}
+                      className={this.state.expanded ? 'carousel__slide expanded-slide' : 'carousel__slide'}
+                      onClick={!this.state.expanded ? this.expandSlide : this.zoomSlide}
+                      style={this.state.zoomed ? { cursor: 'zoom-out' } : null}>
+                      {index === this.state.current &&
+                        (<img
+                          className='carousel__image'
+                          src={image} />)}
                     </li>
                   );
                 })}
               </ul>
             </div>
-            {!this.state.zoomed && <button className='carousel__button carousel__button--expand' onClick={this.expandSlide} >
-              <i className="fas fa-expand fa-lg"></i>
-            </button>}
-            {(this.state.current !== length - 1 && !this.state.zoomed) && (<button className='carousel__button carousel__button--right' onClick={this.nextSlide} >
-              <i className="fas fa-arrow-right fa-lg"></i>
-            </button>)}
+            {!this.state.zoomed &&
+              <button
+                className='carousel__button carousel__button--expand'
+                onClick={this.expandSlide} >
+                <i className="fas fa-expand fa-lg"></i>
+              </button>}
+            {(this.state.current !== length - 1 && !this.state.zoomed) &&
+              (<button
+                className='carousel__button carousel__button--right'
+                onClick={this.nextSlide} >
+                <i className="fas fa-arrow-right fa-lg"></i>
+              </button>)}
           </div>
         </div>
       );

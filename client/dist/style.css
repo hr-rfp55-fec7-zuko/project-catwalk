@@ -186,7 +186,7 @@ h3 {
 
 .po-main-left {
   width: 60%;
-  z-index: 20;
+  z-index: 3;
 }
 
 .po-main-right {
@@ -237,7 +237,7 @@ h3 {
 .select-menus {
   display: flex;
   position: absolute;
-  z-index: 10;
+  z-index: 2;
   /* top:20px */
 }
 
@@ -363,9 +363,72 @@ li {
   border-radius: 10%;
 }
 
+.thumbnail-container {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  width: 70px;
+  align-items: center;
+  position: absolute;
+  z-index: 30;
+}
 
+.thumbnail__track {
+  height: 300px;
+  width: 58px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: hidden;
+  position: absolute;
+  top: 30px;
+}
 
+.thumbnail__slide {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  cursor: pointer;
+  opacity: 0.5;
+  margin: 4px;
+  /* border-radius: 10%; */
+}
 
+.thumbnail__slide:hover {
+  opacity: 1;
+}
+
+.thumbnail__slide-current {
+  opacity: 1;
+  outline: solid;
+}
+
+.thumbnail__button {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 0;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0.6;
+  transition: 0.3s;
+  color: #fff;
+}
+
+.thumbnail__button:hover {
+  opacity: 1;
+}
+
+.thumbnail__button--up {
+  top: 0;
+  z-index: 10;
+}
+
+.thumbnail__button--down {
+  bottom: 0;
+}
 
 
 /*========= CSS FOR STAR COMPONENTS ===========*/
@@ -400,8 +463,18 @@ li {
   /* border: 1px solid black; */
   display: grid;
   grid-template-columns: 10fr 10fr 1fr;
-  grid-template-rows: auto 3fr 3fr;
+  grid-template-rows: auto 1fr 1fr;
   font-size: 24px;
+}
+
+.ratings-button {
+  font-family:'Montserrat',sans-serif;
+  padding: 15px;
+  background-color: white;
+  font-weight: 900;
+  margin-top: 20px;
+  margin-right: 20px;
+  border: 1px solid;
 }
 
 /* .review-list, .review-tile {
@@ -431,6 +504,7 @@ li {
 
 .sortBar {
   background-color: white;
+  padding-top: 5px;
   grid-column: 3/5;
   grid-row: 1/2;
 }
@@ -439,7 +513,7 @@ li {
 .review-tile {
   border-bottom: 1px solid black;
   padding: 5px;
-  height: 200px;
+  height: 300px;
   /* background-color: lightgreen; */
   /* margin: 5px; */
   display: grid;
@@ -452,13 +526,19 @@ li {
     "body body body"
     "thumbnails thumbnails thumbnails"
     "recommend recommend recommend"
-    ". response response"
-    "helpful-or-report . .";
+    "response response response"
+    "helpful-or-report helpful-or-report .";
   align-items: center;
   font-size: 18px;
 }
 
+.avg-rating {
+  font-size: 50px;
+  font-weight: bolder;
+}
+
 .star-rating {
+  font-size: 24px;
   grid-area: star;
 }
 
@@ -511,13 +591,21 @@ li {
 }
 
 .review-recommend {
+  padding: 2%;
   grid-area: recommend;
 }
 
 .review-response {
   grid-area: response;
-  background-color: gray;
+  background-color: lightgray;
   padding: 5px;
+  margin-left: 15px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+review-response h3 {
+  font-weight: bold;
 }
 
 .helpful-or-report {
@@ -526,11 +614,11 @@ li {
   grid-template-rows: 1fr;
   grid-template-areas: "helpful report";
   font-size: 12px;
-
 }
 
 .helpful {
   grid-area: helpful;
+  display: inline;
   padding-right: 5%;
 }
 
@@ -636,12 +724,14 @@ li {
 
 .product-bar.low-label {
   grid-area: low-label;
+  font-size: 12px;
   display: inline;
   justify-self: start;
 }
 
 .product-bar.high-label {
   grid-area: high-label;
+  font-size: 12px;
   display: inline;
   justify-self: end;
 }
@@ -725,8 +815,12 @@ li {
 
 .add-review-modal-button {
   font-family:'Montserrat',sans-serif;
-  font-size: 16px;
-  color: #000;
+  padding: 15px;
+  background-color: white;
+  font-weight: 900;
+  margin-top: 20px;
+  margin-right: 20px;
+  border: 1px solid;
 }
 
 
@@ -790,6 +884,10 @@ li {
   border: 1px solid;
 }
 
+.qa-searchBar::placeholder, .qa-withplaceholder::placeholder {
+  font-family:'Montserrat',sans-serif;
+}
+
 .qa-eachA {
   display: flex;
   flex-wrap: wrap;
@@ -809,6 +907,7 @@ li {
   margin-top: 10px;
   margin-bottom: 10px;
   align-items: center;
+  justify-content: space-between;
 }
 
 .qa-answers-A, .qa-questions {
@@ -823,9 +922,16 @@ li {
   padding-left: 5px;
 }
 
-.qa-questions-side, .qa-answers-helpfulness, .qa-answers-side {
+.qa-answers-helpfulness, .qa-answers-side {
   font-size: 12px;
   padding-right: 8px;
+}
+
+.qa-questions-side {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 12px;
+  gap: 4px;
 }
 
 .qa-answers-side {
@@ -834,11 +940,6 @@ li {
   padding-left: 20px;
   padding-right: 8px;
 }
-/* .qa-questions-add-answer {
-  padding-left: 8px;
-  padding-right: 8px;
-  font-size: 12px;
-} */
 
 .qa-answers-report {
   font-size: 12px;
@@ -872,5 +973,30 @@ li {
   font-size: 12px;
   border: none;
   padding-left: 20px;
+}
+
+.qa-photos-main {
+  display: flex;
+  flex-direction: row;
+}
+
+.qa-photos-minus {
+  width: 100px;
+  height: 75px;
+  margin-left: 20px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border: 1px solid;
+}
+
+.qa-photos-plus {
+  width: 100%;
+  height: 100%;
+}
+
+.qa-photos-icon {
+  position: absolute;
+  top: 2px;
+  right: 10px;
 }
 
