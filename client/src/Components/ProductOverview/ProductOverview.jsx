@@ -80,7 +80,7 @@ class ProductOverview extends React.Component {
             {this.props.avgRating ?
               (<div className='po-reviews'>
                 <AvgRatingStars avgRating={this.props.avgRating} />
-                <button className='btn all-reviews'>Read all reviews</button>
+                <a className='read-all-reviews' href='#ratings-and-reviews'>Read all {this.props.totalReviews} reviews</a>
               </div>)
               : <br />}
             <h3>{this.state.category}</h3>
