@@ -58,12 +58,13 @@ class RatingsAndReviews extends React.Component {
 
   //submit review form
   submitReviewForm(body) {
-    console.log('requestreceivedinbody', body)
+    // console.log('requestreceivedinbody', body)
 
     //rembember to parse anything that's not a string
     return axios.post('/reviews/', {params: body})
 
-    .then((results) => console.log('AJAX POST RESULTS:', results))
+    // .then((results) => console.log('AJAX POST RESULTS:', results))
+    .catch((error) => console.log('error', error))
 
 
   }

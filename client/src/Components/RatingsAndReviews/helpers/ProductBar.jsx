@@ -15,7 +15,7 @@ const ratingMeanings = {
 const ProductBar = function ProductBar(props) {
   let characteristic = props.characteristic;
   let score = parseFloat(props.score);
-  console.log('char', characteristic, 'score', score)
+  // console.log('char', characteristic, 'score', score)
 
   //Math
   let overallPercentage = (score / 5 ) * 100;
@@ -28,11 +28,11 @@ const ProductBar = function ProductBar(props) {
     fill1 = true;
 
   } else if (overallPercentage < 67) {
-    var innerPercentage = `${((overallPercentage - 33) / 30) * 100}%;`;
+    var innerPercentage = `${((overallPercentage - 33) / 30) * 100}%`;
     fill2 = true;
 
   } else if (overallPercentage < 101) {
-    var innerPercentage = `${((overallPercentage - 66) / 30) * 100}%;`;
+    var innerPercentage = `${((overallPercentage - 66) / 30) * 100}%`;
     fill3 = true;
   }
 
@@ -64,7 +64,7 @@ const buildBarSegment = function(barNumber, isTargetBar, innerPercentage) {
 
   let styleObj = {'padding-left': innerPercentage}
 
-  var bar = isTargetBar ? <div className={className} ><div className="product-bar carrat" style={ {'padding-left': innerPercentage} }><FontAwesomeIcon icon={faCaretUp} /></div></div> : <div className={className}/>
+  var bar = isTargetBar ? <div className={className} ><div className="product-bar carrat" style={ {paddingLeft: innerPercentage} }><FontAwesomeIcon icon={faCaretUp} /></div></div> : <div className={className}/>
 
   return (bar)
 

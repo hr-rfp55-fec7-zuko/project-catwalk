@@ -54,9 +54,37 @@ class AddReviewForm extends React.Component {
         'photos': this.state.photos,
         'characteristics': characteristics
       }
+
+      // dataBody['product_Id'] = parseInt(this.state.rating)
+      // dataBody['rating'] = parseInt(this.state.rating)
+      // dataBody['summary'] = this.state.summary + ''
+      // dataBody['body'] = this.state.body + ''
+      // dataBody['recommended'] = this.state.recommended === 'No' ? false : true
+      // dataBody['email'] = this.state.email + ''
+      // dataBody['photos'] = this.state.photos
     }
-    console.log(dataBody)
-    this.props.submitReviewForm(dataBody)
+
+    // console.log('dataBody', dataBody)
+
+    //format data object
+
+    //if any mandatory fields are blank display an error (h)
+
+    let temp = {
+      "product_id": 40344,
+      "rating": 5,
+      "summary": "Very good",
+      "body": "lorem ipsum",
+      "recommend": true,
+      "name": "tester",
+      "email": "tester@tester.com",
+      "photos": [],
+      "characteristics": {}
+    }
+    // console.log(dataBody)
+    this.props.submitReviewForm(temp)
+    // this.props.submitReviewForm(dataBody)
+
 
   }
 
