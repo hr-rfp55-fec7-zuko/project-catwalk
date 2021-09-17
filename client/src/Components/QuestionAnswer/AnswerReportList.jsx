@@ -17,7 +17,7 @@ var AnswerReportList = (props) => {
   };
 
   return (
-    <a className="qa-answers-report" onClick={handleClick}>{report}</a>
+    <a className="qa-answers-report" id="qa-Yes" onClick={handleClick}>{report}</a>
   );
 };
 
