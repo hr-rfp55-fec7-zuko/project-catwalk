@@ -73,14 +73,16 @@ class ProductOverview extends React.Component {
     return (
       <div className='po-main'>
         <div className='po-main-top'>
-          <div className='po-main-left' style={this.state.expanded ? {width: '100%'} : {width: '60%'} }>
+          <div className='po-main-left' style={this.state.expanded ? { width: '100%' } : { width: '60%' }}>
             <ImageGallery styles={this.state.styles} selectedStyle={this.state.style.style_id} expandSlide={this.expandSlide} />
           </div>
           <div className='po-main-right'>
-            <div className='po-reviews'>
-              <AvgRatingStars avgRating={this.props.avgRating} />
-              <button className='btn all-reviews'>Read all reviews</button>
-            </div>
+            {this.props.avgRating ?
+              (<div className='po-reviews'>
+                <AvgRatingStars avgRating={this.props.avgRating} />
+                <button className='btn all-reviews'>Read all reviews</button>
+              </div>)
+              : <br />}
             <h3>{this.state.category}</h3>
             <h1>{this.state.name}</h1>
             <Price price={this.state.price} sale={this.state.sale} salePrice={this.state.salePrice} />
@@ -88,7 +90,7 @@ class ProductOverview extends React.Component {
             <AddToCart style={this.state.style} />
           </div>
         </div>
-        <br/> <br/>
+        <br /> <br />
         <div className='po-desc'>
           <div className='po-desc-text'>
             <p><b>{this.state.slogan}</b></p>
