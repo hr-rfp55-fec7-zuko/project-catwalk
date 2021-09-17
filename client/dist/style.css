@@ -380,7 +380,7 @@ li {
   /* border: 1px solid black; */
   display: grid;
   grid-template-columns: 10fr 10fr 1fr;
-  grid-template-rows: auto 3fr 3fr 1fr;
+  grid-template-rows: auto 3fr 3fr;
   font-size: 24px;
 }
 
