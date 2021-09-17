@@ -269,9 +269,21 @@ li {
   margin: 0 10px;
 }
 
-.selected {
-  border: solid red;
+.style-element {
+  width: 70px;
+  height: 74px;
 }
+
+.selected {
+  position: relative;
+  right: -65%;
+  top: -65px;
+  background: white;
+  border-radius: 50%;
+  border-width: 0;
+}
+
+
 
 /* .style-element { position: relative; }
 .style-element .style-img { display: block; }
