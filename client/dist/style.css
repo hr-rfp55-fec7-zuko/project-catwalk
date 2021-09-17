@@ -363,9 +363,58 @@ li {
   border-radius: 10%;
 }
 
+.thumbnail-container {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  width: 70px;
+  align-items: center;
+  position: absolute;
+  z-index: 30;
+}
 
+.thumbnail__track {
+  height: 300px;
+  width: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: hidden;
+  position: absolute;
+  top: 30px;
+}
 
+.thumbnail__slide {
+  height: 50px;
+  width: 50px;
+}
 
+.thumbnail__button {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 0;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0.6;
+  transition: 0.3s;
+  color: #fff;
+}
+
+.thumbnail__button:hover {
+  opacity: 1;
+}
+
+.thumbnail__button--up {
+  top: 0;
+  z-index: 10;
+}
+
+.thumbnail__button--down {
+  bottom: 0;
+}
 
 
 /*========= CSS FOR Ratings & Reviews ===========*/
