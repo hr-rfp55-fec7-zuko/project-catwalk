@@ -424,7 +424,7 @@ li {
   /* margin: 5px; */
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 1fr 2fr 2fr auto auto auto 1fr;
+  grid-template-rows: 1fr 2fr 2fr 1fr 1fr 1fr 1fr;
   grid-template-areas:
     /* ". . . ." */
     "star attribution attribution"
@@ -479,6 +479,7 @@ li {
 .review-thumbnails {
   grid-area: thumbnail;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  /* position: fixed; */
   grid-template-rows: 1fr;
   grid-template-areas: "one two three four five";
   justify-items: center;
@@ -486,6 +487,7 @@ li {
 
 .review-thumbnail {
   grid-area: thumbnail;
+  /* position: relative; */
 }
 
 .review-recommend {
@@ -608,7 +610,7 @@ li {
 .product-bar.carrat {
   /* padding:0%; */
   color: blue;
-  padding-left: 20%;
+  padding-left: 50%;
 
 }
 
