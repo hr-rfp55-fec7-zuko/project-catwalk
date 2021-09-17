@@ -30,6 +30,7 @@ var AnswerEntryList = (props) => {
   }
 
   var aList = answerList.map(item => {
+    console.log('item:', item);
     return (
       <div className="qa-eachA">
         <p className="qa-answers-A">
