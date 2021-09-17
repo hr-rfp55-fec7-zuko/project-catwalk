@@ -17,7 +17,7 @@ var QuestionReportList = (props) => {
   };
 
   return (
-    <a className="qa-questions-side" id="qa-Yes" onClick={handleClick}>{report}</a>
+    <a className="qa-questions-report" onClick={handleClick}><span id="qa-Yes">{report}</span>  |</a>
   );
 };
 

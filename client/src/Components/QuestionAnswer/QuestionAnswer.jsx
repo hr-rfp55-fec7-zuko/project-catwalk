@@ -39,7 +39,6 @@ class QuestionAnswer extends React.Component {
         console.log('Client GET Err:', err);
       },
       success: (data) => {
-        console.log('😝🤩🥳', data);
         this.setState({questionsList: data, originList: data});
       }
     });
