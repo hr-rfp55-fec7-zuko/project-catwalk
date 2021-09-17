@@ -12,7 +12,7 @@ const RatingBar = function RatingBar(props) {
       <div className="rating-bar-container">
         {value} Stars
         <div className='rating-bar-outer'>
-          <div className='rating-bar-inner-fill' style={{width: `${percentage}%`}}></div>
+        <div className='rating-bar-inner-fill' style={{width: `${percentage}%`}}></div>
         </div>
         {frequency}
       </div>
@@ -24,5 +24,9 @@ const RatingBar = function RatingBar(props) {
 
 export default RatingBar;
 
+/*
 
+<div className='rating-bar-inner-fill' style={{width: `${percentage}%`}}></div>
+
+*/
 
