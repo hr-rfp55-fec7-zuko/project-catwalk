@@ -45,7 +45,7 @@ class AddReviewForm extends React.Component {
       }
 
       var dataBody = {
-        'product_Id': parseInt(this.state.rating),
+        'product_id': parseInt(this.state.product_id),
         'rating': parseInt(this.state.rating),
         'summary': this.state.summary + '',
         'body': this.state.body + '',
@@ -55,8 +55,8 @@ class AddReviewForm extends React.Component {
         'characteristics': characteristics
       }
     }
-
-    this.props.submitReviewForm(temp)
+    console.log(dataBody)
+    this.props.submitReviewForm(dataBody)
 
   }
 
