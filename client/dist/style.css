@@ -520,9 +520,6 @@ li {
   grid-area: report;
 }
 
-
-
-
 /*Rating Bar Styling*/
 
 /* .rating-bar-container {
@@ -539,7 +536,6 @@ li {
   margin-left: 2%;
   margin-right: 2%;
   margin-top: 2%;
-
 }
 
 .rating-bar-inner-fill {
@@ -577,54 +573,85 @@ li {
 
 /*Product Bar Styling*/
 .product-bar-container {
-  display: flex;
-  flex-flow: row wrap;
+  /* display: flex;
+  flex-flow: row wrap; */
+  height: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 2fr 1fr;
+  grid-template-areas:
+
+  "product-bar-outer product-bar-outer product-bar-outer"
+  "low-label . high-label"
 }
 
 .product-bar-outer {
-  display: flex;
+  /* display: flex;
   flex-flow: column wrap;
-  justify-content: space-evenly;
-  width: 300px;
-  height: 30px;
+  justify-content: space-evenly; */
+  /* width: 300px;
+  height: 30px; */
   /* display: inline-block; */
+  width: 100%
   background-color: white;
+  grid-area: product-bar-outer;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "one two three"
 
 }
 
+.product-bar.low-label{
+  grid-area:low-label;
+  width: 30%
+}
+
+.product-bar.high-label{
+  grid-area:high-label;
+  width: 30%
+}
+/*
 .product-bar-inner-fill:empty {
   display: block;
-  height: 100%;
+   height: 100%;
   width: 30%;
   background-color: lightgray;
+  width: 30%
+} */
+
+.product-bar-inner-fill.one:empty {
+  grid-area: one;
+  width: 30%
+  padding: 15%;
+  background-color: red;
 }
 
-.product-bar-inner-fill.one {
-  order: 1;
-}
+.product-bar-inner-fill.two{
+  grid-area: two;
 
-.product-bar-inner-fill.two {
-  order: 2;
+
 }
 
 .product-bar-inner-fill.three {
-  order: 3;
+  grid-area: three;
 }
 
-.product-bar-inner-fill.target::after {
+/* .product-bar-inner-fill.target::after {
   content: "\f005";
   color: blue;
-}
+} */
 
-.target {
+/* .target {
   background-color: lightgray;
   height: 100%;
-  width: 30%;
-}
+ width: 30%;
+  padding-left: 20%;
+  overflow: hidden;
+} */
 
 /*doesn't do anything right now*/
 .target-buffer:empty {
-  background-color: lightgray;
+  /* background-color: lightgray; */
   /* width: 30%; */
   /* padding: 25px; */
 }
