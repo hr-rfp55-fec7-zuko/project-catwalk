@@ -375,7 +375,7 @@ li {
 
 .thumbnail__track {
   height: 300px;
-  width: 50px;
+  width: 58px;
   display: flex;
   flex-wrap: wrap;
   overflow-y: hidden;
@@ -386,6 +386,20 @@ li {
 .thumbnail__slide {
   height: 50px;
   width: 50px;
+  object-fit: cover;
+  cursor: pointer;
+  opacity: 0.5;
+  margin: 4px;
+  /* border-radius: 10%; */
+}
+
+.thumbnail__slide:hover {
+  opacity: 1;
+}
+
+.thumbnail__slide-current {
+  opacity: 1;
+  outline: solid;
 }
 
 .thumbnail__button {
