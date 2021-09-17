@@ -790,6 +790,10 @@ li {
   border: 1px solid;
 }
 
+.qa-searchBar::placeholder, .qa-withplaceholder::placeholder {
+  font-family:'Montserrat',sans-serif;
+}
+
 .qa-eachA {
   display: flex;
   flex-wrap: wrap;
@@ -809,6 +813,7 @@ li {
   margin-top: 10px;
   margin-bottom: 10px;
   align-items: center;
+  justify-content: space-between;
 }
 
 .qa-answers-A, .qa-questions {
@@ -823,9 +828,16 @@ li {
   padding-left: 5px;
 }
 
-.qa-questions-side, .qa-answers-helpfulness, .qa-answers-side {
+.qa-answers-helpfulness, .qa-answers-side {
   font-size: 12px;
   padding-right: 8px;
+}
+
+.qa-questions-side {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 12px;
+  gap: 4px;
 }
 
 .qa-answers-side {
@@ -834,11 +846,6 @@ li {
   padding-left: 20px;
   padding-right: 8px;
 }
-/* .qa-questions-add-answer {
-  padding-left: 8px;
-  padding-right: 8px;
-  font-size: 12px;
-} */
 
 .qa-answers-report {
   font-size: 12px;
@@ -872,5 +879,30 @@ li {
   font-size: 12px;
   border: none;
   padding-left: 20px;
+}
+
+.qa-photos-main {
+  display: flex;
+  flex-direction: row;
+}
+
+.qa-photos-minus {
+  width: 100px;
+  height: 75px;
+  margin-left: 20px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border: 1px solid;
+}
+
+.qa-photos-plus {
+  width: 100%;
+  height: 100%;
+}
+
+.qa-photos-icon {
+  position: absolute;
+  top: 2px;
+  right: 10px;
 }
 
