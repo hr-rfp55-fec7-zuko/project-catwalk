@@ -12,6 +12,7 @@ class ImageGallery extends React.Component {
     this.nextSlide = this.nextSlide.bind(this);
     this.prevSlide = this.prevSlide.bind(this);
     this.expandSlide = this.expandSlide.bind(this);
+    this.zoomSlide = this.zoomSlide.bind(this);
   }
 
   nextSlide() {
@@ -29,11 +30,21 @@ class ImageGallery extends React.Component {
   }
 
   expandSlide() {
+    if (this.state.expanded && this.state.zoomed) {
+      this.setState({zoomed: false});
+    }
     console.log('you want to expand the image');
     this.setState({
       expanded: !this.state.expanded
     });
     this.props.expandSlide();
+  }
+
+  zoomSlide() {
+    console.log('you want to zoom');
+    this.setState({
+      zoomed: !this.state.zoomed
+    });
   }
 
   componentDidUpdate(prevProps) {
@@ -72,7 +83,7 @@ class ImageGallery extends React.Component {
               <ul className='carousel__track'>
                 {fullPhotos.map((image, index) => {
                   return (
-                    <li key={index} className={this.state.expanded ? 'carousel__slide expanded-slide' : 'carousel__slide'} onClick={this.expandSlide}>
+                    <li key={index} className={this.state.expanded ? 'carousel__slide expanded-slide' : 'carousel__slide'} onClick={!this.state.expanded ? this.expandSlide : this.zoomSlide}>
                       {index === this.state.current && (<img className='carousel__image' src={image} />)}
                     </li>
                   );
