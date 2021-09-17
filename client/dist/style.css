@@ -186,7 +186,7 @@ h3 {
 
 .po-main-left {
   width: 60%;
-  z-index: 20;
+  z-index: 3;
 }
 
 .po-main-right {
@@ -237,7 +237,7 @@ h3 {
 .select-menus {
   display: flex;
   position: absolute;
-  z-index: 10;
+  z-index: 2;
   /* top:20px */
 }
 
@@ -363,9 +363,72 @@ li {
   border-radius: 10%;
 }
 
+.thumbnail-container {
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  width: 70px;
+  align-items: center;
+  position: absolute;
+  z-index: 30;
+}
 
+.thumbnail__track {
+  height: 300px;
+  width: 58px;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: hidden;
+  position: absolute;
+  top: 30px;
+}
 
+.thumbnail__slide {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  cursor: pointer;
+  opacity: 0.5;
+  margin: 4px;
+  /* border-radius: 10%; */
+}
 
+.thumbnail__slide:hover {
+  opacity: 1;
+}
+
+.thumbnail__slide-current {
+  opacity: 1;
+  outline: solid;
+}
+
+.thumbnail__button {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 0;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0.6;
+  transition: 0.3s;
+  color: #fff;
+}
+
+.thumbnail__button:hover {
+  opacity: 1;
+}
+
+.thumbnail__button--up {
+  top: 0;
+  z-index: 10;
+}
+
+.thumbnail__button--down {
+  bottom: 0;
+}
 
 
 /*========= CSS FOR STAR COMPONENTS ===========*/
