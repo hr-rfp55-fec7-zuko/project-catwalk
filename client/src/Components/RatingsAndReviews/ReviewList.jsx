@@ -52,7 +52,6 @@ class ReviewList extends React.Component {
 
     return (
       <>
-        <h3>Review List Here</h3>
         <div className="review-list">
 
           {reviewList}
@@ -61,7 +60,7 @@ class ReviewList extends React.Component {
 
           <button type="button" id="add-review" onClick={this.toggleAddReviewFormVisible}>Add A Review</button>
 
-          {this.state.addReviewFormVisible && <AddReviewForm characteristics={characteristics} product_name={this.props.product_name} toggleAddReviewFormVisible={this.toggleAddReviewFormVisible} submitReviewForm={this.props.submitReviewForm}/>}
+          {this.state.addReviewFormVisible && <AddReviewForm characteristics={characteristics} product_name={this.props.product_name} toggleAddReviewFormVisible={this.toggleAddReviewFormVisible} submitReviewForm={this.props.submitReviewForm}product_id={this.props.product_id}/>}
 
         </div>
       </>
@@ -70,3 +69,15 @@ class ReviewList extends React.Component {
 }
 
 export default ReviewList;
+
+
+/*
+.button {
+  position: relative;
+}
+
+.button .icon {
+  position: absolute;
+}
+
+<button class="button"><p class="i"></button> */

@@ -27,9 +27,11 @@ class RatingBreakdown extends React.Component {
 
     return (
       <div className="rating-breakdown">
-        <h3>Ratings and Reviews</h3>
-        <div> {percentageRecommended}% of reviews recommend this product</div>
+
+        <div className="avg-rating">{avgRating}</div>
         <AvgRatingStars avgRating={avgRating}/>
+
+        <div className="rating-percentage-recommended">{percentageRecommended}% of reviews recommend this product</div>
         <br/>
         {ratingsTuples.map((ratingTuple) =>
           <RatingBar key={ratingTuple[0]} reviewCount={reviewCount} ratingTuple={ratingTuple}/>)}

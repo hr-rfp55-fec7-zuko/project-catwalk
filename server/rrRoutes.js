@@ -6,7 +6,8 @@ var router = express.Router();
 
 /* API Query Helper */
 let APIQuery = function(method, endpath, query, data = null) {
-  // console.log(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews${endpath}${query}`);
+  console.log(`https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews${endpath}${query}`);
+  console.log('data:', data)
   return axios({
     method: method,
     url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/reviews${endpath}${query}`,
@@ -21,11 +22,11 @@ let APIQuery = function(method, endpath, query, data = null) {
     .then((results) => {
       results = results.data;
       /***********Remove 1 line below during cleanup!********/
-      // console.log('Successful api request. Results', results);
+      console.log('Successful api request. Results', results);
       return results;
     })
     .catch((error) => {
-      console.log('error', error);
+      // console.log('error', error);
       return error;
     });
 };
@@ -53,9 +54,11 @@ router.get('/', (req, res) => {
 
 //Create new review
 router.post('/', (req, res) => {
+  console.log('req.body.params', req.body.params)
   let endpath = '/';
   let query = '';
-  let data = req.body;
+  // let data = req.body;
+  let data = req.body.params;
 
   APIQuery('POST', endpath, query, data)
     .then((data) => res.status(201).send(data))
