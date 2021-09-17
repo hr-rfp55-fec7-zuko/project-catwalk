@@ -44,7 +44,7 @@ var AddAnswerList = (props) => {
 
   return (
     <React.Fragment>
-      <p onClick={() => modalRef.current.open()} className="qa-questions-side" id="qa-Yes">Add Answer</p>
+      <p onClick={() => modalRef.current.open()} className="qa-questions-addanswer" id="qa-Yes">Add Answer</p>
       <AddAnswerModal ref={modalRef}>
         <h1>Submit your Answer</h1>
         <h2>{props.pName} : {props.questionBody}</h2>
@@ -59,7 +59,7 @@ var AddAnswerList = (props) => {
             <label className="qa-questions-modal-2">
               What is your nickname*
               <br/>
-              <textarea maxLength="60" placeholder="Example: Zuko" onChange={(e) => { e.preventDefault(); setNickName(e.target.value); }}/>
+              <textarea className="qa-withplaceholder" maxLength="60" placeholder="Example: Zuko" onChange={(e) => { e.preventDefault(); setNickName(e.target.value); }}/>
               <br/>
               For privacy reasons, do not use your full name or email address.
               <br/>
@@ -67,7 +67,7 @@ var AddAnswerList = (props) => {
             <label className="qa-questions-modal-3">
               What is your email*
               <br/>
-              <textarea maxLength="60" placeholder="Example: zuko@zuko.com" onChange={(e) => { e.preventDefault(); setEmailAdd(e.target.value); }}/>
+              <textarea className="qa-withplaceholder" maxLength="60" placeholder="Example: zuko@zuko.com" onChange={(e) => { e.preventDefault(); setEmailAdd(e.target.value); }}/>
               <br/>
               For authentication reasons, you will not be emailed.
               <br/>
