@@ -75,7 +75,7 @@ class ImageGallery extends React.Component {
           <div className='image-thumbnails' >
           </div>
           <div className='carousel'>
-            {this.state.current !== 0 && (<button className='carousel__button carousel__button--left' onClick={this.prevSlide} >
+            {(this.state.current !== 0 && !this.state.zoomed) && (<button className='carousel__button carousel__button--left' onClick={this.prevSlide} >
               <i className="fas fa-arrow-left fa-lg"></i>
             </button>
             )}
@@ -90,10 +90,10 @@ class ImageGallery extends React.Component {
                 })}
               </ul>
             </div>
-            <button className='carousel__button carousel__button--expand' onClick={this.expandSlide} >
+            {!this.state.zoomed && <button className='carousel__button carousel__button--expand' onClick={this.expandSlide} >
               <i className="fas fa-expand fa-lg"></i>
-            </button>
-            {this.state.current !== length - 1 && (<button className='carousel__button carousel__button--right' onClick={this.nextSlide} >
+            </button>}
+            {(this.state.current !== length - 1 && !this.state.zoomed) && (<button className='carousel__button carousel__button--right' onClick={this.nextSlide} >
               <i className="fas fa-arrow-right fa-lg"></i>
             </button>)}
           </div>
