@@ -6,11 +6,6 @@ class CharacteristicRadioFormField extends React.Component {
     super(props)
   }
 
-  handleClick(event){
-    console.log(event.target)
-
-  }
-
   render() {
 
     let fieldName = `characteristics.${this.props.characteristic}`;
