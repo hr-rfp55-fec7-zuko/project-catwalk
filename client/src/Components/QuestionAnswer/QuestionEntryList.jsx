@@ -8,6 +8,13 @@ import AddQuestionList from './AddQuestionList.jsx';
 class QuestionEntryList extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {displayQuestion: 2};
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e) {
+    e.preventDefault();
+    this.setState({displayQuestion: this.props.lists.length});
   }
 
   render() {
@@ -27,13 +34,15 @@ class QuestionEntryList extends React.Component {
     return (
       <div className="qa-list">
         <div className="qa-mainlist">
-          {list}
+          {list.slice(0, this.state.displayQuestion)}
         </div>
         <br />
         <div className="qa-twoButtons">
-          <button className="qa-button">
-            MORE ANSWERED QUESTIONS
-          </button>
+          {(this.state.displayQuestion < this.props.lists.length) &&
+            <button className="qa-button" onClick={this.handleClick}>
+              MORE ANSWERED QUESTIONS
+            </button>
+          }
           <AddQuestionList pName={this.props.prodName} pId={this.props.prodId}/>
         </div>
         {/* <button className="qa-button">
