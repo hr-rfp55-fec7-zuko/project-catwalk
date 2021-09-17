@@ -639,6 +639,10 @@ li {
   border: 1px solid;
 }
 
+.qa-searchBar::placeholder, .qa-withplaceholder::placeholder {
+  font-family:'Montserrat',sans-serif;
+}
+
 .qa-eachA {
   display: flex;
   flex-wrap: wrap;

@@ -6,12 +6,28 @@ import $ from 'jquery';
 class QuestionAnswer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {questionsList: []};
+    this.state = {questionsList: [], originList: []};
     this.updateQuestionsList = this.updateQuestionsList.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
     this.updateQuestionsList();
+  }
+
+  handleChange(e) {
+    e.preventDefault();
+    var filteredList = [];
+    if (e.target.value.length >= 3) {
+      for (var i = 0; i < this.state.questionsList.length; i++) {
+        if (this.state.questionsList[i].question_body.toLowerCase().includes(e.target.value)) {
+          filteredList.push(this.state.questionsList[i]);
+        }
+      }
+      this.setState({questionsList: filteredList});
+    } else {
+      this.setState({questionsList: this.state.originList});
+    }
   }
 
   updateQuestionsList() {
@@ -23,7 +39,7 @@ class QuestionAnswer extends React.Component {
         console.log('Client GET Err:', err);
       },
       success: (data) => {
-        this.setState({questionsList: data});
+        this.setState({questionsList: data, originList: data});
       }
     });
   }
@@ -33,7 +49,7 @@ class QuestionAnswer extends React.Component {
       <div className="qa-main">
         <h3>QUESTIONS & ANSWERS</h3>
         <div className="input-icon">
-          <input type="text" className="qa-searchBar" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." />
+          <input type="text" className="qa-searchBar" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." onChange={this.handleChange}/>
         </div>
         <QuestionEntryList lists={this.state.questionsList} prodName={this.props.productName} prodId={this.props.productId}/>
       </div>
