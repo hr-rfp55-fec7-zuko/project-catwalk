@@ -43,8 +43,8 @@ var AddAnswerList = (props) => {
   };
 
   return (
-    <div>
-      <a onClick={() => modalRef.current.open()} className="qa-questions-add-answer">Add Answer</a>
+    <React.Fragment>
+      <p onClick={() => modalRef.current.open()} className="qa-questions-side" id="qa-Yes">Add Answer</p>
       <AddAnswerModal ref={modalRef}>
         <h1>Submit your Answer</h1>
         <h2>{props.pName} : {props.questionBody}</h2>
@@ -85,14 +85,12 @@ var AddAnswerList = (props) => {
             </button>
           </form>
         </div>
-        <br />
-
         <p>
           <br />
           *Mandatory
         </p>
       </AddAnswerModal>
-    </div>
+    </React.Fragment>
   );
 };
 
