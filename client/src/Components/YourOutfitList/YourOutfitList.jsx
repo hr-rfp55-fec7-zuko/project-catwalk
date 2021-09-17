@@ -83,7 +83,7 @@ class YourOutfitList extends React.Component {
               productStyles: data
             });
             let newoutfitRenderList = this.renderOutfit(this.state.productStyles, this.state.productInfo, this.outfitRenderList);
-            console.log(this.state.outfitRenderList);
+            // console.log(this.state.outfitRenderList);
           })
           .catch((err) => {
             console.log('Error getting product style in YourOutfit', err);
