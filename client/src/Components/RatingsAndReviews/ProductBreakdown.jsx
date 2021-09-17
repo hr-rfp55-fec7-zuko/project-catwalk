@@ -1,4 +1,37 @@
 import React from 'react';
+import ProductBar from './helpers/ProductBar.jsx';
+
+class ProductBreakdown extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+
+    let characteristics = this.props.characteristics;
+
+    let characteristicTuples = [];
+
+
+
+    for (var characteristic in characteristics) {
+      characteristicTuples.push([characteristic, characteristics[characteristic].value, characteristic, characteristics[characteristic].id]);
+    }
+
+    return (
+      <div className="product-breakdown">
+        <h3>Product Breakdown</h3>
+        {characteristicTuples.map((tuple) => <ProductBar key={tuple[3]} characteristic={tuple[0]} score={tuple[1]}/>)}
+      </div>
+    );
+  }
+}
+
+export default ProductBreakdown;
+
+
+
+/*
 
 class ProductBreakdown extends React.Component {
   constructor(props) {
@@ -31,3 +64,5 @@ class ProductBreakdown extends React.Component {
 }
 
 export default ProductBreakdown;
+
+*/
