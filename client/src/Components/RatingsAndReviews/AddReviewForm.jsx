@@ -5,7 +5,16 @@ class AddReviewForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {}
+    this.state = {
+      'product_id': this.props.product_id,
+      rating: '',
+      summary: '',
+      body: '',
+      recommended: '',
+      name: '',
+      email: '',
+      photos: [],
+    }
 
     this.closeModal = this.closeModal.bind(this);
 
@@ -17,7 +26,42 @@ class AddReviewForm extends React.Component {
 
   submitReviewForm(event){
     event.preventDefault()
-    //grab product_id
+
+    let characteristics = {}
+
+    for (var property in this.state) {
+      if (!this.state[property]) {
+        console.log('property', property)
+        alert(`Please complete required fields: ${property}`)
+      }
+
+      if (property.includes('characteristics')) {
+        var splitInput = property.split('.')
+        var newProperty = splitInput[1]
+        dataBody.characteristics[newProperty] = this.state[property]
+      }
+
+      var dataBody = {
+        'product_Id': parseInt(this.state.rating),
+        'rating': parseInt(this.state.rating),
+        'summary': this.state.summary + '',
+        'body': this.state.body + '',
+        'recommended': this.state.recommended === 'No' ? false : true,
+        'email': this.state.email + '',
+        'photos': this.state.photos,
+        'characteristics': characteristics
+      }
+
+      // dataBody['product_Id'] = parseInt(this.state.rating)
+      // dataBody['rating'] = parseInt(this.state.rating)
+      // dataBody['summary'] = this.state.summary + ''
+      // dataBody['body'] = this.state.body + ''
+      // dataBody['recommended'] = this.state.recommended === 'No' ? false : true
+      // dataBody['email'] = this.state.email + ''
+      // dataBody['photos'] = this.state.photos
+    }
+
+    console.log('dataBody', dataBody)
 
     //format data object
 
