@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AddAnswerModal from './AddAnswerModal.jsx';
-import AnswerEntryList from './AnswerEntryList.jsx';
 
-var AddAnswerList = (props) => {
+
+var AddQuestionList = (props) => {
 
   const modalRef = React.useRef();
   const [answer, setAnswer] = useState('');
@@ -35,23 +35,24 @@ var AddAnswerList = (props) => {
     } else if (!re.test(String(emailAdd).toLowerCase())) {
       alert('Please enter email in the correct format.');
     } else {
-      axios.post('/qa/questions/:question_id/answers', {params: {qId: props.questionId, inner: {body: answer, name: nickName, email: emailAdd}}})
-        .then(response => console.log('Success!'))
-        .catch(err => (console.log('Add Answer POST Err', err)));
+      axios.post('/qa/questions', {params: {body: answer, name: nickName, email: emailAdd, 'product_id': parseInt(props.pId)}})
+        .then(response => console.log('Success! from Question', response.status))
+        .catch(err => (console.log('Add Question POST Err', err)));
     }
-
   };
 
   return (
-    <React.Fragment>
-      <p onClick={() => modalRef.current.open()} className="qa-questions-side" id="qa-Yes">Add Answer</p>
+    <div>
+      <button onClick={() => modalRef.current.open()} className="qa-button">ADD A QUESTION
+        <i className="fas fa-plus qa-button-icon"></i>
+      </button>
       <AddAnswerModal ref={modalRef}>
-        <h1>Submit your Answer</h1>
-        <h2>{props.pName} : {props.questionBody}</h2>
+        <h1>Ask Your Question</h1>
+        <h2>About the {props.pName}</h2>
         <div>
           <form className="qa-questions-modal-form" onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
             <label className="qa-questions-modal-1">
-              Your Answer*
+              Your Question*
               <br/>
               <textarea maxLength="1000" onChange={(e) => { e.preventDefault(); setAnswer(e.target.value); }}/>
               <br/>
@@ -73,12 +74,8 @@ var AddAnswerList = (props) => {
               <br/>
             </label>
             <br />
-            {/* TO DO Advanced Content
-            <button className="qa-questions-modal-button">
-              Upload Your Photos
-            </button> */}
             <button className="qa-questions-modal-button" type="submit">
-              Submit Answer
+              Submit Question
             </button>
             <button className="qa-questions-modal-button" onClick={() => modalRef.current.close()}>
               Close
@@ -90,8 +87,8 @@ var AddAnswerList = (props) => {
           *Mandatory
         </p>
       </AddAnswerModal>
-    </React.Fragment>
+    </div>
   );
 };
 
-export default AddAnswerList;
+export default AddQuestionList;

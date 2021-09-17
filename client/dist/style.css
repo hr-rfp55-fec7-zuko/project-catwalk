@@ -178,6 +178,24 @@ h3 {
 
 /*========= ======================== ===========*/
 
+.po-main-top {
+  position: relative;
+  display: flex;
+  height: 80%;
+}
+
+.po-main-left {
+  width: 60%;
+  z-index: 20;
+}
+
+.po-main-right {
+  width: 40%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .style-img {
   width: 50px;
   height: 50px;
@@ -208,8 +226,24 @@ h3 {
   display: flex;
 }
 
+.po-add-cart {
+  display: grid;
+}
+
+.select-parent{
+  position: relative;
+}
+
 .select-menus {
   display: flex;
+  position: absolute;
+  z-index: 10;
+  /* top:20px */
+}
+
+.add-cart-feat {
+  position: absolute;
+  top: 20px
 }
 
 .po-desc-text {
@@ -231,13 +265,105 @@ li {
   margin: 0 10px;
 }
 
-.selected {
-  border: solid red;
+.style-element {
+  width: 70px;
+  height: 74px;
 }
+
+.selected {
+  position: relative;
+  right: -65%;
+  top: -65px;
+  background: white;
+  border-radius: 50%;
+  border-width: 0;
+}
+
+
 
 /* .style-element { position: relative; }
 .style-element .style-img { display: block; }
 .style-element .selected { position: absolute; top:0; right:0; } */
+
+.po-image-gallery {
+  background: white;
+}
+
+.carousel {
+  position: relative;
+  height: 500px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.carousel__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel__track-container {
+  position: relative;
+  background-color: rosybrown;
+  height: 100%;
+  width: 100%;
+}
+
+.carousel__slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  margin: 0;
+  cursor: zoom-in;
+}
+
+.expanded-slide {
+  cursor: crosshair;
+}
+
+.carousel__track {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.carousel__button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  cursor: pointer;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0.6;
+  transition: 0.3s;
+  color: #fff;
+}
+
+.carousel__button:hover {
+  opacity: 1;
+}
+
+.carousel__button--left {
+  left: 50px;
+  z-index: 10;
+}
+
+.carousel__button--right {
+  right: 20px;
+}
+
+.carousel__button--expand {
+  top: 5%;
+  right: 5%;
+  border-radius: 10%;
+}
+
+
 
 
 
@@ -251,6 +377,10 @@ li {
   height: fixed;
 
 } */
+
+.form-question {
+  padding: 10px;
+}
 
 .review-list, .review-tile {
   border: 1px solid black;
@@ -306,14 +436,11 @@ li {
   color: #f8ce0b;
 }
 
-
 /* .rating-bar-container {
   max-width: 100%;
   display: inline-block;
   position: relative;
 } */
-
-
 
 .rating-bar-outer {
   width: 210px;
@@ -336,7 +463,96 @@ li {
   right: 5px;
 }
 
+.product-bar-container {
+  display: flex;
+  flex-flow: row wrap;
+}
 
+.product-bar-outer {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-evenly;
+  width: 300px;
+  height: 30px;
+  /* display: inline-block; */
+  background-color: white;
+
+}
+
+.product-bar-inner-fill:empty {
+  display: block;
+  height: 100%;
+  width: 30%;
+  background-color: lightgray;
+}
+
+.product-bar-inner-fill.one {
+  order: 1;
+}
+
+.product-bar-inner-fill.two {
+  order: 2;
+}
+
+.product-bar-inner-fill.three {
+  order: 3;
+}
+
+.product-bar-inner-fill.target::after {
+  content: "\f005";
+  color: blue;
+}
+
+.target {
+  background-color: lightgray;
+  height: 100%;
+  width: 30%;
+}
+
+/*doesn't do anything right now*/
+.target-buffer:empty {
+  background-color: lightgray;
+  /* width: 30%; */
+  /* padding: 25px; */
+}
+
+/* .qa-questions-modal-wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+} */
+
+.add-review-modal-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: rgba(0,0,0,0.3);
+}
+
+.add-review-modal-box {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow-y: auto;
+  height: 70%;
+  width: 60%;
+  background-color:white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+  z-index: 101;
+  padding: 40px;
+}
+
+.add-review-modal-button {
+  font-family:'Montserrat',sans-serif;
+  font-size: 16px;
+  color: #000;
+}
 
 
 /*
@@ -382,14 +598,19 @@ li {
   background-color: rgba(0,0,0,0.3);
 }
 
+.qa-mainlist {
+  max-height: 100vh;
+  overflow: scroll;
+}
+
 .qa-questions-modal-box {
   position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   overflow-y: auto;
-  height: 70%;
-  width: 60%;
+  height: 50%;
+  width: 50%;
   background-color:white;
   box-shadow: 0 0 10px rgba(0,0,0,0.25);
   z-index: 101;
@@ -401,3 +622,100 @@ li {
   font-size: 16px;
   color: #000;
 }
+
+.qa-searchBar {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-image: url(https://cdn2.hubspot.net/hubfs/4004166/bioticresearch_website_assets/images/search_icon.png);
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-color: white;
+  border: 1px solid;
+}
+
+.qa-eachA {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  align-items: baseline;
+}
+
+.break {
+  flex-basis: 100%;
+  height: 0;
+}
+
+.qa-eachQ {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.qa-answers-A, .qa-questions {
+  font-weight: 900;
+  font-size: 16px;
+}
+
+.qa-answers-main {
+  font-size: 14px;
+  top: 10px;
+  bottom: 10px;
+  padding-left: 5px;
+}
+
+.qa-questions-side, .qa-answers-helpfulness, .qa-answers-side {
+  font-size: 12px;
+  padding-right: 8px;
+}
+
+.qa-answers-side {
+  font-size: 12px;
+  margin-top: 10px;
+  padding-left: 20px;
+  padding-right: 8px;
+}
+/* .qa-questions-add-answer {
+  padding-left: 8px;
+  padding-right: 8px;
+  font-size: 12px;
+} */
+
+.qa-answers-report {
+  font-size: 12px;
+}
+
+#qa-Yes {
+  text-decoration: underline;
+}
+
+.qa-button {
+  font-family:'Montserrat',sans-serif;
+  padding: 15px;
+  background-color: white;
+  font-weight: 900;
+  margin-top: 20px;
+  margin-right: 20px;
+  border: 1px solid;
+}
+
+.qa-button-icon {
+  padding-left: 5px;
+}
+
+.qa-twoButtons {
+  display: flex;
+}
+.qa-load {
+  font-family:'Montserrat',sans-serif;
+  background-color: white;
+  font-weight: 1000;
+  font-size: 12px;
+  border: none;
+  padding-left: 20px;
+}
+
