@@ -18,7 +18,6 @@ class QuestionEntryList extends React.Component {
   }
 
   render() {
-    console.log(this.props.lists);
     if (this.props.lists.length === 0) {
       return <div></div>;
     } else {

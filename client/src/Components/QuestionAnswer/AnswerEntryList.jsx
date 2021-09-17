@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AnswerCountList from './AnswerCountList.jsx';
 import AnswerReportList from './AnswerReportList.jsx';
+import AnswerPhotoList from './AnswerPhotoList.jsx';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -39,6 +40,10 @@ var AnswerEntryList = (props) => {
         <p className="qa-answers-main">
           {item.body}
         </p>
+        <div className="break"></div>
+        {item.photos.length !== 0 &&
+          <AnswerPhotoList photos={item.photos} />
+        }
         <p className="break"></p>
         <p className="qa-answers-side">
           by {item.answerer_name}, {moment(item.date).format('LL')} |
