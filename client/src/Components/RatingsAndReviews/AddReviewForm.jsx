@@ -5,17 +5,80 @@ class AddReviewForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {}
+    this.state = {
+      'product_id': this.props.product_id,
+      rating: '',
+      summary: '',
+      body: '',
+      recommended: '',
+      name: '',
+      email: '',
+      photos: [],
+    }
 
     this.closeModal = this.closeModal.bind(this);
 
     this.handleStringFormChange = this.handleStringFormChange.bind(this)
     this.handleRadioFormChange = this.handleRadioFormChange.bind(this)
+
+    this.submitReviewForm = this.submitReviewForm.bind(this)
   }
 
   submitReviewForm(event){
     event.preventDefault()
-    this.props.submitReviewForm()
+
+    let characteristics = {}
+
+    for (var property in this.state) {
+      if (!this.state[property]) {
+        console.log('property', property)
+        alert(`Please complete required fields: ${property}`)
+      }
+
+      if (property.includes('characteristics')) {
+        var splitInput = property.split('.')
+        var newProperty = splitInput[1]
+        dataBody.characteristics[newProperty] = this.state[property]
+      }
+
+      var dataBody = {
+        'product_Id': parseInt(this.state.rating),
+        'rating': parseInt(this.state.rating),
+        'summary': this.state.summary + '',
+        'body': this.state.body + '',
+        'recommended': this.state.recommended === 'No' ? false : true,
+        'email': this.state.email + '',
+        'photos': this.state.photos,
+        'characteristics': characteristics
+      }
+
+      // dataBody['product_Id'] = parseInt(this.state.rating)
+      // dataBody['rating'] = parseInt(this.state.rating)
+      // dataBody['summary'] = this.state.summary + ''
+      // dataBody['body'] = this.state.body + ''
+      // dataBody['recommended'] = this.state.recommended === 'No' ? false : true
+      // dataBody['email'] = this.state.email + ''
+      // dataBody['photos'] = this.state.photos
+    }
+
+    // console.log('dataBody', dataBody)
+
+    //format data object
+
+    //if any mandatory fields are blank display an error (h)
+
+    let temp = {
+      "product_id": 40344,
+      "rating": 5,
+      "summary": "Very good",
+      "body": "lorem ipsum",
+      "recommend": true,
+      "name": "tester",
+      "email": "tester@tester.com",
+      "photos": [],
+      "characteristics": {}
+    }
+    this.props.submitReviewForm(temp)
 
   }
 
@@ -45,7 +108,7 @@ class AddReviewForm extends React.Component {
         <div className="add-review-modal-backdrop"></div>
 
         <div className="add-review-modal-box">
-        <button type="button" onClick={this.closeModal}>Close Window</button>
+        <button type="button" className="add-review-modal-button" onClick={this.closeModal}>Close Window</button>
 
         <div className="add-review-form">
           <h3>Write Your Review</h3>
@@ -54,7 +117,7 @@ class AddReviewForm extends React.Component {
 
           <div className="form-question">
             <label className='form-category'>What is your nickmake?*</label><br/>
-            <input type="text" maxLength="60" placeholder="jackson11!" id= "name" name="name" value={this.state.name} onChange={this.handleStringFormChange}/>
+            <input type="text" maxLength="60" placeholder="jackson11!" id= "name" name="name" value={this.state.name} onChange={this.handleStringFormChange} required/>
             <small><p>For privacy reasons, do not use your full name or email address</p></small>
             </div>
 
@@ -113,7 +176,7 @@ class AddReviewForm extends React.Component {
             </div>
 
             <div className="form-question">
-            <button type="submit" onClick={this.submitReviewForm}>Submit Reivew</button>
+            <button type="submit" className="add-review-modal-button" onClick={this.submitReviewForm}>Submit Reivew</button>
             </div>
 
           </form>
