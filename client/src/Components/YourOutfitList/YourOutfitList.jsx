@@ -1,5 +1,8 @@
 import React from 'react';
+import Outfit from './Outfit.jsx';
+import RelatedProductCard from '../RelatedProducts/RelatedProductCard.jsx';
 import YourOutfitCard from './YourOutfitCard.jsx';
+
 
 const axios = require('axios');
 
@@ -10,10 +13,24 @@ class YourOutfitList extends React.Component {
       productStyles: '',
       productInfo: '',
       outfits: [],
+      outfitRenderList: []
     };
 
     this.addOutfit = this.addOutfit.bind(this);
     this.deleteOutfit = this.deleteOutfit.bind(this);
+    this.refeshOutfit = this.refeshOutfit.bind(this);
+  }
+
+  refeshOutfit() {
+    axios.get('/outfit')
+      .then(({ data }) => {
+        this.setState({
+          outfits: data
+        });
+      })
+      .catch((err) => {
+        console.log('Error getting product style in YourOutfit', err);
+      });
   }
 
   componentDidMount() {
@@ -39,85 +56,17 @@ class YourOutfitList extends React.Component {
           console.log('Error getting product style in YourOutfit', err);
         });
 
-      axios.get(`/outfit`)
-        .then(({ data }) => {
-          this.setState({
-            outfits: data
-          });
-        })
-        .catch((err) => {
-          console.log('Error getting product style in YourOutfit', err);
-        });
+      this.refeshOutfit();
     }
   }
 
   addOutfit() {
-    const { productId } = this.props;
-    const { outfits } = this.state;
-
-
-
-
-
+    const { productId, productInfo } = this.props;
+    const { outfits, outfitRenderList } = this.state;
 
     axios.post('/outfit', { productId: productId })
-      .then(() => {
-
-
-      });
-
-
-    // .then(({ data }) => {
-    //   let newOutfit = productId[productId];
-    //   outfits.push(newOutfit);
-    //   this.setState({
-    //     outfits: outfits
-    //   });
-    //   console.log(outfits);
-    // })
-    // .catch((err) => {
-    //   console.log('Error getting product style in YourOutfit', err);
-    // });
-    // .then(({ data }) => {
-    //   let idx;
-    //   let IdNewOutfit = productId[productId];
-    //   // outfits.forEach((outfitId, i) => {
-    //   //   if (outfitId === IdNewOutfit) {
-    //   //     idx = i;
-    //   //   }
-    //   // });
-
-    //   // if (idx >= 0) {
-    //   //   console.log('This product already added');
-    //   // } else {
-
-    //     outfits.push(IdNewOutfit);
-    //     this.setState({
-    //       outfits: outfits,
-    //     });
-    //     console.log(outfits);
-    //  // }
-
-
-    //   // })
-    //   .catch ((err) => {
-    //   console.log('Error getting product style in YourOutfit', err);
-    // });
-
-  }
-
-
-  deleteOutfit() {
-    const { productId } = this.props;
-    const { outfits } = this.state;
-
-    axios.delete(`/outfit/${productId}`)
       .then(({ data }) => {
-        outfits.pop(productId);
-        this.setState({
-          outfits: outfits
-        });
-        console.log(outfits);
+        this.refeshOutfit();
       })
       .catch((err) => {
         console.log('Error getting product style in YourOutfit', err);
@@ -125,14 +74,32 @@ class YourOutfitList extends React.Component {
   }
 
 
+  deleteOutfit() {
+    const { productId } = this.props;
+    const { outfits, outfitRenderList } = this.state;
+
+    axios.delete(`/outfit/${productId}`)
+      .then(({ data }) => {
+        outfits.pop(productId);
+        this.setState({
+          outfits: outfits
+        });
+      })
+      .catch((err) => {
+        console.log('Error getting product style in YourOutfit', err);
+      });
+  }
+
+
+
   render() {
-    const { outfits } = this.state;
+    const { outfits, outfitRenderList } = this.state;
     console.log(outfits);
     return (
       <div>
         <h2>Your outfit</h2>
         <div className="YourOutfit">
-          <div className="cardWrapper" onClick={this.addOutfit} >
+          <div className="cardWrapper" onClick={this.addOutfit}>
             <div className='AddOutfitContent card '><span>+ Add To Your Outfit</span>
             </div>
           </div>
@@ -142,6 +109,16 @@ class YourOutfitList extends React.Component {
           </div>
           <div>
 
+            {outfits.map((product, i) => {
+              <Outfit />
+              // console.log('test:', product)
+            //   <RelatedProductCard
+            //   parentProductId={productId}
+            //   productId={product.productId}
+            //   parentProductIdInfo={parentProductIdInfo}
+            //   key={product}
+            // />
+            })}
           </div>
         </div>
       </div>

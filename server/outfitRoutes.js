@@ -12,27 +12,29 @@ router.post('/', (req, res) => {
   var userId = fixUserID;
   var data = req.body;
   let outfitArr = [];
+
   if (!(userId in outfits)) {
     outfits[userId] = [data];
-
   } else {
     outfitArr = outfits[userId];
     for (let i = 0; i < outfitArr.length; i++) {
       if (outfitArr[i].productId !== data.productId) {
         outfits[userId].unshift(data);
-        res.status(201).send(data);
+        break;
       }
     }
   }
+
+  res.status(201).send(data);
 });
 
 router.get('/', (req, res) => {
   var userId = fixUserID;
 
   if (!(userId in outfits)) {
-    res.send([]);
+    res.json([]);
   } else {
-    res.send(outfits[userId]);
+    res.json(outfits[userId]);
   }
 });
 
@@ -52,7 +54,7 @@ router.delete('/:productId', (req, res) => {
     }
   }
 
-  res.send('');
+  res.json({});
 });
 
 module.exports = router;
