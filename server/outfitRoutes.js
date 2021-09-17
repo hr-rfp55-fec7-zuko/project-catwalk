@@ -24,13 +24,11 @@ router.post('/', (req, res) => {
       }
     }
   }
-
   res.status(201).send(data);
 });
 
 router.get('/', (req, res) => {
   var userId = fixUserID;
-
   if (!(userId in outfits)) {
     res.json([]);
   } else {

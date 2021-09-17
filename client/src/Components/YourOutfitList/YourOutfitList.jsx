@@ -20,7 +20,7 @@ class YourOutfitList extends React.Component {
     this.addOutfit = this.addOutfit.bind(this);
     this.deleteOutfit = this.deleteOutfit.bind(this);
     this.refeshOutfit = this.refeshOutfit.bind(this);
-    this.renderOutfit = this.renderOutfit.bind(this);
+    // this.renderOutfit = this.renderOutfit.bind(this);
   }
 
   componentDidMount() {
@@ -39,32 +39,12 @@ class YourOutfitList extends React.Component {
       });
   }
 
-  renderOutfit(productStyles, productInfo) {
-    const { outfitRenderList } = this.state;
-    let temp = [...outfitRenderList, <div className='cardWrapper'>
-      <div className='pic'>
-        <img src='https://images.unsplash.com/photo-1562542082-519ebcdb43e6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80'></img>
-      </div>
-      <div className='info'>
-        <p className='category'>{productInfo.category}</p>
-        <h3 className='title'>{productInfo.name}</h3>
-        <p className='price'>${productInfo.default_price}</p>
-      </div>
-    </div>
-    ];
-    this.setState({
-      outfitRenderList: temp
-    });
-  }
-
 
   addOutfit() {
     const { productId } = this.props;
 
     axios.post('/outfit', { productId: productId })
-      // .then(({ data }) => {
-      //  // this.refeshOutfit();
-      // })
+
       .then(({ data }) => {
         let productId = data.productId;
         axios.get(`/products/${productId}`)
@@ -82,13 +62,30 @@ class YourOutfitList extends React.Component {
             this.setState({
               productStyles: data
             });
-            let newoutfitRenderList = this.renderOutfit(this.state.productStyles, this.state.productInfo, this.outfitRenderList);
-            // console.log(this.state.outfitRenderList);
+            const { productInfo, productStyles, outfitRenderList } = this.state;
+            this.refeshOutfit();
+
+            let newRenderOutList = [...outfitRenderList, <div className='cardWrapper' key={productInfo.id}>
+              <div className='pic' >
+                <img src={'https://images.unsplash.com/photo-1562542082-519ebcdb43e6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80'}></img>
+              </div>
+              <div className='info'>
+                <p className='category'>{productInfo.category}</p>
+                <h3 className='title'>{productInfo.name}</h3>
+                <p className='price'>${productInfo.default_price}</p>
+              </div>
+            </div>
+            ];
+            this.setState({
+              outfitRenderList: newRenderOutList
+            });
+
           })
           .catch((err) => {
             console.log('Error getting product style in YourOutfit', err);
           });
       })
+
       .catch((err) => {
         console.log('Error getting product style in YourOutfit', err);
       });
