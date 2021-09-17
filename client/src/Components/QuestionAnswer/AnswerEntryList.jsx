@@ -6,7 +6,6 @@ import moment from 'moment';
 
 var AnswerEntryList = (props) => {
   const [answerList, setAnswerList] = useState([]);
-
   useEffect(()=> {
     let mounted = true;
     GetAnswerList(props.questionId)
@@ -22,16 +21,19 @@ var AnswerEntryList = (props) => {
     <div>
       {answerList.map(item => {
         return (
-          <li>
-            <div className="qa-answers-main">
-              A: {item.body}
-            </div>
-            <div className="qa-answers-side">
+          <div>
+            <p className="qa-answers-A">
+              A:
+            </p>
+            <p className="qa-answers-main">
+              {' ' + item.body}
+            </p>
+            <p className="qa-answers-side">
               by {item.answerer_name}, {moment(item.date).format('LL')}
-            </div>
+            </p>
             <AnswerCountList helpfulness={item.helpfulness} answerId={item.answer_id}/>
             <AnswerReportList answerId={item.answer_id}/>
-          </li>
+          </div>
         );
       }
       )}
@@ -51,4 +53,4 @@ var GetAnswerList = (num) => {
   );
 };
 
-export {AnswerEntryList, GetAnswerList};
+export default AnswerEntryList;
