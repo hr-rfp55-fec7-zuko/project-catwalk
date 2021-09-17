@@ -19,7 +19,7 @@ class RatingsAndReviews extends React.Component {
 
     this.state = {
       // 'product_id': this.props.product_id,
-      'product_id': 40345, //DELETE THIS AND UNCOMMENT LINE ABOVE WHEN NOT TESTING SAMPLE DATA
+      'product_id': 40346, //DELETE THIS AND UNCOMMENT LINE ABOVE WHEN NOT TESTING SAMPLE DATA
       reviewLimit: 2,
       metaData: exampleMetaData,
       reviews: exampleReviews,

@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
+import CharacteristicRadioFormField from './helpers/CharacteristicRadioFormField.jsx'
+
+
+
 class AddReviewForm extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +24,6 @@ class AddReviewForm extends React.Component {
 
     this.handleStringFormChange = this.handleStringFormChange.bind(this)
     this.handleRadioFormChange = this.handleRadioFormChange.bind(this)
-
     this.submitReviewForm = this.submitReviewForm.bind(this)
   }
 
@@ -51,33 +54,8 @@ class AddReviewForm extends React.Component {
         'photos': this.state.photos,
         'characteristics': characteristics
       }
-
-      // dataBody['product_Id'] = parseInt(this.state.rating)
-      // dataBody['rating'] = parseInt(this.state.rating)
-      // dataBody['summary'] = this.state.summary + ''
-      // dataBody['body'] = this.state.body + ''
-      // dataBody['recommended'] = this.state.recommended === 'No' ? false : true
-      // dataBody['email'] = this.state.email + ''
-      // dataBody['photos'] = this.state.photos
     }
 
-    console.log('dataBody', dataBody)
-
-    //format data object
-
-    //if any mandatory fields are blank display an error (h)
-
-    let temp = {
-      "product_id": 40344,
-      "rating": 5,
-      "summary": "Very good",
-      "body": "lorem ipsum",
-      "recommend": true,
-      "name": "tester",
-      "email": "tester@tester.com",
-      "photos": [],
-      "characteristics": {}
-    }
     this.props.submitReviewForm(temp)
 
   }
@@ -95,13 +73,13 @@ class AddReviewForm extends React.Component {
     this.setStateProperty(event.target.name, event.target.id)
   }
 
-
   closeModal() {
     this.props.toggleAddReviewFormVisible()
   }
 
   render() {
     let characteristics = this.props.characteristics;
+    var characteristicsArray = Object.entries(characteristics);
 
     return ReactDom.createPortal(
       <div className="add-review-modal-wrapper" >
@@ -143,19 +121,52 @@ class AddReviewForm extends React.Component {
 
             <div className="form-question">
             <label className="form-category">Characteristics*</label><br/>
-            <div onChange={this.handleRadioFormChange}>Placeholder Characteristic
-            <label htmlFor="1">1</label>
-            <input type="radio" id="1" name="characteristics.quality"></input>
-            <label htmlFor="1">2</label>
-            <input type="radio" id="2" name="characteristics.quality"></input>
-            <label htmlFor="1">3</label>
-            <input type="radio" id="3" name="characteristics.quality"></input>
-            <label htmlFor="1">4</label>
-            <input type="radio" id="4" name="characteristics.quality"></input>
-            <label htmlFor="1">5</label>
-            <input type="radio" id="5" name="characteristics.quality"></input>
+
+
+            {characteristicsArray.map((characteristic) => <CharacteristicRadioFormField key={characteristic[1].id} characteristic={characteristic[0]} handleRadioFormChange={this.handleRadioFormChange}/>)}
+
+            {/* {characteristics.Quality &&
+            <>
+            <div onChange={this.handleRadioFormChange} className='characteristic-form-field'>
+            <h3 className='form-sub-head'>Quality</h3>
+
+
+            <label htmlFor="1" className='characteristic-form-label'>1</label>
+            <input type="radio" id="1" name="characteristics.quality" className='form-radio-button'/>
+
+            <label htmlFor="2" className='characteristic-form-label'>2</label>
+            <input type="radio" id="2" name="characteristics.quality" className='form-radio-button'/>
+
+            <label htmlFor="3" className='characteristic-form-label'>3</label>
+            <input type="radio" id="3" name="characteristics.quality" className='form-radio-button'/>
+
+            <label htmlFor="4" className='characteristic-form-label'>4</label>
+            <input type="radio" id="4" name="characteristics.quality" className='form-radio-button'/>
+
+            <label htmlFor="5" className='characteristic-form-label'>5</label>
+            <input type="radio" id="5" name="characteristics.quality" className='form-radio-button'/>
+
             </div>
-            </div>
+            </>
+
+            } */}
+
+
+             {/* <div onChange={this.handleRadioFormChange}>Quality
+              <label htmlFor="1">1</label>
+                <input type="radio" id="1" name="characteristics.quality"></input>
+              <label htmlFor="1">2</label>
+                <input type="radio" id="2" name="characteristics.quality"></input>
+              <label htmlFor="1">3</label>
+                <input type="radio" id="3" name="characteristics.quality"></input>
+              <label htmlFor="1">4</label>
+                <input type="radio" id="4" name="characteristics.quality"></input>
+              <label htmlFor="1">5</label>
+                <input type="radio" id="5" name="characteristics.quality"></input>
+            </div> */}
+
+
+        </div>
 
             <div className="form-question">
             <label className="form-category">Review Summary</label><br/>
@@ -188,3 +199,10 @@ class AddReviewForm extends React.Component {
 }
 
 export default AddReviewForm;
+
+
+/*
+
+{characteristicsArray.map((characteristic) => <CharacteristicRadioFormField key={characteristic[1].id} characteristic={characteristic[0]} handleRadioFormChange={this.handleRadioFormChange}/>)}
+
+*/
