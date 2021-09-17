@@ -83,7 +83,7 @@ class ImageGallery extends React.Component {
               <ul className='carousel__track'>
                 {fullPhotos.map((image, index) => {
                   return (
-                    <li key={index} className={this.state.expanded ? 'carousel__slide expanded-slide' : 'carousel__slide'} onClick={!this.state.expanded ? this.expandSlide : this.zoomSlide}>
+                    <li key={index} className={this.state.expanded ? 'carousel__slide expanded-slide' : 'carousel__slide'} onClick={!this.state.expanded ? this.expandSlide : this.zoomSlide} style={this.state.zoomed ? {cursor: 'zoom-out'} : null }>
                       {index === this.state.current && (<img className='carousel__image' src={image} />)}
                     </li>
                   );

@@ -190,7 +190,7 @@ h3 {
 
 .po-main-left {
   width: 60%;
-  z-index: 20;
+  z-index: 3;
 }
 
 .po-main-right {
@@ -241,7 +241,7 @@ h3 {
 .select-menus {
   display: flex;
   position: absolute;
-  z-index: 10;
+  z-index: 2;
   /* top:20px */
 }
 
