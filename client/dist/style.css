@@ -277,6 +277,10 @@ li {
 .style-element .style-img { display: block; }
 .style-element .selected { position: absolute; top:0; right:0; } */
 
+.po-image-gallery {
+  background: white;
+}
+
 .carousel {
   position: relative;
   height: 500px;
