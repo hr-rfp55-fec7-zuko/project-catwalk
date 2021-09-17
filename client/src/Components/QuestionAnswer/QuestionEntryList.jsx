@@ -23,18 +23,19 @@ class QuestionEntryList extends React.Component {
         </div>
       );
     });
-    console.log(list);
+
     return (
       <div className="qa-list">
-        {list}
+        <div className="qa-mainlist">
+          {list}
+        </div>
         <br />
-        <button className="qa-load">
-          LOAD MORE ANSWERS
-        </button>
-        <button className="qa-button">
-          MORE ANSWERED QUESTIONS
-        </button>
-        <AddQuestionList pName={this.props.prodName} pId={this.props.prodId}/>
+        <div className="qa-twoButtons">
+          <button className="qa-button">
+            MORE ANSWERED QUESTIONS
+          </button>
+          <AddQuestionList pName={this.props.prodName} pId={this.props.prodId}/>
+        </div>
         {/* <button className="qa-button">
           ADD A QUESTION +
         </button> */}
