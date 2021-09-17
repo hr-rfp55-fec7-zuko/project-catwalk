@@ -416,14 +416,11 @@ li {
   color: #f8ce0b;
 }
 
-
 /* .rating-bar-container {
   max-width: 100%;
   display: inline-block;
   position: relative;
 } */
-
-
 
 .rating-bar-outer {
   width: 210px;
@@ -446,14 +443,66 @@ li {
   right: 5px;
 }
 
+.product-bar-container {
+  display: flex;
+  flex-flow: row wrap;
+}
 
-.qa-questions-modal-wrapper {
+.product-bar-outer {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-evenly;
+  width: 300px;
+  height: 30px;
+  /* display: inline-block; */
+  background-color: white;
+
+}
+
+.product-bar-inner-fill:empty {
+  display: block;
+  height: 100%;
+  width: 30%;
+  background-color: lightgray;
+}
+
+.product-bar-inner-fill.one {
+  order: 1;
+}
+
+.product-bar-inner-fill.two {
+  order: 2;
+}
+
+.product-bar-inner-fill.three {
+  order: 3;
+}
+
+.product-bar-inner-fill.target::after {
+  content: "\f005";
+  color: blue;
+}
+
+.target {
+  background-color: lightgray;
+  height: 100%;
+  width: 30%;
+}
+
+/*doesn't do anything right now*/
+.target-buffer:empty {
+  background-color: lightgray;
+  /* width: 30%; */
+  /* padding: 25px; */
+}
+
+/* .qa-questions-modal-wrapper {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-}
+} */
 
 .add-review-modal-backdrop {
   position: fixed;
