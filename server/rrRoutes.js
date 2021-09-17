@@ -76,7 +76,8 @@ router.put('/:review_id/helpful', (req, res) => {
   APIQuery('PUT', endpath, query, body)
     .then((data) => {
       // console.log('put request data', data)
-      res.status(205).send(data)})
+      res.status(205).send(data);
+    })
     .catch((error) => res.status(401).send(error));
 
 

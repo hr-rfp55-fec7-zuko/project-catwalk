@@ -16,7 +16,7 @@ const ComparisonModal = (props) => {
             (obj) => obj.value === feature.value
           ) ? (<span className='checkMark'>&#10003;</span>) : ('')}
         </td>
-        <td className="check2">{feature.value}</td>
+        <td className="check2">{feature.feature} : {feature.value}</td>
         <td>
           {compareProduct.features.find(
             (obj) => obj.value === feature.value

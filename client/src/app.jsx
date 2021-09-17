@@ -17,7 +17,8 @@ class App extends React.Component {
     this.state = {
       'product_id': '40344',
       'product_name': 'Camo Onesie',
-      avgRating: null
+      avgRating: null,
+      totalReviews: null
     };
   }
 
@@ -31,21 +32,24 @@ class App extends React.Component {
       method: 'GET'
     })
       .then((results) => results.data.ratings)
-      .then((ratingsObj) => helpers.determineAverageRating(ratingsObj))
-      .then((avgRating) => this.setState({avgRating: avgRating}))
+      .then((ratingsObj) => {
+        this.setState({
+          totalReviews: helpers.determineTotalReviews(ratingsObj),
+          avgRating: helpers.determineAverageRating(ratingsObj)
+        });
+      })
       .catch((error) => console.log(error));
   }
 
   render() {
     return (
       <div>
-
-        Hello from React! This is a test for merge conflict from Iris.
-        <ProductOverview productId={this.state.product_id} avgRating={this.state.avgRating} />
-        <QuestionAnswer productId={this.state.product_id} />
+        <br />LOGO HERE<br />Sale Link Here<br />
+        <ProductOverview productId={this.state.product_id} avgRating={this.state.avgRating} totalReviews={this.state.totalReviews} />
+        <QuestionAnswer productId={this.state.product_id} productName={this.state.product_name} />
         <RelatedProductsView productId={this.state.product_id} />
-        <YourOutfitList productId={this.state.product_id}/>
-        <RatingsAndReviews product_id={this.state.product_id} product_name={this.state.product_name}/>
+        <YourOutfitList productId={this.state.product_id} />
+        <RatingsAndReviews product_id={this.state.product_id} product_name={this.state.product_name} />
       </div>
     );
   }

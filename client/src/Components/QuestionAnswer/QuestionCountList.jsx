@@ -16,13 +16,13 @@ var QuestionCountList = (props) => {
   };
 
   return (
-    <a className="qa-questions-helpfulness" onClick={handleClick}>Helpful? Yes({count}) </a>
+    <a className="qa-questions-side" onClick={handleClick}>Helpful?   <span id="qa-Yes">Yes</span>  ({count})</a>
   );
 };
 
 var MarkQuestionHelpful = (num) => {
   return (
-    axios.put('/qa/questions/:question_id/helpful', {params: {qId: num}})
+    axios.put('/qa/questions/:question_id/helpful', {params: {qId: num, page: 1, count: 10}})
   );
 };
 

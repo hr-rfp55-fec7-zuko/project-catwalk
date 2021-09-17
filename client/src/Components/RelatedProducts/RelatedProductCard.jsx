@@ -73,7 +73,7 @@ class RelatedProductCard extends React.Component {
       method: 'GET'
     })
       .then((results) => {
-        console.log(results.data);
+        // console.log(results.data);
         this.setState({ avgRating: results.data.ratings});
       })
 
