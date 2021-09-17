@@ -13,6 +13,7 @@ class ImageGallery extends React.Component {
     this.prevSlide = this.prevSlide.bind(this);
     this.expandSlide = this.expandSlide.bind(this);
     this.zoomSlide = this.zoomSlide.bind(this);
+    this.setSlideFromThumbnail = this.setSlideFromThumbnail.bind(this);
   }
 
   nextSlide() {
@@ -44,6 +45,12 @@ class ImageGallery extends React.Component {
     //console.log('you want to zoom');
     this.setState({
       zoomed: !this.state.zoomed
+    });
+  }
+
+  setSlideFromThumbnail(index) {
+    this.setState({
+      current: index
     });
   }
 
@@ -88,7 +95,8 @@ class ImageGallery extends React.Component {
                   <img
                     key={index}
                     src={image}
-                    className={index === this.state.current ? 'thumbnail__slide thumbnail__slide-current' : 'thumbnail__slide'} />
+                    className={index === this.state.current ? 'thumbnail__slide thumbnail__slide-current' : 'thumbnail__slide'}
+                    onClick={() => this.setSlideFromThumbnail(index)} />
                 );
               })}
             </div>
