@@ -183,16 +183,21 @@ h3 {
 /*========= ======================== ===========*/
 
 .po-main-top {
+  position: relative;
   display: flex;
   height: 80%;
 }
 
 .po-main-left {
   width: 60%;
+  z-index: 20;
 }
 
 .po-main-right {
   width: 40%;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .style-img {

@@ -29,6 +29,10 @@ class ImageGallery extends React.Component {
 
   expandSlide() {
     console.log('you want to expand the image');
+    this.setState({
+      expanded: !this.state.expanded
+    });
+    this.props.expandSlide();
   }
 
   componentDidUpdate(prevProps) {
@@ -55,9 +59,8 @@ class ImageGallery extends React.Component {
     if (this.state.photos[`${this.props.selectedStyle}_full`]) {
       var length = fullPhotos.length;
       return (
-        <div id='po-image-gallery' >
+        <div className='po-image-gallery' >
           <div className='image-thumbnails' >
-
           </div>
           <div className='carousel'>
             {this.state.current !== 0 && (<button className='carousel__button carousel__button--left' onClick={this.prevSlide} >

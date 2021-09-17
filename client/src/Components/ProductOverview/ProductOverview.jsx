@@ -15,11 +15,13 @@ class ProductOverview extends React.Component {
       id: this.props.productId,
       features: [],
       styles: [],
-      style: {}
+      style: {},
+      expanded: false
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getStyleInfo = this.getStyleInfo.bind(this);
     this.setStyleSelection = this.setStyleSelection.bind(this);
+    this.expandSlide = this.expandSlide.bind(this);
   }
 
   getProductInfo(id) {
@@ -61,12 +63,18 @@ class ProductOverview extends React.Component {
     }
   }
 
+  expandSlide() {
+    this.setState({
+      expanded: !this.state.expanded
+    });
+  }
+
   render() {
     return (
       <div className='po-main'>
         <div className='po-main-top'>
-          <div className='po-main-left'>
-            <ImageGallery styles={this.state.styles} selectedStyle={this.state.style.style_id} />
+          <div className='po-main-left' style={this.state.expanded ? {width: '100%'} : {width: '60%'} }>
+            <ImageGallery styles={this.state.styles} selectedStyle={this.state.style.style_id} expandSlide={this.expandSlide} />
           </div>
           <div className='po-main-right'>
             <div className='po-reviews'>
