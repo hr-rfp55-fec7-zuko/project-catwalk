@@ -62,8 +62,10 @@ class YourOutfitList extends React.Component {
             this.setState({
               productStyles: data
             });
-            const { productInfo, productStyles, outfitRenderList } = this.state;
+            const { productInfo, productStyles, outfitRenderList, outfits } = this.state;
             this.refeshOutfit();
+
+
 
             let newRenderOutList = [...outfitRenderList, <div className='cardWrapper' key={productInfo.id}>
               <div className='pic' >
