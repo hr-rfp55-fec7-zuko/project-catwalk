@@ -321,13 +321,19 @@ li {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: transparent;
   border: 0;
   cursor: pointer;
   border-radius: 50%;
   height: 30px;
   width: 30px;
-  background-color: rgba(255,255,255,0.5);
+  background-color: rgba(0, 0, 0, 0.7);
+  opacity: 0.6;
+  transition: 0.3s;
+  color: #fff;
+}
+
+.carousel__button:hover {
+  opacity: 1;
 }
 
 .carousel__button--left {
@@ -340,25 +346,11 @@ li {
 }
 
 .carousel__button--expand {
-  position: absolute;
   top: 5%;
   right: 5%;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
   border-radius: 10%;
-  height: 30px;
-  width: 30px;
-  background-color: rgba(255,255,255,0.5);
 }
 
-.fa-arrow-right .fa-arrow-left {
-  transition: all .2s ease-in-out;
-}
-
-.fa-arrow-right:hover .fa-arrow-left:hover {
-  transform: scale(1.1);
-}
 
 
 

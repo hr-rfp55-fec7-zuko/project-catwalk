@@ -90,7 +90,7 @@ class ImageGallery extends React.Component {
                 })}
               </ul>
             </div>
-            <button className='carousel__button--expand' onClick={this.expandSlide} >
+            <button className='carousel__button carousel__button--expand' onClick={this.expandSlide} >
               <i className="fas fa-expand fa-lg"></i>
             </button>
             {this.state.current !== length - 1 && (<button className='carousel__button carousel__button--right' onClick={this.nextSlide} >
