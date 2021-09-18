@@ -64,7 +64,7 @@ const buildBarSegment = function(barNumber, isTargetBar, innerPercentage) {
 
   let styleObj = {'padding-left': innerPercentage}
 
-  var bar = isTargetBar ? <div className={className} ><div className="product-bar carrat" style={ {paddingLeft: innerPercentage} }><FontAwesomeIcon icon={faCaretUp} /></div></div> : <div className={className}/>
+  var bar = isTargetBar ? <div className={className} ><div className="product-bar carrat" style={ {paddingLeft: innerPercentage} }><FontAwesomeIcon icon={faCaretUp} size={'2x'}/></div></div> : <div className={className}/>
 
   return (bar)
 
