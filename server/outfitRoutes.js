@@ -30,7 +30,6 @@ router.post('/', (req, res) => {
 
 router.get('/', (req, res) => {
   var userId = fixUserID;
-
   if (!(userId in outfits)) {
     res.json([]);
   } else {

@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+// import RelatedProductCard from '../RelatedProducts/RelatedProductCard.jsx';
 import YourOutfitCard from './YourOutfitCard.jsx';
-
-
 const axios = require('axios');
 
 class YourOutfitList extends React.Component {
@@ -9,10 +8,12 @@ class YourOutfitList extends React.Component {
     super(props);
     this.state = {
       outfits: [],
+      // outfitRenderList: [],
+      // addOutfit: ''
     };
 
     this.addOutfit = this.addOutfit.bind(this);
-    //this.deleteOutfit = this.deleteOutfit.bind(this);
+    // this.deleteOutfit = this.deleteOutfit.bind(this);
   }
 
   componentDidMount() {
@@ -70,6 +71,10 @@ class YourOutfitList extends React.Component {
             <div className='AddOutfitContent card '><span>+ Add To Your Outfit</span>
             </div>
           </div>
+          {/* <div className="cardWrapper" onClick={this.deleteOutfit} >
+            <div className='AddOutfitContent card '><span>+ Delete To Your Outfit</span>
+            </div>
+          </div> */}
           {outfitValue.map((outfitId) => (
             <YourOutfitCard
               outfitId={outfitId}
