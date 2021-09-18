@@ -55,7 +55,6 @@ class RelatedProductsList extends React.Component {
     });
     const carousel = document.getElementById('ProductCarousel');
     const amountLeftToScroll = carousel.scrollWidth - carousel.clientWidth;
-    console.log('amountLeftToScroll:', carousel.scrollWidth, carousel.clientWidth);
 
     carousel.scrollLeft += 316;
     if (carousel.scrollLeft >= amountLeftToScroll - 316) {
@@ -67,7 +66,16 @@ class RelatedProductsList extends React.Component {
 
   isOverflowing() {
 
+    const carousel = document.getElementById('productCarousel');
+    const bool = carousel.scrollWidth >= carousel.clientWidth;
+    console.log(carousel.scrollWidth, carousel.clientWidth);
+
+    this.setState({
+      cardOverflow: bool,
+      imagesToTheRight: bool,
+    });
   }
+
   render() {
     const { parentProductIdInfo, imagesToTheRight, imagesToTheLeft } = this.state;
     const { relatedProducts, productId } = this.props;
