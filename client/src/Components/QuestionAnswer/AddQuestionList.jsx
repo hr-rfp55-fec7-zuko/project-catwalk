@@ -36,8 +36,8 @@ var AddQuestionList = (props) => {
       alert('Please enter email in the correct format.');
     } else {
       axios.post('/qa/questions', {params: {body: answer, name: nickName, email: emailAdd, 'product_id': parseInt(props.pId)}})
-        .then(response => console.log('Success! from Question', response.status))
-        .catch(err => (console.log('Add Question POST Err', err)));
+        .then(response => props.updateQuestion(), modalRef.current.close())
+        .catch(err => console.log('Add Question POST Err', err));
     }
   };
 

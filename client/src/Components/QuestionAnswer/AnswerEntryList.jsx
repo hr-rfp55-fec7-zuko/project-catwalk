@@ -37,8 +37,7 @@ var AnswerEntryList = (props) => {
     }
   }, [props.questionId, subStatus, props.status]);
 
-
-  if (answerList.length === 0) {
+  if (!Array.isArray(answerList)) {
     return <div></div>;
   }
 
