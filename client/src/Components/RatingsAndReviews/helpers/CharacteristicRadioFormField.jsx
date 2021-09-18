@@ -1,5 +1,5 @@
 import React from 'react'
-// import ratingMeansings from './ratingMeanings.js';
+// import ratingMeanings from './ratingMeanings.js';
 
 class CharacteristicRadioFormField extends React.Component {
   constructor(props){

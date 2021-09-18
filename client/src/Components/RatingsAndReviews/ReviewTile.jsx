@@ -69,7 +69,7 @@ class ReviewTile extends React.Component {
 
         <div className="review-thumbnails">
         {review.photos.length > 0 &&
-          review.photos.map((photo) => <img src={photo.url} id={photo.id} height="20" width="20" className="review-thumbnail"/>)
+          review.photos.map((photo) => <img src={photo.url} id={photo.id} className="review-thumbnail"/>)
         }
         </div>
 
@@ -82,7 +82,7 @@ class ReviewTile extends React.Component {
 
 
         {review.response &&
-          <div className="review-response"><h3>Response</h3><br></br>{review.response}</div>
+          <div className="review-response"><h3>Response</h3>{review.response}</div>
         }
 
         <div className="helpful-or-report">Helpful?

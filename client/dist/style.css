@@ -377,6 +377,8 @@ li {
 
 .expanded-slide {
   cursor: crosshair;
+  /* object-fit: fill;
+  overflow: hidden; */
 }
 
 .carousel__track {
@@ -405,7 +407,6 @@ li {
 }
 
 .carousel__button--left {
-  left: 50px;
   z-index: 10;
 }
 
@@ -422,15 +423,16 @@ li {
 .thumbnail-container {
   display: flex;
   flex-direction: column;
-  height: 400px;
+  height: 466px;
   width: 70px;
   align-items: center;
   position: absolute;
   z-index: 30;
+  left: 7%;
 }
 
 .thumbnail__track {
-  height: 300px;
+  max-height: 406px;
   width: 58px;
   display: flex;
   flex-wrap: wrap;
@@ -444,9 +446,8 @@ li {
   width: 50px;
   object-fit: cover;
   cursor: pointer;
-  opacity: 0.5;
+  opacity: 0.8;
   margin: 4px;
-  /* border-radius: 10%; */
 }
 
 .thumbnail__slide:hover {
@@ -455,18 +456,18 @@ li {
 
 .thumbnail__slide-current {
   opacity: 1;
-  outline: solid;
+  outline: 2px solid;
 }
 
 .thumbnail__button {
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 15px;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   border: 0;
   cursor: pointer;
-  border-radius: 50%;
+  border-radius: 10%;
   background-color: rgba(0, 0, 0, 0.7);
   opacity: 0.6;
   transition: 0.3s;
@@ -478,14 +479,37 @@ li {
 }
 
 .thumbnail__button--up {
-  top: 0;
+  top: 11px;
   z-index: 10;
 }
 
-.thumbnail__button--down {
-  bottom: 0;
+/* .thumbnail__button--down {
+  top: 324px;
+} */
+
+.thumbnail-navtrack {
+  display: flex;
+  flex-direction: column;
+  /* height: 350px; */
+  left: 7%;
+  align-items: center;
+  position: absolute;
+  z-index: 30;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
+.thumbnail__nav {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.thumbnail__nav:hover {
+  color: rgba(0, 0, 0, 1);
+}
+
+.thumbnail__nav-current {
+  color: rgba(0, 0, 0, 1);
+}
 
 /*========= CSS FOR STAR COMPONENTS ===========*/
 .stars-outer{
@@ -527,6 +551,7 @@ li {
   max-width: 50%;
   display: block;
 }
+
 .rating-bar-outer {
   background-color: gray;
   /* display: inline-block;
@@ -758,7 +783,7 @@ li {
 
  .svg-inline--fa.fa-caret-up.fa-w-10{
   overflow: visible;
-  vertical-align: 100em;
+  vertical-align: middle;
   color: dodgerblue;
 }
 
@@ -809,13 +834,19 @@ li {
   padding: 10px;
 }
 
-/* .add-review-questions-modal-wrapper {
+.add-review-close-icon-modal{
+  position: absolute;
+  top: 2px;
+  right: 10px;
+}
+
+.add-review-questions-modal-wrapper {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-} */
+}
 
 .add-review-modal-backdrop {
   position: fixed;
@@ -828,9 +859,9 @@ li {
 }
 
 .add-review-modal-box {
-  position: relative;
-  top: 50%;
-  left: 50%;
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
   transform: translate(-50%, -50%);
   overflow-y: auto;
   height: 70%;
@@ -851,6 +882,11 @@ li {
   border: 1px solid;
 }
 
+/* Form star selector component styling */
+.star-picker button{
+ border: none;
+ background-color: transparent
+}
 /*========= CSS for Questions & Answers ===========*/
 
 .qa-questions-modal-wrapper {
@@ -1029,3 +1065,4 @@ li {
   top: 35px;
   right: 20px;
 }
+

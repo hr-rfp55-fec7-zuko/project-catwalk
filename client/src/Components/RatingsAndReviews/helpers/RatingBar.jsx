@@ -1,5 +1,9 @@
 import React from 'react';
 
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faStar  } from '@fortawesome/free-solid-svg-icons';
+// // import { faStar } from 'react-icons/fa'
+
 //props should include one tuple ([value, freq]) and reviewCount (int)
 const RatingBar = function RatingBar(props) {
   let value = props.ratingTuple[0];
