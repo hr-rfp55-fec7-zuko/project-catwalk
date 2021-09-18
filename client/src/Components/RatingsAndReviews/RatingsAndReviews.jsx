@@ -4,7 +4,6 @@ import ReviewList from './ReviewList.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
 import ProductBreakdown from './ProductBreakdown.jsx';
 import helpers from './helpers/helpers.js';
-import $ from 'jquery';
 import axios from 'axios';
 
 
@@ -18,8 +17,8 @@ class RatingsAndReviews extends React.Component {
     super(props);
 
     this.state = {
-      // 'product_id': this.props.product_id,
-      'product_id': 40347, //40347 - photos, 40435-response
+      'product_id': this.props.product_id,
+      // 'product_id': 40345, //40347 - photos, 40435-response
       reviewLimit: 2,
       metaData: exampleMetaData,
       reviews: exampleReviews,
