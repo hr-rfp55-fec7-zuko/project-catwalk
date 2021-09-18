@@ -8,7 +8,8 @@ class ReviewList extends React.Component {
 
     this.state = {
       totalReviews: 0,
-      reviewLimit: 2,
+      reviewLimit: 0,
+      //review  page?
       addReviewFormVisible: false
       // addReviewFormVisible: true
 
@@ -18,24 +19,38 @@ class ReviewList extends React.Component {
     this.requestProductReviews = this.requestProductReviews.bind(this);
   }
 
+  componentDidMount(){
+    this.requestProductReviews()
+  }
+
   toggleAddReviewFormVisible() {
     this.setState({
       addReviewFormVisible: !this.state.addReviewFormVisible
     });
   }
 
+
+
   requestProductReviews() {
     this.props.requestProductReviews();
+    this.setState({reviewLimit: this.state.reviewLimit + 2})
   }
+
+  //Re-set review viewable count when submitted? Maybe use for filtering?
+  // this.submitHelpfulOrReport{
+  //   this.setState({})
+  //   this.props.submitHelpfulOrReport()
+
+  // }
 
   render() {
     let reviews = this.props.reviews;
     let characteristics = this.props.characteristics;
 
     //If there are no reviews, don't render the list.
-    if (reviews.results.length > 0) {
+    if (reviews.length > 0) {
       var reviewList =
-      reviews.results.map((review) => {
+      reviews.map((review) => {
         return <ReviewTile key={review.review_id} review={review} submitHelpfulOrReport={this.props.submitHelpfulOrReport}/>;
       });
     } else {
@@ -43,7 +58,7 @@ class ReviewList extends React.Component {
     }
 
     //If the total number of reviews has been reached, don't render the addreviews button
-    if (reviews.results.length < this.props.reviewCount) {
+    if (reviews.length < this.props.reviewCount) {
       var moreReviewsButton =
         <button type="button" id="more-reviews" className="ratings-button" onClick={this.requestProductReviews}>More Reviews</button>;
     } else {

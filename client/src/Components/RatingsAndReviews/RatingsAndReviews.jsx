@@ -42,7 +42,7 @@ class RatingsAndReviews extends React.Component {
 
   componentDidMount() {
     this.requestProductMetaData();
-    this.requestProductReviews();
+    // this.requestProductReviews();
   }
 
   requestProductMetaData() {
@@ -56,11 +56,11 @@ class RatingsAndReviews extends React.Component {
 
   requestProductReviews() {
     return axios({
-      url: `/reviews/?product_id=${this.state.product_id}&count=${this.state.reviewLimit}`,
+      // url: `/reviews/?product_id=${this.state.product_id}&count=${this.state.reviewLimit}`,
       url: `/reviews/?product_id=${this.state.product_id}&count=100`,
       method: 'GET'
     })
-      .then((results) => this.setState({reviews: results.data, reviewLimit: this.state.reviewLimit + 2}))
+      .then((results) => this.setState({reviews: results.data.results}))
       .catch((error) => console.log('ERROR in REVIEWS AJAX Request: ', error));
   }
 
@@ -103,7 +103,7 @@ class RatingsAndReviews extends React.Component {
            <RatingBreakdown metaData={this.state.metaData} reviewCount={reviewCount} setAvgRating={this.setAvgRating}/>
            <ProductBreakdown characteristics={this.state.metaData.characteristics}/>
            <SortBar reviewCount={reviewCount}/>
-           {/* <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount} submitHelpfulOrReport={this.submitHelpfulOrReport} product_name={this.props.product_name} submitReviewForm={this.submitReviewForm} product_id={this.props.product_id}/> */}
+           <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount} submitHelpfulOrReport={this.submitHelpfulOrReport} product_name={this.props.product_name} submitReviewForm={this.submitReviewForm} product_id={this.props.product_id}/>
          </>
         }
 
