@@ -19,7 +19,7 @@ class RatingsAndReviews extends React.Component {
 
     this.state = {
       // 'product_id': this.props.product_id,
-      'product_id': 40345, //40347 - photos, 40435-response
+      'product_id': 40347, //40347 - photos, 40435-response
       reviewLimit: 2,
       metaData: exampleMetaData,
       reviews: exampleReviews,
@@ -90,7 +90,7 @@ class RatingsAndReviews extends React.Component {
 
     return (
       <div className="ratings-and-reviews" id="ratings-and-reviews">
-        <h2>Ratings and Reviews</h2>
+
 
         {this.state.reviews !== null &&
          <>

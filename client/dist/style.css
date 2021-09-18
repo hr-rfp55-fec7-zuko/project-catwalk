@@ -461,10 +461,19 @@ li {
 /*========= CSS FOR Ratings & Reviews ===========*/
 .ratings-and-reviews {
   /* border: 1px solid black; */
+  /* font-size: 24px; */
   display: grid;
-  grid-template-columns: 10fr 10fr 1fr;
-  grid-template-rows: auto 1fr 1fr;
-  font-size: 24px;
+  /* grid-template-columns: 10fr 10fr 1fr;
+  grid-template-rows: auto 1fr 1fr; */
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "rating-breakdown sort-bar sort-bar"
+    "rating-breakdown review-list review-list"
+    "product-breakdown review-list review-list"
+    ". review-list review-list"
+    ". review-list review-list"
+    ;
 }
 
 .ratings-button {
@@ -477,36 +486,32 @@ li {
   border: 1px solid;
 }
 
-/* .review-list, .review-tile {
-  border: 1px solid black;
-} */
-
 .review-list {
-  /* background-color: lightseagreen; */
   max-height: 100vh;
   overflow: scroll;
-
-  grid-column: 2/4;
-  grid-row:2/4;
+  /* grid-column: 2/4;
+  grid-row:2/4; */
+  grid-area: review-list;
 }
 
 .rating-breakdown {
-  /* background-color: lightskyblue; */
-  grid-column: 1/2;
-  grid-row: 2/3;
+  /* grid-column: 1/2;
+  grid-row: 2/3; */
+  grid-area: rating-breakdown;
 }
 
 .product-breakdown {
-  /* background-color: lightpink; */
-  grid-column: 1/2;
-  grid-row: 3/4
+  /* grid-column: 1/2;
+  grid-row: 3/4 */
+  grid-area: product-breakdown;
 }
 
-.sortBar {
+.sort-bar {
   background-color: white;
-  padding-top: 5px;
+  /* padding-top: 5px;
   grid-column: 3/5;
-  grid-row: 1/2;
+  grid-row: 1/2; */
+  grid-area: sort-bar;
 }
 
 /*Review Tile Styling*/
@@ -514,13 +519,12 @@ li {
   border-bottom: 1px solid black;
   padding: 5px;
   height: 300px;
-  /* background-color: lightgreen; */
-  /* margin: 5px; */
+
   display: grid;
+
   grid-template-columns: 1fr 2fr 1fr;
   grid-template-rows: 1fr 2fr 2fr 1fr 1fr 1fr 1fr;
   grid-template-areas:
-    /* ". . . ." */
     "star attribution attribution"
     "summary summary summary"
     "body body body"
@@ -529,11 +533,12 @@ li {
     "response response response"
     "helpful-or-report helpful-or-report .";
   align-items: center;
+
   font-size: 18px;
 }
 
 .avg-rating {
-  font-size: 50px;
+  font-size: 24px;
   font-weight: bolder;
 }
 
@@ -548,7 +553,7 @@ li {
   grid-template-columns: 1fr 1fr 2fr;
   grid-template-rows: 1fr;
   grid-template-areas: "checkmark user date";
-  font-size: 12px;
+  font-size: 10px;
   align-content: right;
 }
 
@@ -641,7 +646,7 @@ review-response h3 {
 
 .rating-bar-outer {
   width: 210px;
-  height: 30px;
+  height: 10px;
   background: #ccc;
   display: inline-block;
   /* display: block; */
@@ -709,15 +714,16 @@ review-response h3 {
   padding-right: 2%;
   /* width: 300px; */
   /* width: 90%; */
-  height: 30px;
+  height: 10px;
   /* display: inline-block; */
   background-color: white;
   grid-area: product-bar-outer;
 }
 
-.product-bar.carrat {
+.carrat {
   /* padding:0%; */
   color: blue;
+  font-size: 18px;
   padding-left: 50%;
 
 }
