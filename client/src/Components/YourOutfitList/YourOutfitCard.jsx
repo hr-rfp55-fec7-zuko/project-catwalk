@@ -24,7 +24,7 @@ class YourOutfitCard extends React.Component {
     // Get the information for a related product
     axios.get(`/products/${outfitId}`)
       .then(({ data }) => {
-        console.log(data);
+        // console.log(data);
         this.setState({ ...this.state, productIdInfo: data });
 
       })
