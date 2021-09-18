@@ -9,18 +9,20 @@ class ReviewList extends React.Component {
     this.state = {
       totalReviews: 0,
       reviewLimit: 0,
-      //review  page?
+      reviewPage: 1,
       addReviewFormVisible: false
       // addReviewFormVisible: true
 
     };
 
     this.toggleAddReviewFormVisible = this.toggleAddReviewFormVisible.bind(this);
-    this.requestProductReviews = this.requestProductReviews.bind(this);
+    // this.requestProductReviews = this.requestProductReviews.bind(this);
+    this.updateViewList = this.updateViewList.bind(this);
   }
 
   componentDidMount(){
-    this.requestProductReviews()
+    // this.requestProductReviews()
+    this.updateViewList()
   }
 
   toggleAddReviewFormVisible() {
@@ -29,12 +31,27 @@ class ReviewList extends React.Component {
     });
   }
 
-
-
-  requestProductReviews() {
-    this.props.requestProductReviews();
-    this.setState({reviewLimit: this.state.reviewLimit + 2})
+  updateViewList(){
+    //checks to see if the length of the reviews array is equal to the reviewLimit
+    if (this.state.reviewLimit >= this.props.reviews.length) {
+      //if so, it calls request product reviews this.state.reviewPage + 1
+        this.props.requestProductReviews(this.state.reviewPage + 1)
+        this.setState({
+          reviewLimit: this.state.reviewLimit + 2,
+          reviewPage: this.state.reviewPage + 1
+        })
+        //it the page count state by one and the viewable state by two
+      //otherwise, it increments the viewable state by two
+    } else {
+      this.setState({reviewLimit: this.state.reviewLimit + 2})
+    }
   }
+
+
+  // requestProductReviews() {
+  //   this.props.requestProductReviews();
+  //   // this.setState({reviewLimit: this.state.reviewLimit + 2})
+  // }
 
   //Re-set review viewable count when submitted? Maybe use for filtering?
   // this.submitHelpfulOrReport{
@@ -67,7 +84,7 @@ class ReviewList extends React.Component {
     //If the total number of reviews has been reached, don't render the addreviews button
     if (reviews.length < this.props.reviewCount) {
       var moreReviewsButton =
-        <button type="button" id="more-reviews" className="ratings-button" onClick={this.requestProductReviews}>More Reviews</button>;
+        <button type="button" id="more-reviews" className="ratings-button" onClick={this.updateViewList}>More Reviews</button>;
     } else {
       var moreReviewsButton = <></>;
     }
