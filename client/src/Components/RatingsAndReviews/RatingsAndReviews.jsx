@@ -20,8 +20,16 @@ class RatingsAndReviews extends React.Component {
       'product_id': this.props.product_id,
       // 'product_id': 40345, //40347 - photos, 40435-response
       reviewLimit: 2,
-      metaData: exampleMetaData,
-      reviews: exampleReviews,
+      metaData: {
+        product_id: '00000',
+        ratings: {},
+        recommended: {
+          true: 0,
+          false: 0
+        },
+        characteristics:{}
+      },
+      reviews: [],
       receivedInitialData: false
     };
 
@@ -51,6 +59,7 @@ class RatingsAndReviews extends React.Component {
   requestProductReviews() {
     return axios({
       url: `/reviews/?product_id=${this.state.product_id}&count=${this.state.reviewLimit}`,
+      url: `/reviews/?product_id=${this.state.product_id}&count=100`,
       method: 'GET'
     })
       .then((results) => this.setState({reviews: results.data, reviewLimit: this.state.reviewLimit + 2}))
@@ -96,7 +105,7 @@ class RatingsAndReviews extends React.Component {
            <RatingBreakdown metaData={this.state.metaData} reviewCount={reviewCount} setAvgRating={this.setAvgRating}/>
            <ProductBreakdown characteristics={this.state.metaData.characteristics}/>
            <SortBar reviewCount={reviewCount}/>
-           <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount} submitHelpfulOrReport={this.submitHelpfulOrReport} product_name={this.props.product_name} submitReviewForm={this.submitReviewForm} product_id={this.props.product_id}/>
+           {/* <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount} submitHelpfulOrReport={this.submitHelpfulOrReport} product_name={this.props.product_name} submitReviewForm={this.submitReviewForm} product_id={this.props.product_id}/> */}
          </>
         }
       </div>
