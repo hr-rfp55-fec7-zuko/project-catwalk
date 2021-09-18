@@ -46,7 +46,6 @@ class ImageGallery extends React.Component {
     if (this.state.expanded && this.state.zoomed) {
       this.setState({ zoomed: false });
     }
-    console.log('you want to expand the image');
     this.setState({
       expanded: !this.state.expanded
     });
@@ -54,7 +53,6 @@ class ImageGallery extends React.Component {
   }
 
   zoomSlide() {
-    //console.log('you want to zoom');
     this.setState({
       zoomed: !this.state.zoomed
     });
