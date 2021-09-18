@@ -34,7 +34,7 @@ class QuestionAnswer extends React.Component {
     $.ajax({
       type: 'GET',
       url: '/qa/questions',
-      data: {'product_id': this.props.productId, page: 1, count: 10},
+      data: {'product_id': this.props.productId, page: 1, count: 100},
       error: (err) => {
         console.log('Client GET Err:', err);
       },
@@ -51,12 +51,10 @@ class QuestionAnswer extends React.Component {
         <div className="input-icon">
           <input type="text" className="qa-searchBar" placeholder="HAVE A QUESTION? SEARCH FOR ANSWERS..." onChange={this.handleChange}/>
         </div>
-        <QuestionEntryList lists={this.state.questionsList} prodName={this.props.productName} prodId={this.props.productId}/>
+        <QuestionEntryList lists={this.state.questionsList} prodName={this.props.productName} prodId={this.props.productId} updateQuestionList={this.updateQuestionsList}/>
       </div>
     );
   }
 }
 
 export default QuestionAnswer;
-
-//TODO: Add a magnifying glass in searchBar

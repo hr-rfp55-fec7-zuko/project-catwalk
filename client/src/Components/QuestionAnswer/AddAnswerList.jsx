@@ -4,7 +4,6 @@ import AddAnswerModal from './AddAnswerModal.jsx';
 import AnswerEntryList from './AnswerEntryList.jsx';
 
 var AddAnswerList = (props) => {
-
   const modalRef = React.useRef();
   const [answer, setAnswer] = useState('');
   const [nickName, setNickName] = useState('');
@@ -36,8 +35,8 @@ var AddAnswerList = (props) => {
       alert('Please enter email in the correct format.');
     } else {
       axios.post('/qa/questions/:question_id/answers', {params: {qId: props.questionId, inner: {body: answer, name: nickName, email: emailAdd}}})
-        .then(response => console.log('Success!'))
-        .catch(err => (console.log('Add Answer POST Err', err)));
+        .then(response => props.updateAnswer(), modalRef.current.close())
+        .catch(err => console.log('Add Answer POST Err', err));
     }
 
   };
@@ -80,9 +79,7 @@ var AddAnswerList = (props) => {
             <button className="qa-questions-modal-button" type="submit">
               Submit Answer
             </button>
-            <button className="qa-questions-modal-button" onClick={() => modalRef.current.close()}>
-              Close
-            </button>
+            <i class="fas fa-times fa-3x qa-photos-icon-modal" onClick={() => modalRef.current.close()}></i>
           </form>
         </div>
         <p>

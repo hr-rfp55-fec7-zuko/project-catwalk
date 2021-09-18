@@ -859,8 +859,8 @@ review-response h3 {
   left: 50%;
   transform: translate(-50%, -50%);
   overflow-y: auto;
-  height: 50%;
-  width: 50%;
+  height: 40%;
+  width: 30%;
   background-color:white;
   box-shadow: 0 0 10px rgba(0,0,0,0.25);
   z-index: 101;
@@ -999,5 +999,11 @@ review-response h3 {
   position: absolute;
   top: 2px;
   right: 10px;
+}
+
+.qa-photos-icon-modal {
+  position: absolute;
+  top: 35px;
+  right: 20px;
 }
 
