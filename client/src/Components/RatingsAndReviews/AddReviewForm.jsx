@@ -24,16 +24,16 @@ class AddReviewForm extends React.Component {
 
     this.state = {
       rating: 0,
-      submissions: {
-        'product_id': this.props.product_id,
-        rating: '',
-        summary: '',
-        body: '',
-        recommended: '',
-        name: '',
-        email: '',
-        photos: [],
-      },
+      // submissions: {
+      //   'product_id': this.props.product_id,
+      //   rating: '',
+      //   summary: '',
+      //   body: '',
+      //   recommended: '',
+      //   name: '',
+      //   email: '',
+      //   photos: [],
+      // },
       submitted: false
     }
 
@@ -106,16 +106,12 @@ class AddReviewForm extends React.Component {
     this.setState({[property]: value})
   }
 
-  //NOTE: Star rating will need to change
   handleStringFormChange(event){
     this.setStateProperty(event.target.name, event.target.value)
   }
 
   handleRadioFormChange(event){
     this.setStateProperty(event.target.name, event.target.id)
-    // if (event.target.name === 'rating') {
-    //   this.handleStarColorChange(event.target.id);
-    // }
   }
 
   handleStarSelect(name, id){
@@ -148,16 +144,14 @@ class AddReviewForm extends React.Component {
       <>
 
       <div className="add-review-modal-wrapper" >
-        <div className="add-review-modal-backdrop"></div>
+        <div className="add-review-modal-backdrop" onClick={this.closeModal}></div>
 
         <div className="add-review-modal-box">
 
-        <StarPicker rating={this.state.rating} handleStarSelect={this.handleStarSelect} />
-        {/* <StarPicker rating={this.state.rating} handleRadioFormChange={this.handleRadioFormChange} /> */}
-
-        {/* {submissionConfirmation}
+        {submissionConfirmation}
 
         <div className="add-review-form">
+          <i className="fas fa-times fa-3x add-review-close-icon-modal" onClick={this.closeModal} />
           <h3>Write Your Review</h3>
           <h4>About {this.props.product_name}</h4><br/>
           <form id="review-form" onSubmit={this.submitReviewForm}>
@@ -177,7 +171,7 @@ class AddReviewForm extends React.Component {
 
             <div className="form-question">
             <label className="form-category">Overall Rating*</label><br/>
-            <input type="number" id="rating" name="rating" placeholder="This to be an interactive star picker" value={this.state.rating} onChange={this.handleStringFormChange}/>
+            <StarPicker rating={this.state.rating} handleStarSelect={this.handleStarSelect} />
             </div>
 
             <div className="form-question" onChange={this.handleRadioFormChange}>
@@ -207,16 +201,16 @@ class AddReviewForm extends React.Component {
             <div className="form-question">
             <label className="form-category">Uplaod your photos</label><br/>
             <input type="file" id="select-file" name="filename" className="add-review-modal-button"></input>
-            <input type="button" className="add-review-modal-button"></input>
+            {/* <input type="button" className="add-review-modal-button"></input> */}
             </div>
 
             <div className="form-question">
             <button type="submit" className="add-review-modal-button" onClick={this.submitReviewForm}>Submit Reivew</button>
-            <button type="button" className="add-review-modal-button" onClick={this.closeModal}>Close Window</button>
+            {/* <button type="button" className="add-review-modal-button" onClick={this.closeModal}>Close Window</button> */}
             </div>
 
           </form>
-          </div>*/}
+          </div>
         </div>
       </div>
             </>, document.getElementById('add-review-modal')

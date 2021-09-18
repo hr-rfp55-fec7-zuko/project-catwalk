@@ -37,8 +37,6 @@ class RatingsAndReviews extends React.Component {
     this.requestProductReviews();
   }
 
-  incrementReview
-
   requestProductMetaData() {
     return axios({
       url: `/reviews/meta?product_id=${this.state.product_id}`,
