@@ -798,10 +798,10 @@ li {
 }
 
 /* Form star selector component styling */
-/* .star-picker input[type="radio"] {
- visibility: hidden;
-  display: none
-} Note one or the othr for these properties*/
+.star-picker button{
+ border: none;
+ background-color: transparent
+}
 /*========= CSS for Questions & Answers ===========*/
 
 .qa-questions-modal-wrapper {
