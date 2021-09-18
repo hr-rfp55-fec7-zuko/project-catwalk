@@ -366,15 +366,16 @@ li {
 .thumbnail-container {
   display: flex;
   flex-direction: column;
-  height: 400px;
+  height: 350px;
   width: 70px;
   align-items: center;
   position: absolute;
   z-index: 30;
+  left: 7%;
 }
 
 .thumbnail__track {
-  height: 300px;
+  height: 290px;
   width: 58px;
   display: flex;
   flex-wrap: wrap;
@@ -388,7 +389,7 @@ li {
   width: 50px;
   object-fit: cover;
   cursor: pointer;
-  opacity: 0.5;
+  opacity: 0.8;
   margin: 4px;
   /* border-radius: 10%; */
 }
@@ -399,18 +400,18 @@ li {
 
 .thumbnail__slide-current {
   opacity: 1;
-  outline: solid;
+  outline: 2px solid;
 }
 
 .thumbnail__button {
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 15px;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   border: 0;
   cursor: pointer;
-  border-radius: 50%;
+  border-radius: 10%;
   background-color: rgba(0, 0, 0, 0.7);
   opacity: 0.6;
   transition: 0.3s;
@@ -422,7 +423,7 @@ li {
 }
 
 .thumbnail__button--up {
-  top: 0;
+  top: 15px;
   z-index: 10;
 }
 

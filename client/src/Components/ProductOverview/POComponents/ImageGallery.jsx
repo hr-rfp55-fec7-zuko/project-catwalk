@@ -14,6 +14,8 @@ class ImageGallery extends React.Component {
     this.expandSlide = this.expandSlide.bind(this);
     this.zoomSlide = this.zoomSlide.bind(this);
     this.setSlideFromThumbnail = this.setSlideFromThumbnail.bind(this);
+    this.scrollUp = this.scrollUp.bind(this);
+    this.scrollDown = this.scrollDown.bind(this);
   }
 
   nextSlide() {
@@ -54,6 +56,14 @@ class ImageGallery extends React.Component {
     });
   }
 
+  scrollUp() {
+    document.getElementById('thumbnail__track').scrollTop -= 58;
+  }
+
+  scrollDown() {
+    document.getElementById('thumbnail__track').scrollTop += 58;
+  }
+
   componentDidUpdate(prevProps) {
     if (this.props.styles !== prevProps.styles) {
       var photos = {};
@@ -79,17 +89,20 @@ class ImageGallery extends React.Component {
       var length = fullPhotos.length;
       return (
         <div className='po-image-gallery' >
-          <div className='thumbnail-container'>
+          <div className='thumbnail-container' >
             {(this.state.current !== 0 && !this.state.zoomed) &&
               (<button
                 className='thumbnail__button thumbnail__button--up'
-                onClick={this.prevSlide} >
+                onClick={() => {
+                  this.prevSlide();
+                  this.scrollUp();
+                }} >
                 <i className="fas fa-chevron-up fa-lg"></i>
               </button>
               )}
             {/* thumbnail-track*/}
             {/* each thumbnail-slide */}
-            <div className={'thumbnail__track'}>
+            <div className='thumbnail__track' id='thumbnail__track' >
               {thumbPhotos.map((image, index) => {
                 return (
                   <img
@@ -102,7 +115,10 @@ class ImageGallery extends React.Component {
             </div>
             {(this.state.current !== length - 1 && !this.state.zoomed) && (<button
               className='thumbnail__button thumbnail__button--down'
-              onClick={this.nextSlide} >
+              onClick={() => {
+                this.nextSlide();
+                this.scrollDown();
+              }} >
               <i className="fas fa-chevron-down fa-lg"></i>
             </button>)}
           </div>
