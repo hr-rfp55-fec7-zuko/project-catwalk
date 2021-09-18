@@ -6,27 +6,38 @@ import axios from 'axios';
 import moment from 'moment';
 
 var AnswerEntryList = (props) => {
+
   const [answerList, setAnswerList] = useState([]);
   const [btnVal, setBtnVal] = useState(null);
   const [displayItem, setDisplayItem] = useState(null);
+  const [subStatus, setSubStatus] = useState(props.status);
 
   useEffect(()=> {
     let mounted = true;
     GetAnswerList(props.questionId)
       .then(items => {
-        if (mounted) {
+        if (mounted && subStatus) {
           setAnswerList(items.data);
         }
       });
-    return () => mounted = false;
-  }, [props.questionId]);
+    return (() => mounted = false);
+  }, [props.questionId, subStatus, props.status]);
 
   useEffect(() => {
     setBtnVal(true);
     setDisplayItem(2);
   }, []);
 
-  if (answerList.length === 0) {
+  useEffect(() => {
+    if (!subStatus) {
+      GetAnswerList(props.questionId)
+        .then(items => {
+          setAnswerList(items.data);
+        });
+    }
+  }, [props.questionId, subStatus, props.status]);
+
+  if (!Array.isArray(answerList)) {
     return <div></div>;
   }
 

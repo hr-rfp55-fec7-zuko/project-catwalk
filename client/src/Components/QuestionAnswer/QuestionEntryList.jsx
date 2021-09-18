@@ -8,8 +8,15 @@ import AddQuestionList from './AddQuestionList.jsx';
 class QuestionEntryList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {displayQuestion: 2};
+    this.state = {displayQuestion: 2, updateAnswer: true, updateQuestion: true};
     this.handleClick = this.handleClick.bind(this);
+    this.handleAnswerUpdate = this.handleAnswerUpdate.bind(this);
+  }
+
+  handleAnswerUpdate() {
+    this.setState(prevState => ({
+      updateAnswer: !prevState.updateAnswer
+    }));
   }
 
   handleClick(e) {
@@ -18,7 +25,7 @@ class QuestionEntryList extends React.Component {
   }
 
   render() {
-    if (this.props.lists.length === 0) {
+    if (!Array.isArray(this.props.lists)) {
       return <div></div>;
     } else {
       var list = this.props.lists.map(list => {
@@ -28,10 +35,10 @@ class QuestionEntryList extends React.Component {
             <div className="qa-questions-side">
               <QuestionCountList helpfulness={list.question_helpfulness} questionId={list.question_id}/>
               <QuestionReportList questionId={list.question_id}/>
-              <AddAnswerList questionId={list.question_id} questionBody={list.question_body} pName={this.props.prodName}/>
+              <AddAnswerList questionId={list.question_id} questionBody={list.question_body} pName={this.props.prodName} updateAnswer={this.handleAnswerUpdate}/>
             </div>
             <div className="break"></div>
-            <AnswerEntryList questionId={list.question_id}/>
+            <AnswerEntryList questionId={list.question_id} status={this.state.update}/>
           </div>
         );
       });
@@ -48,7 +55,7 @@ class QuestionEntryList extends React.Component {
                 MORE ANSWERED QUESTIONS
               </button>
             }
-            <AddQuestionList pName={this.props.prodName} pId={this.props.prodId}/>
+            <AddQuestionList pName={this.props.prodName} pId={this.props.prodId} updateQuestion={this.props.updateQuestionList}/>
           </div>
           {/* <button className="qa-button">
             ADD A QUESTION +
