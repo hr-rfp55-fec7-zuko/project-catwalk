@@ -37,7 +37,9 @@ const ComparisonModal = (props) => {
           <h3 className="title right">{compareProduct.name}</h3>
         </div>
         <table id="tblFeatures">
-          {props.comparedFeatures.map(renderProduct)}
+          <tbody>
+            {props.comparedFeatures.map(renderProduct)}
+          </tbody>
         </table>
       </div>
     </div>
