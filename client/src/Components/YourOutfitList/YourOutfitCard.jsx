@@ -24,7 +24,7 @@ class YourOutfitCard extends React.Component {
     // Get the information for a related product
     axios.get(`/products/${outfitId}`)
       .then(({ data }) => {
-        console.log(data);
+        // console.log(data);
         this.setState({ ...this.state, productIdInfo: data });
 
       })
@@ -35,7 +35,7 @@ class YourOutfitCard extends React.Component {
     // Get the feature picture and price for a related product
     axios.get(`/products/${outfitId}/styles`)
       .then(({ data }) => {
-        console.log(data);
+        // console.log(data);
         const defaultProduct = data.find((product) => product['default?'] === false);
         let url;
         if (!defaultProduct) {
@@ -54,9 +54,19 @@ class YourOutfitCard extends React.Component {
       .catch((error) => {
         console.log('Error fetching product styles in relatedProductCard', error);
       });
+
+    return axios({
+      url: `/reviews/meta?product_id=${outfitId}`,
+      method: 'GET'
+    })
+      .then((results) => {
+        this.setState({ avgRating: results.data.ratings });
+      })
+
+      .catch((error) => console.log('ERROR in METADATA AJAX Request: ', error));
   }
   render() {
-    const { productIdInfo, featuredURL } = this.state;
+    const { productIdInfo, featuredURL,salePrice,avgRating } = this.state;
     const { outfitId } = this.props;
 
     return (
@@ -70,8 +80,8 @@ class YourOutfitCard extends React.Component {
             <p className='category'>{productIdInfo.category}</p>
             <h3 className='title'>{productIdInfo.name}</h3>
             <p className='price'>${productIdInfo.default_price}</p>
-            {/* {salePrice ? <p className='price sale'>{salePrice}</p> : null} */}
-            {/* <AvgRatingStars avgRating={avgRating} id={productIdInfo.id} /> */}
+            {salePrice ? <p className='price sale'>{salePrice}</p> : null}
+            <AvgRatingStars avgRating={avgRating} id={productIdInfo.id} />
           </div>
         </div>
 
