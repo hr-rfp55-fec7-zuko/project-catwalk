@@ -49,10 +49,17 @@ class ReviewList extends React.Component {
 
     //If there are no reviews, don't render the list.
     if (reviews.length > 0) {
-      var reviewList =
-      reviews.map((review) => {
-        return <ReviewTile key={review.review_id} review={review} submitHelpfulOrReport={this.props.submitHelpfulOrReport}/>;
-      });
+      var reviewList = [];
+
+      for (var i = 0; i < this.state.reviewLimit; i++) {
+        let review = reviews[i]
+        reviewList.push(<ReviewTile key={review.review_id} review={review} submitHelpfulOrReport={this.props.submitHelpfulOrReport}/>)
+      }
+
+
+      // reviews.map((review) => {
+      //   return <ReviewTile key={review.review_id} review={review} submitHelpfulOrReport={this.props.submitHelpfulOrReport}/>;
+      // });
     } else {
       var reviewList = <></>;
     }
