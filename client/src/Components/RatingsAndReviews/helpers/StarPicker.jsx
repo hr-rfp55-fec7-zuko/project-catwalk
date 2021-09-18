@@ -21,10 +21,10 @@ class StarPicker extends React.Component{
             const ratingValue = i + 1;
             return (
               <>
-              <input type="radio" name="rating" onChange={this.props.handleRadioFormChange} id={ratingValue} name="rating"/>
-              <label>
-                <FontAwesomeIcon key={ratingValue} className="star" value={ratingValue} icon={faStar} size={'2x'} color={this.props.handleStarColorChange}/>
-              </label>
+                <input type="radio" name="rating" onChange={this.props.handleRadioFormChange} id={ratingValue} name="rating"/>
+                <label>
+                  <FontAwesomeIcon key={ratingValue} className="star" value={ratingValue} icon={faStar} size={'2x'} color={ratingValue <= this.props.rating ? '#ffc107' : '#e4e5e9'}/>
+                </label>
               </>
             )
           })

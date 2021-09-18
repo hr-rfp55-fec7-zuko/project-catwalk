@@ -23,6 +23,7 @@ class AddReviewForm extends React.Component {
     // }
 
     this.state = {
+      rating: 0,
       submissions: {
         'product_id': this.props.product_id,
         rating: '',
@@ -144,7 +145,7 @@ class AddReviewForm extends React.Component {
 
         <div className="add-review-modal-box">
 
-        <StarPicker handleRadioFormChange={this.handleRadioFormChange} />
+        <StarPicker rating={this.state.rating} handleRadioFormChange={this.handleRadioFormChange} />
 
         {/* {submissionConfirmation}
 
