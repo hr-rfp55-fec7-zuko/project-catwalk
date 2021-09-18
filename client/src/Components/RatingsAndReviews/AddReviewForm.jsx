@@ -3,6 +3,8 @@ import ReactDom from 'react-dom';
 
 import CharacteristicRadioFormField from './helpers/CharacteristicRadioFormField.jsx'
 
+import StarPicker from './helpers/StarPicker.jsx';
+
 
 
 class AddReviewForm extends React.Component {
@@ -111,6 +113,11 @@ class AddReviewForm extends React.Component {
     this.setStateProperty(event.target.name, event.target.id)
   }
 
+  handleStarColorChange(ratingValue){
+    console.log('ratingValue', ratingValue)
+    return ratingValue <= this.state.rating ? '#ffc107' : '#e4e5e9'
+  }
+
   closeModal() {
     this.props.toggleAddReviewFormVisible()
   }
@@ -127,14 +134,16 @@ class AddReviewForm extends React.Component {
 
     return ReactDom.createPortal(
 
-
+      <>
 
       <div className="add-review-modal-wrapper" >
         <div className="add-review-modal-backdrop"></div>
 
         <div className="add-review-modal-box">
 
-        {submissionConfirmation}
+        <StarPicker handleRadioFormChange={this.handleRadioFormChange} />
+
+        {/* {submissionConfirmation}
 
         <div className="add-review-form">
           <h3>Write Your Review</h3>
@@ -186,7 +195,7 @@ class AddReviewForm extends React.Component {
             <div className="form-question">
             <label className="form-category">Uplaod your photos</label><br/>
             <input type="file" id="select-file" name="filename" className="add-review-modal-button"></input>
-            {/* <input type="button" className="add-review-modal-button"></input> */}
+            <input type="button" className="add-review-modal-button"></input>
             </div>
 
             <div className="form-question">
@@ -195,9 +204,11 @@ class AddReviewForm extends React.Component {
             </div>
 
           </form>
-          </div>
+          </div>*/}
         </div>
-      </div>, document.getElementById('add-review-modal')
+      </div>
+            </>, document.getElementById('add-review-modal')
+
       );
 
   }
