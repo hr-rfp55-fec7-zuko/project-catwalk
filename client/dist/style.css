@@ -704,7 +704,7 @@ li {
 
  .svg-inline--fa.fa-caret-up.fa-w-10{
   overflow: visible;
-  vertical-align: 100em;
+  vertical-align: middle;
   color: dodgerblue;
 }
 
