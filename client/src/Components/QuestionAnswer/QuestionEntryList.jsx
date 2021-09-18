@@ -8,8 +8,15 @@ import AddQuestionList from './AddQuestionList.jsx';
 class QuestionEntryList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {displayQuestion: 2};
+    this.state = {displayQuestion: 2, update: true};
     this.handleClick = this.handleClick.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
+  }
+
+  handleUpdate() {
+    this.setState(prevState => ({
+      update: !prevState.update
+    }));
   }
 
   handleClick(e) {
@@ -28,10 +35,10 @@ class QuestionEntryList extends React.Component {
             <div className="qa-questions-side">
               <QuestionCountList helpfulness={list.question_helpfulness} questionId={list.question_id}/>
               <QuestionReportList questionId={list.question_id}/>
-              <AddAnswerList questionId={list.question_id} questionBody={list.question_body} pName={this.props.prodName}/>
+              <AddAnswerList questionId={list.question_id} questionBody={list.question_body} pName={this.props.prodName} updateAnswer={this.handleUpdate}/>
             </div>
             <div className="break"></div>
-            <AnswerEntryList questionId={list.question_id}/>
+            <AnswerEntryList questionId={list.question_id} status={this.state.update}/>
           </div>
         );
       });
