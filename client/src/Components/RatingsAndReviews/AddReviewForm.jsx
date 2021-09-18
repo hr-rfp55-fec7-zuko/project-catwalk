@@ -111,6 +111,9 @@ class AddReviewForm extends React.Component {
 
   handleRadioFormChange(event){
     this.setStateProperty(event.target.name, event.target.id)
+    if (event.target.name === 'rating') {
+      this.handleStarColorChange(event.target.id);
+    }
   }
 
   handleStarColorChange(ratingValue){

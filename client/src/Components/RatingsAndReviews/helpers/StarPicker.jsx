@@ -14,6 +14,7 @@ class StarPicker extends React.Component{
   }
 
   render() {
+
     return (
       <div className="star-picker">
         {[...Array(5)].map((star, i) => {
