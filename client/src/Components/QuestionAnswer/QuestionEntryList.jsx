@@ -25,7 +25,7 @@ class QuestionEntryList extends React.Component {
   }
 
   render() {
-    if (this.props.lists.length === 0) {
+    if (!Array.isArray(this.props.lists)) {
       return <div></div>;
     } else {
       var list = this.props.lists.map(list => {

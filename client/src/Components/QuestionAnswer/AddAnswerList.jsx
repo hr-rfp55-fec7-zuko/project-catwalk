@@ -79,9 +79,7 @@ var AddAnswerList = (props) => {
             <button className="qa-questions-modal-button" type="submit">
               Submit Answer
             </button>
-            <button className="qa-questions-modal-button" onClick={() => modalRef.current.close()}>
-              Close
-            </button>
+            <i class="fas fa-times fa-3x qa-photos-icon-modal" onClick={() => modalRef.current.close()}></i>
           </form>
         </div>
         <p>
