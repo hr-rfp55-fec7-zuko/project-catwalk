@@ -65,15 +65,30 @@ class AddToCart extends React.Component {
   render() {
     return (
       <div className='po-add-cart'>
-        {this.state.needSize ? <div className='select-size-msg' >You need to select a size first!</div> : <div className='select-size-msg'> <br /> </div>}
+        {this.state.needSize ?
+          <div className='select-size-msg' >
+            You need to select a size first!
+          </div>
+          : <div className='select-size-msg'> <br /> </div>}
         <div className='select-parent'>
           <div className='select-menus'>
-            <SizeSelector skus={this.state.style.skus} setSKU={this.setSKU} needSize={this.state.needSize} />
-            <QuantitySelector totalQuantity={this.state.totalQuantity} setQuantity={this.setQuantity} />
+            <SizeSelector
+              skus={this.state.style.skus}
+              setSKU={this.setSKU}
+              needSize={this.state.needSize} />
+            <QuantitySelector
+              totalQuantity={this.state.totalQuantity}
+              setQuantity={this.setQuantity} />
           </div>
           <div className='add-cart-feat'>
-            <button onClick={this.handleAddToCart} >Add to Cart</button>
-            <p>{this.state.addedToCart ? `You added ${this.state.quantity} items to your cart!` : <br />}</p>
+            <button
+              onClick={this.handleAddToCart} className='button__add-cart' >
+              Add to Cart
+            </button>
+            <p>{this.state.addedToCart ?
+              `You added ${this.state.quantity} items to your cart!`
+              : <br />}
+            </p>
           </div>
         </div>
         <div><br /><br /><br /></div>

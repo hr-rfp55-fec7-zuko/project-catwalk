@@ -488,6 +488,16 @@ li {
   color: rgba(0, 0, 0, 1);
 }
 
+.po-soc-med-btns {
+  width:300px;
+  display: flex;
+  justify-content: center;
+}
+
+.soc-btn {
+  margin: 0 5px;
+}
+
 /*========= CSS FOR STAR COMPONENTS ===========*/
 .stars-outer{
   display: inline-block;

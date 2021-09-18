@@ -2,8 +2,10 @@ import React from 'react';
 
 var SocialMediaButtons = (props) => {
   return (
-    <div id='po-soc-med-btns'>
-      TODO: add font awesome social media buttons
+    <div className='po-soc-med-btns'>
+      <i className='fab fa-facebook fa-2x soc-btn'></i>
+      <i class='fab fa-twitter fa-2x soc-btn'></i>
+      <i class='fab fa-pinterest fa-2x soc-btn'></i>
     </div>
   );
 };
