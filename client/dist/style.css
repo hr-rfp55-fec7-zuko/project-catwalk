@@ -382,7 +382,7 @@ li {
 }
 
 .carousel__button--left {
-  left: 50px;
+  left: 100px;
   z-index: 10;
 }
 
@@ -456,13 +456,13 @@ li {
 }
 
 .thumbnail__button--up {
-  top: 15px;
+  top: 11px;
   z-index: 10;
 }
 
-.thumbnail__button--down {
-  bottom: 0;
-}
+/* .thumbnail__button--down {
+  top: 324px;
+} */
 
 
 /*========= CSS FOR STAR COMPONENTS ===========*/

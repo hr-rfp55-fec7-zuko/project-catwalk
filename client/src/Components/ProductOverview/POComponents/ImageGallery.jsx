@@ -7,28 +7,38 @@ class ImageGallery extends React.Component {
       photos: {},
       current: 0,
       expanded: false,
-      zoomed: false
+      zoomed: false,
+      thumbnailMax: 5,
+      down: 0
     };
     this.nextSlide = this.nextSlide.bind(this);
     this.prevSlide = this.prevSlide.bind(this);
     this.expandSlide = this.expandSlide.bind(this);
     this.zoomSlide = this.zoomSlide.bind(this);
     this.setSlideFromThumbnail = this.setSlideFromThumbnail.bind(this);
-    this.scrollUp = this.scrollUp.bind(this);
-    this.scrollDown = this.scrollDown.bind(this);
   }
 
   nextSlide() {
     var length = this.state.photos[`${this.props.selectedStyle}_full`].length;
     if (this.state.current < length - 1) {
-      this.setState({ current: this.state.current + 1 });
+      var current = this.state.current + 1;
+      this.setState({ current });
+      if (current > this.state.thumbnailMax - 1) {
+        document.getElementById('thumbnail__track').scrollTop += 58;
+        this.setState({ down: this.state.down + 1 });
+      }
     }
   }
 
   prevSlide() {
     var length = this.state.photos[`${this.props.selectedStyle}_full`].length;
     if (this.state.current > 0) {
-      this.setState({ current: this.state.current - 1 });
+      var current = this.state.current - 1;
+      this.setState({ current });
+      if (current === this.state.down) {
+        document.getElementById('thumbnail__track').scrollTop -= 58;
+        this.setState({ down: this.state.down - 1 });
+      }
     }
   }
 
@@ -56,14 +66,6 @@ class ImageGallery extends React.Component {
     });
   }
 
-  scrollUp() {
-    document.getElementById('thumbnail__track').scrollTop -= 58;
-  }
-
-  scrollDown() {
-    document.getElementById('thumbnail__track').scrollTop += 58;
-  }
-
   componentDidUpdate(prevProps) {
     if (this.props.styles !== prevProps.styles) {
       var photos = {};
@@ -80,6 +82,9 @@ class ImageGallery extends React.Component {
       }
       this.setState({ photos });
     }
+    // if (this.props.selectedStyle !== prevProps.selectedStyle) {
+
+    // }
   }
 
   render() {
@@ -89,39 +94,36 @@ class ImageGallery extends React.Component {
       var length = fullPhotos.length;
       return (
         <div className='po-image-gallery' >
-          <div className='thumbnail-container' >
-            {(this.state.current !== 0 && !this.state.zoomed) &&
-              (<button
-                className='thumbnail__button thumbnail__button--up'
-                onClick={() => {
-                  this.prevSlide();
-                  this.scrollUp();
-                }} >
-                <i className="fas fa-chevron-up fa-lg"></i>
-              </button>
-              )}
-            {/* thumbnail-track*/}
-            {/* each thumbnail-slide */}
-            <div className='thumbnail__track' id='thumbnail__track' >
-              {thumbPhotos.map((image, index) => {
-                return (
-                  <img
-                    key={index}
-                    src={image}
-                    className={index === this.state.current ? 'thumbnail__slide thumbnail__slide-current' : 'thumbnail__slide'}
-                    onClick={() => this.setSlideFromThumbnail(index)} />
-                );
-              })}
-            </div>
-            {(this.state.current !== length - 1 && !this.state.zoomed) && (<button
-              className='thumbnail__button thumbnail__button--down'
-              onClick={() => {
-                this.nextSlide();
-                this.scrollDown();
-              }} >
-              <i className="fas fa-chevron-down fa-lg"></i>
-            </button>)}
-          </div>
+          {this.state.expanded ?
+
+            <div className='thumbnail-nav'></div>
+
+            : <div className='thumbnail-container' >
+              {(this.state.current !== 0 && !this.state.zoomed) &&
+                (<button
+                  className='thumbnail__button thumbnail__button--up'
+                  onClick={this.prevSlide} >
+                  <i className="fas fa-chevron-up fa-lg"></i>
+                </button>
+                )}
+              <div className='thumbnail__track' id='thumbnail__track' >
+                {thumbPhotos.map((image, index) => {
+                  return (
+                    <img
+                      key={index}
+                      src={image}
+                      className={index === this.state.current ? 'thumbnail__slide thumbnail__slide-current' : 'thumbnail__slide'}
+                      onClick={() => this.setSlideFromThumbnail(index)} />
+                  );
+                })}
+              </div>
+              {(this.state.current !== length - 1 && !this.state.zoomed) && (<button
+                className='thumbnail__button thumbnail__button--down'
+                onClick={this.nextSlide}
+                style={{ top: `${this.state.thumbnailMax * 58 + 34}px` }} >
+                <i className="fas fa-chevron-down fa-lg"></i>
+              </button>)}
+            </div>}
           <div className='carousel'>
             {(this.state.current !== 0 && !this.state.zoomed) &&
               (<button
