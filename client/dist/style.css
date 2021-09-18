@@ -31,33 +31,103 @@ h3 {
 
 
 /*========= CSS for Relatived Products & Your Outfit ===========*/
+.relatedProducts {
+  width: 100%;
+}
+
 .RelatedProductsList, .YourOutfit {
   display: flex;
-  flex-wrap: wrap;
-  width: 100%;
+  align-items: stretch;
   column-gap: 20px;
   justify-content: left;
   row-gap: 20px;
-  overflow: scroll;
   position: relative;
-  height: 370px;
-  /* transitions: .5s; */
+  height: 100%;
+  min-height: 370px;
+  overflow-x: scroll;
   scroll-behavior: smooth;
 }
 
-
-
-.cardWrapper {
-  width: calc(100%/4 - 40px);
+.YourOutfit {
+  margin-bottom: 40px;
 }
 
 .RelatedProductsList .card, .YourOutfit .card{
-  /* border-bottom: 1px solid #ccc; */
+  position: relative;
   width: 100%;
-  height: 320px;
   padding-bottom: 30px;
   box-shadow:-1px 3px 2px 1px rgb(94,74,74,0.15);
+}
+
+.ListWrapper {
+  height: 98%;
   position: relative;
+}
+
+.cardWrapper {
+  position: relative;
+  flex-shrink: 0;
+  margin: 0px 10px;
+  height: 98%;
+  width: calc(100%/4 - 40px);
+}
+
+::-webkit-scrollbar {
+  background-color: rgba(0,0,0,0);
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 0px rgba(0, 0, 0, 0);
+}
+
+.RelatedProductsList .card .info, .YourOutfit .card .info{
+  padding: 20px;
+}
+
+.RelatedProductsList .card .pic, .YourOutfit .card .pic {
+  text-align: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.RelatedProductsList .card .pic img, .YourOutfit .card .pic img  {
+  width: auto;
+  height: 200px;
+}
+
+.LeftButton, .RightButton {
+  font-size: 40px;
+  position: absolute;
+  left: 2%;
+  top: 40%;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.LeftButtonWrapper {
+  left: 1%;
+}
+
+.RightButtonWrapper, .LeftButtonWrapper {
+  font-size: 40px;
+  background-color: rgba(0,0,0,0);
+  border: none;
+  position: absolute;
+  right: 2%;
+  top: 0%;
+  cursor: pointer;
+  z-index: 10;
+  outline: 0;
+  height: 89%;
+  width: 30px;
+  cursor: pointer;
+}
+
+.RightButtonWrapper i, .LeftButtonWrapper i {
+  color: rgba(0, 0, 0, 0.5);
+}
+.RightButtonWrapper:hover .RightButtonWrapper i, .LeftButtonWrapper:hover .LeftButtonWrapper i {
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .CompareButton, .DeleteButton {
@@ -94,60 +164,13 @@ h3 {
   width: 50%;
 }
 
-.relatedProducts {
-  position: relative;
-}
-
-.RelatedProductsList {
-  display: flex;
-  justify-content: flex-start;
-  overflow: scroll;
-  position: relative;
-  height: 415px;
-  margin: 0px;
-  padding: 0px;
-  transitions: .5s;
-  scroll-behavior: smooth;
-}
-
-.RelatedProductsList .card .info, .YourOutfit .card .info{
-  padding: 20px;
-}
-
-.RelatedProductsList .card .pic, .YourOutfit .card .pic {
-  overflow: hidden;
-  width: 100%;
-  text-align: center;
-  /* background-color: #eee; */
-}
-
-.RelatedProductsList .card .pic img, .YourOutfit .card .pic img  {
-  width: auto;
-  height: 200px;
-}
-
-/*carousel*/
-.LeftButton,.RightButton {
-  position: absolute;
-  left: 2%;
-  top: 25%;
-  background-color: white;
-  border: 1px solid black;
-  cursor: pointer;
-  z-index: 10;
-  font-size: 40px;
-}
-
-.LeftButton:hover, .RightButton:hover {
-  background-color: black;
-  color: white;
-}
-
 .AddOutfitContent {
   background: linear-gradient(180deg, rgb(250, 250, 250), hsl(240,60%,100%));
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 98%;
+  min-height: 320px;
 }
 
  .AddOutfitContent:hover {
