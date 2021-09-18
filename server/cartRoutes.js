@@ -35,7 +35,6 @@ router.get('/', (req, res) => {
 
 //POST to cart
 router.post('/', (req, res) => {
-  console.log('CART REQUEST BODY', req.body);
   cartRequest('post', req.body)
     .then(() => {
       res.end();
