@@ -1,5 +1,4 @@
 import React from 'react';
-// import RelatedProductCard from '../RelatedProducts/RelatedProductCard.jsx';
 import YourOutfitCard from './YourOutfitCard.jsx';
 const axios = require('axios');
 
@@ -60,6 +59,7 @@ class YourOutfitList extends React.Component {
   //       console.log('Error getting product style in YourOutfit', err);
   //     });
   // }
+
   render() {
     const { outfits } = this.state;
     let outfitValue = Object.values(outfits);
@@ -71,10 +71,6 @@ class YourOutfitList extends React.Component {
             <div className='AddOutfitContent card '><span>+ Add To Your Outfit</span>
             </div>
           </div>
-          {/* <div className="cardWrapper" onClick={this.deleteOutfit} >
-            <div className='AddOutfitContent card '><span>+ Delete To Your Outfit</span>
-            </div>
-          </div> */}
           {outfitValue.map((outfitId) => (
             <YourOutfitCard
               outfitId={outfitId}
