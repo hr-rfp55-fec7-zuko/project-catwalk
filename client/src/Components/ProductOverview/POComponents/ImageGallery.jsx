@@ -151,7 +151,10 @@ class ImageGallery extends React.Component {
                       key={index}
                       className={this.state.expanded ? 'carousel__slide expanded-slide' : 'carousel__slide'}
                       onClick={!this.state.expanded ? this.expandSlide : this.zoomSlide}
-                      style={this.state.zoomed ? { cursor: 'zoom-out' } : null}>
+                      style={this.state.zoomed ? {
+                        cursor: 'zoom-out',
+                        transform: 'scale(2.5)',
+                        overflow: 'hidden' } : null}>
                       {index === this.state.current &&
                         (<img
                           className='carousel__image'

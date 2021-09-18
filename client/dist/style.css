@@ -354,6 +354,8 @@ li {
 
 .expanded-slide {
   cursor: crosshair;
+  /* object-fit: fill;
+  overflow: hidden; */
 }
 
 .carousel__track {
@@ -382,7 +384,6 @@ li {
 }
 
 .carousel__button--left {
-  /* left: 100px; */
   z-index: 10;
 }
 
