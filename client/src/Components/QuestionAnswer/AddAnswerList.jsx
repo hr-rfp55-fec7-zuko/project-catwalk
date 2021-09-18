@@ -60,7 +60,9 @@ var AddAnswerList = (props) => {
               <br/>
               <textarea className="qa-withplaceholder" maxLength="60" placeholder="Example: Zuko" onChange={(e) => { e.preventDefault(); setNickName(e.target.value); }}/>
               <br/>
-              For privacy reasons, do not use your full name or email address.
+              <p className="qa-notice">
+                For privacy reasons, do not use your full name or email address.
+              </p>
               <br/>
             </label>
             <label className="qa-questions-modal-3">
@@ -68,8 +70,13 @@ var AddAnswerList = (props) => {
               <br/>
               <textarea className="qa-withplaceholder" maxLength="60" placeholder="Example: zuko@zuko.com" onChange={(e) => { e.preventDefault(); setEmailAdd(e.target.value); }}/>
               <br/>
-              For authentication reasons, you will not be emailed.
+              <p className="qa-notice">
+                For authentication reasons, you will not be emailed.
+              </p>
               <br/>
+            </label>
+            <label className="qa-questions-modal-4">
+              Upload your photos
             </label>
             <br />
             {/* TO DO Advanced Content

@@ -838,8 +838,12 @@ li {
 
 .qa-questions-modal-button {
   font-family:'Montserrat',sans-serif;
-  font-size: 16px;
-  color: #000;
+  padding: 10px;
+  background-color: white;
+  font-weight: 900;
+  margin-top: 10px;
+  margin-right: 10px;
+  border: 1px solid;
 }
 
 .qa-searchBar {
@@ -974,5 +978,9 @@ li {
   position: absolute;
   top: 35px;
   right: 20px;
+}
+
+.qa-notice {
+  font-size: 10px;
 }
 
