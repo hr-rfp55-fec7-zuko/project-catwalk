@@ -96,7 +96,17 @@ class ImageGallery extends React.Component {
         <div className='po-image-gallery' >
           {this.state.expanded ?
 
-            <div className='thumbnail-nav'></div>
+            <div className='thumbnail-navtrack'>
+              {thumbPhotos.map((image, index) => {
+                return (
+                  <i
+                    key={index}
+                    className={index === this.state.current ? 'thumbnail__nav thumbnail__nav-current fas fa-circle' : 'thumbnail__nav fas fa-circle'}
+                    onClick={() => this.setSlideFromThumbnail(index)}
+                  ></i>
+                );
+              })}
+            </div>
 
             : <div className='thumbnail-container' >
               {(this.state.current !== 0 && !this.state.zoomed) &&
@@ -128,7 +138,8 @@ class ImageGallery extends React.Component {
             {(this.state.current !== 0 && !this.state.zoomed) &&
               (<button
                 className='carousel__button carousel__button--left'
-                onClick={this.prevSlide} >
+                onClick={this.prevSlide}
+                style={this.state.expanded ? {left: '20px'} : {left: '100px'}} >
                 <i className="fas fa-arrow-left fa-lg"></i>
               </button>
               )}

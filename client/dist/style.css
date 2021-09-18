@@ -382,7 +382,7 @@ li {
 }
 
 .carousel__button--left {
-  left: 100px;
+  /* left: 100px; */
   z-index: 10;
 }
 
@@ -424,7 +424,6 @@ li {
   cursor: pointer;
   opacity: 0.8;
   margin: 4px;
-  /* border-radius: 10%; */
 }
 
 .thumbnail__slide:hover {
@@ -464,6 +463,29 @@ li {
   top: 324px;
 } */
 
+.thumbnail-navtrack {
+  display: flex;
+  flex-direction: column;
+  /* height: 350px; */
+  left: 7%;
+  align-items: center;
+  position: absolute;
+  z-index: 30;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.thumbnail__nav {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.thumbnail__nav:hover {
+  color: rgba(0, 0, 0, 1);
+}
+
+.thumbnail__nav-current {
+  color: rgba(0, 0, 0, 1);
+}
 
 /*========= CSS FOR STAR COMPONENTS ===========*/
 .stars-outer{
