@@ -76,25 +76,32 @@ class AddToCart extends React.Component {
             <p>{this.state.addedToCart ? `You added ${this.state.quantity} items to your cart!` : <br />}</p>
           </div>
         </div>
-        <div><br/><br/><br/></div>
+        <div><br /><br /><br /></div>
       </div >
     );
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.style !== prevProps.style) {
-      this.setState({ style: this.props.style, addedToCart: false });
-      if (this.state.selectedSKU && this.state.style.skus) {
-        var skuArr = Object.keys(this.props.style.skus);
-        for (var i = 0; i < skuArr.length; i++) {
-          if (this.props.style.skus[skuArr[i]].size === this.state.selectedSize) {
-            this.setState({
-              selectedSKU: skuArr[i],
-              totalQuantity: this.props.style.skus[skuArr[i]].quantity
-            });
-          }
-        }
-      }
+      this.setState({
+        style: this.props.style,
+        addedToCart: false,
+        selectedSKU: null,
+        selectedSize: null,
+        totalQuantity: null,
+        quantity: null
+      });
+      // if (this.state.selectedSKU && this.state.style.skus) {
+      //   var skuArr = Object.keys(this.props.style.skus);
+      //   for (var i = 0; i < skuArr.length; i++) {
+      //     if (this.props.style.skus[skuArr[i]].size === this.state.selectedSize) {
+      //       this.setState({
+      //         selectedSKU: skuArr[i],
+      //         totalQuantity: this.props.style.skus[skuArr[i]].quantity
+      //       });
+      //     }
+      //   }
+      // }
     }
   }
 }
