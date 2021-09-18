@@ -8,7 +8,7 @@ class ImageGallery extends React.Component {
       current: 0,
       expanded: false,
       zoomed: false,
-      thumbnailMax: 5,
+      thumbnailMax: null,
       down: 0
     };
     this.nextSlide = this.nextSlide.bind(this);
@@ -67,6 +67,7 @@ class ImageGallery extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.styles !== prevProps.styles) {
       var photos = {};
+      var thumbnailMax = 7;
       for (var i = 0; i < this.props.styles.length; i++) {
         var styleID = this.props.styles[i].style_id;
         var thumbArr = [];
@@ -77,12 +78,12 @@ class ImageGallery extends React.Component {
         });
         photos[`${styleID}_thumb`] = thumbArr;
         photos[`${styleID}_full`] = photoArr;
+        if (thumbArr.length < thumbnailMax) {
+          thumbnailMax = thumbArr.length;
+        }
       }
-      this.setState({ photos });
+      this.setState({ photos, thumbnailMax });
     }
-    // if (this.props.selectedStyle !== prevProps.selectedStyle) {
-
-    // }
   }
 
   render() {
@@ -93,7 +94,6 @@ class ImageGallery extends React.Component {
       return (
         <div className='po-image-gallery' >
           {this.state.expanded ?
-
             <div className='thumbnail-navtrack'>
               {thumbPhotos.map((image, index) => {
                 return (
@@ -105,7 +105,6 @@ class ImageGallery extends React.Component {
                 );
               })}
             </div>
-
             : <div className='thumbnail-container' >
               {(this.state.current !== 0 && !this.state.zoomed) &&
                 (<button
@@ -114,7 +113,9 @@ class ImageGallery extends React.Component {
                   <i className="fas fa-chevron-up fa-lg"></i>
                 </button>
                 )}
-              <div className='thumbnail__track' id='thumbnail__track' >
+              <div
+                className='thumbnail__track' id='thumbnail__track'
+                style={{height: `${this.state.thumbnailMax * 58}px`}}>
                 {thumbPhotos.map((image, index) => {
                   return (
                     <img
@@ -137,7 +138,7 @@ class ImageGallery extends React.Component {
               (<button
                 className='carousel__button carousel__button--left'
                 onClick={this.prevSlide}
-                style={this.state.expanded ? {left: '20px'} : {left: '100px'}} >
+                style={this.state.expanded ? { left: '20px' } : { left: '100px' }} >
                 <i className="fas fa-arrow-left fa-lg"></i>
               </button>
               )}
@@ -152,7 +153,8 @@ class ImageGallery extends React.Component {
                       style={this.state.zoomed ? {
                         cursor: 'zoom-out',
                         transform: 'scale(2.5)',
-                        overflow: 'hidden' } : null}>
+                        overflow: 'hidden'
+                      } : null}>
                       {index === this.state.current &&
                         (<img
                           className='carousel__image'

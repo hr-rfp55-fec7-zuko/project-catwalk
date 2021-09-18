@@ -400,7 +400,7 @@ li {
 .thumbnail-container {
   display: flex;
   flex-direction: column;
-  height: 350px;
+  height: 466px;
   width: 70px;
   align-items: center;
   position: absolute;
@@ -409,7 +409,7 @@ li {
 }
 
 .thumbnail__track {
-  height: 290px;
+  max-height: 406px;
   width: 58px;
   display: flex;
   flex-wrap: wrap;
