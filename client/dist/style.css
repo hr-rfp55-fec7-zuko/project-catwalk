@@ -504,6 +504,7 @@ li {
   max-width: 50%;
   display: block;
 }
+
 .rating-bar-outer {
   background-color: gray;
   /* display: inline-block;
@@ -1006,3 +1007,4 @@ li {
   top: 35px;
   right: 20px;
 }
+
