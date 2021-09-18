@@ -5,8 +5,6 @@ class SortBar extends React.Component {
     super(props);
   }
 
-
-
   render() {
     let reviewCount = this.props.reviewCount;
     return (

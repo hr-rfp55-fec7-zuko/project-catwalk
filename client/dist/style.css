@@ -760,7 +760,7 @@ li {
 
  .svg-inline--fa.fa-caret-up.fa-w-10{
   overflow: visible;
-  vertical-align: 100em;
+  vertical-align: middle;
   color: dodgerblue;
 }
 
@@ -811,13 +811,19 @@ li {
   padding: 10px;
 }
 
-/* .add-review-questions-modal-wrapper {
+.add-review-close-icon-modal{
+  position: absolute;
+  top: 2px;
+  right: 10px;
+}
+
+.add-review-questions-modal-wrapper {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-} */
+}
 
 .add-review-modal-backdrop {
   position: fixed;
@@ -830,9 +836,9 @@ li {
 }
 
 .add-review-modal-box {
-  position: relative;
-  top: 50%;
-  left: 50%;
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
   transform: translate(-50%, -50%);
   overflow-y: auto;
   height: 70%;
@@ -853,6 +859,11 @@ li {
   border: 1px solid;
 }
 
+/* Form star selector component styling */
+.star-picker button{
+ border: none;
+ background-color: transparent
+}
 /*========= CSS for Questions & Answers ===========*/
 
 .qa-questions-modal-wrapper {
