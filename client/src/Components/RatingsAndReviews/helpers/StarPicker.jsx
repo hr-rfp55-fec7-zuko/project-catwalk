@@ -10,7 +10,16 @@ class StarPicker extends React.Component{
   constructor(props) {
     super(props)
 
-    // this.handleRadioFormChange = this.handleRadioFormChange.bind(this);
+    this.handleStarSelect = this.handleStarSelect.bind(this);
+  }
+
+  handleStarSelect(event) {
+    // console.log(event.target.parentElement.parentElement)
+    let button = event.target.parentElement.parentElement
+    let id = button.id;
+    let name = button.name;
+    console.log(button, id, name)
+    this.props.handleStarSelect(name, id)
   }
 
   render() {
@@ -21,10 +30,12 @@ class StarPicker extends React.Component{
             const ratingValue = i + 1;
             return (
               <>
-                <input type="radio" name="rating" onChange={this.props.handleRadioFormChange} id={ratingValue} name="rating"/>
-                <label>
-                  <FontAwesomeIcon key={ratingValue} className="star" value={ratingValue} icon={faStar} size={'2x'} color={ratingValue <= this.props.rating ? '#ffc107' : '#e4e5e9'}/>
-                </label>
+                {/* <input type="radio" name="rating" onChange={this.props.handleRadioFormChange} id={ratingValue} name="rating"/>
+                <label> */}
+                <button type="button" onClick={this.handleStarSelect} id={ratingValue} name="rating">
+                  <FontAwesomeIcon onClick={this.handleRadioFormChange} key={ratingValue} className="star" value={ratingValue} icon={faStar} size={'2x'} color={ratingValue <= this.props.rating ? '#ffc107' : '#e4e5e9'}/>
+                </button>
+                {/* </label> */}
               </>
             )
           })

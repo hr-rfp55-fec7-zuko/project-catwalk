@@ -41,6 +41,7 @@ class AddReviewForm extends React.Component {
     this.handleStringFormChange = this.handleStringFormChange.bind(this)
     this.handleRadioFormChange = this.handleRadioFormChange.bind(this)
     this.submitReviewForm = this.submitReviewForm.bind(this)
+    this.handleStarSelect = this.handleStarSelect.bind(this)
   }
 
   submitReviewForm(event){
@@ -112,9 +113,15 @@ class AddReviewForm extends React.Component {
 
   handleRadioFormChange(event){
     this.setStateProperty(event.target.name, event.target.id)
-    if (event.target.name === 'rating') {
-      this.handleStarColorChange(event.target.id);
-    }
+    // if (event.target.name === 'rating') {
+    //   this.handleStarColorChange(event.target.id);
+    // }
+  }
+
+  handleStarSelect(name, id){
+    console.log('handlestarselect', name, id)
+    this.setStateProperty(name, id);
+    this.handleStarColorChange(id);
   }
 
   handleStarColorChange(ratingValue){
@@ -145,7 +152,8 @@ class AddReviewForm extends React.Component {
 
         <div className="add-review-modal-box">
 
-        <StarPicker rating={this.state.rating} handleRadioFormChange={this.handleRadioFormChange} />
+        <StarPicker rating={this.state.rating} handleStarSelect={this.handleStarSelect} />
+        {/* <StarPicker rating={this.state.rating} handleRadioFormChange={this.handleRadioFormChange} /> */}
 
         {/* {submissionConfirmation}
 
