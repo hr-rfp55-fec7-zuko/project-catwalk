@@ -24,6 +24,7 @@ router.post('/', (req, res) => {
       }
     }
   }
+
   res.status(201).send(data);
 });
 
@@ -42,18 +43,17 @@ router.delete('/:productId', (req, res) => {
   var deleteId = req.params['productId'];
   var index = -1;
 
-  if (userId in outfits) {
+  if ((userId in outfits)) {
     let outfit = outfits[userId];
-
+    let index;
     for (let i = 0; i < outfits.length; i++) {
       if (outfits[i].productId === deleteId) {
-        outfits.splice(i, 1);
-        break;
+        index = i;
       }
     }
+    outfit.splice(index, 1);
   }
-
-  res.json({});
+  res.json(outfits[userId]);
 });
 
 module.exports = router;

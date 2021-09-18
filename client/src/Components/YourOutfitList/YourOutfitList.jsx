@@ -1,6 +1,4 @@
-import React from 'react';
-import Outfit from './YourOutfitCard.jsx';
-// import RelatedProductCard from '../RelatedProducts/RelatedProductCard.jsx';
+import React, { useEffect, useState } from 'react';
 import YourOutfitCard from './YourOutfitCard.jsx';
 
 
@@ -10,15 +8,11 @@ class YourOutfitList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      productStyles: '',
-      productInfo: '',
       outfits: [],
-      outfitRenderList: [],
-      addOutfit: ''
     };
 
     this.addOutfit = this.addOutfit.bind(this);
-    this.deleteOutfit = this.deleteOutfit.bind(this);
+    //this.deleteOutfit = this.deleteOutfit.bind(this);
   }
 
   componentDidMount() {
@@ -41,8 +35,6 @@ class YourOutfitList extends React.Component {
     const { productId } = this.props;
     axios.post('/outfit', { productId: productId })
       .then(({ data }) => {
-        console.log(data);
-
         this.setState({
           outfits: data
         });
@@ -52,21 +44,21 @@ class YourOutfitList extends React.Component {
       });
   }
 
-  deleteOutfit() {
-    const { productId } = this.props;
-    const { outfits } = this.state;
+  // deleteOutfit() {
+  //   const { productId } = this.props;
+  //   const { outfits } = this.state;
 
-    axios.delete(`/outfit/${productId}`)
-      .then(({ data }) => {
-        outfits.pop(productId);
-        this.setState({
-          outfits: outfits
-        });
-      })
-      .catch((err) => {
-        console.log('Error getting product style in YourOutfit', err);
-      });
-  }
+  //   axios.delete(`/outfit/${productId}`)
+  //     .then(({ data }) => {
+  //       outfits.pop(productId);
+  //       this.setState({
+  //         outfits: outfits
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log('Error getting product style in YourOutfit', err);
+  //     });
+  // }
   render() {
     const { outfits } = this.state;
     let outfitValue = Object.values(outfits);
@@ -78,14 +70,10 @@ class YourOutfitList extends React.Component {
             <div className='AddOutfitContent card '><span>+ Add To Your Outfit</span>
             </div>
           </div>
-          {/* <div className="cardWrapper" onClick={this.deleteOutfit} >
-            <div className='AddOutfitContent card '><span>+ Delete To Your Outfit</span>
-            </div>
-          </div> */}
-          {outfitValue.map((productId) => (
+          {outfitValue.map((outfitId) => (
             <YourOutfitCard
-              productId={productId.productId}
-              key={productId}
+              outfitId={outfitId}
+              key={outfitId}
             />
           ))}
         </div>

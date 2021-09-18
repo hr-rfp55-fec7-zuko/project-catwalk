@@ -3,29 +3,29 @@ import axios from 'axios';
 import AvgRatingStars from '../RatingsAndReviews/helpers/AvgRatingStars.jsx';
 
 class YourOutfitCard extends React.Component {
-  constructor(props) {
-    super(props);
-    const { parentProductIdInfo } = this.props;
-    this.state = {
+  constructor() {
+    super();
+    this.state = JSON.parse(window.localStorage.getItem('state')) || {
       productIdInfo: '',
       featuredURL: '',
       salePrice: '',
       avgRating: '',
     };
+  }
 
+  setState(state) {
+    window.localStorage.setItem('state', JSON.stringify(state));
+    super.setState(state);
   }
 
   componentDidMount() {
-    const { productId } = this.props;
+    const { outfitId } = this.props;
 
     // Get the information for a related product
-    axios.get(`/products/${productId}`)
+    axios.get(`/products/${outfitId}`)
       .then(({ data }) => {
-        this.setState({
-          productIdInfo: data,
-          parentProductFeatures: parentProductIdInfo.features,
-          currentProductFeatures: data.features,
-        });
+        console.log(data);
+        this.setState({ ...this.state, productIdInfo: data });
 
       })
       .catch((err) => {
@@ -33,29 +33,22 @@ class YourOutfitCard extends React.Component {
       });
 
     // Get the feature picture and price for a related product
-    axios.get(`/products/${productId}/styles`)
+    axios.get(`/products/${outfitId}/styles`)
       .then(({ data }) => {
+        console.log(data);
         const defaultProduct = data.find((product) => product['default?'] === false);
         let url;
         if (!defaultProduct) {
           url = data.photos[0].thumbnail_url;
-          this.setState({
-            salePrice: data.sale_price,
-          });
+          this.setState({ ...this.state, salePrice: data.sale_price });
         } else {
           url = defaultProduct.photos[0].thumbnail_url;
-          this.setState({
-            salePrice: defaultProduct.sale_price,
-          });
+          this.setState({ ...this.state, salePrice: defaultProduct.sale_price });
         }
         if (!url) {
-          this.setState({
-            featuredURL: '/images/default-placeholder.png',
-          });
+          this.setState({ ...this.state, featuredURL: '/images/default-placeholder.png' });
         } else {
-          this.setState({
-            featuredURL: url,
-          });
+          this.setState({ ...this.state, featuredURL: url });
         }
       })
       .catch((error) => {
@@ -63,12 +56,13 @@ class YourOutfitCard extends React.Component {
       });
   }
   render() {
-    const { productIdInfo, featuredURL, salePrice, urlFeaturePic, avgRating } = this.state;
-    const { outfit } = this.props;
+    const { productIdInfo, featuredURL } = this.state;
+    const { outfitId } = this.props;
+
     return (
       <div className="cardWrapper">
-        <div className='card' id={productIdInfo.id}>
-          <div className='CompareButton'><i className="far fa-star"></i></div>
+        <div className='card' id={outfitId}>
+          <div className='CompareButton'><i className="fa fa-times"></i></div>
           <div className='pic'>
             <img src={featuredURL} alt={productIdInfo.name}></img>
           </div>
@@ -76,8 +70,8 @@ class YourOutfitCard extends React.Component {
             <p className='category'>{productIdInfo.category}</p>
             <h3 className='title'>{productIdInfo.name}</h3>
             <p className='price'>${productIdInfo.default_price}</p>
-            {salePrice ? <p className='price sale'>{salePrice}</p> : null}
-            <AvgRatingStars avgRating={avgRating} id={productIdInfo.id} />
+            {/* {salePrice ? <p className='price sale'>{salePrice}</p> : null} */}
+            {/* <AvgRatingStars avgRating={avgRating} id={productIdInfo.id} /> */}
           </div>
         </div>
 
