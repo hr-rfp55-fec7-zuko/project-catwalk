@@ -65,15 +65,6 @@ class RelatedProductsList extends React.Component {
   }
 
   isOverflowing() {
-
-    const carousel = document.getElementById('productCarousel');
-    const bool = carousel.scrollWidth >= carousel.clientWidth;
-    console.log(carousel.scrollWidth, carousel.clientWidth);
-
-    this.setState({
-      cardOverflow: bool,
-      imagesToTheRight: bool,
-    });
   }
 
   render() {
