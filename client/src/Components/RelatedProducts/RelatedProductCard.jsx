@@ -88,15 +88,23 @@ class RelatedProductCard extends React.Component {
     let combinedObj = parentFeature.concat(productFeature);
     let combinedFeatures = combinedObj.filter((item) => item.value !== null);
     let output = [];
+    let obj = {};
     combinedFeatures.forEach(item => {
-      console.log(item);
-      // if (!output[item.feature]) {
-      //   output[item.feature] = { feature: item.feature, value: [] };
-      // }
-      // output.push(item);
+      let obj1 = {};
+      if (!obj[item.feature]) {
+        obj[item.feature] = item.value;
+        obj1['feature'] = item.feature;
+        obj1['value'] = item.value;
+        output.push(obj1);
+      }
+
+
     });
+    //output = Object.entries(obj);
+
+
     this.setState({
-      comparedFeatures: combinedFeatures,
+      comparedFeatures: output,
     });
   }
 
