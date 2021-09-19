@@ -43,7 +43,7 @@ h3 {
   row-gap: 20px;
   position: relative;
   height: 100%;
-  min-height: 370px;
+  min-height: 390px;
   overflow-x: scroll;
   scroll-behavior: smooth;
 }
@@ -88,6 +88,7 @@ h3 {
   text-align: center;
   width: 100%;
   overflow: hidden;
+  min-height: 200px;
 }
 
 .RelatedProductsList .card .pic img, .YourOutfit .card .pic img  {

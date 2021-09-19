@@ -13,6 +13,7 @@ class RelatedProductCard extends React.Component {
       parentProductIdInfo,
       featuredURL: '',
       openCompareModal: false,
+      parentProductFeatures: '',
       comparedFeatures: '',
       salePrice: '',
       avgRating: '',
@@ -24,6 +25,7 @@ class RelatedProductCard extends React.Component {
 
   componentDidMount() {
     const { productId, parentProductIdInfo, AvgRatingStars } = this.props;
+    const { currentProductFeatures, parentProductFeatures } = this.state;
 
     // Get the information for a related product
     axios.get(`/products/${productId}`)
@@ -42,8 +44,9 @@ class RelatedProductCard extends React.Component {
     // Get the feature picture and price for a related product
     axios.get(`/products/${productId}/styles`)
       .then(({ data }) => {
-        const defaultProduct = data.find((product) => product['default?'] === false);
+        const defaultProduct = data.find((product) => product['default?'] === true);
         let url;
+
         if (!defaultProduct) {
           url = data.photos[0].thumbnail_url;
           this.setState({
@@ -71,16 +74,6 @@ class RelatedProductCard extends React.Component {
         console.log('Error fetching product styles in relatedProductCard', error);
       });
 
-    // return axios({
-    //   url: `/reviews/meta?product_id=${productId}`,
-    //   method: 'GET'
-    // })
-    //   .then((results) => {
-    //     // console.log(results.data);
-    //     this.setState({ avgRating: results.data.ratings });
-    //   })
-
-    //   .catch((error) => console.log('ERROR in METADATA AJAX Request: ', error));
   }
 
   handleCompareClick() {
@@ -94,13 +87,21 @@ class RelatedProductCard extends React.Component {
   compareFeatures(parentFeature, productFeature) {
     let combinedObj = parentFeature.concat(productFeature);
     let combinedFeatures = combinedObj.filter((item) => item.value !== null);
+    let output = [];
+    combinedFeatures.forEach(item => {
+      console.log(item);
+      // if (!output[item.feature]) {
+      //   output[item.feature] = { feature: item.feature, value: [] };
+      // }
+      // output.push(item);
+    });
     this.setState({
       comparedFeatures: combinedFeatures,
     });
   }
 
   render() {
-    const { productIdInfo, featuredURL, salePrice, urlFeaturePic, openCompareModal, comparedFeatures, parentProductIdInfo, avgRating, count } = this.state;
+    const { productIdInfo, featuredURL, salePrice, openCompareModal, comparedFeatures, parentProductIdInfo, avgRating } = this.state;
 
     return (
       <React.Fragment>

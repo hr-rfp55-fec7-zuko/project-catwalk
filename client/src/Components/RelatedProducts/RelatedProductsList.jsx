@@ -37,10 +37,9 @@ class RelatedProductsList extends React.Component {
       imagesToTheRight: true,
     });
     const carousel = document.getElementById('ProductCarousel');
-    carousel.scrollLeft -= 316;
-    console.log(carousel.scrollLeft);
+    carousel.scrollLeft -= 303;
 
-    if (carousel.scrollLeft <= 316) {
+    if (carousel.scrollLeft <= 303) {
 
       this.setState({
         imagesToTheLeft: false,
@@ -49,15 +48,14 @@ class RelatedProductsList extends React.Component {
   }
 
   scrollRight() {
-    console.log('Clicked!');
     this.setState({
       imagesToTheLeft: true,
     });
     const carousel = document.getElementById('ProductCarousel');
     const amountLeftToScroll = carousel.scrollWidth - carousel.clientWidth;
 
-    carousel.scrollLeft += 316;
-    if (carousel.scrollLeft >= amountLeftToScroll - 316) {
+    carousel.scrollLeft += 303;
+    if (carousel.scrollLeft >= amountLeftToScroll - 303) {
       this.setState({
         imagesToTheRight: false,
       });
@@ -79,7 +77,7 @@ class RelatedProductsList extends React.Component {
     return (
       <div className='ListWrapper'>
         {imagesToTheRight ? (<div className='RightButtonWrapper'>
-          <div className='RightButton' onClick={this.scrollRight}><i class="fas fa-chevron-circle-right"></i></div></div>) : null}
+          <div className='RightButton' onClick={this.scrollRight}><i className="fas fa-chevron-circle-right"></i></div></div>) : null}
 
         <div id='ProductCarousel' className='RelatedProductsList' onLoad={this.isOverflowing}>
           {relatedProducts.map((product) => (
