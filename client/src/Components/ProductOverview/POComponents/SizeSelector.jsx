@@ -5,7 +5,7 @@ var SizeSelector = ({ skus, setSKU, needSize }) => {
     return (
       <div>
         <select
-          className='po-select-size'
+          className='dropdown__select'
           size={needSize ? Object.keys(skus).length : 1}
           onChange={(e) => {
             e.preventDefault();
