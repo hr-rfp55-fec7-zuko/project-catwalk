@@ -37,13 +37,9 @@ var AnswerEntryList = (props) => {
     }
   }, [props.questionId, subStatus, props.status]);
 
-  if (!Array.isArray(answerList)) {
-    return <div></div>;
-  }
-
   var aList = answerList.map(item => {
     return (
-      <div className="qa-eachA">
+      <div className="qa-eachA" key={item.answer_id}>
         <p className="qa-answers-A">
           A:
         </p>

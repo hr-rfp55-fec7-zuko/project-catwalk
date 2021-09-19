@@ -238,16 +238,18 @@ h3 {
 .po-main-top {
   position: relative;
   display: flex;
-  height: 80%;
+  /* height: 80%; */
 }
 
 .po-main-left {
   width: 60%;
+  height: 100%;
   z-index: 3;
 }
 
 .po-main-right {
   width: 40%;
+  height: 100%;
   position: absolute;
   top: 0;
   right: 0;
@@ -279,12 +281,18 @@ h3 {
   display: flex;
 }
 
+.read-all-reviews {
+  margin-left: 10px;
+}
+
 .po-desc {
   display: flex;
 }
 
 .po-add-cart {
   display: grid;
+  width: 300px;
+
 }
 
 .select-parent{
@@ -298,9 +306,38 @@ h3 {
   /* top:20px */
 }
 
+.dropdown__select, .dropdown__quantity {
+  font-family:'Montserrat',sans-serif;
+  padding: 15px;
+  background-color: white;
+  font-weight: 900;
+  border: 1px solid;
+  margin-right: 10px;
+}
+
 .add-cart-feat {
   position: absolute;
-  top: 20px
+  top: 60px
+}
+
+.button__add-cart {
+  font-family:'Montserrat',sans-serif;
+  padding: 15px;
+  background-color: white;
+  font-weight: 900;
+  border: 1px solid;
+}
+
+.po-soc-med-btns {
+  width:300px;
+  display: flex;
+  position: absolute;
+  justify-content: left;
+  bottom: 0;
+}
+
+.soc-btn {
+  margin-right: 10px;
 }
 
 .po-desc-text {
@@ -361,7 +398,7 @@ li {
 
 .carousel__track-container {
   position: relative;
-  background-color: rosybrown;
+  background-color: white;
   height: 100%;
   width: 100%;
 }
@@ -380,6 +417,15 @@ li {
   cursor: crosshair;
   /* object-fit: fill;
   overflow: hidden; */
+}
+
+#zoomed-slide {
+  cursor: zoom-out;
+  transform: scale(1);
+}
+
+#zoomed-slide:hover {
+  transform: scale(2.5);
 }
 
 .carousel__track {
@@ -607,7 +653,7 @@ li {
 .review-tile {
   border-bottom: 1px solid black;
   /* border: 1px solid red; */
-  height: 200px;
+  height: 250px;
   width: 80%;
   margin-top: 1%;
   margin-bottom: 1%;
@@ -616,7 +662,8 @@ li {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr auto 1fr auto 1fr;
-  row-gap: 5px;
+  /* row-gap: 5px; */
+  /* place-items: center; */
   grid-template-areas:
    "star . attribution attribution"
    "summary summary summary summary"
@@ -669,6 +716,7 @@ li {
 
 .review-body {
   grid-area: body;
+  padding-bottom: 2%;
 }
 
 .review-thumbnails {
@@ -683,6 +731,7 @@ li {
   grid-area: thumbnail-slots;
   height: 60px;
   width: auto;
+  margin-bottom: 3%
 }
 
 .review-recommend {
@@ -919,8 +968,8 @@ li {
   left: 50%;
   transform: translate(-50%, -50%);
   overflow-y: auto;
-  height: 40%;
-  width: 30%;
+  height: 60%;
+  width: 60%;
   background-color:white;
   box-shadow: 0 0 10px rgba(0,0,0,0.25);
   z-index: 101;
@@ -929,8 +978,12 @@ li {
 
 .qa-questions-modal-button {
   font-family:'Montserrat',sans-serif;
-  font-size: 16px;
-  color: #000;
+  padding: 10px;
+  background-color: white;
+  font-weight: 900;
+  margin-top: 10px;
+  margin-right: 10px;
+  border: 1px solid;
 }
 
 .qa-searchBar {
@@ -1067,3 +1120,17 @@ li {
   right: 20px;
 }
 
+.qa-notice {
+  font-size: 10px;
+}
+
+.qa-modal-file-button {
+  font-family:'Montserrat',sans-serif;
+  padding: 15px;
+  background-color: white;
+  font-weight: 900;
+  margin-top: 20px;
+  margin-right: 20px;
+  border: 1px solid;
+  margin-bottom: 10px;
+}

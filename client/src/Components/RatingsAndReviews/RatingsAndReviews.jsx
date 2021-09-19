@@ -6,35 +6,36 @@ import ProductBreakdown from './ProductBreakdown.jsx';
 import helpers from './helpers/helpers.js';
 import axios from 'axios';
 
-
-//****PLACEHOLDER DATA - DELETE DURING WHEN FINALIZED */
-import exampleMetaData from './exampleData/exampleMetaData.js';
-import exampleReviews from './exampleData/exampleReviews.js';
-
 class RatingsAndReviews extends React.Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      'product_id': this.props.product_id,
-      // 'product_id': 40345, //40347 - photos, 40435-response
-      reviewLimit: 2,
-      metaData: exampleMetaData,
-      reviews: exampleReviews,
-      receivedInitialData: false
+      // 'product_id': this.props.product_id,
+      'product_id': 40453, //40347 - photos, 40435-response, 40453 - long review with pics
+      metaData: {
+        product_id: '00000',
+        ratings: {},
+        recommended: {
+          true: 0,
+          false: 0
+        },
+        characteristics:{}
+      },
+      reviews: [],
+      viewableReviews: [],
+      reviewCount: 2
     };
-
 
     this.requestProductMetaData = this.requestProductMetaData.bind(this);
     this.requestProductReviews = this.requestProductReviews.bind(this);
     this.submitReviewForm = this.submitReviewForm.bind(this);
     this.submitHelpfulOrReport = this.submitHelpfulOrReport.bind(this);
+    this.setStateFilter = this.setStateFilter.bind(this)
   }
 
   componentDidMount() {
     this.requestProductMetaData();
-    this.requestProductReviews();
   }
 
   requestProductMetaData() {
@@ -46,26 +47,25 @@ class RatingsAndReviews extends React.Component {
       .catch((error) => console.log('ERROR in METADATA AJAX Request: ', error));
   }
 
-  requestProductReviews() {
+  setStateFilter(filter){
+    this.setState(filter)
+  }
+
+  //eventually this should take a page and count number
+  requestProductReviews(filter, pageCount) {
     return axios({
-      url: `/reviews/?product_id=${this.state.product_id}&count=${this.state.reviewLimit}`,
+      url: `/reviews/?product_id=${this.state.product_id}&count=${this.state.reviewCount}&sort=${filter}`,
       method: 'GET'
     })
-      .then((results) => this.setState({reviews: results.data, reviewLimit: this.state.reviewLimit + 2}))
+      .then((results) => this.setState({reviews: results.data.results, reviewCount: this.state.reviewCount + 100}))
       .catch((error) => console.log('ERROR in REVIEWS AJAX Request: ', error));
   }
 
   //submit review form
   submitReviewForm(body) {
-    // console.log('requestreceivedinbody', body)
-
-    //rembember to parse anything that's not a string
     return axios.post('/reviews/', {params: body})
-
     // .then((results) => console.log('AJAX POST RESULTS:', results))
     .catch((error) => console.log('error', error))
-
-
   }
 
   submitHelpfulOrReport(reviewId, action) {
@@ -93,7 +93,7 @@ class RatingsAndReviews extends React.Component {
          <>
            <RatingBreakdown metaData={this.state.metaData} reviewCount={reviewCount} setAvgRating={this.setAvgRating}/>
            <ProductBreakdown characteristics={this.state.metaData.characteristics}/>
-           <SortBar reviewCount={reviewCount}/>
+           <SortBar reviewCount={reviewCount} requestProductReviews={this.requestProductReviews}/>
            <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount} submitHelpfulOrReport={this.submitHelpfulOrReport} product_name={this.props.product_name} submitReviewForm={this.submitReviewForm} product_id={this.props.product_id}/>
          </>
         }

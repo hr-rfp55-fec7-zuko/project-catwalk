@@ -12,7 +12,8 @@ class RatingBreakdown extends React.Component {
     let metaData = this.props.metaData;
     let reviewCount = this.props.reviewCount;
 
-    let avgRating = helpers.determineAverageRating(metaData.ratings, reviewCount);
+    // let avgRating = helpers.determineAverageRating(metaData.ratings, reviewCount);
+    let avgRating = helpers.determineAverageRating(metaData.ratings);
 
     let percentageRecommended = helpers.determinePercentageRecommend(metaData.recommended);
 

@@ -8,7 +8,7 @@ import AddQuestionList from './AddQuestionList.jsx';
 class QuestionEntryList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {displayQuestion: 2, updateAnswer: true, updateQuestion: true};
+    this.state = {displayQuestion: 2, updateAnswer: true};
     this.handleClick = this.handleClick.bind(this);
     this.handleAnswerUpdate = this.handleAnswerUpdate.bind(this);
   }
@@ -25,45 +25,39 @@ class QuestionEntryList extends React.Component {
   }
 
   render() {
-    if (!Array.isArray(this.props.lists)) {
-      return <div></div>;
-    } else {
-      var list = this.props.lists.map(list => {
-        return (
-          <div className="qa-eachQ">
-            <p className="qa-questions">{'Q: ' + list.question_body}</p>
-            <div className="qa-questions-side">
-              <QuestionCountList helpfulness={list.question_helpfulness} questionId={list.question_id}/>
-              <QuestionReportList questionId={list.question_id}/>
-              <AddAnswerList questionId={list.question_id} questionBody={list.question_body} pName={this.props.prodName} updateAnswer={this.handleAnswerUpdate}/>
-            </div>
-            <div className="break"></div>
-            <AnswerEntryList questionId={list.question_id} status={this.state.update}/>
-          </div>
-        );
-      });
-
+    var list = this.props.lists.map(list => {
       return (
-        <div className="qa-list">
-          <div className="qa-mainlist">
-            {list.slice(0, this.state.displayQuestion)}
+        <div className="qa-eachQ" key={list.question_id}>
+          <p className="qa-questions">{'Q: ' + list.question_body}</p>
+          <div className="qa-questions-side">
+            <QuestionCountList helpfulness={list.question_helpfulness} questionId={list.question_id}/>
+            <QuestionReportList questionId={list.question_id}/>
+            <AddAnswerList questionId={list.question_id} questionBody={list.question_body} pName={this.props.prodName} updateAnswer={this.handleAnswerUpdate}/>
           </div>
-          <br />
-          <div className="qa-twoButtons">
-            {(this.state.displayQuestion < this.props.lists.length) &&
-              <button className="qa-button" onClick={this.handleClick}>
-                MORE ANSWERED QUESTIONS
-              </button>
-            }
-            <AddQuestionList pName={this.props.prodName} pId={this.props.prodId} updateQuestion={this.props.updateQuestionList}/>
-          </div>
-          {/* <button className="qa-button">
-            ADD A QUESTION +
-          </button> */}
+          <div className="break"></div>
+          <AnswerEntryList questionId={list.question_id} status={this.state.updateAnswer}/>
         </div>
       );
-    }
+    });
+
+    return (
+      <div className="qa-list">
+        <div className="qa-mainlist">
+          {list.slice(0, this.state.displayQuestion)}
+        </div>
+        <br />
+        <div className="qa-twoButtons">
+          {(this.state.displayQuestion < this.props.lists.length) &&
+            <button className="qa-button" onClick={this.handleClick}>
+              MORE ANSWERED QUESTIONS
+            </button>
+          }
+          <AddQuestionList pName={this.props.prodName} pId={this.props.prodId} updateQuestion={this.props.updateQuestionList}/>
+        </div>
+      </div>
+    );
   }
 }
+
 
 export default QuestionEntryList;
