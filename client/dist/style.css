@@ -31,33 +31,103 @@ h3 {
 
 
 /*========= CSS for Relatived Products & Your Outfit ===========*/
+.relatedProducts {
+  width: 100%;
+}
+
 .RelatedProductsList, .YourOutfit {
   display: flex;
-  flex-wrap: wrap;
-  width: 100%;
+  align-items: stretch;
   column-gap: 20px;
   justify-content: left;
   row-gap: 20px;
-  overflow: scroll;
   position: relative;
-  height: 370px;
-  /* transitions: .5s; */
+  height: 100%;
+  min-height: 370px;
+  overflow-x: scroll;
   scroll-behavior: smooth;
 }
 
-
-
-.cardWrapper {
-  width: calc(100%/4 - 40px);
+.YourOutfit {
+  margin-bottom: 40px;
 }
 
 .RelatedProductsList .card, .YourOutfit .card{
-  /* border-bottom: 1px solid #ccc; */
+  position: relative;
   width: 100%;
-  height: 320px;
   padding-bottom: 30px;
   box-shadow:-1px 3px 2px 1px rgb(94,74,74,0.15);
+}
+
+.ListWrapper {
+  height: 98%;
   position: relative;
+}
+
+.cardWrapper {
+  position: relative;
+  flex-shrink: 0;
+  margin: 0px 10px;
+  height: 98%;
+  width: calc(100%/4 - 40px);
+}
+
+::-webkit-scrollbar {
+  background-color: rgba(0,0,0,0);
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 0px rgba(0, 0, 0, 0);
+}
+
+.RelatedProductsList .card .info, .YourOutfit .card .info{
+  padding: 20px;
+}
+
+.RelatedProductsList .card .pic, .YourOutfit .card .pic {
+  text-align: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.RelatedProductsList .card .pic img, .YourOutfit .card .pic img  {
+  width: auto;
+  height: 200px;
+}
+
+.LeftButton, .RightButton {
+  font-size: 40px;
+  position: absolute;
+  left: 2%;
+  top: 40%;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.LeftButtonWrapper {
+  left: 1%;
+}
+
+.RightButtonWrapper, .LeftButtonWrapper {
+  font-size: 40px;
+  background-color: rgba(0,0,0,0);
+  border: none;
+  position: absolute;
+  right: 2%;
+  top: 0%;
+  cursor: pointer;
+  z-index: 10;
+  outline: 0;
+  height: 89%;
+  width: 30px;
+  cursor: pointer;
+}
+
+.RightButtonWrapper i, .LeftButtonWrapper i {
+  color: rgba(0, 0, 0, 0.5);
+}
+.RightButtonWrapper:hover .RightButtonWrapper i, .LeftButtonWrapper:hover .LeftButtonWrapper i {
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .CompareButton, .DeleteButton {
@@ -94,60 +164,13 @@ h3 {
   width: 50%;
 }
 
-.relatedProducts {
-  position: relative;
-}
-
-.RelatedProductsList {
-  display: flex;
-  justify-content: flex-start;
-  overflow: scroll;
-  position: relative;
-  height: 415px;
-  margin: 0px;
-  padding: 0px;
-  transitions: .5s;
-  scroll-behavior: smooth;
-}
-
-.RelatedProductsList .card .info, .YourOutfit .card .info{
-  padding: 20px;
-}
-
-.RelatedProductsList .card .pic, .YourOutfit .card .pic {
-  overflow: hidden;
-  width: 100%;
-  text-align: center;
-  /* background-color: #eee; */
-}
-
-.RelatedProductsList .card .pic img, .YourOutfit .card .pic img  {
-  width: auto;
-  height: 200px;
-}
-
-/*carousel*/
-.LeftButton,.RightButton {
-  position: absolute;
-  left: 2%;
-  top: 25%;
-  background-color: white;
-  border: 1px solid black;
-  cursor: pointer;
-  z-index: 10;
-  font-size: 40px;
-}
-
-.LeftButton:hover, .RightButton:hover {
-  background-color: black;
-  color: white;
-}
-
 .AddOutfitContent {
   background: linear-gradient(180deg, rgb(250, 250, 250), hsl(240,60%,100%));
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 98%;
+  min-height: 320px;
 }
 
  .AddOutfitContent:hover {
@@ -620,7 +643,7 @@ li {
 .review-tile {
   border-bottom: 1px solid black;
   /* border: 1px solid red; */
-  height: 200px;
+  height: 250px;
   width: 80%;
   margin-top: 1%;
   margin-bottom: 1%;
@@ -629,7 +652,8 @@ li {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr auto 1fr auto 1fr;
-  row-gap: 5px;
+  /* row-gap: 5px; */
+  /* place-items: center; */
   grid-template-areas:
    "star . attribution attribution"
    "summary summary summary summary"
@@ -682,6 +706,7 @@ li {
 
 .review-body {
   grid-area: body;
+  padding-bottom: 2%;
 }
 
 .review-thumbnails {
@@ -932,8 +957,8 @@ li {
   left: 50%;
   transform: translate(-50%, -50%);
   overflow-y: auto;
-  height: 40%;
-  width: 30%;
+  height: 60%;
+  width: 60%;
   background-color:white;
   box-shadow: 0 0 10px rgba(0,0,0,0.25);
   z-index: 101;
@@ -942,8 +967,12 @@ li {
 
 .qa-questions-modal-button {
   font-family:'Montserrat',sans-serif;
-  font-size: 16px;
-  color: #000;
+  padding: 10px;
+  background-color: white;
+  font-weight: 900;
+  margin-top: 10px;
+  margin-right: 10px;
+  border: 1px solid;
 }
 
 .qa-searchBar {
@@ -1080,3 +1109,17 @@ li {
   right: 20px;
 }
 
+.qa-notice {
+  font-size: 10px;
+}
+
+.qa-modal-file-button {
+  font-family:'Montserrat',sans-serif;
+  padding: 15px;
+  background-color: white;
+  font-weight: 900;
+  margin-top: 20px;
+  margin-right: 20px;
+  border: 1px solid;
+  margin-bottom: 10px;
+}
