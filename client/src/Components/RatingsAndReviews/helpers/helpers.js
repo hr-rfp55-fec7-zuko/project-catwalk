@@ -21,9 +21,6 @@ const helpers = {
 
   //Takes in metaData ratings object and returns average rating
   determineAverageRating: function(ratingsObject) {
-    if (Object.keys(ratingsObject).length === 0) {
-      return 0
-    }
 
     let total = 0;
     let reviewCount = 0;
@@ -33,12 +30,18 @@ const helpers = {
       reviewCount += parseInt(ratingsObject[rating]);
     }
 
+    if (reviewCount == 0) {
+      return 0;
+    }
+
     return (total / reviewCount).toFixed(2);
 
   },
 
   //Takes in metaData recommended object and returns percent "true" of total recommendations
   determinePercentageRecommend: function(recommendedObject) {
+
+    console.log(Object.keys(recommendedObject).length)
     if (Object.keys(recommendedObject).length === 0) {
       return 0
     }
