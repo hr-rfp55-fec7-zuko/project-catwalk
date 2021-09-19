@@ -39,7 +39,7 @@ var AnswerEntryList = (props) => {
 
   var aList = answerList.map(item => {
     return (
-      <div className="qa-eachA" key="{item1}">
+      <div className="qa-eachA" key={item.answer_id}>
         <p className="qa-answers-A">
           A:
         </p>
