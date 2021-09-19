@@ -18,11 +18,19 @@ class RatingsAndReviews extends React.Component {
 
     this.state = {
       'product_id': this.props.product_id,
-      // 'product_id': 40345, //40347 - photos, 40435-response
+      // 'product_id': 40453, //40347 - photos, 40435-response, 40453 - long review with pics
       reviewLimit: 2,
-      metaData: exampleMetaData,
-      reviews: exampleReviews,
-      receivedInitialData: false
+      metaData: {
+        product_id: '00000',
+        ratings: {},
+        recommended: {
+          true: 0,
+          false: 0
+        },
+        characteristics:{}
+      },
+      reviews: [],
+      reviewCount: 100
     };
 
 
@@ -34,7 +42,7 @@ class RatingsAndReviews extends React.Component {
 
   componentDidMount() {
     this.requestProductMetaData();
-    this.requestProductReviews();
+    // this.requestProductReviews();
   }
 
   requestProductMetaData() {
@@ -46,12 +54,15 @@ class RatingsAndReviews extends React.Component {
       .catch((error) => console.log('ERROR in METADATA AJAX Request: ', error));
   }
 
-  requestProductReviews() {
+  //eventually this should take a page and count number
+  requestProductReviews(pageCount) {
     return axios({
-      url: `/reviews/?product_id=${this.state.product_id}&count=${this.state.reviewLimit}`,
+      // url: `/reviews/?product_id=${this.state.product_id}&count=${this.state.reviewLimit}`,
+      // url: `/reviews/?product_id=${this.state.product_id}&count=100&page=${pageCount}`,
+      url: `/reviews/?product_id=${this.state.product_id}&count=100`,
       method: 'GET'
     })
-      .then((results) => this.setState({reviews: results.data, reviewLimit: this.state.reviewLimit + 2}))
+      .then((results) => this.setState({reviews: results.data.results, reviewCount: 2}))
       .catch((error) => console.log('ERROR in REVIEWS AJAX Request: ', error));
   }
 
