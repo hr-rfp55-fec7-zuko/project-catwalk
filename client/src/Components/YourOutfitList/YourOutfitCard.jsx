@@ -69,7 +69,7 @@ class YourOutfitCard extends React.Component {
   render() {
     const { productIdInfo, featuredURL, salePrice } = this.state;
     const { outfitId } = this.props;
-    console.log(outfitId);
+    // console.log(outfitId);
 
     return (
       <div className="cardWrapper">
