@@ -17,8 +17,8 @@ class RatingsAndReviews extends React.Component {
     super(props);
 
     this.state = {
-      // 'product_id': this.props.product_id,
-      'product_id': 40453, //40347 - photos, 40435-response
+      'product_id': this.props.product_id,
+      // 'product_id': 40453, //40347 - photos, 40435-response, 40453 - long review with pics
       reviewLimit: 2,
       metaData: {
         product_id: '00000',
