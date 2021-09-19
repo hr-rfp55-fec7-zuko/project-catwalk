@@ -828,8 +828,8 @@ li {
   left: 50%;
   transform: translate(-50%, -50%);
   overflow-y: auto;
-  height: 40%;
-  width: 30%;
+  height: 60%;
+  width: 60%;
   background-color:white;
   box-shadow: 0 0 10px rgba(0,0,0,0.25);
   z-index: 101;
@@ -984,3 +984,13 @@ li {
   font-size: 10px;
 }
 
+.qa-modal-file-button {
+  font-family:'Montserrat',sans-serif;
+  padding: 15px;
+  background-color: white;
+  font-weight: 900;
+  margin-top: 20px;
+  margin-right: 20px;
+  border: 1px solid;
+  margin-bottom: 10px;
+}
