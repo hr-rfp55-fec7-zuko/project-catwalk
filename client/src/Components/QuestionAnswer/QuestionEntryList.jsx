@@ -27,7 +27,7 @@ class QuestionEntryList extends React.Component {
   render() {
     var list = this.props.lists.map(list => {
       return (
-        <div className="qa-eachQ" key="{list1}">
+        <div className="qa-eachQ" key={list.question_id}>
           <p className="qa-questions">{'Q: ' + list.question_body}</p>
           <div className="qa-questions-side">
             <QuestionCountList helpfulness={list.question_helpfulness} questionId={list.question_id}/>
