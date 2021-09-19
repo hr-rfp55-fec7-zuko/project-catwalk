@@ -418,6 +418,15 @@ li {
   overflow: hidden; */
 }
 
+#zoomed-slide {
+  cursor: zoom-out;
+  transform: scale(1);
+}
+
+#zoomed-slide:hover {
+  transform: scale(2.5);
+}
+
 .carousel__track {
   padding: 0;
   margin: 0;
