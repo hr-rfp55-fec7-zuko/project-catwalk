@@ -68,7 +68,13 @@ class ReviewList extends React.Component {
     if (reviews.length > 0) {
       var reviewList = [];
 
-      for (var i = 0; i < this.state.reviewLimit; i++) {
+      if (this.props.reviews.length <= this.state.reviewLimit) {
+        var listLength = this.props.reviews.length;
+      } else {
+        var listLength = this.state.reviewLimit;
+      }
+
+      for (var i = 0; i < listLength; i++) {
         let review = reviews[i]
         reviewList.push(<ReviewTile key={review.review_id} review={review} submitHelpfulOrReport={this.props.submitHelpfulOrReport}/>)
       }
@@ -82,7 +88,8 @@ class ReviewList extends React.Component {
     }
 
     //If the total number of reviews has been reached, don't render the addreviews button
-    if (reviews.length < this.props.reviewCount) {
+    // if (reviews.length < this.props.reviewCount) {
+      if (this.state.reviewLimit < this.props.reviews.length) {
       var moreReviewsButton =
         <button type="button" id="more-reviews" className="ratings-button" onClick={this.updateViewList}>More Reviews</button>;
     } else {
