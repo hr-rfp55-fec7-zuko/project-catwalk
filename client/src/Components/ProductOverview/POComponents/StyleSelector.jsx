@@ -16,11 +16,16 @@ class StyleSelector extends React.Component {
         <b>Style &gt;</b> {this.state.styleName}
         <br />
         <div className='style-container'>
-          {this.state.styles.map((style) => <SingleStyle key={style.name} style={style} onClick={(event) => {
-            event.preventDefault();
-            this.props.setStyleSelection(style);
-            this.setState({ styleName: style.name });
-          }} selected={style.name === this.state.styleName} />)}
+          {this.state.styles.map((style) =>
+            <SingleStyle
+              key={style.name}
+              style={style}
+              onClick={(event) => {
+                event.preventDefault();
+                this.props.setStyleSelection(style);
+                this.setState({ styleName: style.name });
+              }}
+              selected={style.name === this.state.styleName} />)}
         </div>
       </div>
     );

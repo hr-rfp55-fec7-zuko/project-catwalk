@@ -9,7 +9,7 @@ var QuantitySelector = ({totalQuantity = 0, setQuantity}) => {
     }
     return (
       <div>
-        <select id='po-select-qty' onChange={(e) => {
+        <select className='dropdown__quantity' onChange={(e) => {
           e.preventDefault();
           setQuantity(parseInt(event.target.value));
         }} >
@@ -21,7 +21,7 @@ var QuantitySelector = ({totalQuantity = 0, setQuantity}) => {
     //setQuantity(0);
     return (
       <div>
-        <select id='po-select-qty' >
+        <select className='dropdown__quantity' >
           <option value=''>-</option>
         </select>
       </div>

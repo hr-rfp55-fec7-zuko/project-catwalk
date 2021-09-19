@@ -115,7 +115,7 @@ class ImageGallery extends React.Component {
                 )}
               <div
                 className='thumbnail__track' id='thumbnail__track'
-                style={{height: `${this.state.thumbnailMax * 58}px`}}>
+                style={{ height: `${this.state.thumbnailMax * 58}px` }}>
                 {thumbPhotos.map((image, index) => {
                   return (
                     <img
@@ -154,11 +154,13 @@ class ImageGallery extends React.Component {
                         cursor: 'zoom-out',
                         transform: 'scale(2.5)',
                         overflow: 'hidden'
-                      } : null}>
+                      } : null}
+                    >
                       {index === this.state.current &&
                         (<img
                           className='carousel__image'
                           src={image} />)}
+
                     </li>
                   );
                 })}
