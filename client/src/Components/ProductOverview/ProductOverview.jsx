@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 import ImageGallery from './POComponents/ImageGallery.jsx';
-import StarRating from './POComponents/StarRating.jsx';
 import StyleSelector from './POComponents/StyleSelector.jsx';
 import AddToCart from './POComponents/AddToCart.jsx';
 import SocialMediaButtons from './POComponents/SocialMediaButtons.jsx';
@@ -73,8 +72,14 @@ class ProductOverview extends React.Component {
     return (
       <div className='po-main'>
         <div className='po-main-top'>
-          <div className='po-main-left' style={this.state.expanded ? { width: '100%' } : { width: '60%' }}>
-            <ImageGallery styles={this.state.styles} selectedStyle={this.state.style.style_id} expandSlide={this.expandSlide} />
+          <div className='po-main-left'
+            style={this.state.expanded ?
+              { width: '100%' }
+              : { width: '60%' }}>
+            <ImageGallery
+              styles={this.state.styles}
+              selectedStyle={this.state.style.style_id}
+              expandSlide={this.expandSlide} />
           </div>
           <div className='po-main-right'>
             {this.props.avgRating ?
@@ -85,9 +90,15 @@ class ProductOverview extends React.Component {
               : <br />}
             <h3>{this.state.category}</h3>
             <h1>{this.state.name}</h1>
-            <Price price={this.state.price} sale={this.state.sale} salePrice={this.state.salePrice} />
-            <StyleSelector styles={this.state.styles} setStyleSelection={this.setStyleSelection} />
+            <Price
+              price={this.state.price}
+              sale={this.state.sale}
+              salePrice={this.state.salePrice} />
+            <StyleSelector
+              styles={this.state.styles}
+              setStyleSelection={this.setStyleSelection} />
             <AddToCart style={this.state.style} />
+            <SocialMediaButtons />
           </div>
         </div>
         <br /> <br />
@@ -102,7 +113,6 @@ class ProductOverview extends React.Component {
             </ul>
           </div>
         </div>
-        <SocialMediaButtons />
       </div>
     );
   }

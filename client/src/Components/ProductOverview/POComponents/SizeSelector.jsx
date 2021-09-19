@@ -4,10 +4,13 @@ var SizeSelector = ({ skus, setSKU, needSize }) => {
   if (skus) {
     return (
       <div>
-        <select className='po-select-size' size={needSize ? Object.keys(skus).length : 1 } onChange={(e) => {
-          e.preventDefault();
-          setSKU(event.target.value);
-        }}>
+        <select
+          className='dropdown__select'
+          size={needSize ? Object.keys(skus).length : 1}
+          onChange={(e) => {
+            e.preventDefault();
+            setSKU(event.target.value);
+          }}>
           <option value='0' key='select-size' >Select Size</option>
           {Object.keys(skus).map((sku) => {
             var size = skus[sku].size;
