@@ -17,8 +17,8 @@ class RatingsAndReviews extends React.Component {
     super(props);
 
     this.state = {
-      'product_id': this.props.product_id,
-      // 'product_id': 40453, //40347 - photos, 40435-response, 40453 - long review with pics
+      // 'product_id': this.props.product_id,
+      'product_id': 40453, //40347 - photos, 40435-response, 40453 - long review with pics
       reviewLimit: 2,
       metaData: {
         product_id: '00000',
@@ -30,6 +30,8 @@ class RatingsAndReviews extends React.Component {
         characteristics:{}
       },
       reviews: [],
+      viewableReviews: [],
+      filter: "newest",
       reviewCount: 100
     };
 
@@ -59,7 +61,7 @@ class RatingsAndReviews extends React.Component {
     return axios({
       // url: `/reviews/?product_id=${this.state.product_id}&count=${this.state.reviewLimit}`,
       // url: `/reviews/?product_id=${this.state.product_id}&count=100&page=${pageCount}`,
-      url: `/reviews/?product_id=${this.state.product_id}&count=100`,
+      url: `/reviews/?product_id=${this.state.product_id}&count=100&sort=${this.state.filter}`,
       method: 'GET'
     })
       .then((results) => this.setState({reviews: results.data.results, reviewCount: 2}))

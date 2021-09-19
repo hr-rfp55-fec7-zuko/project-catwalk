@@ -40,8 +40,6 @@ const helpers = {
 
   //Takes in metaData recommended object and returns percent "true" of total recommendations
   determinePercentageRecommend: function(recommendedObject) {
-
-    console.log(Object.keys(recommendedObject).length)
     if (Object.keys(recommendedObject).length === 0) {
       return 0
     }
