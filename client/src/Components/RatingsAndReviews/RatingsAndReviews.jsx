@@ -23,21 +23,26 @@ class RatingsAndReviews extends React.Component {
         characteristics:{}
       },
       reviews: [],
-      viewableReviews: [],
-      reviewCount: 2
+      reviewCount: 100
     };
 
     this.requestProductMetaData = this.requestProductMetaData.bind(this);
     this.requestProductReviews = this.requestProductReviews.bind(this);
     this.submitReviewForm = this.submitReviewForm.bind(this);
     this.submitHelpfulOrReport = this.submitHelpfulOrReport.bind(this);
-    this.setStateFilter = this.setStateFilter.bind(this)
   }
 
   componentDidMount() {
     this.requestProductMetaData();
   }
 
+  //########---EVENT HANDLERS---#######//
+  handleRatingBreakdownFilter(){
+
+  }
+
+
+  //########---AJAX REQUESTS---#######//
   requestProductMetaData() {
     return axios({
       url: `/reviews/meta?product_id=${this.state.product_id}`,
@@ -45,10 +50,6 @@ class RatingsAndReviews extends React.Component {
     })
       .then((results) => this.setState({metaData: results.data}))
       .catch((error) => console.log('ERROR in METADATA AJAX Request: ', error));
-  }
-
-  setStateFilter(filter){
-    this.setState(filter)
   }
 
   //eventually this should take a page and count number

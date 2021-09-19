@@ -39,8 +39,10 @@ const ProductBar = function ProductBar(props) {
 return (
   <>
     <div className="product-bar-container">
+    {/* {props.characteristic && <h5 className="">{characteristic}</h5>}<br/> */}
 
       <div className='product-bar-outer'>
+
         {buildBarSegment('one', fill1, innerPercentage)}
         {buildBarSegment('two', fill2, innerPercentage)}
         {buildBarSegment('three', fill3, innerPercentage)}
