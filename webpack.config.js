@@ -3,6 +3,7 @@ var SRC_DIR = path.join(__dirname, '/client/src');
 var DIST_DIR = path.join(__dirname, '/client/dist');
 
 module.exports = {
+  devtool: 'eval-source-map',
   entry: `${SRC_DIR}/index.jsx`,
   mode: 'development',
   output: {

@@ -100,7 +100,7 @@ class ReviewTile extends React.Component {
           </span>
 
           {this.state.helpfulOrReported &&
-          <span>Your feedback has been submitted</span>
+          <><br/><span>Your feedback has been submitted</span></>
           }
 
         </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+
 import AvgRatingStars from '../RatingsAndReviews/helpers/AvgRatingStars.jsx';
 import ComparisonModal from './ComparisonModal.jsx';
 
@@ -56,10 +57,12 @@ class RelatedProductCard extends React.Component {
         }
         if (!url) {
           this.setState({
+            count: this.state.count + 1,
             featuredURL: '/images/default-placeholder.png',
           });
         } else {
           this.setState({
+            count: this.state.count + 1,
             featuredURL: url,
           });
         }
@@ -68,16 +71,16 @@ class RelatedProductCard extends React.Component {
         console.log('Error fetching product styles in relatedProductCard', error);
       });
 
-    return axios({
-      url: `/reviews/meta?product_id=${productId}`,
-      method: 'GET'
-    })
-      .then((results) => {
-        // console.log(results.data);
-        this.setState({ avgRating: results.data.ratings});
-      })
+    // return axios({
+    //   url: `/reviews/meta?product_id=${productId}`,
+    //   method: 'GET'
+    // })
+    //   .then((results) => {
+    //     // console.log(results.data);
+    //     this.setState({ avgRating: results.data.ratings });
+    //   })
 
-      .catch((error) => console.log('ERROR in METADATA AJAX Request: ', error));
+    //   .catch((error) => console.log('ERROR in METADATA AJAX Request: ', error));
   }
 
   handleCompareClick() {
@@ -97,20 +100,23 @@ class RelatedProductCard extends React.Component {
   }
 
   render() {
-    const { productIdInfo, featuredURL, salePrice, urlFeaturePic, openCompareModal, comparedFeatures, parentProductIdInfo, avgRating } = this.state;
+    const { productIdInfo, featuredURL, salePrice, urlFeaturePic, openCompareModal, comparedFeatures, parentProductIdInfo, avgRating, count } = this.state;
+
     return (
-      <div className='cardWrapper'>
-        <div className='card' id={productIdInfo.id}>
-          <div className='CompareButton' onClick={this.handleCompareClick}><i className="far fa-star"></i></div>
-          <div className='pic'>
-            <img src={featuredURL} alt={productIdInfo.name}></img>
-          </div>
-          <div className='info'>
-            <p className='category'>{productIdInfo.category}</p>
-            <h3 className='title'>{productIdInfo.name}</h3>
-            <p className='price'>${productIdInfo.default_price}</p>
-            {salePrice ? <p className='price sale'>{salePrice}</p> : null}
-            <AvgRatingStars avgRating={avgRating} id={productIdInfo.id} />
+      <React.Fragment>
+        <div className='cardWrapper'>
+          <div className='card' id={productIdInfo.id}>
+            <div className='CompareButton' onClick={this.handleCompareClick}><i className="far fa-star"></i></div>
+            <div className='pic'>
+              <img src={featuredURL} alt={productIdInfo.name}></img>
+            </div>
+            <div className='info'>
+              <p className='category'>{productIdInfo.category}</p>
+              <h3 className='title'>{productIdInfo.name}</h3>
+              <p className='price'>${productIdInfo.default_price}</p>
+              {salePrice ? <p className='price sale'>{salePrice}</p> : null}
+              <AvgRatingStars avgRating={avgRating} id={productIdInfo.id} />
+            </div>
           </div>
         </div>
         {openCompareModal && (
@@ -123,8 +129,7 @@ class RelatedProductCard extends React.Component {
             />
           </div>
         )}
-      </div>
-
+      </React.Fragment>
     );
   }
 }

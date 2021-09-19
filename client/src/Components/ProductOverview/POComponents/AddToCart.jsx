@@ -32,7 +32,7 @@ class AddToCart extends React.Component {
         needSize: false
       });
       if (this.state.quantity || this.state.style.skus[sku].quantity < this.state.quantity) {
-        console.log('coming into THIS CASE');
+        // console.log('coming into THIS CASE');
         var quantity = (this.state.style.skus[sku].quantity > 0) ? 1 : 0;
         this.setState({ quantity });
       } else {
