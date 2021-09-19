@@ -730,6 +730,7 @@ li {
   grid-area: thumbnail-slots;
   height: 60px;
   width: auto;
+  margin-bottom: 3%
 }
 
 .review-recommend {

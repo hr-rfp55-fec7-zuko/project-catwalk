@@ -21,9 +21,6 @@ const helpers = {
 
   //Takes in metaData ratings object and returns average rating
   determineAverageRating: function(ratingsObject) {
-    if (Object.keys(ratingsObject).length === 0) {
-      return 0
-    }
 
     let total = 0;
     let reviewCount = 0;
@@ -31,6 +28,10 @@ const helpers = {
     for (var rating in ratingsObject) {
       total += (rating * ratingsObject[rating]);
       reviewCount += parseInt(ratingsObject[rating]);
+    }
+
+    if (reviewCount == 0) {
+      return 0;
     }
 
     return (total / reviewCount).toFixed(2);
