@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import AvgRatingStars from '../RatingsAndReviews/helpers/AvgRatingStars.jsx';
+import AverageRating from './helpers/AverageRating.js';
 import ComparisonModal from './ComparisonModal.jsx';
 
 class RelatedProductCard extends React.Component {
@@ -17,15 +18,17 @@ class RelatedProductCard extends React.Component {
       comparedFeatures: '',
       salePrice: '',
       avgRating: '',
+      rating: '',
     };
 
     this.handleCompareClick = this.handleCompareClick.bind(this);
     this.compareFeatures = this.compareFeatures.bind(this);
+    this.changeProduct = this.changeProduct.bind(this);
   }
 
   componentDidMount() {
-    const { productId, parentProductIdInfo, AvgRatingStars } = this.props;
-    const { currentProductFeatures, parentProductFeatures } = this.state;
+    const { productId, parentProductIdInfo } = this.props;
+    const { currentProductFeatures, parentProductFeatures, rating, avgRating } = this.state;
 
     // Get the information for a related product
     axios.get(`/products/${productId}`)
@@ -60,12 +63,10 @@ class RelatedProductCard extends React.Component {
         }
         if (!url) {
           this.setState({
-            count: this.state.count + 1,
             featuredURL: '/images/default-placeholder.png',
           });
         } else {
           this.setState({
-            count: this.state.count + 1,
             featuredURL: url,
           });
         }
@@ -74,6 +75,17 @@ class RelatedProductCard extends React.Component {
         console.log('Error fetching product styles in relatedProductCard', error);
       });
 
+    return axios({
+      url: `/reviews/meta?product_id=${productId}`,
+      method: 'GET'
+    })
+      .then((results) => this.setState({ rating: results.data.ratings}))
+      .catch((error) => console.log('ERROR in METADATA AJAX Request: ', error));
+  }
+
+  changeProduct() {
+    const { productId, updateProduct } = this.props;
+    updateProduct(productId);
   }
 
   handleCompareClick() {
@@ -97,23 +109,18 @@ class RelatedProductCard extends React.Component {
         obj1['value'] = item.value;
         output.push(obj1);
       }
-
-
     });
-    //output = Object.entries(obj);
-
-
     this.setState({
       comparedFeatures: output,
     });
   }
 
   render() {
-    const { productIdInfo, featuredURL, salePrice, openCompareModal, comparedFeatures, parentProductIdInfo, avgRating } = this.state;
+    const { productIdInfo, featuredURL, salePrice, openCompareModal, comparedFeatures, parentProductIdInfo, rating } = this.state;
 
     return (
       <React.Fragment>
-        <div className='cardWrapper'>
+        <div className='cardWrapper' onClick={this.changeProduct}>
           <div className='card' id={productIdInfo.id}>
             <div className='CompareButton' onClick={this.handleCompareClick}><i className="far fa-star"></i></div>
             <div className='pic'>
@@ -124,7 +131,7 @@ class RelatedProductCard extends React.Component {
               <h3 className='title'>{productIdInfo.name}</h3>
               <p className='price'>${productIdInfo.default_price}</p>
               {salePrice ? <p className='price sale'>{salePrice}</p> : null}
-              <AvgRatingStars avgRating={avgRating} id={productIdInfo.id} />
+              <AvgRatingStars avgRating={AverageRating(rating)} id={productIdInfo.id} />
             </div>
           </div>
         </div>

@@ -27,6 +27,7 @@ h3 {
 #app {
   max-width: 1200px;
   margin: auto;
+  padding: 0px 20px;
 }
 
 
@@ -67,8 +68,8 @@ h3 {
 .cardWrapper {
   position: relative;
   flex-shrink: 0;
-  margin: 0px 10px;
   height: 98%;
+  margin: 0px 10px;
   width: calc(100%/4 - 40px);
 }
 

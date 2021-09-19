@@ -10,7 +10,8 @@ class RelatedProductsList extends React.Component {
       relatedProducts: this.props.relatedProducts,
       parentProductIdInfo: '',
       imagesToTheLeft: false,
-      imagesToTheRight: true,
+      imagesToTheRight: false,
+      cardOverflow: false,
     };
 
     this.scrollRight = this.scrollRight.bind(this);
@@ -32,14 +33,15 @@ class RelatedProductsList extends React.Component {
       });
   }
 
+
   scrollLeft() {
     this.setState({
       imagesToTheRight: true,
     });
     const carousel = document.getElementById('ProductCarousel');
-    carousel.scrollLeft -= 303;
+    carousel.scrollLeft -= 307;
 
-    if (carousel.scrollLeft <= 303) {
+    if (carousel.scrollLeft <= 307) {
 
       this.setState({
         imagesToTheLeft: false,
@@ -54,8 +56,8 @@ class RelatedProductsList extends React.Component {
     const carousel = document.getElementById('ProductCarousel');
     const amountLeftToScroll = carousel.scrollWidth - carousel.clientWidth;
 
-    carousel.scrollLeft += 303;
-    if (carousel.scrollLeft >= amountLeftToScroll - 303) {
+    carousel.scrollLeft += 307;
+    if (carousel.scrollLeft >= amountLeftToScroll - 400) {
       this.setState({
         imagesToTheRight: false,
       });
@@ -63,6 +65,12 @@ class RelatedProductsList extends React.Component {
   }
 
   isOverflowing() {
+    const carousel = document.getElementById('ProductCarousel');
+    const bool = carousel.scrollWidth > carousel.clientWidth;
+    this.setState({
+      cardOverflow: bool,
+      imagesToTheRight: bool,
+    });
   }
 
   render() {
