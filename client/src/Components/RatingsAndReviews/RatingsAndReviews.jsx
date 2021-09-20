@@ -24,6 +24,7 @@ class RatingsAndReviews extends React.Component {
       },
       reviews: [],
       starFilters: [],
+      clearFilterVisible: false,
       reviewCount: 100
     };
 
@@ -32,6 +33,7 @@ class RatingsAndReviews extends React.Component {
     this.submitReviewForm = this.submitReviewForm.bind(this);
     this.submitHelpfulOrReport = this.submitHelpfulOrReport.bind(this);
     this.toggleStarRatingFilter = this.toggleStarRatingFilter.bind(this);
+    this.handleClearStarFilters = this.handleClearStarFilters.bind(this);
   }
 
   componentDidMount() {
@@ -43,30 +45,30 @@ class RatingsAndReviews extends React.Component {
     var filterValue = event.target.className.replace( /^\D+/g, '')
     var indexOfFilterValue = this.state.starFilters.indexOf(filterValue)
     var newFilterList;
+    var clearFilterVisibility;
 
     if (indexOfFilterValue === 0) {
       newFilterList = [];
+      clearFilterVisibility = false;
     } else if (indexOfFilterValue !== -1) {
       let stateCopy = this.state.starFilters.slice()
       newFilterList = stateCopy.splice((indexOfFilterValue -1 || 0), 1);
+      clearFilterVisibility = true;
     } else if (this.state.starFilters.length === 0) {
       newFilterList = [filterValue];
+      clearFilterVisibility = true;
     } else {
       newFilterList = this.state.starFilters.slice();
       newFilterList.push(filterValue);
+      clearFilterVisibility = true;
     }
 
-    this.setState({starFilters: newFilterList});
+    this.setState({starFilters: newFilterList, clearFilterVisible: clearFilterVisibility});
   }
 
-  handleStarRatingFilter(){
-    // let filteredArray = this.state.reviews.map({
-    //   return !Object.keys(this.state.starFilters)
-    // })
-    // this.setState({ starFilteredReviews: filteredArray})
-
+  handleClearStarFilters(){
+    this.setState({starFilters: []})
   }
-
 
   //########---AJAX REQUESTS---#######//
   requestProductMetaData() {
@@ -118,7 +120,7 @@ class RatingsAndReviews extends React.Component {
 
         {this.state.reviews !== null &&
          <>
-           <RatingBreakdown metaData={this.state.metaData} reviewCount={reviewCount} setAvgRating={this.setAvgRating} toggleStarRatingFilter={this.toggleStarRatingFilter}/>
+           <RatingBreakdown metaData={this.state.metaData} reviewCount={reviewCount} setAvgRating={this.setAvgRating} toggleStarRatingFilter={this.toggleStarRatingFilter}handleClearStarFilters={this.handleClearStarFilters} clearFilterVisible={this.state.clearFilterVisible}/>
            <ProductBreakdown characteristics={this.state.metaData.characteristics}/>
            <SortBar reviewCount={reviewCount} requestProductReviews={this.requestProductReviews}/>
            <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount} submitHelpfulOrReport={this.submitHelpfulOrReport} product_name={this.props.product_name} submitReviewForm={this.submitReviewForm} product_id={this.props.product_id} starFilters={this.state.starFilters}/>
