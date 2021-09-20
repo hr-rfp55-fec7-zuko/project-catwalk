@@ -564,10 +564,11 @@ li {
 .ratings-and-reviews {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto 350px 350px 1fr auto auto;
   grid-template-areas:
     "rating-breakdown sort-bar sort-bar"
     "rating-breakdown review-list review-list"
+    "product-breakdown review-list review-list"
     "product-breakdown review-list review-list"
     ". review-list review-list"
     ". review-list review-list"
@@ -586,6 +587,8 @@ li {
 
 .review-list {
   max-height: 100vh;
+  /* max-height: 755px; */
+  /* min-height: 500px; */
   overflow: scroll;
   grid-area: review-list;
 }
@@ -596,8 +599,8 @@ li {
 
 .product-breakdown {
   grid-area: product-breakdown;
-  grid-columns: 1fr;
-  grid-rows: 1fr 1fr 1fr 1fr
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr auto auto;
 }
 
 .sort-bar {

@@ -63,11 +63,15 @@ class RatingsAndReviews extends React.Component {
       clearFilterVisibility = true;
     }
 
+    if (newFilterList.length === 0) {
+      clearFilterVisibility = false
+    }
+
     this.setState({starFilters: newFilterList, clearFilterVisible: clearFilterVisibility});
   }
 
   handleClearStarFilters(){
-    this.setState({starFilters: []})
+    this.setState({starFilters: [], clearFilterVisible: false})
   }
 
   //########---AJAX REQUESTS---#######//
