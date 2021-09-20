@@ -29,6 +29,21 @@ h3 {
   margin: auto;
 }
 
+.top-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+
+.app-title {
+  color: red;
+}
+
+.sale-info {
+  padding: 0;
+  margin: 0;
+}
 
 /*========= CSS for Relatived Products & Your Outfit ===========*/
 .relatedProducts {
@@ -314,6 +329,14 @@ h3 {
   margin-right: 10px;
 }
 
+.dropdown__select {
+  width: 127px;
+}
+
+.dropdown__quantity {
+  width: 67px;
+}
+
 .add-cart-feat {
   position: absolute;
   top: 60px
@@ -321,10 +344,15 @@ h3 {
 
 .button__add-cart {
   font-family:'Montserrat',sans-serif;
-  padding: 15px;
+  padding: 11px 15px;
   background-color: white;
   font-weight: 900;
-  border: 1px solid;
+  border: 3px solid;
+  border-color: red;
+  color: white;
+  width: 204px;
+  font-size: 18px;
+  background-color: red;
 }
 
 .po-soc-med-btns {
@@ -340,12 +368,13 @@ h3 {
 }
 
 .po-desc-text {
-  width: 70%
+  width: 55%;
+  margin-left: 10%;
 }
 
 .po-desc-list {
-  width: 30%;
-  margin: 0, 5%;
+  width: 45%;
+  margin: 0 15%;
 }
 
 ul {
@@ -581,7 +610,7 @@ li {
 
 .stars-inner::before {
   content: "\f005 \f005 \f005 \f005 \f005";
-  color: #f8ce0b;
+  color: red;
 }
 
 /*========= CSS FOR Ratings & Reviews ===========*/

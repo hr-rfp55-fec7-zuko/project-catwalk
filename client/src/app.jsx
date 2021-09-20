@@ -44,11 +44,20 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <br />LOGO HERE<br />Sale Link Here<br />
+        <div className='top-bar'>
+          <br />
+          <h1 className='app-title'>
+            <i className='fas fa-dragon'></i> Fire Nation Fashion
+          </h1>
+          <h4 className='sale-info'><i class="fas fa-fire"></i> Check out our flaming hot sales! <i class="fas fa-fire"></i> <br /><br /></h4>
+
+        </div>
         <ProductOverview productId={this.state.product_id} avgRating={this.state.avgRating} totalReviews={this.state.totalReviews} />
+        <br/><br/>
         <RelatedProductsView productId={this.state.product_id} />
         <YourOutfitList productId={this.state.product_id} />
         <QuestionAnswer productId={this.state.product_id} productName={this.state.product_name} />
+        <br/><br/>
         <RatingsAndReviews product_id={this.state.product_id} product_name={this.state.product_name} />
       </div>
     );
