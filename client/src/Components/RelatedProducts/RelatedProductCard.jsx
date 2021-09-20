@@ -83,9 +83,10 @@ class RelatedProductCard extends React.Component {
       .catch((error) => console.log('ERROR in METADATA AJAX Request: ', error));
   }
 
-  changeProduct() {
-    const { productId, updateProduct } = this.props;
-    updateProduct(productId);
+  changeProduct(event) {
+
+    event.preventDefault();
+    this.props.updateProductID(this.props.productId);
   }
 
   handleCompareClick() {
@@ -128,7 +129,7 @@ class RelatedProductCard extends React.Component {
             </div>
             <div className='info'>
               <p className='category'>{productIdInfo.category}</p>
-              <h3 className='title'>{productIdInfo.name}</h3>
+              <h3 className='title' >{productIdInfo.name}</h3>
               <p className='price'>${productIdInfo.default_price}</p>
               {salePrice ? <p className='price sale'>{salePrice}</p> : null}
               <AvgRatingStars avgRating={AverageRating(rating)} id={productIdInfo.id} />
