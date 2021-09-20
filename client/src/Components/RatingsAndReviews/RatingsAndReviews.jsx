@@ -11,8 +11,8 @@ class RatingsAndReviews extends React.Component {
     super(props);
 
     this.state = {
-      // 'product_id': this.props.product_id,
-      'product_id': 40453, //40347 - photos, 40435-response, 40453 - long review with pics
+    //   'product_id': this.props.product_id,
+         'product_id': 40435, //40347 - photos, 40435-response, 40453 - long review with pics
       metaData: {
         product_id: '00000',
         ratings: {},
@@ -47,7 +47,7 @@ class RatingsAndReviews extends React.Component {
     var newFilterList;
     var clearFilterVisibility;
 
-    if (indexOfFilterValue === 0) {
+    if (indexOfFilterValue === 0 && this.state.starFilters.length === 1) {
       newFilterList = [];
       clearFilterVisibility = false;
     } else if (indexOfFilterValue !== -1) {
