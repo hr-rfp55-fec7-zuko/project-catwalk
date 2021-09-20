@@ -40,21 +40,10 @@ class RatingsAndReviews extends React.Component {
 
   //########---EVENT HANDLERS---#######//
   toggleStarRatingFilter(event){
-    console.log('event.target', event.target.className);
     var filterValue = event.target.className.replace( /^\D+/g, '')
     var indexOfFilterValue = this.state.starFilters.indexOf(filterValue)
     var newFilterList;
 
-    console.log(filterValue, indexOfFilterValue)
-
-    // if (this.state.starFilters.length === 0) {
-    //   newFilterList.push(filterValue)
-    // } else if (indexOfFilterValue === -1) {
-    //   newFilterList.push(filterValue)
-    // } else {
-    //   let stateCopy = this.state.starFilters.slice()
-    //   newFilterList = stateCopy.splice(indexOfFilterValue, 1)
-    // }
     if (indexOfFilterValue === 0) {
       newFilterList = [];
     } else if (indexOfFilterValue !== -1) {
@@ -68,13 +57,6 @@ class RatingsAndReviews extends React.Component {
     }
 
     this.setState({starFilters: newFilterList});
-
-    // let value = !this.state.starFilters[property]
-    // console.log(property + ': ' + value)
-    // this.setState({[property]:value})
-    // this.setState({...this.state.starFilters, [property]: value})
-
-
   }
 
   handleStarRatingFilter(){

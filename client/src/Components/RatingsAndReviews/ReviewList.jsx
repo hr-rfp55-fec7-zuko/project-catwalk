@@ -76,9 +76,12 @@ class ReviewList extends React.Component {
 
       for (var i = 0; i < listLength; i++) {
         let review = reviews[i]
-        reviewList.push(<ReviewTile key={review.review_id} review={review} submitHelpfulOrReport={this.props.submitHelpfulOrReport}/>)
+        if (this.props.starFilters && this.props.starFilters.includes(review.rating.toString())) {
+          reviewList.push(
+            <ReviewTile key={review.review_id} review={review} submitHelpfulOrReport={this.props.submitHelpfulOrReport}/>
+          )
+         }
       }
-
 
       // reviews.map((review) => {
       //   return <ReviewTile key={review.review_id} review={review} submitHelpfulOrReport={this.props.submitHelpfulOrReport}/>;
