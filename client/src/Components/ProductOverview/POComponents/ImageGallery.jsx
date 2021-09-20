@@ -94,7 +94,7 @@ class ImageGallery extends React.Component {
       return (
         <div className='po-image-gallery' >
           {this.state.expanded ?
-            <div className='thumbnail-navtrack'>
+            (!this.state.zoomed && <div className='thumbnail-navtrack'>
               {thumbPhotos.map((image, index) => {
                 return (
                   <i
@@ -104,7 +104,7 @@ class ImageGallery extends React.Component {
                   ></i>
                 );
               })}
-            </div>
+            </div>)
             : <div className='thumbnail-container' >
               {(this.state.current !== 0 && !this.state.zoomed) &&
                 (<button
@@ -153,8 +153,11 @@ class ImageGallery extends React.Component {
                       style={this.state.zoomed ? {
                         cursor: 'zoom-out',
                         transform: 'scale(2.5)',
+                        overflow: 'hidden',
+                      } : {
+                        transform: 'scale(1.0)',
                         overflow: 'hidden'
-                      } : null}
+                      }}
                     >
                       {index === this.state.current &&
                         (<img
