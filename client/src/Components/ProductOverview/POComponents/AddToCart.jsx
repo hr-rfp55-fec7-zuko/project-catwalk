@@ -83,7 +83,7 @@ class AddToCart extends React.Component {
           <div className='add-cart-feat'>
             <button
               onClick={this.handleAddToCart} className='button__add-cart' >
-              Add to Cart
+              ADD TO CART
             </button>
             <p>{this.state.addedToCart ?
               `You added ${this.state.quantity} items to your cart!`

@@ -329,6 +329,14 @@ h3 {
   margin-right: 10px;
 }
 
+.dropdown__select {
+  width: 127px;
+}
+
+.dropdown__quantity {
+  width: 67px;
+}
+
 .add-cart-feat {
   position: absolute;
   top: 60px
@@ -336,11 +344,15 @@ h3 {
 
 .button__add-cart {
   font-family:'Montserrat',sans-serif;
-  padding: 15px;
+  padding: 11px 15px;
   background-color: white;
   font-weight: 900;
-  border: 1px solid;
-  color: red;
+  border: 3px solid;
+  border-color: red;
+  color: white;
+  width: 204px;
+  font-size: 18px;
+  background-color: red;
 }
 
 .po-soc-med-btns {
