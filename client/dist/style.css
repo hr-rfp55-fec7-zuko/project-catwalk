@@ -1133,3 +1133,8 @@ li {
   border: 1px solid;
   margin-bottom: 10px;
 }
+
+#upload-image {
+  margin-top: 2px;
+  margin-right: 15px;
+}

@@ -8,7 +8,7 @@ var AddAnswerList = (props) => {
   const [answer, setAnswer] = useState('');
   const [nickName, setNickName] = useState('');
   const [emailAdd, setEmailAdd] = useState('');
-  const [photo, setPhoto] = useState('');
+  const [selectedImg, setSelectedImg] = useState([]);
 
   const handleSubmit = () => {
     const errMsg = [];
@@ -35,20 +35,32 @@ var AddAnswerList = (props) => {
     } else if (!re.test(String(emailAdd).toLowerCase())) {
       alert('Please enter email in the correct format.');
     } else {
-      if (photo.length !== 0) {
-        const formData = new FormData();
-        formData.append('file', photo);
-        formData.append('upload_preset', 'em0fglum');
 
-        axios.post('https://api.cloudinary.com/v1_1/drbwyfh4x/upload', formData)
-          .then(res => {
-            return (
-              axios.post('/qa/questions/:question_id/answers', {params: {qId: props.questionId, inner: {body: answer, name: nickName, email: emailAdd, photos: [res.data.secure_url]}}})
-                .then(response => { return (props.updateAnswer(), modalRef.current.close()); })
-                .catch(err => console.log('Add Answer POST Err', err))
-            );
-          })
-          .catch(err => console.log(err));
+      const files = document.querySelector('[type=file]').files;
+      if (files.length !== 0) {
+        var urlLink = [];
+        var PhotoAPI = (obj, cb) => {
+          for (var i = 0; i < obj.length; i++) {
+            const formData = new FormData();
+            formData.append('file', obj[i]);
+            formData.append('upload_preset', 'em0fglum');
+            axios.post('https://api.cloudinary.com/v1_1/drbwyfh4x/upload', formData)
+              .then(res => {
+                urlLink.push(res.data.secure_url);
+                if (urlLink.length === files.length) {
+                  return cb(null, urlLink);
+                }
+              })
+              .catch(err => console.log('Cloudinary', err));
+          }
+        };
+
+        PhotoAPI(files, (err, data) => {
+          axios.post('/qa/questions/:question_id/answers', {params: {qId: props.questionId, inner: {body: answer, name: nickName, email: emailAdd, photos: data}}})
+            .then(response => { return (console.log('response', response, 'files:', files), props.updateAnswer(), modalRef.current.close()); })
+            .catch(err => console.log('Add Answer POST Err', err));
+        });
+
       } else {
         axios.post('/qa/questions/:question_id/answers', {params: {qId: props.questionId, inner: {body: answer, name: nickName, email: emailAdd}}})
           .then(response => { return (props.updateAnswer(), modalRef.current.close()); })
@@ -59,18 +71,23 @@ var AddAnswerList = (props) => {
 
   const handleImage = (e) => {
     e.preventDefault();
-    setPhoto(e.target.files[0]);
-    const preview = document.getElementById('upload-image');
-    const selectedFile = document.querySelector('input[type=file]').files[0];
-    const reader = new FileReader();
-    reader.addEventListener('load', function () {
-      preview.src = reader.result;
-    }, false);
-
-    if (selectedFile) {
-      reader.readAsDataURL(selectedFile);
+    if (e.target.files) {
+      if (e.target.files.length > 5) {
+        return alert('You may only upload up to 5 photos!');
+      } else {
+        const fileArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
+        setSelectedImg(prevImg => prevImg.concat(fileArray));
+        Array.from(e.target.files).map((file) => URL.revokeObjectURL(file));
+      }
     }
   };
+
+  const renderImg = (source) => {
+    return source.map(image => {
+      return <img src={image} key={image} height="80" id="upload-image"></img>;
+    });
+  };
+
 
   return (
     <React.Fragment>
@@ -111,7 +128,11 @@ var AddAnswerList = (props) => {
               <div className="break"></div>
               <input type="file" id="select-file" name="filename" className="qa-modal-file-button" multiple={true} onChange={e => handleImage(e)}></input>
               <div className="break"></div>
-              <img src="" height="50" id="upload-image"></img>
+              <p className="qa-notice">
+                You can upload up to 5 photos.
+              </p>
+              <div className="break"></div>
+              {renderImg(selectedImg)}
             </label>
             <br />
             <button className="qa-questions-modal-button" type="submit">
