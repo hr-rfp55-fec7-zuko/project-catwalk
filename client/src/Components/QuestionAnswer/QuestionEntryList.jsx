@@ -8,7 +8,7 @@ import AddQuestionList from './AddQuestionList.jsx';
 class QuestionEntryList extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {displayQuestion: 2, updateAnswer: true};
+    this.state = {displayQuestion: 4, updateAnswer: true};
     this.handleClick = this.handleClick.bind(this);
     this.handleAnswerUpdate = this.handleAnswerUpdate.bind(this);
   }
