@@ -36,7 +36,7 @@ class YourOutfitCard extends React.Component {
     axios.get(`/products/${outfitId}/styles`)
       .then(({ data }) => {
         // console.log(data);
-        const defaultProduct = data.find((product) => product['default?'] === false);
+        const defaultProduct = data.find((product) => product['default?'] === true);
         let url;
         if (!defaultProduct) {
           url = data.photos[0].thumbnail_url;
@@ -54,16 +54,6 @@ class YourOutfitCard extends React.Component {
       .catch((error) => {
         console.log('Error fetching product styles in relatedProductCard', error);
       });
-
-  //   return axios({
-  //     url: `/reviews/meta?product_id=${outfitId}`,
-  //     method: 'GET'
-  //   })
-  //     .then((results) => {
-  //       this.setState({ avgRating: results.data.ratings });
-  //     })
-
-     // .catch((error) => console.log('ERROR in METADATA AJAX Request: ', error));
    }
 
   render() {
