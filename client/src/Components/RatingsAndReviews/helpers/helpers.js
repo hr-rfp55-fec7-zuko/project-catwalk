@@ -38,6 +38,14 @@ const helpers = {
 
   },
 
+  truncateAverageRating: function(averageRating) {
+    averageRating = parseFloat(averageRating)
+    if (averageRating === 0) {
+      return 0.0
+    }
+    return averageRating.toFixed(1)
+  },
+
   //Takes in metaData recommended object and returns percent "true" of total recommendations
   determinePercentageRecommend: function(recommendedObject) {
     if (Object.keys(recommendedObject).length === 0) {
