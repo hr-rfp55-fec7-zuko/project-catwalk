@@ -71,7 +71,9 @@ class AddReviewForm extends React.Component {
       if (property.includes('characteristics-')) {
         let splitProperties = property.split('-')
         let newProperty = splitProperties[1]
-        characteristics[newProperty] = this.state[property]
+        let characteristic_id = this.props.characteristics[newProperty].id
+        // console.log(characteristic_id)
+        characteristics[characteristic_id] = this.state[property]
       }
 
       // if (property.includes('characteristics')) {
