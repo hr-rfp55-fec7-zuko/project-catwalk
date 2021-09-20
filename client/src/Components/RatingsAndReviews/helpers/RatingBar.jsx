@@ -13,10 +13,10 @@ const RatingBar = function RatingBar(props) {
 
   return (
     <>
-      <div className="rating-bar-container">
-        {value} Stars
-        <div className='rating-bar-outer'>
-        <div className='rating-bar-inner-fill' style={{width: `${percentage}%`}}></div>
+      <div className={'rating-bar-container ' + value} onClick={props.toggleStarRatingFilter}>
+        <span className={'star-label ' + value}> {value} Stars </span>
+        <div className={'rating-bar-outer ' + value}>
+        <div className={'rating-bar-inner-fill ' + value} style={{width: `${percentage}%`}}></div>
         </div>
         {frequency}
       </div>

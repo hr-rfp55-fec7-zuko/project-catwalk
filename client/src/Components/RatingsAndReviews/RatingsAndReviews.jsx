@@ -23,6 +23,7 @@ class RatingsAndReviews extends React.Component {
         characteristics:{}
       },
       reviews: [],
+      starFilters: [],
       reviewCount: 100
     };
 
@@ -30,6 +31,7 @@ class RatingsAndReviews extends React.Component {
     this.requestProductReviews = this.requestProductReviews.bind(this);
     this.submitReviewForm = this.submitReviewForm.bind(this);
     this.submitHelpfulOrReport = this.submitHelpfulOrReport.bind(this);
+    this.toggleStarRatingFilter = this.toggleStarRatingFilter.bind(this);
   }
 
   componentDidMount() {
@@ -37,7 +39,49 @@ class RatingsAndReviews extends React.Component {
   }
 
   //########---EVENT HANDLERS---#######//
-  handleRatingBreakdownFilter(){
+  toggleStarRatingFilter(event){
+    console.log('event.target', event.target.className);
+    var filterValue = event.target.className.replace( /^\D+/g, '')
+    var indexOfFilterValue = this.state.starFilters.indexOf(filterValue)
+    var newFilterList;
+
+    console.log(filterValue, indexOfFilterValue)
+
+    // if (this.state.starFilters.length === 0) {
+    //   newFilterList.push(filterValue)
+    // } else if (indexOfFilterValue === -1) {
+    //   newFilterList.push(filterValue)
+    // } else {
+    //   let stateCopy = this.state.starFilters.slice()
+    //   newFilterList = stateCopy.splice(indexOfFilterValue, 1)
+    // }
+    if (indexOfFilterValue === 0) {
+      newFilterList = [];
+    } else if (indexOfFilterValue !== -1) {
+      let stateCopy = this.state.starFilters.slice()
+      newFilterList = stateCopy.splice((indexOfFilterValue -1 || 0), 1);
+    } else if (this.state.starFilters.length === 0) {
+      newFilterList = [filterValue];
+    } else {
+      newFilterList = this.state.starFilters.slice();
+      newFilterList.push(filterValue);
+    }
+
+    this.setState({starFilters: newFilterList});
+
+    // let value = !this.state.starFilters[property]
+    // console.log(property + ': ' + value)
+    // this.setState({[property]:value})
+    // this.setState({...this.state.starFilters, [property]: value})
+
+
+  }
+
+  handleStarRatingFilter(){
+    // let filteredArray = this.state.reviews.map({
+    //   return !Object.keys(this.state.starFilters)
+    // })
+    // this.setState({ starFilteredReviews: filteredArray})
 
   }
 
@@ -92,10 +136,12 @@ class RatingsAndReviews extends React.Component {
 
         {this.state.reviews !== null &&
          <>
-           <RatingBreakdown metaData={this.state.metaData} reviewCount={reviewCount} setAvgRating={this.setAvgRating}/>
+           <RatingBreakdown metaData={this.state.metaData} reviewCount={reviewCount} setAvgRating={this.setAvgRating} toggleStarRatingFilter={this.toggleStarRatingFilter}/>
            <ProductBreakdown characteristics={this.state.metaData.characteristics}/>
            <SortBar reviewCount={reviewCount} requestProductReviews={this.requestProductReviews}/>
-           <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount} submitHelpfulOrReport={this.submitHelpfulOrReport} product_name={this.props.product_name} submitReviewForm={this.submitReviewForm} product_id={this.props.product_id}/>
+           <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount} submitHelpfulOrReport={this.submitHelpfulOrReport} product_name={this.props.product_name} submitReviewForm={this.submitReviewForm} product_id={this.props.product_id} starFilters={this.state.starFilters}/>
+
+           {/* <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount} submitHelpfulOrReport={this.submitHelpfulOrReport} product_name={this.props.product_name} submitReviewForm={this.submitReviewForm} product_id={this.props.product_id}/> */}
          </>
         }
 

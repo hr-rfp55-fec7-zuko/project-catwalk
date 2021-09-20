@@ -728,11 +728,17 @@ li {
 }
 
 /*Rating Bar Styling*/
+
 /* .rating-bar-container {
   max-width: 100%;
   display: inline-block;
   position: relative;
 } */
+
+.rating-bar-container:hover {
+    background-color:yellow;
+    padding:0.1em 0.2em;
+}
 
 .rating-bar-outer {
   width: 210px;
