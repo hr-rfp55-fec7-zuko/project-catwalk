@@ -10,7 +10,8 @@ class RelatedProductsList extends React.Component {
       relatedProducts: this.props.relatedProducts,
       parentProductIdInfo: '',
       imagesToTheLeft: false,
-      imagesToTheRight: true,
+      imagesToTheRight: false,
+      cardOverflow: false,
     };
 
     this.scrollRight = this.scrollRight.bind(this);
@@ -32,15 +33,15 @@ class RelatedProductsList extends React.Component {
       });
   }
 
+
   scrollLeft() {
     this.setState({
       imagesToTheRight: true,
     });
     const carousel = document.getElementById('ProductCarousel');
-    carousel.scrollLeft -= 316;
-    console.log(carousel.scrollLeft);
+    carousel.scrollLeft -= 307;
 
-    if (carousel.scrollLeft <= 316) {
+    if (carousel.scrollLeft <= 307) {
 
       this.setState({
         imagesToTheLeft: false,
@@ -49,15 +50,14 @@ class RelatedProductsList extends React.Component {
   }
 
   scrollRight() {
-    console.log('Clicked!');
     this.setState({
       imagesToTheLeft: true,
     });
     const carousel = document.getElementById('ProductCarousel');
     const amountLeftToScroll = carousel.scrollWidth - carousel.clientWidth;
 
-    carousel.scrollLeft += 316;
-    if (carousel.scrollLeft >= amountLeftToScroll - 316) {
+    carousel.scrollLeft += 307;
+    if (carousel.scrollLeft >= amountLeftToScroll - 400) {
       this.setState({
         imagesToTheRight: false,
       });
@@ -65,6 +65,12 @@ class RelatedProductsList extends React.Component {
   }
 
   isOverflowing() {
+    const carousel = document.getElementById('ProductCarousel');
+    const bool = carousel.scrollWidth > carousel.clientWidth;
+    this.setState({
+      cardOverflow: bool,
+      imagesToTheRight: bool,
+    });
   }
 
   render() {
@@ -79,7 +85,7 @@ class RelatedProductsList extends React.Component {
     return (
       <div className='ListWrapper'>
         {imagesToTheRight ? (<div className='RightButtonWrapper'>
-          <div className='RightButton' onClick={this.scrollRight}><i class="fas fa-chevron-circle-right"></i></div></div>) : null}
+          <div className='RightButton' onClick={this.scrollRight}><i className="fas fa-chevron-circle-right"></i></div></div>) : null}
 
         <div id='ProductCarousel' className='RelatedProductsList' onLoad={this.isOverflowing}>
           {relatedProducts.map((product) => (

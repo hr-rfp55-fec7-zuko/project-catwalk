@@ -27,6 +27,7 @@ h3 {
 #app {
   max-width: 1200px;
   margin: auto;
+  padding: 0px 20px;
 }
 
 .top-bar {
@@ -58,7 +59,7 @@ h3 {
   row-gap: 20px;
   position: relative;
   height: 100%;
-  min-height: 370px;
+  min-height: 390px;
   overflow-x: scroll;
   scroll-behavior: smooth;
 }
@@ -82,8 +83,8 @@ h3 {
 .cardWrapper {
   position: relative;
   flex-shrink: 0;
-  margin: 0px 10px;
   height: 98%;
+  margin: 0px 10px;
   width: calc(100%/4 - 40px);
 }
 
@@ -103,6 +104,7 @@ h3 {
   text-align: center;
   width: 100%;
   overflow: hidden;
+  min-height: 200px;
 }
 
 .RelatedProductsList .card .pic img, .YourOutfit .card .pic img  {
