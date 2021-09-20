@@ -1,17 +1,11 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-
 import CharacteristicRadioFormField from './helpers/CharacteristicRadioFormField.jsx'
-
 import StarPicker from './helpers/StarPicker.jsx';
 
 
-
-class AddReviewForm extends React.Component {
-  constructor(props) {
-    super(props);
-
-    // this.state = {
+//Note: Form needs to be revised to require all provided characteristics
+var mandatoryFormFields = ['name', 'email', 'rating', 'recommended', 'summary', 'body']
     //   'product_id': this.props.product_id,
     //   rating: '',
     //   summary: '',
@@ -20,22 +14,36 @@ class AddReviewForm extends React.Component {
     //   name: '',
     //   email: '',
     //   photos: [],
-    // }
+
+class AddReviewForm extends React.Component {
+  constructor(props) {
+    super(props);
+
 
     this.state = {
       rating: 0,
-      // submissions: {
-      //   'product_id': this.props.product_id,
-      //   rating: '',
-      //   summary: '',
-      //   body: '',
-      //   recommended: '',
-      //   name: '',
-      //   email: '',
-      //   photos: [],
-      // },
+      summary: '',
+      body: '',
+      recommended: null,
+      name: '',
+      email: '',
+      characteristics: {},
       submitted: false
     }
+
+
+    // this.state = {
+    //   rating: 0,
+    //   characteristics: {
+    //     Size: 0,
+    //     Width: 0,
+    //     Comfort: 0,
+    //     Quality: 0,
+    //     Length: 0,
+    //     Fit: 0
+    //   },
+    //   submitted: false
+    // }
 
     this.closeModal = this.closeModal.bind(this);
     this.handleStringFormChange = this.handleStringFormChange.bind(this)
@@ -49,57 +57,71 @@ class AddReviewForm extends React.Component {
 
     let characteristics = {}
 
+    var incompleteFields = [];
+
     for (var property in this.state) {
-      if (!this.state[property]) {
-        alert(`Please complete required fields: ${property}`)
+      if (property ==='submitted') {
+        continue;
       }
 
-      if (property.includes('characteristics')) {
-        var splitInput = property.split('.')
-        var newProperty = splitInput[1]
-        dataBody.characteristics[newProperty] = this.state[property]
+      if ( property !== 'undefined' && !this.state[property]) {
+        incompleteFields.push(property)
       }
 
+      if (property.includes('characteristics-')) {
+        let splitProperties = property.split('-')
+        let newProperty = splitProperties[1]
+        characteristics[newProperty] = this.state[property]
+      }
+
+      // if (property.includes('characteristics')) {
+      //   var splitInput = property.split('-')
+      //   var newProperty = splitInput[1]
+      //   dataBody.characteristics[newProperty] = this.state.characteristics[newProperty]
+      // }
+
+    }
+
+    var emailReminder =
+    !this.state.email.includes('@') ? 'Please enter valid email address.': '';
+
+    incompleteFields =
+    incompleteFields.some((field => mandatoryFormFields.includes(field))) ? 'Please complete all mandatory form fields.' : '';
+
+    if (incompleteFields.length > 0 || emailReminder) {
+      alert(`${incompleteFields}\n${emailReminder}`)
+      //2 options For form that differentiates between mandatory and optional
+      // alert(`Please complete required fields: ${incompleteFields}\n${emailReminder}`)
+      // alert(`Please complete required fields: ${incompleteFields}\n${emailReminder}`) // incompleteFields doesn't show up on this one (maybe just with email?)
+    } else {
       var dataBody = {
-        'product_id': parseInt(this.state.product_id),
-        'rating': parseInt(this.state.rating),
-        'summary': this.state.summary + '',
-        'body': this.state.body + '',
-        'recommended': this.state.recommended === 'No' ? false : true,
-        'email': this.state.email + '',
-        'photos': this.state.photos,
-        'characteristics': characteristics
+        "product_id": parseInt(this.props.product_id),
+        "rating": parseInt(this.state.rating),
+        "summary": this.state.summary + "",
+        "body": this.state.body + "",
+        "recommend": this.state.recommended === 'No' ? false : true,
+        "name": this.state.name,
+        "email": this.state.email + "",
+        "photos": this.state.photos || [],
+        // "characteristics": characteristics
+        "characteristics": {}
       }
 
-      // dataBody['product_id'] = parseInt(this.state.rating)
-      // dataBody['rating'] = parseInt(this.state.rating)
-      // dataBody['summary'] = this.state.summary + ''
-      // dataBody['body'] = this.state.body + ''
-      // dataBody['recommended'] = this.state.recommended === 'No' ? false : true
-      // dataBody['email'] = this.state.email + ''
-      // dataBody['photos'] = this.state.photos
-    }
-
-    // console.log('dataBody', dataBody)
-
-    //format data object
-
-    //if any mandatory fields are blank display an error (h)
-
-    let temp = {
-      "product_id": 40344,
-      "rating": 5,
-      "summary": "Very good",
-      "body": "lorem ipsum",
-      "recommend": true,
-      "name": "tester",
-      "email": "tester@tester.com",
-      "photos": [],
-      "characteristics": {}
-    }
-    // console.log(dataBody)
-    this.props.submitReviewForm(temp)
-    // this.props.submitReviewForm(dataBody)
+      var temp = {
+        "product_id": 40344,
+        "rating": 5,
+        "summary": "Very good",
+        "body": "lorem ipsum",
+        "recommend": true,
+        "name": "tester",
+        "email": "tester@tester.com",
+        "photos": [],
+        "characteristics": {}
+      }
+      // this.props.submitReviewForm(temp)
+      this.props.submitReviewForm(dataBody)
+      this.closeModal()
+      }
   }
 
   setStateProperty(property, value) {
@@ -113,6 +135,21 @@ class AddReviewForm extends React.Component {
   handleRadioFormChange(event){
     this.setStateProperty(event.target.name, event.target.id)
   }
+
+  //For nested object in state
+  // handleRadioFormChange(event){
+  //   if (!event.target.name.includes('characteristics')) {
+  //       this.setStateProperty(event.target.name, event.target.id)
+  //     } else {
+  //       let value = event.target.id
+  //       let splitProperties = event.target.name.split('.')
+  //       let nestedProperty = splitProperties[1]
+  //       this.setState(preState => ({
+  //         characteristics: prevState.characteristics.map((characteristic) =>
+  //           characteristic === nestedProperty ? {...characteristic, nestedProperty: value } : characteristic)
+  //       }))
+  //     }
+  // }
 
   handleStarSelect(name, id){
     console.log('handlestarselect', name, id)
@@ -147,7 +184,6 @@ class AddReviewForm extends React.Component {
         <div className="add-review-modal-backdrop" onClick={this.closeModal}></div>
 
         <div className="add-review-modal-box">
-
         {submissionConfirmation}
 
         <div className="add-review-form">
@@ -164,7 +200,7 @@ class AddReviewForm extends React.Component {
 
             <div className="form-question">
             <label className='form-category'>Your email?*</label><br/>
-            <input type="text" maxLength="60" placeholder="jackson11@email.com" id= "email" name="email" value={this.state.email} onChange={this.handleStringFormChange}/><br/>
+            <input type="email" maxLength="60" placeholder="jackson11@email.com" id= "email" name="email" value={this.state.email} onChange={this.handleStringFormChange}/><br/>
             <small><p>For privacy reasons, do not use your full name or email address</p></small>
             <small><p>For authentication reasons, you will not be emailed</p></small>
             </div>
@@ -224,6 +260,34 @@ export default AddReviewForm;
 
 
 /*
+    // this.state = {
+    //   'product_id': this.props.product_id,
+    //   rating: '',
+    //   summary: '',
+    //   body: '',
+    //   recommended: '',
+    //   name: '',
+    //   email: '',
+    //   photos: [],
+    // }
+
+    this.state = {
+      rating: 0,
+      // submissions: {
+      //   'product_id': this.props.product_id,
+      //   rating: '',
+      //   summary: '',
+      //   body: '',
+      //   recommended: '',
+      //   name: '',
+      //   email: '',
+      //   photos: [],
+      // },
+      submitted: false
+    }
+
+
+
 
 Radio button alts
 

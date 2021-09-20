@@ -11,8 +11,8 @@ class RatingsAndReviews extends React.Component {
     super(props);
 
     this.state = {
-    //   'product_id': this.props.product_id,
-         'product_id': 40435, //40347 - photos, 40435-response, 40453 - long review with pics
+      'product_id': this.props.product_id,
+        //  'product_id': 40435, //40347 - photos, 40435-response, 40453 - long review with pics
       metaData: {
         product_id: '00000',
         ratings: {},
@@ -93,7 +93,7 @@ class RatingsAndReviews extends React.Component {
   //submit review form
   submitReviewForm(body) {
     return axios.post('/reviews/', {params: body})
-    // .then((results) => console.log('AJAX POST RESULTS:', results))
+    .then((results) => console.log('AJAX POST RESULTS:', results.data, results))
     .catch((error) => console.log('error', error))
   }
 

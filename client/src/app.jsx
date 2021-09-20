@@ -15,7 +15,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      'product_id': '40346',
+      'product_id': '40435',
       'product_name': 'Camo Onesie',
       avgRating: null,
       totalReviews: null
@@ -45,10 +45,10 @@ class App extends React.Component {
     return (
       <div>
         <br />LOGO HERE<br />Sale Link Here<br />
-        <ProductOverview productId={this.state.product_id} avgRating={this.state.avgRating} totalReviews={this.state.totalReviews} />
+        {/* <ProductOverview productId={this.state.product_id} avgRating={this.state.avgRating} totalReviews={this.state.totalReviews} />
         <RelatedProductsView productId={this.state.product_id} />
         <YourOutfitList productId={this.state.product_id} />
-        <QuestionAnswer productId={this.state.product_id} productName={this.state.product_name} />
+        <QuestionAnswer productId={this.state.product_id} productName={this.state.product_name} /> */}
         <RatingsAndReviews product_id={this.state.product_id} product_name={this.state.product_name} />
       </div>
     );

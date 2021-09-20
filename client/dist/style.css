@@ -608,7 +608,7 @@ li {
 .review-tile {
   border-bottom: 1px solid black;
   /* border: 1px solid red; */
-  height: 300px;
+  height: 350px;
   width: 80%;
   margin-top: 1%;
   margin-bottom: 1%;
@@ -697,6 +697,7 @@ li {
 .review-response {
   grid-area: response;
   background-color: lightgray;
+  padding-bottom: 2%
 }
 
 .review-response h3 {
@@ -716,6 +717,7 @@ li {
   grid-area: helpful;
   display: inline;
   padding-right: 5%;
+  padding-top: 2%;
 }
 
 .helpful-count {
@@ -856,6 +858,7 @@ li {
 
 .add-review-close-icon-modal{
   position: absolute;
+  position: fixed;
   top: 2px;
   right: 10px;
 }
