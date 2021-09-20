@@ -24,15 +24,18 @@ const ProductBar = function ProductBar(props) {
   let fill3 = false;
 
   if (overallPercentage < 34) {
-    var innerPercentage = `${(overallPercentage / 30) * 100}%;`;
+    // var innerPercentage = `${(overallPercentage / 30) * 100}%;`; //Does not account for size of icon
+    var innerPercentage = `${(overallPercentage / 30) * 100 -10}%;`; //Does account for size of icon
     fill1 = true;
 
   } else if (overallPercentage < 67) {
-    var innerPercentage = `${((overallPercentage - 33) / 30) * 100}%`;
+    // var innerPercentage = `${((overallPercentage - 33) / 30) * 100}%`; //Does not account for size of icon
+    var innerPercentage = `${((overallPercentage - 33) / 30) * 100 - 10}%`; //Does account for size of icon
     fill2 = true;
 
   } else if (overallPercentage < 101) {
-    var innerPercentage = `${((overallPercentage - 66) / 30) * 100}%`;
+    // var innerPercentage = `${((overallPercentage - 66) / 30) * 100}%`; //Does not account for size of icon
+    var innerPercentage = `${((overallPercentage - 66) / 30) * 100 - 10}%`;  //Does account for size of icon
     fill3 = true;
   }
 

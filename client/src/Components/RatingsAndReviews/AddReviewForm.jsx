@@ -88,8 +88,11 @@ class AddReviewForm extends React.Component {
     incompleteFields =
     incompleteFields.some((field => mandatoryFormFields.includes(field))) ? 'Please complete all mandatory form fields.' : '';
 
+    var bodyLengthReminder =
+    !(this.state.body.length >= 50) ? 'Reiew body must be at least 50 characters' : ''
+
     if (incompleteFields.length > 0 || emailReminder) {
-      alert(`${incompleteFields}\n${emailReminder}`)
+      alert(`${incompleteFields}\n${emailReminder}\n${bodyLengthReminder}`)
       //2 options For form that differentiates between mandatory and optional
       // alert(`Please complete required fields: ${incompleteFields}\n${emailReminder}`)
       // alert(`Please complete required fields: ${incompleteFields}\n${emailReminder}`) // incompleteFields doesn't show up on this one (maybe just with email?)
