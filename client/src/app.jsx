@@ -15,7 +15,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      'product_id': '40435',
+      'product_id': '40444',
       'product_name': 'Camo Onesie',
       avgRating: null,
       totalReviews: null
@@ -26,6 +26,12 @@ class App extends React.Component {
   componentDidMount() {
     this.requestProductMetaData();
   }
+  componentDidUpdate(prevProps) {
+    if (this.props.product_id !== prevProps.product_id) {
+      //TODO something
+    }
+  }
+
 
   requestProductMetaData() {
     return axios({
@@ -43,10 +49,14 @@ class App extends React.Component {
   }
 
   updateProductID(productID) {
+    console.log(productID);
     this.setState({
       'product_id': productID,
     });
   }
+
+
+
 
   render() {
     return (
@@ -56,15 +66,15 @@ class App extends React.Component {
           <h1 className='app-title'>
             <i className='fas fa-dragon'></i> Fire Nation Fashion
           </h1>
-          <h4 className='sale-info'><i class="fas fa-fire"></i> Check out our flaming hot sales! <i class="fas fa-fire"></i> <br /><br /></h4>
+          <h4 className='sale-info'><i className="fas fa-fire"></i> Check out our flaming hot sales! <i className="fas fa-fire"></i> <br /><br /></h4>
 
         </div>
         <ProductOverview productId={this.state.product_id} avgRating={this.state.avgRating} totalReviews={this.state.totalReviews} />
-        <br/><br/>
+        <br /><br />
         <RelatedProductsView productId={this.state.product_id} updateProductID={this.updateProductID} />
         <YourOutfitList productId={this.state.product_id} />
         <QuestionAnswer productId={this.state.product_id} productName={this.state.product_name} />
-        <br/><br/>
+        <br /><br />
         <RatingsAndReviews product_id={this.state.product_id} product_name={this.state.product_name} />
       </div>
     );

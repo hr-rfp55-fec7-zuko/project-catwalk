@@ -94,6 +94,7 @@ class RelatedProductsList extends React.Component {
               productId={product}
               parentProductIdInfo={parentProductIdInfo}
               key={product}
+              updateProductID={this.props.updateProductID}
             />
           ))}
         </div>

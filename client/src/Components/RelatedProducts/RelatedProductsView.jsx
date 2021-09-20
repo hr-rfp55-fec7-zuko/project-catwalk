@@ -26,13 +26,15 @@ class RelatedProductsView extends React.Component {
 
   render() {
     const { relatedProducts } = this.state;
-    const { productId } = this.props;
+    const { productId} = this.props;
     return (
       <div className="relatedProducts">
         <h2>Related Products</h2>
         <RelatedProductsList
           productId={productId}
           relatedProducts={relatedProducts}
+          updateProductID={this.props.updateProductID}
+
         />
       </div>
     );
