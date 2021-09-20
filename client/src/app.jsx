@@ -20,6 +20,7 @@ class App extends React.Component {
       avgRating: null,
       totalReviews: null
     };
+    this.updateProductID = this.updateProductID.bind(this);
   }
 
   componentDidMount() {
@@ -41,6 +42,12 @@ class App extends React.Component {
       .catch((error) => console.error(error));
   }
 
+  updateProductID(productID) {
+    this.setState({
+      'product_id': productID,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -54,7 +61,7 @@ class App extends React.Component {
         </div>
         <ProductOverview productId={this.state.product_id} avgRating={this.state.avgRating} totalReviews={this.state.totalReviews} />
         <br/><br/>
-        <RelatedProductsView productId={this.state.product_id} />
+        <RelatedProductsView productId={this.state.product_id} updateProductID={this.updateProductID} />
         <YourOutfitList productId={this.state.product_id} />
         <QuestionAnswer productId={this.state.product_id} productName={this.state.product_name} />
         <br/><br/>
