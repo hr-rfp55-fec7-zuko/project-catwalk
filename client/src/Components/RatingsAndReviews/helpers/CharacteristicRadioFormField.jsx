@@ -8,7 +8,7 @@ class CharacteristicRadioFormField extends React.Component {
 
   render() {
 
-    let fieldName = `characteristics.${this.props.characteristic}`;
+    let fieldName = `characteristics-${this.props.characteristic}`;
     return (
     <>
       <div onChange={this.props.handleRadioFormChange} className='characteristic-form-field'>

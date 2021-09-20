@@ -14,6 +14,7 @@ class RatingBreakdown extends React.Component {
 
     // let avgRating = helpers.determineAverageRating(metaData.ratings, reviewCount);
     let avgRating = helpers.determineAverageRating(metaData.ratings);
+    let oneDecAvgRating = helpers.truncateAverageRating(avgRating);
 
     let percentageRecommended = helpers.determinePercentageRecommend(metaData.recommended);
 
@@ -30,13 +31,18 @@ class RatingBreakdown extends React.Component {
       <div className="rating-breakdown">
         <h2>Ratings and Reviews</h2>
 
-        <div className="avg-rating">{avgRating}<AvgRatingStars avgRating={avgRating}/></div>
+        <div className="avg-rating"><span className='one-dec-avg'>{oneDecAvgRating}</span><AvgRatingStars avgRating={avgRating}/></div>
 
 
         <div className="rating-percentage-recommended">{percentageRecommended}% of reviews recommend this product</div>
         <br/>
         {ratingsTuples.map((ratingTuple) =>
-          <RatingBar key={ratingTuple[0]} reviewCount={reviewCount} ratingTuple={ratingTuple}/>)}
+          <RatingBar key={ratingTuple[0]} reviewCount={reviewCount} ratingTuple={ratingTuple} toggleStarRatingFilter={this.props.toggleStarRatingFilter} handleClearStarFilters={this.handleClearStarFilters}/>)}
+
+        {this.props.clearFilterVisible &&
+          <a onClick={this.props.handleClearStarFilters}>Clear all filters</a>
+        }
+
       </div>
     );
   }

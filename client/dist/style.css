@@ -641,10 +641,11 @@ li {
 .ratings-and-reviews {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto 350px 350px 1fr auto auto;
   grid-template-areas:
     "rating-breakdown sort-bar sort-bar"
     "rating-breakdown review-list review-list"
+    "product-breakdown review-list review-list"
     "product-breakdown review-list review-list"
     ". review-list review-list"
     ". review-list review-list"
@@ -663,6 +664,8 @@ li {
 
 .review-list {
   max-height: 100vh;
+  /* max-height: 755px; */
+  /* min-height: 500px; */
   overflow: scroll;
   grid-area: review-list;
 }
@@ -673,6 +676,8 @@ li {
 
 .product-breakdown {
   grid-area: product-breakdown;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr auto auto;
 }
 
 .sort-bar {
@@ -683,7 +688,7 @@ li {
 .review-tile {
   border-bottom: 1px solid black;
   /* border: 1px solid red; */
-  height: 250px;
+  height: 350px;
   width: 80%;
   margin-top: 1%;
   margin-bottom: 1%;
@@ -772,6 +777,7 @@ li {
 .review-response {
   grid-area: response;
   background-color: lightgray;
+  padding-bottom: 2%
 }
 
 .review-response h3 {
@@ -791,6 +797,7 @@ li {
   grid-area: helpful;
   display: inline;
   padding-right: 5%;
+  padding-top: 2%;
 }
 
 .helpful-count {
@@ -803,11 +810,17 @@ li {
 }
 
 /*Rating Bar Styling*/
+
 /* .rating-bar-container {
   max-width: 100%;
   display: inline-block;
   position: relative;
 } */
+
+.rating-bar-container:hover {
+    background-color:yellow;
+    padding:0.1em 0.2em;
+}
 
 .rating-bar-outer {
   width: 210px;
@@ -839,11 +852,20 @@ li {
   justify-content: center;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  /* grid-template-rows: 1fr 2fr; */
   grid-template-rows: 2fr;
   grid-template-areas:
+  /* "characteristic . ." */
   "product-bar-outer product-bar-outer product-bar-outer"
   "low-label . high-label";
 }
+
+.characteristic-header {
+  grid-area: characteristic;
+
+}
+
+
 .product-bar-inner-fill {
   /* overflow: hidden; */
 }
@@ -916,6 +938,7 @@ li {
 
 .add-review-close-icon-modal{
   position: absolute;
+  position: fixed;
   top: 2px;
   right: 10px;
 }

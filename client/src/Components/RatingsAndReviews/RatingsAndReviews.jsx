@@ -11,8 +11,8 @@ class RatingsAndReviews extends React.Component {
     super(props);
 
     this.state = {
-      // 'product_id': this.props.product_id,
-      'product_id': 40453, //40347 - photos, 40435-response, 40453 - long review with pics
+      'product_id': this.props.product_id,
+        //  'product_id': 40435, //40347 - photos, 40435-response, 40453 - long review with pics
       metaData: {
         product_id: '00000',
         ratings: {},
@@ -23,21 +23,58 @@ class RatingsAndReviews extends React.Component {
         characteristics:{}
       },
       reviews: [],
-      viewableReviews: [],
-      reviewCount: 2
+      starFilters: [],
+      clearFilterVisible: false,
+      reviewCount: 100
     };
 
     this.requestProductMetaData = this.requestProductMetaData.bind(this);
     this.requestProductReviews = this.requestProductReviews.bind(this);
     this.submitReviewForm = this.submitReviewForm.bind(this);
     this.submitHelpfulOrReport = this.submitHelpfulOrReport.bind(this);
-    this.setStateFilter = this.setStateFilter.bind(this)
+    this.toggleStarRatingFilter = this.toggleStarRatingFilter.bind(this);
+    this.handleClearStarFilters = this.handleClearStarFilters.bind(this);
   }
 
   componentDidMount() {
     this.requestProductMetaData();
   }
 
+  //########---EVENT HANDLERS---#######//
+  toggleStarRatingFilter(event){
+    var filterValue = event.target.className.replace( /^\D+/g, '')
+    var indexOfFilterValue = this.state.starFilters.indexOf(filterValue)
+    var newFilterList;
+    var clearFilterVisibility;
+
+    if (indexOfFilterValue === 0 && this.state.starFilters.length === 1) {
+      newFilterList = [];
+      clearFilterVisibility = false;
+    } else if (indexOfFilterValue !== -1) {
+      let stateCopy = this.state.starFilters.slice()
+      newFilterList = stateCopy.splice((indexOfFilterValue -1 || 0), 1);
+      clearFilterVisibility = true;
+    } else if (this.state.starFilters.length === 0) {
+      newFilterList = [filterValue];
+      clearFilterVisibility = true;
+    } else {
+      newFilterList = this.state.starFilters.slice();
+      newFilterList.push(filterValue);
+      clearFilterVisibility = true;
+    }
+
+    if (newFilterList.length === 0) {
+      clearFilterVisibility = false
+    }
+
+    this.setState({starFilters: newFilterList, clearFilterVisible: clearFilterVisibility});
+  }
+
+  handleClearStarFilters(){
+    this.setState({starFilters: [], clearFilterVisible: false})
+  }
+
+  //########---AJAX REQUESTS---#######//
   requestProductMetaData() {
     return axios({
       url: `/reviews/meta?product_id=${this.state.product_id}`,
@@ -45,10 +82,6 @@ class RatingsAndReviews extends React.Component {
     })
       .then((results) => this.setState({metaData: results.data}))
       .catch((error) => console.log('ERROR in METADATA AJAX Request: ', error));
-  }
-
-  setStateFilter(filter){
-    this.setState(filter)
   }
 
   //eventually this should take a page and count number
@@ -64,7 +97,7 @@ class RatingsAndReviews extends React.Component {
   //submit review form
   submitReviewForm(body) {
     return axios.post('/reviews/', {params: body})
-    // .then((results) => console.log('AJAX POST RESULTS:', results))
+    .then((results) => console.log('AJAX POST RESULTS:', results.data, results))
     .catch((error) => console.log('error', error))
   }
 
@@ -91,10 +124,12 @@ class RatingsAndReviews extends React.Component {
 
         {this.state.reviews !== null &&
          <>
-           <RatingBreakdown metaData={this.state.metaData} reviewCount={reviewCount} setAvgRating={this.setAvgRating}/>
+           <RatingBreakdown metaData={this.state.metaData} reviewCount={reviewCount} setAvgRating={this.setAvgRating} toggleStarRatingFilter={this.toggleStarRatingFilter}handleClearStarFilters={this.handleClearStarFilters} clearFilterVisible={this.state.clearFilterVisible}/>
            <ProductBreakdown characteristics={this.state.metaData.characteristics}/>
-           <SortBar reviewCount={reviewCount} requestProductReviews={this.requestProductReviews}/>
-           <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount} submitHelpfulOrReport={this.submitHelpfulOrReport} product_name={this.props.product_name} submitReviewForm={this.submitReviewForm} product_id={this.props.product_id}/>
+           <SortBar reviewCount={reviewCount} requestProductReviews={this.requestProductReviews} reviewListCount={this.state.reviews.length}/>
+           <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount} submitHelpfulOrReport={this.submitHelpfulOrReport} product_name={this.props.product_name} submitReviewForm={this.submitReviewForm} product_id={this.props.product_id} starFilters={this.state.starFilters}/>
+
+           {/* <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount} submitHelpfulOrReport={this.submitHelpfulOrReport} product_name={this.props.product_name} submitReviewForm={this.submitReviewForm} product_id={this.props.product_id}/> */}
          </>
         }
 
