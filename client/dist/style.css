@@ -29,6 +29,21 @@ h3 {
   margin: auto;
 }
 
+.top-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+
+.app-title {
+  color: red;
+}
+
+.sale-info {
+  padding: 0;
+  margin: 0;
+}
 
 /*========= CSS for Relatived Products & Your Outfit ===========*/
 .relatedProducts {
@@ -237,16 +252,18 @@ h3 {
 .po-main-top {
   position: relative;
   display: flex;
-  height: 80%;
+  /* height: 80%; */
 }
 
 .po-main-left {
   width: 60%;
+  height: 100%;
   z-index: 3;
 }
 
 .po-main-right {
   width: 40%;
+  height: 100%;
   position: absolute;
   top: 0;
   right: 0;
@@ -278,12 +295,18 @@ h3 {
   display: flex;
 }
 
+.read-all-reviews {
+  margin-left: 10px;
+}
+
 .po-desc {
   display: flex;
 }
 
 .po-add-cart {
   display: grid;
+  width: 300px;
+
 }
 
 .select-parent{
@@ -297,18 +320,61 @@ h3 {
   /* top:20px */
 }
 
+.dropdown__select, .dropdown__quantity {
+  font-family:'Montserrat',sans-serif;
+  padding: 15px;
+  background-color: white;
+  font-weight: 900;
+  border: 1px solid;
+  margin-right: 10px;
+}
+
+.dropdown__select {
+  width: 127px;
+}
+
+.dropdown__quantity {
+  width: 67px;
+}
+
 .add-cart-feat {
   position: absolute;
-  top: 20px
+  top: 60px
+}
+
+.button__add-cart {
+  font-family:'Montserrat',sans-serif;
+  padding: 11px 15px;
+  background-color: white;
+  font-weight: 900;
+  border: 3px solid;
+  border-color: red;
+  color: white;
+  width: 204px;
+  font-size: 18px;
+  background-color: red;
+}
+
+.po-soc-med-btns {
+  width:300px;
+  display: flex;
+  position: absolute;
+  justify-content: left;
+  bottom: 0;
+}
+
+.soc-btn {
+  margin-right: 10px;
 }
 
 .po-desc-text {
-  width: 70%
+  width: 55%;
+  margin-left: 10%;
 }
 
 .po-desc-list {
-  width: 30%;
-  margin: 0, 5%;
+  width: 45%;
+  margin: 0 15%;
 }
 
 ul {
@@ -360,7 +426,7 @@ li {
 
 .carousel__track-container {
   position: relative;
-  background-color: rosybrown;
+  background-color: white;
   height: 100%;
   width: 100%;
 }
@@ -379,6 +445,15 @@ li {
   cursor: crosshair;
   /* object-fit: fill;
   overflow: hidden; */
+}
+
+#zoomed-slide {
+  cursor: zoom-out;
+  transform: scale(1);
+}
+
+#zoomed-slide:hover {
+  transform: scale(2.5);
 }
 
 .carousel__track {
@@ -535,7 +610,7 @@ li {
 
 .stars-inner::before {
   content: "\f005 \f005 \f005 \f005 \f005";
-  color: #f8ce0b;
+  color: red;
 }
 
 /*========= CSS FOR Ratings & Reviews ===========*/
@@ -1109,4 +1184,9 @@ li {
   margin-right: 20px;
   border: 1px solid;
   margin-bottom: 10px;
+}
+
+#upload-image {
+  margin-top: 2px;
+  margin-right: 15px;
 }

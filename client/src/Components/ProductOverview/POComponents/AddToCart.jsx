@@ -65,36 +65,58 @@ class AddToCart extends React.Component {
   render() {
     return (
       <div className='po-add-cart'>
-        {this.state.needSize ? <div className='select-size-msg' >You need to select a size first!</div> : <div className='select-size-msg'> <br /> </div>}
+        {this.state.needSize ?
+          <div className='select-size-msg' >
+            You need to select a size first!
+          </div>
+          : <div className='select-size-msg'> <br /> </div>}
         <div className='select-parent'>
           <div className='select-menus'>
-            <SizeSelector skus={this.state.style.skus} setSKU={this.setSKU} needSize={this.state.needSize} />
-            <QuantitySelector totalQuantity={this.state.totalQuantity} setQuantity={this.setQuantity} />
+            <SizeSelector
+              skus={this.state.style.skus}
+              setSKU={this.setSKU}
+              needSize={this.state.needSize} />
+            <QuantitySelector
+              totalQuantity={this.state.totalQuantity}
+              setQuantity={this.setQuantity} />
           </div>
           <div className='add-cart-feat'>
-            <button onClick={this.handleAddToCart} >Add to Cart</button>
-            <p>{this.state.addedToCart ? `You added ${this.state.quantity} items to your cart!` : <br />}</p>
+            <button
+              onClick={this.handleAddToCart} className='button__add-cart' >
+              ADD TO CART
+            </button>
+            <p>{this.state.addedToCart ?
+              `You added ${this.state.quantity} items to your cart!`
+              : <br />}
+            </p>
           </div>
         </div>
-        <div><br/><br/><br/></div>
+        <div><br /><br /><br /></div>
       </div >
     );
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.style !== prevProps.style) {
-      this.setState({ style: this.props.style, addedToCart: false });
-      if (this.state.selectedSKU && this.state.style.skus) {
-        var skuArr = Object.keys(this.props.style.skus);
-        for (var i = 0; i < skuArr.length; i++) {
-          if (this.props.style.skus[skuArr[i]].size === this.state.selectedSize) {
-            this.setState({
-              selectedSKU: skuArr[i],
-              totalQuantity: this.props.style.skus[skuArr[i]].quantity
-            });
-          }
-        }
-      }
+      this.setState({
+        style: this.props.style,
+        addedToCart: false,
+        selectedSKU: null,
+        selectedSize: null,
+        totalQuantity: null,
+        quantity: null
+      });
+      // if (this.state.selectedSKU && this.state.style.skus) {
+      //   var skuArr = Object.keys(this.props.style.skus);
+      //   for (var i = 0; i < skuArr.length; i++) {
+      //     if (this.props.style.skus[skuArr[i]].size === this.state.selectedSize) {
+      //       this.setState({
+      //         selectedSKU: skuArr[i],
+      //         totalQuantity: this.props.style.skus[skuArr[i]].quantity
+      //       });
+      //     }
+      //   }
+      // }
     }
   }
 }

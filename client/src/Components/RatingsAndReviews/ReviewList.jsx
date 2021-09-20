@@ -100,7 +100,7 @@ class ReviewList extends React.Component {
 
     //If the total number of reviews has been reached, don't render the addreviews button
     // if (reviews.length < this.props.reviewCount) {
-      if (this.state.reviewLimit < this.props.reviews.length) {
+      if (this.state.reviewLimit <= this.props.reviews.length) {
       var moreReviewsButton =
         <button type="button" id="more-reviews" className="ratings-button" onClick={this.updateViewList}>More Reviews</button>;
     } else {
