@@ -6,7 +6,8 @@ class StyleSelector extends React.Component {
     super(props);
     this.state = {
       styles: this.props.styles,
-      styleName: ''
+      styleName: '',
+      styleID: null
     };
   }
 
@@ -18,14 +19,17 @@ class StyleSelector extends React.Component {
         <div className='style-container'>
           {this.state.styles.map((style) =>
             <SingleStyle
-              key={style.name}
+              key={style.style_id}
               style={style}
               onClick={(event) => {
                 event.preventDefault();
                 this.props.setStyleSelection(style);
-                this.setState({ styleName: style.name });
+                this.setState({
+                  styleName: style.name,
+                  styleID: style.style_id
+                });
               }}
-              selected={style.name === this.state.styleName} />)}
+              selected={style.style_id === this.state.styleID} />)}
         </div>
       </div>
     );
@@ -37,7 +41,10 @@ class StyleSelector extends React.Component {
       for (var i = 0; i < this.props.styles.length; i++) {
         // console.log('going into for loop');
         if (this.props.styles[i]['default?']) {
-          this.setState({ styleName: this.props.styles[i].name });
+          this.setState({
+            styleName: this.props.styles[i].name,
+            styleID: this.props.styles[i].style_id
+          });
           this.props.setStyleSelection(this.props.styles[i]);
           break;
         }
