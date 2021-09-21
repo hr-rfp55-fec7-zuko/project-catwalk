@@ -449,7 +449,6 @@ li {
 #zoomed-slide {
   cursor: zoom-out;
   transform: scale(1);
-  object-position: 0 0;
 }
 
 #zoomed-slide:hover {

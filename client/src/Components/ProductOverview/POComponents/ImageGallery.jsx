@@ -9,13 +9,16 @@ class ImageGallery extends React.Component {
       expanded: false,
       zoomed: false,
       thumbnailMax: null,
-      down: 0
+      down: 0,
+      imageX: 0,
+      imageY: 0
     };
     this.nextSlide = this.nextSlide.bind(this);
     this.prevSlide = this.prevSlide.bind(this);
     this.expandSlide = this.expandSlide.bind(this);
     this.zoomSlide = this.zoomSlide.bind(this);
     this.setSlideFromThumbnail = this.setSlideFromThumbnail.bind(this);
+    this.handleZoomMouseMove = this.handleZoomMouseMove.bind(this);
   }
 
   nextSlide() {
@@ -62,6 +65,21 @@ class ImageGallery extends React.Component {
     this.setState({
       current: index
     });
+  }
+
+  handleZoomMouseMove(event) {
+    event.preventDefault();
+    var photo = document.getElementById('carousel__track');
+    var rect = photo.getBoundingClientRect();
+    // console.log(rect);
+    // console.log('mousemove', event.clientX, event.clientY);
+    var imageX = Math.abs(event.clientX - rect.x) / rect.width * 100;
+    var imageY = Math.abs(event.clientY - rect.y) / rect.height * 100;
+    console.log('image position', imageX, '%', imageY, '%');
+    var objectPosition = {
+      'object-position': `${imageY}% ${imageY}%;`
+    };
+    this.setState({imageX, imageY});
   }
 
   componentDidUpdate(prevProps) {
@@ -142,7 +160,7 @@ class ImageGallery extends React.Component {
                 <i className="fas fa-arrow-left fa-lg"></i>
               </button>
               )}
-            <div className='carousel__track' >
+            <div className='carousel__track' id='carousel__track' >
               {fullPhotos.map((image, index) => {
                 if (index === this.state.current) {
                   return (
@@ -152,20 +170,9 @@ class ImageGallery extends React.Component {
                       className={this.state.expanded ? 'carousel__slide expanded-slide' : 'carousel__slide'}
                       src={image}
                       onClick={!this.state.expanded ? this.expandSlide : this.zoomSlide}
-                      // style={this.state.zoomed ? {
-                      //   cursor: 'zoom-out',
-                      //   transform: 'scale(2.5)',
-                      //   overflow: 'hidden',
-                      // } : {
-                      //   transform: 'scale(1.0)',
-                      //   overflow: 'hidden'
-                      // }}
-                      // onMouseOver={(event) => console.log(event.clientX, event.clientY)}
-                      onMouseMove={(event) => {
-                        var photo = document.getElementById('zoomed-slide');
-                        var rect = photo.getBoundingClientRect();
-                        // console.log(rect);
-                        console.log('mousemove', event.clientX, event.clientY);
+                      onMouseMove={this.state.zoomed ? this.handleZoomMouseMove : null}
+                      style={{
+                        objectPosition: `${this.state.imageX}% ${this.state.imageY}%`
                       }} />
                   );
                 }
