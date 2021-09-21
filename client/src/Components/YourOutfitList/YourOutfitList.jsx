@@ -103,7 +103,7 @@ class YourOutfitList extends React.Component {
           }
         })
         .catch((error) => {
-          conaole.log('Error deleting an Outfit', error);
+          console.log('Error deleting an Outfit', error);
         });
     });
   }
