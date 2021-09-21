@@ -18,7 +18,6 @@ router.post('/', (req, res) => {
   } else {
     outfitArr = outfits[userId];
     outfitArr.push(data);
-    console.log(outfitArr);
 
     // for (let i = 0; i < outfitArr.length; i++) {
     //   if (outfitArr[i].productId !== data.productId) {
@@ -42,7 +41,6 @@ router.get('/', (req, res) => {
 
 
 router.delete('/:productId', (req, res) => {
-  console.log('Clicked');
   var userId = fixUserID;
   var deleteId = req.params['productId'];
   var index = -1;
