@@ -1022,9 +1022,9 @@ li {
 }
 
 .qa-questions-modal-box {
-  position: relative;
-  top: 50%;
-  left: 50%;
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
   transform: translate(-50%, -50%);
   overflow-y: auto;
   height: 60%;
