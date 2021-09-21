@@ -88,10 +88,9 @@ h3 {
   width: calc(100%/4 - 40px);
 }
 
-.card:hover {
-  transition: 0.3s;
-  transform: scale(1.02);
+.title:hover {
   cursor: pointer;
+  color: red;
 }
 
 ::-webkit-scrollbar {

@@ -17,10 +17,22 @@ class RelatedProductsList extends React.Component {
     this.scrollRight = this.scrollRight.bind(this);
     this.scrollLeft = this.scrollLeft.bind(this);
     this.isOverflowing = this.isOverflowing.bind(this);
+    this.fetchAPIParentProduct = this.fetchAPIParentProduct.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchAPIParentProduct();
   }
 
 
-  componentDidMount() {
+  componentDidUpdate(prevProps) {
+    const { productId } = this.props;
+    if (prevProps.productId !== productId) {
+      this.fetchAPIParentProduct();
+    }
+  }
+
+  fetchAPIParentProduct() {
     const { productId } = this.props;
     axios.get(`/products/${productId}`)
       .then(({ data }) => {
@@ -99,7 +111,7 @@ class RelatedProductsList extends React.Component {
           ))}
         </div>
 
-        {imagesToTheLeft ? (<div className='LeftButtonWrapper'><div className='LeftButton' onClick={this.scrollLeft}><i class="fas fa-chevron-circle-left"></i></div></div>) : null}
+        {imagesToTheLeft ? (<div className='LeftButtonWrapper'><div className='LeftButton' onClick={this.scrollLeft}><i className="fas fa-chevron-circle-left"></i></div></div>) : null}
       </div>
     );
 
