@@ -1,72 +1,64 @@
 import React from 'react';
 import axios from 'axios';
-//import AvgRatingStars from '../RatingsAndReviews/helpers/AvgRatingStars.jsx';
+import AvgRatingStars from '../RatingsAndReviews/helpers/AvgRatingStars.jsx';
 
 class YourOutfitCard extends React.Component {
-  constructor() {
-    super();
-    this.state = JSON.parse(window.localStorage.getItem('state')) || {
+  constructor(props) {
+    super(props);
+    this.state = {
       productIdInfo: '',
-      featuredURL: '',
+      productStyle: '',
       salePrice: '',
-      avgRating: '',
+      featuredURL: '',
+      // avgRating: '',
     };
-  }
 
-  setState(state) {
-    window.localStorage.setItem('state', JSON.stringify(state));
-    super.setState(state);
   }
 
   componentDidMount() {
-    const { outfitId } = this.props;
+    const { outfit } = this.props;
+    let url;
+    let shortInfo = outfit.data.info;
+    let shortStyles = outfit.data.styles;
+    const defaultProduct = shortStyles.find((product) => product['default?'] === true);
 
-    // Get the information for a related product
-    axios.get(`/products/${outfitId}`)
-      .then(({ data }) => {
-        // console.log(data);
-        this.setState({ ...this.state, productIdInfo: data });
-
-      })
-      .catch((err) => {
-        console.log('Error geting products detail in a relatived product', err);
+    if (!defaultProduct) {
+      let shortPath = outfit.data.info;
+      url = shortStyles[0].photos[0].thumbnail_url;
+      this.setState({
+        salePrice: shortStyles[0].sale_price,
       });
-
-    // Get the feature picture and price for a related product
-    axios.get(`/products/${outfitId}/styles`)
-      .then(({ data }) => {
-        // console.log(data);
-        const defaultProduct = data.find((product) => product['default?'] === true);
-        let url;
-        if (!defaultProduct) {
-          url = data.photos[0].thumbnail_url;
-          this.setState({ ...this.state, salePrice: data.sale_price });
-        } else {
-          url = defaultProduct.photos[0].thumbnail_url;
-          this.setState({ ...this.state, salePrice: defaultProduct.sale_price });
-        }
-        if (!url) {
-          this.setState({ ...this.state, featuredURL: '/images/default-placeholder.png' });
-        } else {
-          this.setState({ ...this.state, featuredURL: url });
-        }
-      })
-      .catch((error) => {
-        console.log('Error fetching product styles in relatedProductCard', error);
+    } else {
+      url = defaultProduct.photos[0].thumbnail_url;
+      this.setState({
+        salePrice: defaultProduct.sale_price,
       });
-   }
+    }
+    if (!url) {
+      this.setState({
+        productIdInfo: shortInfo,
+        productStyles: shortStyles,
+        // productRating: outfit.rating,
+        featuredURL: '/images/default-placeholder.png',
+      });
+    } else {
+      this.setState({
+        productIdInfo: shortInfo,
+        productStyles: shortStyles,
+        // productRating: outfit.rating,
+        featuredURL: url,
+      });
+    }
+  }
 
   render() {
     const { productIdInfo, featuredURL, salePrice } = this.state;
-    const { outfitId } = this.props;
-    // console.log(outfitId);
-
     return (
       <div className="cardWrapper">
-        <div className='card' id={outfitId}>
-          <div className='CompareButton'><i className="fa fa-times"></i></div>
+        <div className='card' id={productIdInfo.id}>
+          <div className='CompareButton' onClick={this.props.deleteOutfit} ><i className="fa fa-times" aria-hidden="true"></i></div>
           <div className='pic'>
-            <img src={featuredURL}></img>
+            <img src={featuredURL} alt={productIdInfo.name}></img>
           </div>
           <div className='info'>
             <p className='category'>{productIdInfo.category}</p>

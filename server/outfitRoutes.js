@@ -17,12 +17,15 @@ router.post('/', (req, res) => {
     outfits[userId] = [data];
   } else {
     outfitArr = outfits[userId];
-    for (let i = 0; i < outfitArr.length; i++) {
-      if (outfitArr[i].productId !== data.productId) {
-        outfits[userId].unshift(data);
-        break;
-      }
-    }
+    outfitArr.push(data);
+    console.log(outfitArr);
+
+    // for (let i = 0; i < outfitArr.length; i++) {
+    //   if (outfitArr[i].productId !== data.productId) {
+    //     outfits[userId].unshift(data);
+    //     break;
+    //   }
+    // }
   }
 
   res.status(201).send(data);
@@ -37,7 +40,9 @@ router.get('/', (req, res) => {
   }
 });
 
+
 router.delete('/:productId', (req, res) => {
+  console.log('Clicked');
   var userId = fixUserID;
   var deleteId = req.params['productId'];
   var index = -1;

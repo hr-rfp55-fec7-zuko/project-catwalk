@@ -7,74 +7,121 @@ class YourOutfitList extends React.Component {
     super(props);
     this.state = {
       outfits: [],
-      // outfitRenderList: [],
-      // addOutfit: ''
+      productIdInfo: '',
+      productStyle: ''
     };
 
     this.addOutfit = this.addOutfit.bind(this);
-    // this.deleteOutfit = this.deleteOutfit.bind(this);
+    this.deleteOutfit = this.deleteOutfit.bind(this);
   }
 
   componentDidMount() {
-    this.refeshOutfit();
-  }
-
-  refeshOutfit() {
+    const { productId } = this.props;
     axios.get('/outfit')
       .then(({ data }) => {
         this.setState({
-          outfits: data
+          outfits: data,
+          // outfitsLoaded: true,
+        });
+      })
+      .catch((error) => {
+        console.log('Error getting outfit info in yourOutfit List', error);
+      });
+
+    axios.get(`/products/${productId}`)
+      .then(({ data }) => {
+        this.setState({
+          productIdInfo: data,
         });
       })
       .catch((err) => {
-        console.log('Error getting product style in YourOutfit', err);
+        console.log('Error geting products detail in a YourOutfit', err);
+      });
+
+    axios.get(`/products/${productId}/styles`)
+      .then(({ data }) => {
+        this.setState({
+          productStyle: data,
+        });
+      })
+      .catch((error) => {
+        console.log('Error fetching product styles in relatedProductCard', error);
       });
   }
 
   addOutfit() {
     const { productId } = this.props;
-    axios.post('/outfit', { productId: productId })
-      .then(({ data }) => {
-        this.setState({
-          outfits: data
-        });
-      })
-      .catch((err) => {
-        console.log('Error getting product style in YourOutfit', err);
+    const { productStyle, productIdInfo, outfits } = this.state;
+    const outfitToAddID = productStyle.product_id;
+    let index;
+
+    outfits.forEach((item, i) => {
+      if (item.data.styles.product_id === outfitToAddID) {
+        index = i;
+      }
+    });
+    if (index >= 0) {
+      alert('Outfit already added!');
+    } else {
+      const newOutfitArr = [{
+        info: productIdInfo,
+        styles: productStyle,
+      }];
+
+      const newOutfitObj = newOutfitArr[0];
+      this.setState({
+        outfits: [],
       });
+
+      axios.post('/outfit', { data: newOutfitObj })
+        .then(() => {
+          axios.get('/outfit')
+            .then(({ data }) => {
+              this.setState({
+                outfits: data,
+                // outfitsLoaded: true,
+              });
+            })
+            .catch(error => {
+              console.log('Error adding outfit', error);
+            });
+        })
+        .catch(error => {
+          console.log('Error adding outfit', error);
+        });
+    }
   }
 
-  // deleteOutfit() {
-  //   const { productId } = this.props;
-  //   const { outfits } = this.state;
-
-  //   axios.delete(`/outfit/${productId}`)
-  //     .then(({ data }) => {
-  //       outfits.pop(productId);
-  //       this.setState({
-  //         outfits: outfits
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log('Error getting product style in YourOutfit', err);
-  //     });
-  // }
+  deleteOutfit(productId) {
+    this.setState({ outfits: [] }, () => {
+      axios.delete(`/outfit/${productId}`)
+        .then(({ data }) => {
+          if (data.length > 0) {
+            this.setState({
+              oufits: data
+            });
+          }
+        })
+        .catch((error) => {
+          conaole.log('Error deleting an Outfit', error);
+        });
+    });
+  }
 
   render() {
-    const { outfits } = this.state;
-    let outfitValue = Object.values(outfits);
     return (
       <div>
         <h2>Your outfit</h2>
         <div className="YourOutfit">
-          <div className="cardWrapper" onClick={this.addOutfit}>
+          <div className="cardWrapper" onClick={this.addOutfit} id="addOutfit">
             <div className='AddOutfitContent card '><span>+ Add To Your Outfit</span>
             </div>
           </div>
-          {outfitValue.map((outfitId) => (
+          {this.state.outfits.map((outfit, i) => (
             <YourOutfitCard
-              outfitId={outfitId}
-              key={outfitId}
+              outfit={outfit}
+              key={i}
+              deleteOutfit={this.deleteOutfit}
             />
           ))}
         </div>
@@ -84,3 +131,39 @@ class YourOutfitList extends React.Component {
 }
 
 export default YourOutfitList;
+
+
+
+
+
+
+/* addOutfit() {
+   const { productId } = this.props;
+   axios.post('/outfit', { productId: productId })
+     .then(({ data }) => {
+       this.setState({
+         outfits: data
+       });
+     })
+     .catch((err) => {
+       console.log('Error getting product style in YourOutfit', err);
+     });
+ }
+
+
+
+ deleteOutfit() {
+   const { productId } = this.props;
+   const { outfits } = this.state;
+
+   axios.delete(`/outfit/${productId}`)
+     .then(({ data }) => {
+       outfits.pop(productId);
+       this.setState({
+         outfits: outfits
+       });
+     })
+     .catch((err) => {
+       console.log('Error getting product style in YourOutfit', err);
+     });
+ }*/
