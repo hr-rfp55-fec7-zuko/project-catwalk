@@ -96,6 +96,7 @@ class YourOutfitList extends React.Component {
     this.setState({ outfits: [] }, () => {
       axios.delete(`/outfit/${productId}`)
         .then(({ data }) => {
+          console.log(data);
           if (data.length > 0) {
             this.setState({
               oufits: data
@@ -103,7 +104,7 @@ class YourOutfitList extends React.Component {
           }
         })
         .catch((error) => {
-          console.log('Error deleting an Outfit', error);
+          conaole.log('Error deleting an Outfit', error);
         });
     });
   }
@@ -137,33 +138,33 @@ export default YourOutfitList;
 
 
 
-/* addOutfit() {
-   const { productId } = this.props;
-   axios.post('/outfit', { productId: productId })
-     .then(({ data }) => {
-       this.setState({
-         outfits: data
-       });
-     })
-     .catch((err) => {
-       console.log('Error getting product style in YourOutfit', err);
-     });
- }
+  // addOutfit() {
+  //   const { productId } = this.props;
+  //   axios.post('/outfit', { productId: productId })
+  //     .then(({ data }) => {
+  //       this.setState({
+  //         outfits: data
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log('Error getting product style in YourOutfit', err);
+  //     });
+  // }
 
 
 
- deleteOutfit() {
-   const { productId } = this.props;
-   const { outfits } = this.state;
+  // deleteOutfit() {
+  //   const { productId } = this.props;
+  //   const { outfits } = this.state;
 
-   axios.delete(`/outfit/${productId}`)
-     .then(({ data }) => {
-       outfits.pop(productId);
-       this.setState({
-         outfits: outfits
-       });
-     })
-     .catch((err) => {
-       console.log('Error getting product style in YourOutfit', err);
-     });
- }*/
+  //   axios.delete(`/outfit/${productId}`)
+  //     .then(({ data }) => {
+  //       outfits.pop(productId);
+  //       this.setState({
+  //         outfits: outfits
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log('Error getting product style in YourOutfit', err);
+  //     });
+  // }

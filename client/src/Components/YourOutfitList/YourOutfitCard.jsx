@@ -1,4 +1,6 @@
 import React from 'react';
+import styled from 'styled-components';
+
 import axios from 'axios';
 import AvgRatingStars from '../RatingsAndReviews/helpers/AvgRatingStars.jsx';
 
@@ -53,6 +55,8 @@ class YourOutfitCard extends React.Component {
 
   render() {
     const { productIdInfo, featuredURL, salePrice } = this.state;
+    const sale = { textDecoration: salePrice ? 'line-through' : 'none'};
+
     return (
       <div className="cardWrapper">
         <div className='card' id={productIdInfo.id}>
@@ -63,8 +67,7 @@ class YourOutfitCard extends React.Component {
           <div className='info'>
             <p className='category'>{productIdInfo.category}</p>
             <h3 className='title'>{productIdInfo.name}</h3>
-            <p className='price'>${productIdInfo.default_price}</p>
-            {salePrice ? <p className='price sale'>{salePrice}</p> : null}
+            <p><span style={sale}>${productIdInfo.default_price}</span>{salePrice ? <span className='salePrice'> ${salePrice}</span> : null}</p>
             {/* <AvgRatingStars avgRating={avgRating} id={productIdInfo.id} /> */}
           </div>
         </div>

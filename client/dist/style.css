@@ -88,9 +88,13 @@ h3 {
   width: calc(100%/4 - 40px);
 }
 
-.title:hover {
+.cardWrapper .title:hover {
   cursor: pointer;
   color: red;
+}
+
+.cardWrapper .salePrice {
+  color: red;;
 }
 
 ::-webkit-scrollbar {
