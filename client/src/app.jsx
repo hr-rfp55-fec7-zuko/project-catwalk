@@ -26,6 +26,7 @@ class App extends React.Component {
   componentDidMount() {
     this.requestProductMetaData();
   }
+
   componentDidUpdate(prevProps) {
     if (this.props.product_id !== prevProps.product_id) {
       //TODO something
@@ -49,7 +50,6 @@ class App extends React.Component {
   }
 
   updateProductID(productID) {
-    console.log(productID);
     this.setState({
       'product_id': productID,
     });
