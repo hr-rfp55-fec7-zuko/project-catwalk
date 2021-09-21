@@ -35,6 +35,7 @@ class ProductOverview extends React.Component {
           price: data.default_price,
           features: data.features
         });
+        this.props.updateProductName(data.name);
       });
   }
 
@@ -66,6 +67,15 @@ class ProductOverview extends React.Component {
     this.setState({
       expanded: !this.state.expanded
     });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.productId !== this.props.productId) {
+      var id = this.props.productId;
+      this.setState({ id });
+      this.getProductInfo(id);
+      this.getStyleInfo(id);
+    }
   }
 
   render() {
