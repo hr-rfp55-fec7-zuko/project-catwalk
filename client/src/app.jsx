@@ -61,7 +61,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        {/* <div className='top-bar'>
+       <div className='top-bar'>
           <br />
           <h1 className='app-title'>
             <i className='fas fa-dragon'></i> Fire Nation Fashion
@@ -70,11 +70,11 @@ class App extends React.Component {
 
         </div>
         <ProductOverview productId={this.state.product_id} avgRating={this.state.avgRating} totalReviews={this.state.totalReviews} />
-        <br /><br /> */}
+        <br /><br />
         <RelatedProductsView productId={this.state.product_id} updateProductID={this.updateProductID} />
-        {/* <YourOutfitList productId={this.state.product_id} />
+        <YourOutfitList productId={this.state.product_id} />
         <QuestionAnswer productId={this.state.product_id} productName={this.state.product_name} />
-        <br /><br /> */}
+        <br /><br />
         <RatingsAndReviews product_id={this.state.product_id} product_name={this.state.product_name} />
       </div>
     );
