@@ -12,7 +12,7 @@ class RatingsAndReviews extends React.Component {
 
     this.state = {
       'product_id': this.props.product_id,
-        //  'product_id': 40435, //40347 - photos, 40435-response, 40453 - long review with pics
+        //  'product_id': 40449, //40347 - photos, 40435-response, 40453 - long review with pics
       metaData: {
         product_id: '00000',
         ratings: {},
@@ -40,8 +40,24 @@ class RatingsAndReviews extends React.Component {
     this.requestProductMetaData();
   }
 
+  // componentDidUpdate() {
+  //   //create function that re-sets state?
+  //   this.requestProductMetaData();
+  //   //var id = this.props.productID;
+
+  //   // this.setSTate(){id}
+  //   // this.getProductInfo(id)
+  //   // this.getstyleino()id
+
+  //   //Rework this!
+  //   if (prevProp.product_id !== productID) {
+  //     this.requestProductMetaData();
+  //   }
+  // }
+
   //########---EVENT HANDLERS---#######//
   toggleStarRatingFilter(event){
+
     var filterValue = event.target.className.replace( /^\D+/g, '')
     var indexOfFilterValue = this.state.starFilters.indexOf(filterValue)
     var newFilterList;
