@@ -13,6 +13,7 @@ class YourOutfitList extends React.Component {
 
     this.addOutfit = this.addOutfit.bind(this);
     this.deleteOutfit = this.deleteOutfit.bind(this);
+    this.fetchAPIOutfit = this.fetchAPIOutfit.bind(this);
   }
 
   componentDidMount() {
@@ -28,6 +29,18 @@ class YourOutfitList extends React.Component {
         console.log('Error getting outfit info in yourOutfit List', error);
       });
 
+    this.fetchAPIOutfit();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { productId } = this.props;
+    if (prevProps.productId !== productId) {
+      this.fetchAPIOutfit();
+    }
+  }
+
+  fetchAPIOutfit() {
+    const { productId } = this.props;
     axios.get(`/products/${productId}`)
       .then(({ data }) => {
         this.setState({
@@ -132,39 +145,3 @@ class YourOutfitList extends React.Component {
 }
 
 export default YourOutfitList;
-
-
-
-
-
-
-  // addOutfit() {
-  //   const { productId } = this.props;
-  //   axios.post('/outfit', { productId: productId })
-  //     .then(({ data }) => {
-  //       this.setState({
-  //         outfits: data
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log('Error getting product style in YourOutfit', err);
-  //     });
-  // }
-
-
-
-  // deleteOutfit() {
-  //   const { productId } = this.props;
-  //   const { outfits } = this.state;
-
-  //   axios.delete(`/outfit/${productId}`)
-  //     .then(({ data }) => {
-  //       outfits.pop(productId);
-  //       this.setState({
-  //         outfits: outfits
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log('Error getting product style in YourOutfit', err);
-  //     });
-  // }
