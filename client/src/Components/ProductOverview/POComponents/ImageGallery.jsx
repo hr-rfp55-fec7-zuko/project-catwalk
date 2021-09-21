@@ -148,18 +148,18 @@ class ImageGallery extends React.Component {
                   return (
                     <img
                       key={index}
-                      id='carousel__image'
+                      id={this.state.zoomed ? 'zoomed-slide' : 'carousel__slide'}
                       className={this.state.expanded ? 'carousel__slide expanded-slide' : 'carousel__slide'}
                       src={image}
                       onClick={!this.state.expanded ? this.expandSlide : this.zoomSlide}
-                      style={this.state.zoomed ? {
-                        cursor: 'zoom-out',
-                        transform: 'scale(2.5)',
-                        overflow: 'hidden',
-                      } : {
-                        transform: 'scale(1.0)',
-                        overflow: 'hidden'
-                      }}
+                      // style={this.state.zoomed ? {
+                      //   cursor: 'zoom-out',
+                      //   transform: 'scale(2.5)',
+                      //   overflow: 'hidden',
+                      // } : {
+                      //   transform: 'scale(1.0)',
+                      //   overflow: 'hidden'
+                      // }}
                       // onMouseOver={(event) => console.log(event.clientX, event.clientY)}
                       onMouseMove={(event) => {
                         var photo = document.getElementById('carousel__image');

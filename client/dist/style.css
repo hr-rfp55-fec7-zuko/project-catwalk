@@ -435,19 +435,9 @@ li {
   width: 100%;
   padding: 0;
   margin: 0;
+  overflow: hidden;
 }
 
-/* .carousel__track {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-} */
-
-/* .carousel__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-} */
 
 .carousel__slide {
   position: absolute;
@@ -462,13 +452,12 @@ li {
 
 .expanded-slide {
   cursor: crosshair;
-  /* object-fit: fill;
-  overflow: hidden; */
 }
 
 #zoomed-slide {
   cursor: zoom-out;
   transform: scale(1);
+  object-position: 100% 100%;
 }
 
 #zoomed-slide:hover {
