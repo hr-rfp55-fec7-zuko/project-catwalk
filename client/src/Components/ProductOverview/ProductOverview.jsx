@@ -68,6 +68,15 @@ class ProductOverview extends React.Component {
     });
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.productId !== this.props.productId) {
+      var id = this.props.productId;
+      this.setState({ id });
+      this.getProductInfo(id);
+      this.getStyleInfo(id);
+    }
+  }
+
   render() {
     return (
       <div className='po-main'>

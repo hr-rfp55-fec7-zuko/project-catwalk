@@ -47,6 +47,7 @@ class AddToCart extends React.Component {
 
   handleAddToCart(e) {
     e.preventDefault();
+    console.log(event.target.tagName);
     if (this.state.selectedSKU && this.state.quantity <= this.state.totalQuantity) {
       var cartItem = {
         'sku_id': this.state.selectedSKU,
