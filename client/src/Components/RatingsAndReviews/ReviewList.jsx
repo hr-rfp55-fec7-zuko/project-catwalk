@@ -16,13 +16,17 @@ class ReviewList extends React.Component {
     };
 
     this.toggleAddReviewFormVisible = this.toggleAddReviewFormVisible.bind(this);
-    // this.requestProductReviews = this.requestProductReviews.bind(this);
     this.updateViewList = this.updateViewList.bind(this);
   }
 
   componentDidMount(){
-    // this.requestProductReviews()
     this.updateViewList()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.product_id !== this.props.product_id) {
+      this.props.requestProductReviews();
+    }
   }
 
   toggleAddReviewFormVisible() {

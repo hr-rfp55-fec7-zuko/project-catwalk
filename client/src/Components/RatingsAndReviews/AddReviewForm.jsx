@@ -65,6 +65,7 @@ class AddReviewForm extends React.Component {
       }
 
       if ( property !== 'undefined' && !this.state[property]) {
+
         incompleteFields.push(property)
       }
 
@@ -73,7 +74,7 @@ class AddReviewForm extends React.Component {
         let newProperty = splitProperties[1]
         let characteristic_id = this.props.characteristics[newProperty].id
         // console.log(characteristic_id)
-        characteristics[characteristic_id] = this.state[property]
+        characteristics[characteristic_id] = parseInt(this.state[property])
       }
 
       // if (property.includes('characteristics')) {
@@ -108,8 +109,8 @@ class AddReviewForm extends React.Component {
         "name": this.state.name,
         "email": this.state.email + "",
         "photos": this.state.photos || [],
-        // "characteristics": characteristics
-        "characteristics": {}
+        "characteristics": characteristics
+        // "characteristics": {}
       }
 
       var temp = {

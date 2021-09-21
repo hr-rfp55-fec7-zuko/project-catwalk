@@ -37,6 +37,10 @@ var AnswerEntryList = (props) => {
     }
   }, [props.questionId, subStatus, props.status]);
 
+  if (answerList.length === 0) {
+    return <div></div>;
+  }
+
   var aList = answerList.map(item => {
     return (
       <div className="qa-eachA" key={item.answer_id}>

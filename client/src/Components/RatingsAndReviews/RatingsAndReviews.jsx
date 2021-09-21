@@ -12,7 +12,7 @@ class RatingsAndReviews extends React.Component {
 
     this.state = {
       'product_id': this.props.product_id,
-        //  'product_id': 40435, //40347 - photos, 40435-response, 40453 - long review with pics
+        //  'product_id': 40449, //40347 - photos, 40435-response, 40453 - long review with pics
       metaData: {
         product_id: '00000',
         ratings: {},
@@ -40,8 +40,15 @@ class RatingsAndReviews extends React.Component {
     this.requestProductMetaData();
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.product_id !== this.props.product_id) {
+      this.requestProductMetaData();
+    }
+  }
+
   //########---EVENT HANDLERS---#######//
   toggleStarRatingFilter(event){
+
     var filterValue = event.target.className.replace( /^\D+/g, '')
     var indexOfFilterValue = this.state.starFilters.indexOf(filterValue)
     var newFilterList;
@@ -77,7 +84,7 @@ class RatingsAndReviews extends React.Component {
   //########---AJAX REQUESTS---#######//
   requestProductMetaData() {
     return axios({
-      url: `/reviews/meta?product_id=${this.state.product_id}`,
+      url: `/reviews/meta?product_id=${this.props.product_id}`,
       method: 'GET'
     })
       .then((results) => this.setState({metaData: results.data}))
@@ -87,7 +94,7 @@ class RatingsAndReviews extends React.Component {
   //eventually this should take a page and count number
   requestProductReviews(filter, pageCount) {
     return axios({
-      url: `/reviews/?product_id=${this.state.product_id}&count=${this.state.reviewCount}&sort=${filter}`,
+      url: `/reviews/?product_id=${this.props.product_id}&count=${this.state.reviewCount}&sort=${filter}`,
       method: 'GET'
     })
       .then((results) => this.setState({reviews: results.data.results, reviewCount: this.state.reviewCount + 100}))
@@ -119,17 +126,14 @@ class RatingsAndReviews extends React.Component {
     let reviewCount = helpers.determineTotalReviews(this.state.metaData.ratings);
 
     return (
+
       <div className="ratings-and-reviews" id="ratings-and-reviews">
 
-
-        {this.state.reviews !== null &&
          <>
-           <RatingBreakdown metaData={this.state.metaData} reviewCount={reviewCount} setAvgRating={this.setAvgRating} toggleStarRatingFilter={this.toggleStarRatingFilter}handleClearStarFilters={this.handleClearStarFilters} clearFilterVisible={this.state.clearFilterVisible}/>
+           <RatingBreakdown metaData={this.state.metaData} reviewCount={reviewCount} setAvgRating={this.setAvgRating} toggleStarRatingFilter={this.toggleStarRatingFilter} handleClearStarFilters={this.handleClearStarFilters} clearFilterVisible={this.state.clearFilterVisible}/>
            <ProductBreakdown characteristics={this.state.metaData.characteristics}/>
            <SortBar reviewCount={reviewCount} requestProductReviews={this.requestProductReviews} reviewListCount={this.state.reviews.length}/>
            <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount} submitHelpfulOrReport={this.submitHelpfulOrReport} product_name={this.props.product_name} submitReviewForm={this.submitReviewForm} product_id={this.props.product_id} starFilters={this.state.starFilters}/>
-
-           {/* <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount} submitHelpfulOrReport={this.submitHelpfulOrReport} product_name={this.props.product_name} submitReviewForm={this.submitReviewForm} product_id={this.props.product_id}/> */}
          </>
         }
 
@@ -140,3 +144,33 @@ class RatingsAndReviews extends React.Component {
 
 
 export default RatingsAndReviews;
+
+
+
+/*
+
+render() {
+
+    let reviewCount = helpers.determineTotalReviews(this.state.metaData.ratings);
+
+    return (
+
+      <div className="ratings-and-reviews" id="ratings-and-reviews">
+
+
+        {this.state.reviews !== null &&
+         <>
+           <RatingBreakdown metaData={this.state.metaData} reviewCount={reviewCount} setAvgRating={this.setAvgRating} toggleStarRatingFilter={this.toggleStarRatingFilter}handleClearStarFilters={this.handleClearStarFilters} clearFilterVisible={this.state.clearFilterVisible}/>
+           <ProductBreakdown characteristics={this.state.metaData.characteristics}/>
+           <SortBar reviewCount={reviewCount} requestProductReviews={this.requestProductReviews} reviewListCount={this.state.reviews.length}/>
+           <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount} submitHelpfulOrReport={this.submitHelpfulOrReport} product_name={this.props.product_name} submitReviewForm={this.submitReviewForm} product_id={this.props.product_id} starFilters={this.state.starFilters}/>
+         </>
+        }
+
+      </div>
+    );
+  }
+
+
+*/
+
