@@ -9,6 +9,7 @@ var AddAnswerList = (props) => {
   const [nickName, setNickName] = useState('');
   const [emailAdd, setEmailAdd] = useState('');
   const [selectedImg, setSelectedImg] = useState([]);
+  var fileArray = [];
 
   const handleSubmit = () => {
     const errMsg = [];
@@ -35,12 +36,16 @@ var AddAnswerList = (props) => {
     } else if (!re.test(String(emailAdd).toLowerCase())) {
       alert('Please enter email in the correct format.');
     } else {
-
-      const files = document.querySelector('[type=file]').files;
-      if (files.length !== 0) {
+      var files = document.getElementById('selectedImage').getElementsByTagName('img');
+      var resFiles = [];
+      for (var i = 0; i < files.length; i++) {
+        resFiles.push(files[i].currentSrc);
+      }
+      if (resFiles.length !== 0) {
         var urlLink = [];
         var PhotoAPI = (obj, cb) => {
           for (var i = 0; i < obj.length; i++) {
+            console.log(obj[i]);
             const formData = new FormData();
             formData.append('file', obj[i]);
             formData.append('upload_preset', 'em0fglum');
@@ -55,9 +60,9 @@ var AddAnswerList = (props) => {
           }
         };
 
-        PhotoAPI(files, (err, data) => {
+        PhotoAPI(resFiles, (err, data) => {
           axios.post('/qa/questions/:question_id/answers', {params: {qId: props.questionId, inner: {body: answer, name: nickName, email: emailAdd, photos: data}}})
-            .then(response => { return (console.log('response', response, 'files:', files), props.updateAnswer(), modalRef.current.close()); })
+            .then(response => { return (props.updateAnswer(), modalRef.current.close()); })
             .catch(err => console.log('Add Answer POST Err', err));
         });
 
@@ -75,12 +80,15 @@ var AddAnswerList = (props) => {
       if (e.target.files.length > 5) {
         return alert('You may only upload up to 5 photos!');
       } else {
+        // fileArray.push(e.target.files);
         const fileArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
         setSelectedImg(prevImg => prevImg.concat(fileArray));
         Array.from(e.target.files).map((file) => URL.revokeObjectURL(file));
       }
     }
+    // var files = document.querySelector('[type=file]').files;
   };
+
 
   const renderImg = (source) => {
     return source.map(image => {
@@ -132,7 +140,9 @@ var AddAnswerList = (props) => {
                 You can upload up to 5 photos.
               </p>
               <div className="break"></div>
-              {renderImg(selectedImg)}
+              <div id="selectedImage">
+                {renderImg(selectedImg)}
+              </div>
             </label>
             <br />
             <button className="qa-questions-modal-button" type="submit">
