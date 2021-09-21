@@ -142,13 +142,15 @@ class ImageGallery extends React.Component {
                 <i className="fas fa-arrow-left fa-lg"></i>
               </button>
               )}
-            <div className='carousel__track-container' >
-              <ul className='carousel__track'>
-                {fullPhotos.map((image, index) => {
+            <div className='carousel__track' >
+              {fullPhotos.map((image, index) => {
+                if (index === this.state.current) {
                   return (
-                    <li
+                    <img
                       key={index}
+                      id='carousel__image'
                       className={this.state.expanded ? 'carousel__slide expanded-slide' : 'carousel__slide'}
+                      src={image}
                       onClick={!this.state.expanded ? this.expandSlide : this.zoomSlide}
                       style={this.state.zoomed ? {
                         cursor: 'zoom-out',
@@ -158,24 +160,16 @@ class ImageGallery extends React.Component {
                         transform: 'scale(1.0)',
                         overflow: 'hidden'
                       }}
-                    >
-                      {index === this.state.current &&
-                        (<img
-                          id='carousel__image'
-                          className='carousel__image'
-                          src={image}
-                          // onMouseOver={(event) => console.log(event.clientX, event.clientY)}
-                          onMouseMove={(event) => {
-                            var photo = document.getElementById('carousel__image');
-                            var rect = photo.getBoundingClientRect();
-                            // console.log(rect);
-                            // console.log('mousemove', event.clientX, event.clientY);
-                          }} />)}
-
-                    </li>
+                      // onMouseOver={(event) => console.log(event.clientX, event.clientY)}
+                      onMouseMove={(event) => {
+                        var photo = document.getElementById('carousel__image');
+                        var rect = photo.getBoundingClientRect();
+                        // console.log(rect);
+                        // console.log('mousemove', event.clientX, event.clientY);
+                      }} />
                   );
-                })}
-              </ul>
+                }
+              })}
             </div>
             {!this.state.zoomed &&
               <button

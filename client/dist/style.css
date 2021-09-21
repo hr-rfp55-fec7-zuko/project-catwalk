@@ -428,18 +428,26 @@ li {
   margin: 0 auto;
 }
 
-.carousel__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.carousel__track-container {
+.carousel__track {
   position: relative;
   background-color: white;
   height: 100%;
   width: 100%;
+  padding: 0;
+  margin: 0;
 }
+
+/* .carousel__track {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+} */
+
+/* .carousel__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+} */
 
 .carousel__slide {
   position: absolute;
@@ -449,6 +457,7 @@ li {
   left: 0;
   margin: 0;
   cursor: zoom-in;
+  object-fit: cover;
 }
 
 .expanded-slide {
@@ -464,12 +473,6 @@ li {
 
 #zoomed-slide:hover {
   transform: scale(2.5);
-}
-
-.carousel__track {
-  padding: 0;
-  margin: 0;
-  list-style: none;
 }
 
 .carousel__button {
