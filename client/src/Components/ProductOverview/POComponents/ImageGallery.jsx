@@ -76,9 +76,6 @@ class ImageGallery extends React.Component {
     var imageX = Math.abs(event.clientX - rect.x) / rect.width * 100;
     var imageY = Math.abs(event.clientY - rect.y) / rect.height * 100;
     console.log('image position', imageX, '%', imageY, '%');
-    var objectPosition = {
-      'object-position': `${imageY}% ${imageY}%;`
-    };
     this.setState({imageX, imageY});
   }
 
@@ -172,7 +169,8 @@ class ImageGallery extends React.Component {
                       onClick={!this.state.expanded ? this.expandSlide : this.zoomSlide}
                       onMouseMove={this.state.zoomed ? this.handleZoomMouseMove : null}
                       style={{
-                        objectPosition: `${this.state.imageX}% ${this.state.imageY}%`
+                        objectPosition: `${this.state.imageX}% ${this.state.imageY}%`,
+                        transformOrigin: `${this.state.imageX}% ${this.state.imageY}%`
                       }} />
                   );
                 }

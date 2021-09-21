@@ -453,7 +453,6 @@ li {
 
 #zoomed-slide:hover {
   transform: scale(2.5);
-  transform-origin: 50% 50%;
 }
 
 .carousel__button {
