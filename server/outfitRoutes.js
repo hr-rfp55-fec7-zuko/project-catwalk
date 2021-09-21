@@ -17,12 +17,14 @@ router.post('/', (req, res) => {
     outfits[userId] = [data];
   } else {
     outfitArr = outfits[userId];
-    for (let i = 0; i < outfitArr.length; i++) {
-      if (outfitArr[i].productId !== data.productId) {
-        outfits[userId].unshift(data);
-        break;
-      }
-    }
+    outfitArr.push(data);
+
+    // for (let i = 0; i < outfitArr.length; i++) {
+    //   if (outfitArr[i].productId !== data.productId) {
+    //     outfits[userId].unshift(data);
+    //     break;
+    //   }
+    // }
   }
 
   res.status(201).send(data);
@@ -36,6 +38,7 @@ router.get('/', (req, res) => {
     res.json(outfits[userId]);
   }
 });
+
 
 router.delete('/:productId', (req, res) => {
   var userId = fixUserID;

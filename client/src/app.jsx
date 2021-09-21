@@ -15,7 +15,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      'product_id': '40444',
+      'product_id': '40446',
       'product_name': 'Camo Onesie',
       avgRating: null,
       totalReviews: null
@@ -44,6 +44,7 @@ class App extends React.Component {
   }
 
   updateProductID(productID) {
+
     this.setState({
       'product_id': productID,
     });
