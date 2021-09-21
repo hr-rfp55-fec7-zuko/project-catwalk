@@ -17,18 +17,6 @@ class YourOutfitList extends React.Component {
   }
 
   componentDidMount() {
-    const { productId } = this.props;
-    axios.get('/outfit')
-      .then(({ data }) => {
-        this.setState({
-          outfits: data,
-          // outfitsLoaded: true,
-        });
-      })
-      .catch((error) => {
-        console.log('Error getting outfit info in yourOutfit List', error);
-      });
-
     this.fetchAPIOutfit();
   }
 
@@ -41,6 +29,16 @@ class YourOutfitList extends React.Component {
 
   fetchAPIOutfit() {
     const { productId } = this.props;
+    axios.get('/outfit')
+      .then(({ data }) => {
+        this.setState({
+          outfits: data,
+          // outfitsLoaded: true,
+        });
+      })
+      .catch((error) => {
+        console.log('Error getting outfit info in yourOutfit List', error);
+      });
     axios.get(`/products/${productId}`)
       .then(({ data }) => {
         this.setState({
@@ -65,11 +63,11 @@ class YourOutfitList extends React.Component {
   addOutfit() {
     const { productId } = this.props;
     const { productStyle, productIdInfo, outfits } = this.state;
-    const outfitToAddID = productStyle.product_id;
     let index;
 
     outfits.forEach((item, i) => {
-      if (item.data.styles.product_id === outfitToAddID) {
+      console.log(item);
+      if (item.data.info.id === productId) {
         index = i;
       }
     });
