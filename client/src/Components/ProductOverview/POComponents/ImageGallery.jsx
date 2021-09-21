@@ -162,10 +162,10 @@ class ImageGallery extends React.Component {
                       // }}
                       // onMouseOver={(event) => console.log(event.clientX, event.clientY)}
                       onMouseMove={(event) => {
-                        var photo = document.getElementById('carousel__image');
+                        var photo = document.getElementById('zoomed-slide');
                         var rect = photo.getBoundingClientRect();
                         // console.log(rect);
-                        // console.log('mousemove', event.clientX, event.clientY);
+                        console.log('mousemove', event.clientX, event.clientY);
                       }} />
                   );
                 }
