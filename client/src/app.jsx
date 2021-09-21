@@ -21,19 +21,12 @@ class App extends React.Component {
       totalReviews: null
     };
     this.updateProductID = this.updateProductID.bind(this);
+    this.updateProductName = this.updateProductName.bind(this);
   }
 
   componentDidMount() {
     this.requestProductMetaData();
   }
-
-
-  componentDidUpdate(prevProps) {
-    if (this.props.product_id !== prevProps.product_id) {
-      //TODO something
-    }
-  }
-
 
   requestProductMetaData() {
     return axios({
@@ -57,13 +50,16 @@ class App extends React.Component {
     });
   }
 
-
-
+  updateProductName(productName) {
+    this.setState({
+      'product_name': productName
+    });
+  }
 
   render() {
     return (
       <div>
-       <div className='top-bar'>
+        <div className='top-bar'>
           <br />
           <h1 className='app-title'>
             <i className='fas fa-dragon'></i> Fire Nation Fashion
@@ -71,7 +67,7 @@ class App extends React.Component {
           <h4 className='sale-info'><i className="fas fa-fire"></i> Check out our flaming hot sales! <i className="fas fa-fire"></i> <br /><br /></h4>
 
         </div>
-        <ProductOverview productId={this.state.product_id} avgRating={this.state.avgRating} totalReviews={this.state.totalReviews} />
+        <ProductOverview productId={this.state.product_id} avgRating={this.state.avgRating} totalReviews={this.state.totalReviews} updateProductName={this.updateProductName} />
         <br /><br />
         <RelatedProductsView productId={this.state.product_id} updateProductID={this.updateProductID} />
         <YourOutfitList productId={this.state.product_id} />
