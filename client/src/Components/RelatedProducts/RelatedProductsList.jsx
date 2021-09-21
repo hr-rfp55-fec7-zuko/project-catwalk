@@ -99,7 +99,7 @@ class RelatedProductsList extends React.Component {
           ))}
         </div>
 
-        {imagesToTheLeft ? (<div className='LeftButtonWrapper'><div className='LeftButton' onClick={this.scrollLeft}><i class="fas fa-chevron-circle-left"></i></div></div>) : null}
+        {imagesToTheLeft ? (<div className='LeftButtonWrapper'><div className='LeftButton' onClick={this.scrollLeft}><i className="fas fa-chevron-circle-left"></i></div></div>) : null}
       </div>
     );
 
