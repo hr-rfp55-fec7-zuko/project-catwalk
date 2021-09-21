@@ -127,6 +127,7 @@ class RelatedProductCard extends React.Component {
 
   render() {
     const { productIdInfo, featuredURL, salePrice, openCompareModal, comparedFeatures, parentProductIdInfo, rating } = this.state;
+    const sale = { textDecoration: salePrice ? 'line-through' : 'none'};
 
     return (
       <React.Fragment>
@@ -140,8 +141,7 @@ class RelatedProductCard extends React.Component {
               <div className='info'>
                 <p className='category'>{productIdInfo.category}</p>
                 <h3 className='title' >{productIdInfo.name}</h3>
-                <p className='price'>${productIdInfo.default_price}</p>
-                {salePrice ? <p className='price sale'>{salePrice}</p> : null}
+                <p><span style={sale}>${productIdInfo.default_price}</span>{salePrice ? <span className='salePrice'> ${salePrice}</span> : null}</p>
                 <AvgRatingStars avgRating={AverageRating(rating)} id={productIdInfo.id} />
               </div>
             </div>
