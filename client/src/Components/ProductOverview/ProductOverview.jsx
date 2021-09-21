@@ -35,6 +35,7 @@ class ProductOverview extends React.Component {
           price: data.default_price,
           features: data.features
         });
+        this.props.updateProductName(data.name);
       });
   }
 

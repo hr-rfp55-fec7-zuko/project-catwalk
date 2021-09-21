@@ -164,7 +164,7 @@ class ImageGallery extends React.Component {
                           id='carousel__image'
                           className='carousel__image'
                           src={image}
-                          onMouseOver={(event) => console.log(event.clientX, event.clientY)}
+                          // onMouseOver={(event) => console.log(event.clientX, event.clientY)}
                           onMouseMove={(event) => {
                             var photo = document.getElementById('carousel__image');
                             var rect = photo.getBoundingClientRect();
