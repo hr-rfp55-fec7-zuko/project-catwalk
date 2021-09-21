@@ -27,6 +27,14 @@ class App extends React.Component {
     this.requestProductMetaData();
   }
 
+
+  componentDidUpdate(prevProps) {
+    if (this.props.product_id !== prevProps.product_id) {
+      //TODO something
+    }
+  }
+
+
   requestProductMetaData() {
     return axios({
       url: `/reviews/meta?product_id=${this.state.product_id}`,
@@ -43,9 +51,10 @@ class App extends React.Component {
   }
 
   updateProductID(productID) {
-    // this.setState({
-    //   'product_id': productID,
-    // });
+
+    this.setState({
+      'product_id': productID,
+    });
   }
 
 
@@ -54,7 +63,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <div className='top-bar'>
+       <div className='top-bar'>
           <br />
           <h1 className='app-title'>
             <i className='fas fa-dragon'></i> Fire Nation Fashion

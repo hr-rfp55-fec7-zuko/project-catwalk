@@ -15,6 +15,12 @@ class QuestionAnswer extends React.Component {
     this.updateQuestionsList();
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.productId !== this.props.productId) {
+      this.updateQuestionsList();
+    }
+  }
+
   handleChange(e) {
     e.preventDefault();
     var filteredList = [];
