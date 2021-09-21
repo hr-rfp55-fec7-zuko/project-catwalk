@@ -9,6 +9,8 @@ var AddAnswerList = (props) => {
   const [nickName, setNickName] = useState('');
   const [emailAdd, setEmailAdd] = useState('');
   const [selectedImg, setSelectedImg] = useState([]);
+  const [selectedFile, setSelectedFile] = useState([]);
+
 
   const handleSubmit = () => {
     const errMsg = [];
@@ -35,9 +37,9 @@ var AddAnswerList = (props) => {
     } else if (!re.test(String(emailAdd).toLowerCase())) {
       alert('Please enter email in the correct format.');
     } else {
-
-      const files = document.querySelector('[type=file]').files;
-      if (files.length !== 0) {
+      if (selectedFile.length > 5) {
+        return alert('You may only upload up to 5 images!');
+      } else if (selectedFile.length !== 0) {
         var urlLink = [];
         var PhotoAPI = (obj, cb) => {
           for (var i = 0; i < obj.length; i++) {
@@ -47,7 +49,7 @@ var AddAnswerList = (props) => {
             axios.post('https://api.cloudinary.com/v1_1/drbwyfh4x/upload', formData)
               .then(res => {
                 urlLink.push(res.data.secure_url);
-                if (urlLink.length === files.length) {
+                if (urlLink.length === selectedFile.length) {
                   return cb(null, urlLink);
                 }
               })
@@ -55,9 +57,9 @@ var AddAnswerList = (props) => {
           }
         };
 
-        PhotoAPI(files, (err, data) => {
+        PhotoAPI(selectedFile, (err, data) => {
           axios.post('/qa/questions/:question_id/answers', {params: {qId: props.questionId, inner: {body: answer, name: nickName, email: emailAdd, photos: data}}})
-            .then(response => { return (console.log('response', response, 'files:', files), props.updateAnswer(), modalRef.current.close()); })
+            .then(response => { return (props.updateAnswer(), modalRef.current.close()); })
             .catch(err => console.log('Add Answer POST Err', err));
         });
 
@@ -72,13 +74,11 @@ var AddAnswerList = (props) => {
   const handleImage = (e) => {
     e.preventDefault();
     if (e.target.files) {
-      if (e.target.files.length > 5) {
-        return alert('You may only upload up to 5 photos!');
-      } else {
-        const fileArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
-        setSelectedImg(prevImg => prevImg.concat(fileArray));
-        Array.from(e.target.files).map((file) => URL.revokeObjectURL(file));
-      }
+      const fileArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
+      const selectedFileArray = Array.from(e.target.files);
+      setSelectedFile(prevFile => prevFile.concat(selectedFileArray));
+      setSelectedImg(prevImg => prevImg.concat(fileArray));
+      Array.from(e.target.files).map((file) => URL.revokeObjectURL(file));
     }
   };
 
@@ -87,7 +87,6 @@ var AddAnswerList = (props) => {
       return <img src={image} key={image} height="80" id="upload-image"></img>;
     });
   };
-
 
   return (
     <React.Fragment>
@@ -132,7 +131,9 @@ var AddAnswerList = (props) => {
                 You can upload up to 5 photos.
               </p>
               <div className="break"></div>
-              {renderImg(selectedImg)}
+              <div id="selectedImage">
+                {renderImg(selectedImg)}
+              </div>
             </label>
             <br />
             <button className="qa-questions-modal-button" type="submit">

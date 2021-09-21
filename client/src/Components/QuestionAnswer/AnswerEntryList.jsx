@@ -56,7 +56,7 @@ var AnswerEntryList = (props) => {
         }
         <p className="break"></p>
         <p className="qa-answers-side">
-          by {item.answerer_name}, {moment(item.date).format('LL')} |
+          by <span className="qa-seller" style={{fontWeight: item.answerer_name === 'Seller' ? 900 : 0}}>{item.answerer_name}</span>, {moment(item.date).format('LL')} |
         </p>
         <AnswerCountList helpfulness={item.helpfulness} answerId={item.answer_id}/>
         <AnswerReportList answerId={item.answer_id}/>
