@@ -9,9 +9,24 @@ class RelatedProductsView extends React.Component {
     this.state = {
       relatedProducts: []
     };
+
+    this.fetchAPI = this.fetchAPIRelatedProduct.bind(this);
   }
 
   componentDidMount() {
+    const { productId } = this.props;
+    this.fetchAPIRelatedProduct();
+  }
+
+
+  componentDidUpdate(prevProps) {
+    const { productId } = this.props;
+    if (prevProps.productId !== this.props.productId) {
+      this.fetchAPIRelatedProduct();
+    }
+  }
+
+  fetchAPIRelatedProduct() {
     const { productId } = this.props;
     axios.get(`/products/${productId}/related`)
       .then(({ data }) => {
@@ -26,7 +41,7 @@ class RelatedProductsView extends React.Component {
 
   render() {
     const { relatedProducts } = this.state;
-    const { productId} = this.props;
+    const { productId } = this.props;
     return (
       <div className="relatedProducts">
         <h2>Related Products</h2>

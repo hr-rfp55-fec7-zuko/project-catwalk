@@ -24,13 +24,23 @@ class RelatedProductCard extends React.Component {
     this.handleCompareClick = this.handleCompareClick.bind(this);
     this.compareFeatures = this.compareFeatures.bind(this);
     this.changeProduct = this.changeProduct.bind(this);
+    this.fetchAPIProduct = this.fetchAPIProduct.bind(this);
   }
 
   componentDidMount() {
+    this.fetchAPIProduct();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { productId } = this.props;
+    if (prevProps.productId !== productId) {
+      this.fetchAPIProduct();
+    }
+  }
+
+  fetchAPIProduct() {
     const { productId, parentProductIdInfo } = this.props;
     const { currentProductFeatures, parentProductFeatures, rating, avgRating } = this.state;
-
-    // Get the information for a related product
     axios.get(`/products/${productId}`)
       .then(({ data }) => {
         this.setState({
@@ -79,12 +89,11 @@ class RelatedProductCard extends React.Component {
       url: `/reviews/meta?product_id=${productId}`,
       method: 'GET'
     })
-      .then((results) => this.setState({ rating: results.data.ratings}))
+      .then((results) => this.setState({ rating: results.data.ratings }))
       .catch((error) => console.log('ERROR in METADATA AJAX Request: ', error));
   }
 
   changeProduct(event) {
-
     event.preventDefault();
     this.props.updateProductID(this.props.productId);
   }
@@ -121,18 +130,20 @@ class RelatedProductCard extends React.Component {
 
     return (
       <React.Fragment>
-        <div className='cardWrapper' onClick={this.changeProduct}>
+        <div className='cardWrapper'>
           <div className='card' id={productIdInfo.id}>
             <div className='CompareButton' onClick={this.handleCompareClick}><i className="far fa-star"></i></div>
-            <div className='pic'>
-              <img src={featuredURL} alt={productIdInfo.name}></img>
-            </div>
-            <div className='info'>
-              <p className='category'>{productIdInfo.category}</p>
-              <h3 className='title' >{productIdInfo.name}</h3>
-              <p className='price'>${productIdInfo.default_price}</p>
-              {salePrice ? <p className='price sale'>{salePrice}</p> : null}
-              <AvgRatingStars avgRating={AverageRating(rating)} id={productIdInfo.id} />
+            <div className='containerCard' onClick={this.changeProduct}>
+              <div className='pic'>
+                <img src={featuredURL} alt={productIdInfo.name}></img>
+              </div>
+              <div className='info'>
+                <p className='category'>{productIdInfo.category}</p>
+                <h3 className='title' >{productIdInfo.name}</h3>
+                <p className='price'>${productIdInfo.default_price}</p>
+                {salePrice ? <p className='price sale'>{salePrice}</p> : null}
+                <AvgRatingStars avgRating={AverageRating(rating)} id={productIdInfo.id} />
+              </div>
             </div>
           </div>
         </div>
