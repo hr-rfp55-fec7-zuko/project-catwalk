@@ -154,23 +154,36 @@ class ImageGallery extends React.Component {
             </button>
             )}
           <div className='carousel__track' id='carousel__track' >
-            {fullPhotos.map((image, index) => {
-              if (index === this.state.current) {
-                return (
-                  <img
-                    key={index}
-                    id={this.state.zoomed ? 'zoomed-slide' : 'carousel__slide'}
-                    className={this.state.expanded ? 'carousel__slide expanded-slide' : 'carousel__slide'}
-                    src={image}
-                    onClick={!this.state.expanded ? this.expandSlide : this.zoomSlide}
-                    onMouseMove={this.state.zoomed ? this.handleZoomMouseMove : null}
-                    style={{
-                      objectPosition: `${this.state.imageX}% ${this.state.imageY}%`,
-                      transformOrigin: `${this.state.imageX}% ${this.state.imageY}%`
-                    }} />
-                );
-              }
-            })}
+            {length === 0 ?
+              <img
+                id={this.state.zoomed ? 'zoomed-slide' : 'carousel__slide'}
+                className={this.state.expanded ? 'carousel__slide expanded-slide' : 'carousel__slide'}
+                src={'/images/default-placeholder.png'}
+                onClick={!this.state.expanded ? this.expandSlide : this.zoomSlide}
+                onMouseMove={this.state.zoomed ? this.handleZoomMouseMove : null}
+                style={{
+                  objectPosition: `${this.state.imageX}% ${this.state.imageY}%`,
+                  transformOrigin: `${this.state.imageX}% ${this.state.imageY}%`
+                }} />
+              : fullPhotos.map((image, index) => {
+                if (index === this.state.current) {
+                  return (
+                    <img
+                      key={index}
+                      id={this.state.zoomed ? 'zoomed-slide' : 'carousel__slide'}
+                      className={this.state.expanded ? 'carousel__slide expanded-slide' : 'carousel__slide'}
+                      src={image}
+                      onClick={!this.state.expanded ? this.expandSlide : this.zoomSlide}
+                      onMouseMove={this.state.zoomed ? this.handleZoomMouseMove : null}
+                      style={{
+                        objectPosition: `${this.state.imageX}% ${this.state.imageY}%`,
+                        transformOrigin: `${this.state.imageX}% ${this.state.imageY}%`
+                      }} />
+                  );
+                }
+              })
+
+            }
           </div>
           {!this.state.zoomed &&
             <button
