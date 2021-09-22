@@ -183,6 +183,7 @@ class YourOutfitList extends React.Component {
                   key={i}
                   deleteOutfit={this.deleteOutfit}
                   avgRating={avgRating}
+                  updateProductID={this.props.updateProductID}
                 />
               ))}
             </div>
