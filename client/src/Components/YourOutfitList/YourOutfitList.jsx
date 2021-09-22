@@ -68,11 +68,10 @@ class YourOutfitList extends React.Component {
 
   addOutfit() {
     const { productId, avgRating } = this.props;
-    const { productStyle, productIdInfo, outfits} = this.state;
+    const { productStyle, productIdInfo, outfits } = this.state;
     let index;
 
     outfits.forEach((item, i) => {
-      console.log(item.data.info.id, productId);
       if (item.data.info.id === parseInt(productId)) {
         index = i;
       }
@@ -114,7 +113,6 @@ class YourOutfitList extends React.Component {
     this.setState({ outfits: [] }, () => {
       axios.delete(`/outfit/${productId}`)
         .then(({ data }) => {
-          console.log(data);
           if (data.length > 0) {
             this.setState({
               outfits: data
@@ -158,7 +156,7 @@ class YourOutfitList extends React.Component {
 
   isOverflowing() {
     const carousel = document.getElementById('outfitCarousel');
-    const bool = carousel.scrollWidth > carousel.clientWidth;
+    const bool = carousel.scrollWidth - 200 > carousel.clientWidth;
     this.setState({
       cardOverflow: bool,
       imagesToTheRight: bool,
@@ -166,36 +164,34 @@ class YourOutfitList extends React.Component {
   }
 
   render() {
-    const { imagesToTheRight, imagesToTheLeft, avgRating} = this.state;
+    const { imagesToTheRight, imagesToTheLeft, avgRating } = this.state;
     return (
-      <div>
+      <React.Fragment>
         <h2>Your outfit</h2>
-        <div className="YourOutfit">
+        <div className='outfitContainer'>
           <div className="cardWrapper" onClick={this.addOutfit} id="addOutfit">
-            <div className='AddOutfitContent card '><span>+ Add To Your Outfit</span>
-            </div>
+            <div className='AddOutfitContent card '><span>+ Add To Your Outfit</span></div>
           </div>
-          <div className='ListWrapper'>
+          <div className='ListWrapper outfitWrapper'>
             {imagesToTheRight ? (<div className='RightButtonWrapper'>
               <div className='RightButton' onClick={this.scrollRight}><i className="fas fa-chevron-circle-right"></i></div></div>) : null}
 
-            <div id='outfitCarousel' className='RelatedProductsList' onLoad={this.isOverflowing}>
+            <div id='outfitCarousel' className='YourOutfit' onLoad={this.isOverflowing}>
               {this.state.outfits.map((outfit, i) => (
                 <YourOutfitCard
                   outfit={outfit}
                   key={i}
                   deleteOutfit={this.deleteOutfit}
-                  avgRating = {avgRating}
+                  avgRating={avgRating}
                 />
               ))}
             </div>
 
             {imagesToTheLeft ? (<div className='LeftButtonWrapper'><div className='LeftButton' onClick={this.scrollLeft}><i className="fas fa-chevron-circle-left"></i></div></div>) : null}
           </div>
-
-
         </div>
-      </div>
+      </React.Fragment>
+
     );
   }
 }

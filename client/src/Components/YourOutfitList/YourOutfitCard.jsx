@@ -71,7 +71,6 @@ class YourOutfitCard extends React.Component {
             <AvgRatingStars avgRating={avgRating} />
           </div>
         </div>
-
       </div>
 
     );
