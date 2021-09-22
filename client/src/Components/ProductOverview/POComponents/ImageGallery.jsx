@@ -71,11 +71,8 @@ class ImageGallery extends React.Component {
     event.preventDefault();
     var photo = document.getElementById('carousel__track');
     var rect = photo.getBoundingClientRect();
-    // console.log(rect);
-    // console.log('mousemove', event.clientX, event.clientY);
     var imageX = Math.abs(event.clientX - rect.x) / rect.width * 100;
     var imageY = Math.abs(event.clientY - rect.y) / rect.height * 100;
-    console.log('image position', imageX, '%', imageY, '%');
     this.setState({imageX, imageY});
   }
 

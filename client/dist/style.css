@@ -443,11 +443,11 @@ li {
 }
 
 .expanded-slide {
-  cursor: crosshair;
+  cursor: url(images/plus-circle-solid.png) 20 20, crosshair;
 }
 
 #zoomed-slide {
-  cursor: zoom-out;
+  cursor: url(images/minus-circle-solid.png) 20 20, zoom-out;
   transform: scale(1);
 }
 
