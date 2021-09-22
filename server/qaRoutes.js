@@ -109,17 +109,4 @@ router.post('/questions', (req, res) => {
     });
 });
 
-router.post('/interactions', (req, res) => {
-  AtelierAPI('POST', '/interactions', null, req.body.params)
-    .then(response => {
-      res.sendStatus(response.status);
-      console.log('server success', response);
-    })
-    .catch(err => {
-      res.send(err).status(500);
-      console.log('server err', err);
-    });
-});
-
-
 module.exports = router;
