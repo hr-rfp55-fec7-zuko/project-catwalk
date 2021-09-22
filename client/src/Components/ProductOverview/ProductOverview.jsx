@@ -15,7 +15,9 @@ class ProductOverview extends React.Component {
       features: [],
       styles: [],
       style: {},
-      expanded: false
+      expanded: false,
+      avgRating: this.props.avgRating,
+      totalReviews: this.props.totalReviews
     };
     this.getProductInfo = this.getProductInfo.bind(this);
     this.getStyleInfo = this.getStyleInfo.bind(this);
@@ -76,6 +78,12 @@ class ProductOverview extends React.Component {
       this.getProductInfo(id);
       this.getStyleInfo(id);
     }
+    if (prevProps.avgRating !== this.props.avgRating) {
+      this.setState({
+        avgRating: this.props.avgRating,
+        totalReviews: this.props.totalReviews
+      });
+    }
   }
 
   render() {
@@ -94,8 +102,8 @@ class ProductOverview extends React.Component {
           <div className='po-main-right'>
             {this.props.avgRating ?
               (<div className='po-reviews'>
-                <AvgRatingStars avgRating={this.props.avgRating} />
-                <a className='read-all-reviews' href='#ratings-and-reviews'>Read all {this.props.totalReviews} reviews</a>
+                <AvgRatingStars avgRating={this.state.avgRating} />
+                <a className='read-all-reviews' href='#ratings-and-reviews'>Read all {this.state.totalReviews} reviews</a>
               </div>)
               : <br />}
             <h3>{this.state.category}</h3>
@@ -130,6 +138,10 @@ class ProductOverview extends React.Component {
   componentDidMount() {
     this.getProductInfo(this.state.id);
     this.getStyleInfo(this.state.id);
+    this.setState({
+      avgRating: this.props.avgRating,
+      totalReviews: this.props.totalReviews
+    });
   }
 }
 

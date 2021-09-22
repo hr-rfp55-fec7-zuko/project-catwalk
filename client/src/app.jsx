@@ -25,12 +25,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.requestProductMetaData();
+    this.requestProductMetaData(this.state.product_id);
   }
 
-  requestProductMetaData() {
+  requestProductMetaData(productId) {
     return axios({
-      url: `/reviews/meta?product_id=${this.state.product_id}`,
+      url: `/reviews/meta?product_id=${productId}`,
       method: 'GET'
     })
       .then((results) => results.data.ratings)
@@ -44,10 +44,10 @@ class App extends React.Component {
   }
 
   updateProductID(productID) {
-
     this.setState({
       'product_id': productID,
     });
+    this.requestProductMetaData(productID);
   }
 
   updateProductName(productName) {
