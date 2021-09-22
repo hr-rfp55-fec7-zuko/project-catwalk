@@ -110,7 +110,7 @@ class YourOutfitList extends React.Component {
           console.log(data);
           if (data.length > 0) {
             this.setState({
-              oufits: data
+              outfits: data
             });
           }
         })
