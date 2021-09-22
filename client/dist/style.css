@@ -608,27 +608,6 @@ li {
 
 /*========= CSS FOR Ratings & Reviews ===========*/
 
-/*
-.rating-bar-inner {
-  background-color: green;
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 50%;
-  display: block;
-}
-
-.rating-bar-outer {
-  background-color: gray;
-  /* display: inline-block;
-  display: block;
-  position: relative;
-  max-width: 50%;
-}
-*/
-
 .ratings-and-reviews {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -655,8 +634,6 @@ li {
 
 .review-list {
   max-height: 100vh;
-  /* max-height: 755px; */
-  /* min-height: 500px; */
   overflow: scroll;
   grid-area: review-list;
 }
@@ -678,7 +655,6 @@ li {
 /*Review Tile Styling*/
 .review-tile {
   border-bottom: 1px solid black;
-  /* border: 1px solid red; */
   height: 350px;
   width: 80%;
   margin-top: 1%;
@@ -688,8 +664,6 @@ li {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr auto 1fr auto 1fr;
-  /* row-gap: 5px; */
-  /* place-items: center; */
   grid-template-areas:
    "star . attribution attribution"
    "summary summary summary summary"
@@ -802,14 +776,8 @@ li {
 
 /*Rating Bar Styling*/
 
-/* .rating-bar-container {
-  max-width: 100%;
-  display: inline-block;
-  position: relative;
-} */
-
 .rating-bar-container:hover {
-    background-color:yellow;
+    background-color:red;
     padding:0.1em 0.2em;
 }
 
@@ -818,7 +786,6 @@ li {
   height: 10px;
   background: #ccc;
   display: inline-block;
-  /* display: block; */
   margin-left: 2%;
   margin-right: 2%;
   margin-top: 2%;
@@ -827,7 +794,7 @@ li {
 .rating-bar-inner-fill {
   width: 50%;
   height: 100%;
-  background: turquoise;
+  background: forestgreen;
   /* display: inline-block; */
 }
 
@@ -843,23 +810,17 @@ li {
   justify-content: center;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  /* grid-template-rows: 1fr 2fr; */
-  grid-template-rows: 2fr;
+  grid-template-rows: 1fr 2fr;
   grid-template-areas:
-  /* "characteristic . ." */
+  "product-bar-title product-bar-title product-bar-title"
   "product-bar-outer product-bar-outer product-bar-outer"
   "low-label . high-label";
 }
 
 .characteristic-header {
   grid-area: characteristic;
-
 }
 
-
-.product-bar-inner-fill {
-  /* overflow: hidden; */
-}
 .product-bar-outer {
   display: flex;
   flex-flow: column wrap;

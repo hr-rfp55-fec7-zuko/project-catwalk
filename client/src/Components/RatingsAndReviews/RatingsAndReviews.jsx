@@ -134,8 +134,6 @@ class RatingsAndReviews extends React.Component {
            <SortBar reviewCount={reviewCount} requestProductReviews={this.requestProductReviews} reviewListCount={this.state.reviews.length}/>
            <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount} submitHelpfulOrReport={this.submitHelpfulOrReport} product_name={this.props.product_name} submitReviewForm={this.submitReviewForm} product_id={this.props.product_id} starFilters={this.state.starFilters}/>
          </>
-        }
-
       </div>
     );
   }
