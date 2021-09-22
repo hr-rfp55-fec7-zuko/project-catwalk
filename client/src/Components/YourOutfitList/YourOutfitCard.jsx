@@ -15,6 +15,7 @@ class YourOutfitCard extends React.Component {
       avgRating: '',
     };
 
+    this.changeProductOutfit = this.changeProductOutfit.bind(this);
   }
 
   componentDidMount() {
@@ -53,23 +54,29 @@ class YourOutfitCard extends React.Component {
     }
   }
 
+  changeProductOutfit(event) {
+    event.preventDefault();
+    this.props.updateProductID(this.state.productIdInfo.id);
+  }
+
   render() {
     const { productIdInfo, featuredURL, salePrice, avgRating } = this.state;
-    const sale = { textDecoration: salePrice ? 'line-through' : 'none'};
+    const sale = { textDecoration: salePrice ? 'line-through' : 'none' };
 
     return (
-      <div className="cardWrapper">
-        <div className='card' id={productIdInfo.id}>
+      <div className="cardWrapper" id={productIdInfo.id}>
+        <div className='card' >
           <div className='CompareButton' onClick={this.props.deleteOutfit} ><i className="fa fa-times" aria-hidden="true"></i></div>
-          <div className='pic'>
-            <img src={featuredURL} alt={productIdInfo.name}></img>
-          </div>
-          <div className='info'>
-            <p className='category'>{productIdInfo.category}</p>
-            <h3 className='title'>{productIdInfo.name}</h3>
-            <p><span style={sale}>${productIdInfo.default_price}</span>{salePrice ? <span className='salePrice'> ${salePrice}</span> : null}</p>
-            <AvgRatingStars avgRating={avgRating} />
-          </div>
+          <div className='containerCard' onClick={this.changeProductOutfit}>
+            <div className='pic'>
+              <img src={featuredURL} alt={productIdInfo.name}></img>
+            </div>
+            <div className='info'>
+              <p className='category'>{productIdInfo.category}</p>
+              <h3 className='title'>{productIdInfo.name}</h3>
+              <p><span style={sale}>${productIdInfo.default_price}</span>{salePrice ? <span className='salePrice'> ${salePrice}</span> : null}</p>
+              <AvgRatingStars avgRating={avgRating} />
+            </div></div>
         </div>
       </div>
 
