@@ -85,10 +85,7 @@ class RelatedProductCard extends React.Component {
         console.log('Error fetching product styles in relatedProductCard', error);
       });
 
-    return axios({
-      url: `/reviews/meta?product_id=${productId}`,
-      method: 'GET'
-    })
+    axios({ url: `/reviews/meta?product_id=${productId}`, method: 'GET' })
       .then((results) => this.setState({ rating: results.data.ratings }))
       .catch((error) => console.log('ERROR in METADATA AJAX Request: ', error));
   }
@@ -107,8 +104,8 @@ class RelatedProductCard extends React.Component {
   }
 
   compareFeatures(parentFeature, productFeature) {
-    let combinedObj = parentFeature.concat(productFeature);
-    let combinedFeatures = combinedObj.filter((item) => item.value !== null);
+    // let combinedObj = parentFeature.concat(productFeature);
+    let combinedFeatures = parentFeature.concat(productFeature);
     let output = [];
     let obj = {};
     combinedFeatures.forEach(item => {
@@ -127,7 +124,7 @@ class RelatedProductCard extends React.Component {
 
   render() {
     const { productIdInfo, featuredURL, salePrice, openCompareModal, comparedFeatures, parentProductIdInfo, rating } = this.state;
-    const sale = { textDecoration: salePrice ? 'line-through' : 'none'};
+    const sale = { textDecoration: salePrice ? 'line-through' : 'none' };
 
     return (
       <React.Fragment>
@@ -142,7 +139,7 @@ class RelatedProductCard extends React.Component {
                 <p className='category'>{productIdInfo.category}</p>
                 <h3 className='title' >{productIdInfo.name}</h3>
                 <p><span style={sale}>${productIdInfo.default_price}</span>{salePrice ? <span className='salePrice'> ${salePrice}</span> : null}</p>
-                <AvgRatingStars avgRating={AverageRating(rating)} id={productIdInfo.id} />
+                <AvgRatingStars avgRating={AverageRating(rating)}/>
               </div>
             </div>
           </div>
