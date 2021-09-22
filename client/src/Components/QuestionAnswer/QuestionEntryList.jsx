@@ -4,6 +4,8 @@ import QuestionCountList from './QuestionCountList.jsx';
 import QuestionReportList from './QuestionReportList.jsx';
 import AddAnswerList from './AddAnswerList.jsx';
 import AddQuestionList from './AddQuestionList.jsx';
+import withClickTracked from './ClickTracker.jsx';
+import moment from 'moment';
 
 class QuestionEntryList extends React.Component {
   constructor(props) {
@@ -22,6 +24,9 @@ class QuestionEntryList extends React.Component {
   handleClick(e) {
     e.preventDefault();
     this.setState({displayQuestion: this.props.lists.length});
+    // console.log('selector:', e.target.className, 'widget:', e.target.className.slice(0, 2), 'date:', Date().toLocaleString());
+    console.log(this.props);
+    this.props.clickTrack(e.target.className, e.target.className.slice(0, 2), Date().toLocaleString());
   }
 
   render() {
@@ -61,5 +66,4 @@ class QuestionEntryList extends React.Component {
   }
 }
 
-
-export default QuestionEntryList;
+export default withClickTracked(QuestionEntryList);
