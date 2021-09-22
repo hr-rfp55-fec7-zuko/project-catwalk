@@ -38,7 +38,6 @@ class AddReviewForm extends React.Component {
   submitReviewForm(event) {
     event.preventDefault();
 
-    let characteristics = {};
     var incompleteFields = [];
 
     for (var property in this.state) {
@@ -50,6 +49,7 @@ class AddReviewForm extends React.Component {
         incompleteFields.push(property);
       }
 
+      var characteristics = {};
       if (property.includes('characteristics-')) {
         let splitProperties = property.split('-');
         let newProperty = splitProperties[1];
@@ -66,10 +66,6 @@ class AddReviewForm extends React.Component {
 
     }
 
-
-
-
-
     var emailReminder =
       !this.state.email.includes('@') ? 'Please enter valid email address.' : '';
 
@@ -80,50 +76,75 @@ class AddReviewForm extends React.Component {
       !(this.state.body.length >= 50) ? 'Reiew body must be at least 50 characters' : '';
 
     if (incompleteFields.length > 0 || emailReminder) {
-      // photos =
-      //         this.state.files.map((file) => {
-      //           return this.createHostedURL(file);
-      //         });
-      //       console.log(photos);
       alert(`${incompleteFields}\n${emailReminder}\n${bodyLengthReminder}`);
 
     } else {
 
       if (this.state.files.length === 0) {
         var photos = [];
+
       } else {
+
         var photos = [];
-        for (var i = 0; i < this.state.files.length; i++) {
-          let url;
-          let formData = new FormData();
-          formData.append('file', this.state.files[i]);
-          formData.append('upload_preset', photoAPIKey);
-          axios.post('https://api.cloudinary.com/v1_1/drbwyfh4x/upload', formData)
-            .then((data) => {
-              url = data.data.secure_url;
-              photos.push(url);
+
+        var photoURLs = (filesArray, cb) => {
+          for (var i = 0; i < filesArray.length; i++) {
+            let formData = new FormData();
+            formData.append('file', filesArray[i]);
+            formData.append('upload_preset', 'em0fglum');
+
+            axios.post('https://api.cloudinary.com/v1_1/drbwyfh4x/upload', formData)
+              .then((data) => {
+                // url = data.data.secure_url;
+                photos.push(data.data.secure_url);
+                if (photos.length === filesArray.length) {
+                  return cb(null, photos, characteristics);
+                }
+              })
+              .catch((err) => console.log('ERROR in Cloudinary POST Request'));
+          }
+        };
+
+        photoURLs(this.state.files, (error, data) => {
+
+          var dataBody = {
+            "product_id": parseInt(this.props.product_id),
+            "rating": parseInt(this.state.rating),
+            "summary": this.state.summary + "",
+            "body": this.state.body + "",
+            "recommend": this.state.recommended === 'No' ? false : true,
+            "name": this.state.name,
+            "email": this.state.email + "",
+            "photos": photos,
+            "characteristics": characteristics
+          };
+
+          this.props.submitReviewForm(dataBody);
 
 
-              var dataBody = {
-                "product_id": parseInt(this.props.product_id),
-                "rating": parseInt(this.state.rating),
-                "summary": this.state.summary + "",
-                "body": this.state.body + "",
-                "recommend": this.state.recommended === 'No' ? false : true,
-                "name": this.state.name,
-                "email": this.state.email + "",
-                // "photos": this.state.photos,
-                "photos": photos,
-                "characteristics": characteristics
-                // "characteristics": {}
-              };
+          var temp = {
+            "product_id": 40344,
+            "rating": 5,
+            "summary": "Very good",
+            "body": "lorem ipsum",
+            "recommend": true,
+            "name": "tester",
+            "email": "tester@tester.com",
+            "photos": ["https://res.cloudinary.com/drbwyfh4x/image/upload/v1632328878/pfrvwz00bnqhjympmxg4.png", "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632328889/xggvxej6ojsjn0r4j5eg.png"
+            ],
+            "characteristics": characteristics
+          };
+          // this.props.submitReviewForm(temp);
+          this.closeModal();
 
-
-            })
-            .catch((err) => { console.log('ERROR in Cloudinary POST Request'); })
-
-        }
+        });
       }
+    }
+  }
+
+
+
+
 
 
 
@@ -183,8 +204,7 @@ class AddReviewForm extends React.Component {
       //   "characteristics": {}
       // };
       // this.props.submitReviewForm(temp)
-      this.props.submitReviewForm(dataBody);
-      this.closeModal();
+
 
       //NOTE:
       //For nested object in state
@@ -202,8 +222,10 @@ class AddReviewForm extends React.Component {
       //     }
       // }
 
-    }
-  }
+
+
+
+
   closeModal() {
     this.props.toggleAddReviewFormVisible();
   }
@@ -592,5 +614,242 @@ Radio button alts
     }
 
     return ReactDom.createPortal(reviewFormDisplay, document.getElementById('add-review-modal'));
+
+    */
+
+    /*
+
+
+submitReviewForm(event) {
+    event.preventDefault();
+
+    let characteristics = {};
+    var incompleteFields = [];
+
+    for (var property in this.state) {
+      if (property === 'submitted') {
+        continue;
+      }
+
+      if (property !== 'undefined' && !this.state[property]) {
+        incompleteFields.push(property);
+      }
+
+      if (property.includes('characteristics-')) {
+        let splitProperties = property.split('-');
+        let newProperty = splitProperties[1];
+        let characteristic_id = this.props.characteristics[newProperty].id;
+        // console.log(characteristic_id)
+        characteristics[characteristic_id] = parseInt(this.state[property]);
+      }
+
+      // if (property.includes('characteristics')) {
+      //   var splitInput = property.split('-')
+      //   var newProperty = splitInput[1]
+      //   dataBody.characteristics[newProperty] = this.state.characteristics[newProperty]
+      // }
+
+    }
+
+
+
+
+
+    var emailReminder =
+      !this.state.email.includes('@') ? 'Please enter valid email address.' : '';
+
+    incompleteFields =
+      incompleteFields.some((field => mandatoryFormFields.includes(field))) ? 'Please complete all mandatory form fields.' : '';
+
+    var bodyLengthReminder =
+      !(this.state.body.length >= 50) ? 'Reiew body must be at least 50 characters' : '';
+
+    if (incompleteFields.length > 0 || emailReminder) {
+      // photos =
+      //         this.state.files.map((file) => {
+      //           return this.createHostedURL(file);
+      //         });
+      //       console.log(photos);
+      alert(`${incompleteFields}\n${emailReminder}\n${bodyLengthReminder}`);
+
+    } else {
+
+      if (this.state.files.length === 0) {
+        var photos = [];
+      } else {
+        var photos = [];
+        for (var i = 0; i < this.state.files.length; i++) {
+          let url;
+          let formData = new FormData();
+          formData.append('file', this.state.files[i]);
+          formData.append('upload_preset', photoAPIKey);
+          axios.post('https://api.cloudinary.com/v1_1/drbwyfh4x/upload', formData)
+            .then((data) => {
+              url = data.data.secure_url;
+              photos.push(url);
+
+
+              var dataBody = {
+                "product_id": parseInt(this.props.product_id),
+                "rating": parseInt(this.state.rating),
+                "summary": this.state.summary + "",
+                "body": this.state.body + "",
+                "recommend": this.state.recommended === 'No' ? false : true,
+                "name": this.state.name,
+                "email": this.state.email + "",
+                // "photos": this.state.photos,
+                "photos": photos,
+                "characteristics": characteristics
+                // "characteristics": {}
+              };
+
+
+            })
+            .catch((err) => { console.log('ERROR in Cloudinary POST Request'); })
+
+        }
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+      // if (this.state.files.length === 0) {
+      //   var photos = [];
+      // } else {
+      //   var photos = [];
+      //   for (var i = 0; i < this.state.files.length; i++) {
+      //     let url;
+      //     let formData = new FormData();
+      //     formData.append('file', this.state.files[i]);
+      //     formData.append('upload_preset', photoAPIKey);
+      //     axios.post('https://api.cloudinary.com/v1_1/drbwyfh4x/upload', formData)
+      //       .then((data) => {
+      //         url = data.data.secure_url;
+      //         photos.push(url);
+      //       })
+      //       .catch((err) => { console.log('ERROR in Cloudinary POST Request'); });
+      //   }
+      // }
+
+
+
+      // var dataBody = {
+      //   "product_id": parseInt(this.props.product_id),
+      //   "rating": parseInt(this.state.rating),
+      //   "summary": this.state.summary + "",
+      //   "body": this.state.body + "",
+      //   "recommend": this.state.recommended === 'No' ? false : true,
+      //   "name": this.state.name,
+      //   "email": this.state.email + "",
+      //   // "photos": this.state.photos,
+      //   "photos": photos,
+      //   "characteristics": characteristics
+      //   // "characteristics": {}
+      // };
+
+      // var temp = {
+      //   "product_id": 40344,
+      //   "rating": 5,
+      //   "summary": "Very good",
+      //   "body": "lorem ipsum",
+      //   "recommend": true,
+      //   "name": "tester",
+      //   "email": "tester@tester.com",
+      //   "photos": [],
+      //   "characteristics": {}
+      // };
+      // this.props.submitReviewForm(temp)
+      this.props.submitReviewForm(dataBody);
+      this.closeModal();
+
+      //NOTE:
+      //For nested object in state
+      // handleRadioFormChange(event){
+      //   if (!event.target.name.includes('characteristics')) {
+      //       this.setStateProperty(event.target.name, event.target.id)
+      //     } else {
+      //       let value = event.target.id
+      //       let splitProperties = event.target.name.split('.')
+      //       let nestedProperty = splitProperties[1]
+      //       this.setState(preState => ({
+      //         characteristics: prevState.characteristics.map((characteristic) =>
+      //           characteristic === nestedProperty ? {...characteristic, nestedProperty: value } : characteristic)
+      //       }))
+      //     }
+      // }
+
+    }
+  }
+  closeModal() {
+    this.props.toggleAddReviewFormVisible();
+  }
+
+  setStateProperty(property, value) {
+    this.setState({ [property]: value });
+  }
+
+  handleStringFormChange(event) {
+    this.setStateProperty(event.target.name, event.target.value);
+  }
+
+  handleRadioFormChange(event) {
+    this.setStateProperty(event.target.name, event.target.id);
+  }
+
+  handleStarSelect(name, id) {
+    console.log('handlestarselect', name, id);
+    this.setStateProperty(name, id);
+    this.handleStarColorChange(id);
+  }
+
+  handleStarColorChange(ratingValue) {
+    return ratingValue <= this.state.rating ? '#ffc107' : '#e4e5e9';
+  }
+
+  handleImageChange(event) {
+    event.preventDefault();
+    if (event.target.files) {
+      if (event.target.files.length > 5 || this.state.files.length > 5) {
+        return alert('You may only upload up to 5 photos!');
+      } else {
+        var fileArray = Array.from(event.target.files);
+
+        var selectedImageArray = Array.from(event.target.files).map((file) => URL.createObjectURL(file));
+
+        this.setState(prevState => ({
+          selectedImages: prevState.selectedImages.concat(selectedImageArray),
+          files: prevState.files.concat(fileArray)
+        }));
+
+        Array.from(event.target.files).map((file) => URL.revokeObjectURL(file));
+      }
+    }
+  }
+
+  createHostedURL(image, callback) {
+    console.log(image, callback);
+    let url;
+    let formData = new FormData();
+    formData.append('file', image);
+    formData.append('upload_preset', photoAPIKey);
+    axios.post('https://api.cloudinary.com/v1_1/drbwyfh4x/upload', formData)
+      .then((data) => {
+        url = res.data.secure_url;
+        return url;
+      })
+      .catch((err) => { console.log('ERROR in Cloudinary POST Request'); });
+
+  }
+
+  render() {
 
     */
