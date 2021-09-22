@@ -114,7 +114,6 @@ class RatingsAndReviews extends React.Component {
       method: 'PUT'
     })
       .then((results) => {
-        // console.log('Successful PUT request. Results?', results);
         this.requestProductReviews();
       })
       .catch((error) => console.log('ERROR in SUBMITHELPFULORREPORT AJAX Request: ', error));
