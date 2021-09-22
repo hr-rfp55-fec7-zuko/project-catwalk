@@ -68,6 +68,8 @@ class AddReviewForm extends React.Component {
 
 
 
+
+
     var emailReminder =
       !this.state.email.includes('@') ? 'Please enter valid email address.' : '';
 
@@ -78,8 +80,14 @@ class AddReviewForm extends React.Component {
       !(this.state.body.length >= 50) ? 'Reiew body must be at least 50 characters' : '';
 
     if (incompleteFields.length > 0 || emailReminder) {
+      // photos =
+      //         this.state.files.map((file) => {
+      //           return this.createHostedURL(file);
+      //         });
+      //       console.log(photos);
+      alert(`${incompleteFields}\n${emailReminder}\n${bodyLengthReminder}`);
 
-
+    } else {
 
       if (this.state.files.length === 0) {
         var photos = [];
@@ -94,52 +102,86 @@ class AddReviewForm extends React.Component {
             .then((data) => {
               url = data.data.secure_url;
               photos.push(url);
+
+
+              var dataBody = {
+                "product_id": parseInt(this.props.product_id),
+                "rating": parseInt(this.state.rating),
+                "summary": this.state.summary + "",
+                "body": this.state.body + "",
+                "recommend": this.state.recommended === 'No' ? false : true,
+                "name": this.state.name,
+                "email": this.state.email + "",
+                // "photos": this.state.photos,
+                "photos": photos,
+                "characteristics": characteristics
+                // "characteristics": {}
+              };
+
+
             })
-            .catch((err) => { console.log('ERROR in Cloudinary POST Request'); });
+            .catch((err) => { console.log('ERROR in Cloudinary POST Request'); })
+
         }
       }
 
-      // photos =
-      //         this.state.files.map((file) => {
-      //           return this.createHostedURL(file);
-      //         });
-      //       console.log(photos);
 
 
 
-      /***REMEMBER TO TURN ME BACK ON! */
-      // alert(`${incompleteFields}\n${emailReminder}\n${bodyLengthReminder}`);
 
 
 
-      //2 options For form that differentiates between mandatory and optional
-      // alert(`Please complete required fields: ${incompleteFields}\n${emailReminder}`)
-      // alert(`Please complete required fields: ${incompleteFields}\n${emailReminder}`) // incompleteFields doesn't show up on this one (maybe just with email?)
-    } else {
-      var dataBody = {
-        "product_id": parseInt(this.props.product_id),
-        "rating": parseInt(this.state.rating),
-        "summary": this.state.summary + "",
-        "body": this.state.body + "",
-        "recommend": this.state.recommended === 'No' ? false : true,
-        "name": this.state.name,
-        "email": this.state.email + "",
-        "photos": this.state.photos || [],
-        "characteristics": characteristics
-        // "characteristics": {}
-      };
 
-      var temp = {
-        "product_id": 40344,
-        "rating": 5,
-        "summary": "Very good",
-        "body": "lorem ipsum",
-        "recommend": true,
-        "name": "tester",
-        "email": "tester@tester.com",
-        "photos": [],
-        "characteristics": {}
-      };
+
+
+
+
+
+      // if (this.state.files.length === 0) {
+      //   var photos = [];
+      // } else {
+      //   var photos = [];
+      //   for (var i = 0; i < this.state.files.length; i++) {
+      //     let url;
+      //     let formData = new FormData();
+      //     formData.append('file', this.state.files[i]);
+      //     formData.append('upload_preset', photoAPIKey);
+      //     axios.post('https://api.cloudinary.com/v1_1/drbwyfh4x/upload', formData)
+      //       .then((data) => {
+      //         url = data.data.secure_url;
+      //         photos.push(url);
+      //       })
+      //       .catch((err) => { console.log('ERROR in Cloudinary POST Request'); });
+      //   }
+      // }
+
+
+
+      // var dataBody = {
+      //   "product_id": parseInt(this.props.product_id),
+      //   "rating": parseInt(this.state.rating),
+      //   "summary": this.state.summary + "",
+      //   "body": this.state.body + "",
+      //   "recommend": this.state.recommended === 'No' ? false : true,
+      //   "name": this.state.name,
+      //   "email": this.state.email + "",
+      //   // "photos": this.state.photos,
+      //   "photos": photos,
+      //   "characteristics": characteristics
+      //   // "characteristics": {}
+      // };
+
+      // var temp = {
+      //   "product_id": 40344,
+      //   "rating": 5,
+      //   "summary": "Very good",
+      //   "body": "lorem ipsum",
+      //   "recommend": true,
+      //   "name": "tester",
+      //   "email": "tester@tester.com",
+      //   "photos": [],
+      //   "characteristics": {}
+      // };
       // this.props.submitReviewForm(temp)
       this.props.submitReviewForm(dataBody);
       this.closeModal();
