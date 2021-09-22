@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import CharacteristicRadioFormField from './helpers/CharacteristicRadioFormField.jsx';
 import StarPicker from './helpers/StarPicker.jsx';
-import photoAPIKey from '../../../PhotoAPIConfig.js';
+import {PHOTOAPIKEY} from '/client/config.js';
 import axios from 'axios';
 
 //Note: Form needs to be revised to require all provided characteristics
@@ -91,7 +91,7 @@ class AddReviewForm extends React.Component {
           for (var i = 0; i < filesArray.length; i++) {
             let formData = new FormData();
             formData.append('file', filesArray[i]);
-            formData.append('upload_preset', 'em0fglum');
+            formData.append('upload_preset', PHOTOAPIKEY);
 
             axios.post('https://api.cloudinary.com/v1_1/drbwyfh4x/upload', formData)
               .then((data) => {
