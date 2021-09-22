@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AddAnswerModal from './AddAnswerModal.jsx';
 import AnswerEntryList from './AnswerEntryList.jsx';
+import {PHOTOAPIKEY} from '/client/config.js';
 
 var AddAnswerList = (props) => {
   const modalRef = React.useRef();
@@ -45,7 +46,7 @@ var AddAnswerList = (props) => {
           for (var i = 0; i < obj.length; i++) {
             const formData = new FormData();
             formData.append('file', obj[i]);
-            formData.append('upload_preset', 'em0fglum');
+            formData.append('upload_preset', PHOTOAPIKEY);
             axios.post('https://api.cloudinary.com/v1_1/drbwyfh4x/upload', formData)
               .then(res => {
                 urlLink.push(res.data.secure_url);
