@@ -14,6 +14,7 @@ class ReviewTile extends React.Component {
     };
 
     this.handleHelpfulOrReportClick = this.handleHelpfulOrReportClick.bind(this);
+    this.handleThumbnailClick = this.handleThumbnailClick.bind(this);
   }
 
   handleHelpfulOrReportClick(event) {
@@ -36,6 +37,10 @@ class ReviewTile extends React.Component {
       this.props.submitHelpfulOrReport(this.props.review.review_id, action);
 
     }
+  }
+
+  handleThumbnailClick() {
+    this.props.handleThumbnailClick(event.target.src);
   }
 
   render() {
@@ -69,7 +74,7 @@ class ReviewTile extends React.Component {
 
         <div className="review-thumbnails">
         {review.photos.length > 0 &&
-          review.photos.map((photo) => <img src={photo.url} id={photo.id} className="review-thumbnail"/>)
+          review.photos.map((photo) => <img src={photo.url} id={photo.id} className="review-thumbnail" onClick={this.handleThumbnailClick} toggleImageModalVisiblity={this.props.toggleImageModalVisiblity}/>)
         }
         </div>
 
