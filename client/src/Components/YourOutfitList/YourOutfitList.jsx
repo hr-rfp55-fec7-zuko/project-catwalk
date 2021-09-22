@@ -66,8 +66,8 @@ class YourOutfitList extends React.Component {
     let index;
 
     outfits.forEach((item, i) => {
-      console.log(item);
-      if (item.data.info.id === productId) {
+      console.log(item.data.info.id, productId);
+      if (item.data.info.id === parseInt(productId)) {
         index = i;
       }
     });
