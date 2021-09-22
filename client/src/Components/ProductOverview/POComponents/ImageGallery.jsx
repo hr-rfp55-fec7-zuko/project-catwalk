@@ -73,7 +73,7 @@ class ImageGallery extends React.Component {
     var rect = photo.getBoundingClientRect();
     var imageX = Math.abs(event.clientX - rect.x) / rect.width * 100;
     var imageY = Math.abs(event.clientY - rect.y) / rect.height * 100;
-    this.setState({imageX, imageY});
+    this.setState({ imageX, imageY });
   }
 
   componentDidUpdate(prevProps) {
@@ -99,99 +99,92 @@ class ImageGallery extends React.Component {
   }
 
   render() {
-    var thumbPhotos = this.state.photos[`${this.props.selectedStyle}_thumb`];
-    var fullPhotos = this.state.photos[`${this.props.selectedStyle}_full`];
-    if (this.state.photos[`${this.props.selectedStyle}_full`]) {
-      var length = fullPhotos.length;
-      return (
-        <div className='po-image-gallery' >
-          {this.state.expanded ?
-            (!this.state.zoomed && <div className='thumbnail-navtrack'>
-              {thumbPhotos.map((image, index) => {
-                return (
-                  <i
-                    key={index}
-                    className={index === this.state.current ? 'thumbnail__nav thumbnail__nav-current fas fa-circle' : 'thumbnail__nav fas fa-circle'}
-                    onClick={() => this.setSlideFromThumbnail(index)}
-                  ></i>
-                );
-              })}
-            </div>)
-            : <div className='thumbnail-container' >
-              {(this.state.current !== 0 && !this.state.zoomed) &&
-                (<button
-                  className='thumbnail__button thumbnail__button--up'
-                  onClick={this.prevSlide} >
-                  <i className="fas fa-chevron-up fa-lg"></i>
-                </button>
-                )}
-              <div
-                className='thumbnail__track' id='thumbnail__track'
-                style={{ height: `${this.state.thumbnailMax * 58}px` }}>
-                {thumbPhotos.map((image, index) => {
-                  return (
-                    <img
-                      key={index}
-                      src={image}
-                      className={index === this.state.current ? 'thumbnail__slide thumbnail__slide-current' : 'thumbnail__slide'}
-                      onClick={() => this.setSlideFromThumbnail(index)} />
-                  );
-                })}
-              </div>
-              {(this.state.current !== length - 1 && !this.state.zoomed) && (<button
-                className='thumbnail__button thumbnail__button--down'
-                onClick={this.nextSlide}
-                style={{ top: `${this.state.thumbnailMax * 58 + 34}px` }} >
-                <i className="fas fa-chevron-down fa-lg"></i>
-              </button>)}
-            </div>}
-          <div className='carousel'>
+    var thumbPhotos = this.state.photos[`${this.props.selectedStyle}_thumb`] || [];
+    var fullPhotos = this.state.photos[`${this.props.selectedStyle}_full`] || [];
+    var length = fullPhotos.length;
+    return (
+      <div className='po-image-gallery' >
+        {this.state.expanded ?
+          (!this.state.zoomed && <div className='thumbnail-navtrack'>
+            {thumbPhotos.map((image, index) => {
+              return (
+                <i
+                  key={index}
+                  className={index === this.state.current ? 'thumbnail__nav thumbnail__nav-current fas fa-circle' : 'thumbnail__nav fas fa-circle'}
+                  onClick={() => this.setSlideFromThumbnail(index)}
+                ></i>
+              );
+            })}
+          </div>)
+          : <div className='thumbnail-container' >
             {(this.state.current !== 0 && !this.state.zoomed) &&
               (<button
-                className='carousel__button carousel__button--left'
-                onClick={this.prevSlide}
-                style={this.state.expanded ? { left: '20px' } : { left: '100px' }} >
-                <i className="fas fa-arrow-left fa-lg"></i>
+                className='thumbnail__button thumbnail__button--up'
+                onClick={this.prevSlide} >
+                <i className="fas fa-chevron-up fa-lg"></i>
               </button>
               )}
-            <div className='carousel__track' id='carousel__track' >
-              {fullPhotos.map((image, index) => {
-                if (index === this.state.current) {
-                  return (
-                    <img
-                      key={index}
-                      id={this.state.zoomed ? 'zoomed-slide' : 'carousel__slide'}
-                      className={this.state.expanded ? 'carousel__slide expanded-slide' : 'carousel__slide'}
-                      src={image}
-                      onClick={!this.state.expanded ? this.expandSlide : this.zoomSlide}
-                      onMouseMove={this.state.zoomed ? this.handleZoomMouseMove : null}
-                      style={{
-                        objectPosition: `${this.state.imageX}% ${this.state.imageY}%`,
-                        transformOrigin: `${this.state.imageX}% ${this.state.imageY}%`
-                      }} />
-                  );
-                }
+            <div
+              className='thumbnail__track' id='thumbnail__track'
+              style={{ height: `${this.state.thumbnailMax * 58}px` }}>
+              {thumbPhotos.map((image, index) => {
+                return (
+                  <img
+                    key={index}
+                    src={image}
+                    className={index === this.state.current ? 'thumbnail__slide thumbnail__slide-current' : 'thumbnail__slide'}
+                    onClick={() => this.setSlideFromThumbnail(index)} />
+                );
               })}
             </div>
-            {!this.state.zoomed &&
-              <button
-                className='carousel__button carousel__button--expand'
-                onClick={this.expandSlide} >
-                <i className="fas fa-expand fa-lg"></i>
-              </button>}
-            {(this.state.current !== length - 1 && !this.state.zoomed) &&
-              (<button
-                className='carousel__button carousel__button--right'
-                onClick={this.nextSlide} >
-                <i className="fas fa-arrow-right fa-lg"></i>
-              </button>)}
+            {(this.state.current !== length - 1 && !this.state.zoomed) && (<button
+              className='thumbnail__button thumbnail__button--down'
+              onClick={this.nextSlide}
+              style={{ top: `${this.state.thumbnailMax * 58 + 34}px` }} >
+              <i className="fas fa-chevron-down fa-lg"></i>
+            </button>)}
+          </div>}
+        <div className='carousel'>
+          {(this.state.current !== 0 && !this.state.zoomed) &&
+            (<button
+              className='carousel__button carousel__button--left'
+              onClick={this.prevSlide}
+              style={this.state.expanded ? { left: '20px' } : { left: '100px' }} >
+              <i className="fas fa-arrow-left fa-lg"></i>
+            </button>
+            )}
+          <div className='carousel__track' id='carousel__track' >
+            {fullPhotos.map((image, index) => {
+              if (index === this.state.current) {
+                return (
+                  <img
+                    key={index}
+                    id={this.state.zoomed ? 'zoomed-slide' : 'carousel__slide'}
+                    className={this.state.expanded ? 'carousel__slide expanded-slide' : 'carousel__slide'}
+                    src={image}
+                    onClick={!this.state.expanded ? this.expandSlide : this.zoomSlide}
+                    onMouseMove={this.state.zoomed ? this.handleZoomMouseMove : null}
+                    style={{
+                      objectPosition: `${this.state.imageX}% ${this.state.imageY}%`,
+                      transformOrigin: `${this.state.imageX}% ${this.state.imageY}%`
+                    }} />
+                );
+              }
+            })}
           </div>
+          {!this.state.zoomed &&
+            <button
+              className='carousel__button carousel__button--expand'
+              onClick={this.expandSlide} >
+              <i className="fas fa-expand fa-lg"></i>
+            </button>}
+          {(this.state.current !== length - 1 && !this.state.zoomed) &&
+            (<button
+              className='carousel__button carousel__button--right'
+              onClick={this.nextSlide} >
+              <i className="fas fa-arrow-right fa-lg"></i>
+            </button>)}
         </div>
-      );
-    }
-    return (
-      <div id='po-image-gallery' >
-        Image Gallery Stand In
       </div>
     );
   }
