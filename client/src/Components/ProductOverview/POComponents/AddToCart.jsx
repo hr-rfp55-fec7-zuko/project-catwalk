@@ -53,7 +53,10 @@ class AddToCart extends React.Component {
         'sku_id': this.state.selectedSKU,
       };
       for (var i = 0; i < this.state.quantity; i++) {
-        axios.post('http://localhost:3000/cart/', cartItem);
+        axios.post('http://localhost:3000/cart/', cartItem)
+          .catch((error) => {
+            console.error(error);
+          });
       }
       this.setState({
         addedToCart: true

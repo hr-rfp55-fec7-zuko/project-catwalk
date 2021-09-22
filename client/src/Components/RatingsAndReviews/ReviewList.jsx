@@ -11,10 +11,15 @@ class ReviewList extends React.Component {
       totalReviews: 0,
       reviewLimit: 0,
       reviewPage: 1,
+<<<<<<< HEAD
       addReviewFormVisible: false,
       // addReviewFormVisible: true
       imageModalVisible: false,
       thumbnailURL: null
+=======
+      // addReviewFormVisible: false
+      addReviewFormVisible: true
+>>>>>>> master
 
     };
 
