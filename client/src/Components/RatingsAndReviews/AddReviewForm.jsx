@@ -81,19 +81,29 @@ class AddReviewForm extends React.Component {
 
 
 
-      var photos;
-
-      for (var image in this.state.selectedImages) {
-        if (this.state.selectedImages.length === 0) {
-          photos = [];
-        } else {
-          photos =
-            this.state.selectedImages.map((imageNumber) => {
-              return this.createHostedURL(this.state.selectedImages[imageNumber]);
-            });
-          console.log(photos);
+      if (this.state.files.length === 0) {
+        var photos = [];
+      } else {
+        var photos = [];
+        for (var i = 0; i < this.state.files.length; i++) {
+          let url;
+          let formData = new FormData();
+          formData.append('file', this.state.files[i]);
+          formData.append('upload_preset', photoAPIKey);
+          axios.post('https://api.cloudinary.com/v1_1/drbwyfh4x/upload', formData)
+            .then((data) => {
+              url = data.data.secure_url;
+              photos.push(url);
+            })
+            .catch((err) => { console.log('ERROR in Cloudinary POST Request'); });
         }
       }
+
+      // photos =
+      //         this.state.files.map((file) => {
+      //           return this.createHostedURL(file);
+      //         });
+      //       console.log(photos);
 
 
 
@@ -181,25 +191,19 @@ class AddReviewForm extends React.Component {
   handleImageChange(event) {
     event.preventDefault();
     if (event.target.files) {
-      if (event.target.files.length > 5) {
+      if (event.target.files.length > 5 || this.state.files.length > 5) {
         return alert('You may only upload up to 5 photos!');
       } else {
         var fileArray = Array.from(event.target.files);
-        // fileArray = this.state.files.concat(fileArray);
 
         var selectedImageArray = Array.from(event.target.files).map((file) => URL.createObjectURL(file));
-        // selectedImageArray = this.state.selectedImages.concat(selectedImageArray);
-
-        // this.setState({ selectedImages: selectedImageArray, files: fileArray });
-        // this.setState({ selectedImages: selectedImageArray});
-
 
         this.setState(prevState => ({
           selectedImages: prevState.selectedImages.concat(selectedImageArray),
           files: prevState.files.concat(fileArray)
         }));
 
-        // Array.from(event.target.files).map((file) => URL.revokeObjectURL(file));
+        Array.from(event.target.files).map((file) => URL.revokeObjectURL(file));
       }
     }
   }
