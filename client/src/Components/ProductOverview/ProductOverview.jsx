@@ -93,7 +93,7 @@ class ProductOverview extends React.Component {
           <div className='po-main-left'
             style={this.state.expanded ?
               { width: '100%' }
-              : { width: '60%' }}>
+              : { width: '70%' }}>
             <ImageGallery
               styles={this.state.styles}
               selectedStyle={this.state.style.style_id}

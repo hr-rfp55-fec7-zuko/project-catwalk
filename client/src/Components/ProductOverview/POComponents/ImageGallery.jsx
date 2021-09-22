@@ -149,7 +149,7 @@ class ImageGallery extends React.Component {
             (<button
               className='carousel__button carousel__button--left'
               onClick={this.prevSlide}
-              style={this.state.expanded ? { left: '20px' } : { left: '100px' }} >
+              style={this.state.expanded ? { left: '20px' } : { left: '80px' }} >
               <i className="fas fa-arrow-left fa-lg"></i>
             </button>
             )}
