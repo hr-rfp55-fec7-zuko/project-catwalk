@@ -122,18 +122,18 @@ class AddReviewForm extends React.Component {
           this.props.submitReviewForm(dataBody);
 
 
-          var temp = {
-            "product_id": 40344,
-            "rating": 5,
-            "summary": "Very good",
-            "body": "lorem ipsum",
-            "recommend": true,
-            "name": "tester",
-            "email": "tester@tester.com",
-            "photos": ["https://res.cloudinary.com/drbwyfh4x/image/upload/v1632328878/pfrvwz00bnqhjympmxg4.png", "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632328889/xggvxej6ojsjn0r4j5eg.png"
-            ],
-            "characteristics": characteristics
-          };
+          // var temp = {
+          //   "product_id": 40344,
+          //   "rating": 5,
+          //   "summary": "Very good",
+          //   "body": "lorem ipsum",
+          //   "recommend": true,
+          //   "name": "tester",
+          //   "email": "tester@tester.com",
+          //   "photos": ["https://res.cloudinary.com/drbwyfh4x/image/upload/v1632328878/pfrvwz00bnqhjympmxg4.png", "https://res.cloudinary.com/drbwyfh4x/image/upload/v1632328889/xggvxej6ojsjn0r4j5eg.png"
+          //   ],
+          //   "characteristics": {}
+          // };
           // this.props.submitReviewForm(temp);
           this.closeModal();
 
@@ -141,90 +141,6 @@ class AddReviewForm extends React.Component {
       }
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      // if (this.state.files.length === 0) {
-      //   var photos = [];
-      // } else {
-      //   var photos = [];
-      //   for (var i = 0; i < this.state.files.length; i++) {
-      //     let url;
-      //     let formData = new FormData();
-      //     formData.append('file', this.state.files[i]);
-      //     formData.append('upload_preset', photoAPIKey);
-      //     axios.post('https://api.cloudinary.com/v1_1/drbwyfh4x/upload', formData)
-      //       .then((data) => {
-      //         url = data.data.secure_url;
-      //         photos.push(url);
-      //       })
-      //       .catch((err) => { console.log('ERROR in Cloudinary POST Request'); });
-      //   }
-      // }
-
-
-
-      // var dataBody = {
-      //   "product_id": parseInt(this.props.product_id),
-      //   "rating": parseInt(this.state.rating),
-      //   "summary": this.state.summary + "",
-      //   "body": this.state.body + "",
-      //   "recommend": this.state.recommended === 'No' ? false : true,
-      //   "name": this.state.name,
-      //   "email": this.state.email + "",
-      //   // "photos": this.state.photos,
-      //   "photos": photos,
-      //   "characteristics": characteristics
-      //   // "characteristics": {}
-      // };
-
-      // var temp = {
-      //   "product_id": 40344,
-      //   "rating": 5,
-      //   "summary": "Very good",
-      //   "body": "lorem ipsum",
-      //   "recommend": true,
-      //   "name": "tester",
-      //   "email": "tester@tester.com",
-      //   "photos": [],
-      //   "characteristics": {}
-      // };
-      // this.props.submitReviewForm(temp)
-
-
-      //NOTE:
-      //For nested object in state
-      // handleRadioFormChange(event){
-      //   if (!event.target.name.includes('characteristics')) {
-      //       this.setStateProperty(event.target.name, event.target.id)
-      //     } else {
-      //       let value = event.target.id
-      //       let splitProperties = event.target.name.split('.')
-      //       let nestedProperty = splitProperties[1]
-      //       this.setState(preState => ({
-      //         characteristics: prevState.characteristics.map((characteristic) =>
-      //           characteristic === nestedProperty ? {...characteristic, nestedProperty: value } : characteristic)
-      //       }))
-      //     }
-      // }
-
-
-
-
 
   closeModal() {
     this.props.toggleAddReviewFormVisible();
