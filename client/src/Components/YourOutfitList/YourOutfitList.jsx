@@ -8,14 +8,32 @@ class YourOutfitList extends React.Component {
     this.state = {
       outfits: [],
       productIdInfo: '',
-      productStyle: ''
+      productStyle: '',
+      imagesToTheLeft: false,
+      imagesToTheRight: false,
+      cardOverflow: false,
     };
 
+    this.scrollRight = this.scrollRight.bind(this);
+    this.scrollLeft = this.scrollLeft.bind(this);
+    this.isOverflowing = this.isOverflowing.bind(this);
     this.addOutfit = this.addOutfit.bind(this);
     this.deleteOutfit = this.deleteOutfit.bind(this);
+    this.fetchAPIOutfit = this.fetchAPIOutfit.bind(this);
   }
 
   componentDidMount() {
+    this.fetchAPIOutfit();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { productId } = this.props;
+    if (prevProps.productId !== productId) {
+      this.fetchAPIOutfit();
+    }
+  }
+
+  fetchAPIOutfit() {
     const { productId } = this.props;
     axios.get('/outfit')
       .then(({ data }) => {
@@ -27,7 +45,6 @@ class YourOutfitList extends React.Component {
       .catch((error) => {
         console.log('Error getting outfit info in yourOutfit List', error);
       });
-
     axios.get(`/products/${productId}`)
       .then(({ data }) => {
         this.setState({
@@ -50,13 +67,12 @@ class YourOutfitList extends React.Component {
   }
 
   addOutfit() {
-    const { productId } = this.props;
+    const { productId, avgRating } = this.props;
     const { productStyle, productIdInfo, outfits } = this.state;
-    const outfitToAddID = productStyle.product_id;
     let index;
 
     outfits.forEach((item, i) => {
-      if (item.data.styles.product_id === outfitToAddID) {
+      if (item.data.info.id === parseInt(productId)) {
         index = i;
       }
     });
@@ -66,6 +82,7 @@ class YourOutfitList extends React.Component {
       const newOutfitArr = [{
         info: productIdInfo,
         styles: productStyle,
+        avgRating: avgRating
       }];
 
       const newOutfitObj = newOutfitArr[0];
@@ -98,72 +115,86 @@ class YourOutfitList extends React.Component {
         .then(({ data }) => {
           if (data.length > 0) {
             this.setState({
-              oufits: data
+              outfits: data
             });
           }
         })
         .catch((error) => {
-          console.log('Error deleting an Outfit', error);
+          conaole.log('Error deleting an Outfit', error);
         });
+    });
+  }
+  scrollLeft() {
+    this.setState({
+      imagesToTheRight: true,
+    });
+    const carousel = document.getElementById('outfitCarousel');
+    carousel.scrollLeft -= 307;
+
+    if (carousel.scrollLeft <= 307) {
+
+      this.setState({
+        imagesToTheLeft: false,
+      });
+    }
+  }
+
+  scrollRight() {
+    this.setState({
+      imagesToTheLeft: true,
+    });
+    const carousel = document.getElementById('outfitCarousel');
+    const amountLeftToScroll = carousel.scrollWidth - carousel.clientWidth;
+
+    carousel.scrollLeft += 307;
+    if (carousel.scrollLeft >= amountLeftToScroll - 400) {
+      this.setState({
+        imagesToTheRight: false,
+      });
+    }
+  }
+
+  isOverflowing() {
+    const carousel = document.getElementById('outfitCarousel');
+    const bool = carousel.scrollWidth - 200 > carousel.clientWidth;
+    this.setState({
+      cardOverflow: bool,
+      imagesToTheRight: bool,
     });
   }
 
   render() {
+    const { imagesToTheRight, imagesToTheLeft, avgRating } = this.state;
     return (
-      <div>
+      <React.Fragment>
         <h2>Your outfit</h2>
-        <div className="YourOutfit">
+        <div className='outfitContainer'>
           <div className="cardWrapper" onClick={this.addOutfit} id="addOutfit">
-            <div className='AddOutfitContent card '><span>+ Add To Your Outfit</span>
-            </div>
+            <div className='AddOutfitContent card '><span>+ Add To Your Outfit</span></div>
           </div>
-          {this.state.outfits.map((outfit, i) => (
-            <YourOutfitCard
-              outfit={outfit}
-              key={i}
-              deleteOutfit={this.deleteOutfit}
-            />
-          ))}
+          <div className='ListWrapper outfitWrapper'>
+            {imagesToTheRight ? (<div className='RightButtonWrapper'>
+              <div className='RightButton' onClick={this.scrollRight}><i className="fas fa-chevron-circle-right"></i></div></div>) : null}
+
+            <div id='outfitCarousel' className='YourOutfit' onLoad={this.isOverflowing}>
+              {this.state.outfits.map((outfit, i) => (
+                <YourOutfitCard
+                  outfit={outfit}
+                  key={i}
+                  deleteOutfit={this.deleteOutfit}
+                  avgRating={avgRating}
+                  updateProductID={this.props.updateProductID}
+                />
+              ))}
+            </div>
+
+            {imagesToTheLeft ? (<div className='LeftButtonWrapper'><div className='LeftButton' onClick={this.scrollLeft}><i className="fas fa-chevron-circle-left"></i></div></div>) : null}
+          </div>
         </div>
-      </div>
+      </React.Fragment>
+
     );
   }
 }
 
 export default YourOutfitList;
-
-
-
-
-
-
-/* addOutfit() {
-   const { productId } = this.props;
-   axios.post('/outfit', { productId: productId })
-     .then(({ data }) => {
-       this.setState({
-         outfits: data
-       });
-     })
-     .catch((err) => {
-       console.log('Error getting product style in YourOutfit', err);
-     });
- }
-
-
-
- deleteOutfit() {
-   const { productId } = this.props;
-   const { outfits } = this.state;
-
-   axios.delete(`/outfit/${productId}`)
-     .then(({ data }) => {
-       outfits.pop(productId);
-       this.setState({
-         outfits: outfits
-       });
-     })
-     .catch((err) => {
-       console.log('Error getting product style in YourOutfit', err);
-     });
- }*/
