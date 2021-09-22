@@ -3,9 +3,18 @@ import React from 'react';
 var SocialMediaButtons = (props) => {
   return (
     <div className='po-soc-med-btns'>
-      <i className='fab fa-facebook fa-2x soc-btn'></i>
-      <i className='fab fa-twitter fa-2x soc-btn'></i>
-      <i className='fab fa-pinterest fa-2x soc-btn'></i>
+      <a href='https://www.facebook.com/' target='_blank'>
+        <i className='fab fa-facebook fa-2x soc-btn'></i>
+      </a>
+      <a href='https://www.twitter.com/'>
+        <i className='fab fa-twitter fa-2x soc-btn'></i>
+      </a>
+      <a href='https://www.pinterest.com/' target='_blank'>
+        <i className='fab fa-pinterest fa-2x soc-btn'></i>
+      </a>
+      <a href='https://www.instagram.com/' target='_blank'>
+        <i className='fab fa-instagram fa-2x soc-btn'></i>
+      </a>
     </div>
   );
 };

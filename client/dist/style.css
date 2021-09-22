@@ -314,8 +314,13 @@ h3 {
 
 .po-add-cart {
   display: grid;
-  width: 300px;
+  width: 280x;
+  margin-left: 38px;
+}
 
+.select-size-msg {
+  color: red;
+  font-size: smaller;
 }
 
 .select-parent{
@@ -365,15 +370,16 @@ h3 {
 }
 
 .po-soc-med-btns {
-  width:300px;
+  width: 280px;
   display: flex;
   position: absolute;
-  justify-content: left;
+  justify-content: space-around;
   bottom: 0;
 }
 
 .soc-btn {
   margin-right: 10px;
+  color: red;
 }
 
 .po-desc-text {
