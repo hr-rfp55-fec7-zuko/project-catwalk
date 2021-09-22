@@ -1,4 +1,6 @@
 import React from 'react';
+import styled from 'styled-components';
+
 import axios from 'axios';
 import AvgRatingStars from '../RatingsAndReviews/helpers/AvgRatingStars.jsx';
 
@@ -10,9 +12,10 @@ class YourOutfitCard extends React.Component {
       productStyle: '',
       salePrice: '',
       featuredURL: '',
-      // avgRating: '',
+      avgRating: '',
     };
 
+    this.changeProductOutfit = this.changeProductOutfit.bind(this);
   }
 
   componentDidMount() {
@@ -38,37 +41,43 @@ class YourOutfitCard extends React.Component {
       this.setState({
         productIdInfo: shortInfo,
         productStyles: shortStyles,
-        // productRating: outfit.rating,
+        avgRating: outfit.data.avgRating,
         featuredURL: '/images/default-placeholder.png',
       });
     } else {
       this.setState({
         productIdInfo: shortInfo,
         productStyles: shortStyles,
-        // productRating: outfit.rating,
+        avgRating: outfit.data.avgRating,
         featuredURL: url,
       });
     }
   }
 
-  render() {
-    const { productIdInfo, featuredURL, salePrice } = this.state;
-    return (
-      <div className="cardWrapper">
-        <div className='card' id={productIdInfo.id}>
-          <div className='CompareButton' onClick={this.props.deleteOutfit} ><i className="fa fa-times" aria-hidden="true"></i></div>
-          <div className='pic'>
-            <img src={featuredURL} alt={productIdInfo.name}></img>
-          </div>
-          <div className='info'>
-            <p className='category'>{productIdInfo.category}</p>
-            <h3 className='title'>{productIdInfo.name}</h3>
-            <p className='price'>${productIdInfo.default_price}</p>
-            {salePrice ? <p className='price sale'>{salePrice}</p> : null}
-            {/* <AvgRatingStars avgRating={avgRating} id={productIdInfo.id} /> */}
-          </div>
-        </div>
+  changeProductOutfit(event) {
+    event.preventDefault();
+    this.props.updateProductID(this.state.productIdInfo.id);
+  }
 
+  render() {
+    const { productIdInfo, featuredURL, salePrice, avgRating } = this.state;
+    const sale = { textDecoration: salePrice ? 'line-through' : 'none' };
+
+    return (
+      <div className="cardWrapper" id={productIdInfo.id}>
+        <div className='card' >
+          <div className='CompareButton' onClick={this.props.deleteOutfit} ><i className="fa fa-times" aria-hidden="true"></i></div>
+          <div className='containerCard' onClick={this.changeProductOutfit}>
+            <div className='pic'>
+              <img src={featuredURL} alt={productIdInfo.name}></img>
+            </div>
+            <div className='info'>
+              <p className='category'>{productIdInfo.category}</p>
+              <h3 className='title'>{productIdInfo.name}</h3>
+              <p><span style={sale}>${productIdInfo.default_price}</span>{salePrice ? <span className='salePrice'> ${salePrice}</span> : null}</p>
+              <AvgRatingStars avgRating={avgRating} />
+            </div></div>
+        </div>
       </div>
 
     );
