@@ -8,9 +8,15 @@ class YourOutfitList extends React.Component {
     this.state = {
       outfits: [],
       productIdInfo: '',
-      productStyle: ''
+      productStyle: '',
+      imagesToTheLeft: false,
+      imagesToTheRight: false,
+      cardOverflow: false,
     };
 
+    this.scrollRight = this.scrollRight.bind(this);
+    this.scrollLeft = this.scrollLeft.bind(this);
+    this.isOverflowing = this.isOverflowing.bind(this);
     this.addOutfit = this.addOutfit.bind(this);
     this.deleteOutfit = this.deleteOutfit.bind(this);
     this.fetchAPIOutfit = this.fetchAPIOutfit.bind(this);
@@ -61,8 +67,8 @@ class YourOutfitList extends React.Component {
   }
 
   addOutfit() {
-    const { productId } = this.props;
-    const { productStyle, productIdInfo, outfits } = this.state;
+    const { productId, avgRating } = this.props;
+    const { productStyle, productIdInfo, outfits} = this.state;
     let index;
 
     outfits.forEach((item, i) => {
@@ -77,6 +83,7 @@ class YourOutfitList extends React.Component {
       const newOutfitArr = [{
         info: productIdInfo,
         styles: productStyle,
+        avgRating: avgRating
       }];
 
       const newOutfitObj = newOutfitArr[0];
@@ -119,8 +126,47 @@ class YourOutfitList extends React.Component {
         });
     });
   }
+  scrollLeft() {
+    this.setState({
+      imagesToTheRight: true,
+    });
+    const carousel = document.getElementById('outfitCarousel');
+    carousel.scrollLeft -= 307;
+
+    if (carousel.scrollLeft <= 307) {
+
+      this.setState({
+        imagesToTheLeft: false,
+      });
+    }
+  }
+
+  scrollRight() {
+    this.setState({
+      imagesToTheLeft: true,
+    });
+    const carousel = document.getElementById('outfitCarousel');
+    const amountLeftToScroll = carousel.scrollWidth - carousel.clientWidth;
+
+    carousel.scrollLeft += 307;
+    if (carousel.scrollLeft >= amountLeftToScroll - 400) {
+      this.setState({
+        imagesToTheRight: false,
+      });
+    }
+  }
+
+  isOverflowing() {
+    const carousel = document.getElementById('outfitCarousel');
+    const bool = carousel.scrollWidth > carousel.clientWidth;
+    this.setState({
+      cardOverflow: bool,
+      imagesToTheRight: bool,
+    });
+  }
 
   render() {
+    const { imagesToTheRight, imagesToTheLeft, avgRating} = this.state;
     return (
       <div>
         <h2>Your outfit</h2>
@@ -129,13 +175,25 @@ class YourOutfitList extends React.Component {
             <div className='AddOutfitContent card '><span>+ Add To Your Outfit</span>
             </div>
           </div>
-          {this.state.outfits.map((outfit, i) => (
-            <YourOutfitCard
-              outfit={outfit}
-              key={i}
-              deleteOutfit={this.deleteOutfit}
-            />
-          ))}
+          <div className='ListWrapper'>
+            {imagesToTheRight ? (<div className='RightButtonWrapper'>
+              <div className='RightButton' onClick={this.scrollRight}><i className="fas fa-chevron-circle-right"></i></div></div>) : null}
+
+            <div id='outfitCarousel' className='RelatedProductsList' onLoad={this.isOverflowing}>
+              {this.state.outfits.map((outfit, i) => (
+                <YourOutfitCard
+                  outfit={outfit}
+                  key={i}
+                  deleteOutfit={this.deleteOutfit}
+                  avgRating = {avgRating}
+                />
+              ))}
+            </div>
+
+            {imagesToTheLeft ? (<div className='LeftButtonWrapper'><div className='LeftButton' onClick={this.scrollLeft}><i className="fas fa-chevron-circle-left"></i></div></div>) : null}
+          </div>
+
+
         </div>
       </div>
     );

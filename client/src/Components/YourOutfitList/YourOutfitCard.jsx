@@ -12,7 +12,7 @@ class YourOutfitCard extends React.Component {
       productStyle: '',
       salePrice: '',
       featuredURL: '',
-      // avgRating: '',
+      avgRating: '',
     };
 
   }
@@ -40,21 +40,21 @@ class YourOutfitCard extends React.Component {
       this.setState({
         productIdInfo: shortInfo,
         productStyles: shortStyles,
-        // productRating: outfit.rating,
+        avgRating: outfit.data.avgRating,
         featuredURL: '/images/default-placeholder.png',
       });
     } else {
       this.setState({
         productIdInfo: shortInfo,
         productStyles: shortStyles,
-        // productRating: outfit.rating,
+        avgRating: outfit.data.avgRating,
         featuredURL: url,
       });
     }
   }
 
   render() {
-    const { productIdInfo, featuredURL, salePrice } = this.state;
+    const { productIdInfo, featuredURL, salePrice, avgRating } = this.state;
     const sale = { textDecoration: salePrice ? 'line-through' : 'none'};
 
     return (
@@ -68,7 +68,7 @@ class YourOutfitCard extends React.Component {
             <p className='category'>{productIdInfo.category}</p>
             <h3 className='title'>{productIdInfo.name}</h3>
             <p><span style={sale}>${productIdInfo.default_price}</span>{salePrice ? <span className='salePrice'> ${salePrice}</span> : null}</p>
-            {/* <AvgRatingStars avgRating={avgRating} id={productIdInfo.id} /> */}
+            <AvgRatingStars avgRating={avgRating} />
           </div>
         </div>
 
