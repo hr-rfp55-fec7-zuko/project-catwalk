@@ -18,7 +18,7 @@ var AnswerPhotoList = (props) => {
         <img className="qa-photos-minus" src={photo.url} onClick={handleImageClicked}></img>
         <AddAnswerModal ref={modalRef}>
           <img className="qa-photos-plus" src={selectedPhoto}></img>
-          <i class="fas fa-times fa-3x qa-photos-icon" onClick={() => modalRef.current.close()}></i>
+          <i className="fas fa-times fa-3x qa-photos-icon" onClick={() => modalRef.current.close()}></i>
         </AddAnswerModal>
       </React.Fragment>
     );
