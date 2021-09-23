@@ -1,7 +1,5 @@
 import React from 'react';
 
-//props should include an average star rating (int.)
-
 const AvgRatingStars = function AvgRatingStars(props) {
 
   let avgRating = parseFloat(props.avgRating);
