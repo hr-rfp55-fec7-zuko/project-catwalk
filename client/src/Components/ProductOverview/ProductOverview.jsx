@@ -26,7 +26,7 @@ class ProductOverview extends React.Component {
   }
 
   getProductInfo(id) {
-    axios.get(`http://localhost:3000/products/${id}`)
+    axios.get(`/products/${id}`)
       .then((response) => {
         var data = response.data;
         this.setState({
@@ -42,7 +42,7 @@ class ProductOverview extends React.Component {
   }
 
   getStyleInfo(id) {
-    axios.get(`http://localhost:3000/products/${id}/styles`)
+    axios.get(`/products/${id}/styles`)
       .then((response) => {
         this.setState({
           styles: response.data
