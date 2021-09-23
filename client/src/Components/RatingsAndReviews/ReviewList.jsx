@@ -81,7 +81,9 @@ class ReviewList extends React.Component {
               <ReviewTile key={review.review_id} review={review} submitHelpfulOrReport={this.props.submitHelpfulOrReport} handleThumbnailClick={this.handleThumbnailClick} toggleImageModalVisiblity={this.toggleImageModalVisiblity} />
             );
           } else {
-            listLength ++;
+            if (reviews[i + 1]) {
+              listLength ++;
+            }
           }
         } else {
           reviewList.push(

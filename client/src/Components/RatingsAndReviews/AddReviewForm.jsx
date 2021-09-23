@@ -206,8 +206,8 @@ class AddReviewForm extends React.Component {
 
             <div className="add-review-form">
               <i className="fas fa-times fa-3x add-review-close-icon-modal" onClick={this.closeModal} />
-              <h3>Write Your Review</h3>
-              <h4>About {this.props.product_name}</h4><br />
+              <h1>Write Your Review</h1>
+              <h2>About {this.props.product_name}</h2><br />
               <form id="review-form" onSubmit={this.submitReviewForm}>
 
                 <div className="form-question">
@@ -248,12 +248,12 @@ class AddReviewForm extends React.Component {
 
                 <div className="form-question">
                   <label className="form-category">Review Body*</label><br />
-                  <textarea minLength={50} maxLength={1000} id="body" name="body" value={this.state.body} onChange={this.handleStringFormChange} placeholder="Why did you like the product or not?" /><br />
+                  <textarea minLength={50} maxLength={1000} rows={5} cols={50} id="body" name="body" value={this.state.body} onChange={this.handleStringFormChange} placeholder="Why did you like the product or not?" /><br />
                   {this.state.body && this.state.body.length >= 50 ? <small>Minimum Reached</small> : <small>Review body must be at least 50 characters. {(50 - this.state.body.length)} characters remaining. </small>}
                 </div>
 
                 <div className="form-question">
-                  <label className="form-category">Uplaod your photos</label><br />
+                  <label className="form-category">Upload your photos</label><br />
                   <input type="file" id="select-file" name="filename" className="add-review-modal-button" multiple={true} onChange={this.handleImageChange}></input><br />
 
                   {this.state.selectedImages && this.state.selectedImages.map((image) => {

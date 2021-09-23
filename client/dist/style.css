@@ -664,6 +664,7 @@ li {
   margin-top: 20px;
   margin-right: 20px;
   border: 1px solid;
+  cursor: pointer;
 }
 
 .review-list {
@@ -764,8 +765,14 @@ li {
 .review-thumbnail {
   grid-area: thumbnail-slots;
   height: 60px;
-  width: auto;
-  margin-bottom: 3%
+  /* width: auto; */
+  margin-bottom: 3%;
+  border: 1px black solid;
+  cursor: pointer;
+}
+
+.rr-image-modal-image {
+  width: 100%
 }
 
 .review-recommend {
@@ -797,6 +804,7 @@ li {
   display: inline;
   padding-right: 5%;
   padding-top: 2%;
+  cursor: pointer;
 }
 
 .helpful-count {
@@ -806,6 +814,7 @@ li {
 
 .report {
   grid-area: report;
+  cursor: pointer;
 }
 
 /*Rating Bar Styling*/
@@ -813,6 +822,7 @@ li {
     background-color:red;
     width: 300px;
     padding:0.1em 0.2em;
+    cursor: pointer;
 }
 
 .rating-bar-outer {
@@ -960,6 +970,7 @@ li {
   box-shadow: 0 0 10px rgba(0,0,0,0.25);
   z-index: 101;
   padding: 40px;
+  object-fit: contain;
 }
 
 .add-review-modal-button {
@@ -970,6 +981,7 @@ li {
   margin-top: 20px;
   margin-right: 20px;
   border: 1px solid;
+  cursor: pointer;
 }
 
 /* Form star selector component styling */

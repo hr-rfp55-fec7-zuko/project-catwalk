@@ -24,7 +24,7 @@ class RatingsAndReviews extends React.Component {
       reviews: [],
       starFilters: [],
       clearFilterVisible: false,
-      reviewCount: 100
+      reviewCount: 500,
     };
 
     this.requestProductMetaData = this.requestProductMetaData.bind(this);
