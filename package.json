@@ -6,7 +6,9 @@
   "scripts": {
     "start-dev": "npx nodemon server/index.js -w",
     "build-dev": "webpack -w",
-    "test": "jest"
+    "test": "jest",
+    "start": "node server/index.js",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
