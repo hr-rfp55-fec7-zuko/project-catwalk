@@ -1205,7 +1205,7 @@ li {
 
 .darkMode {
   background-color: black;
-    color: white;
+  color: white;
   transition: 0.3s;
 }
 .darkMode .fa-check-circle:before {
@@ -1242,14 +1242,14 @@ li {
 }
 
 .darkMode a {
-  color: #ffd49c;
+  color: white;
 }
 
 .darkMode .po-image-gallery {
   background-color: transparent ;
 }
 
-.darkMode .dropdown__select, .darkMode .dropdown__quantity, .darkMode .qa-searchBar,.darkMode .qa-load,.darkMode .qa-button ,.darkMode select,.darkMode textarea,.darkMode .ratings-button,.darkMode .add-review-modal-button {
+.darkMode .qa-searchBar,.darkMode .qa-load,.darkMode .qa-button , .darkMode textarea,.darkMode .ratings-button,.darkMode .add-review-modal-button {
   background-color: rgba(255, 255, 255, 0.7);
 }
 
@@ -1258,7 +1258,7 @@ li {
 }
 
 .darkMode .RelatedProductsList .card, .darkMode  .YourOutfit .card, .darkMode  #addOutfit .card {
-  background-color:#969696;
+  background-color: black;
 }
 
 .darkMode .qa-photos-minus{
@@ -1266,7 +1266,7 @@ li {
 }
 
 .darkMode .AddOutfitContent {
-  background: linear-gradient(180deg, rgb(103 99 99), hsl(0deg 6% 58%));
+  background: linear-gradient(180deg, rgb(0 0 0), hsl(0deg 100% 50% / 38%));
 }
 .darkMode .button__add-cart{
   background-color: #cf1f1f;
@@ -1278,5 +1278,23 @@ li {
 }
 
 .darkMode .Comparison {
-  background-color: #6a6868;
+  background-color: black;
+}
+
+.darkMode .product-bar-outer {
+  background-color: black;
+}
+
+.darkMode i {
+  color: white;
+}
+
+.darkMode select {
+  border-color: white;
+  background-color: black;
+  color: white;
+}
+
+.darkMode .RelatedProductsList .card, .YourOutfit .card, #addOutfit .card {
+  box-shadow: -1px 3px 2px 1px rgb(255 255 255 / 50%);
 }
