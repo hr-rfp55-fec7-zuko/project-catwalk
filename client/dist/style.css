@@ -985,6 +985,7 @@ li {
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 100;
 }
 
 .qa-questions-modal-backdrop {
@@ -1007,12 +1008,10 @@ li {
   top: 50vh;
   left: 50vw;
   transform: translate(-50%, -50%);
-  overflow-y: auto;
-  height: 60%;
-  width: 60%;
+  object-fit: contain;
   background-color:white;
   box-shadow: 0 0 10px rgba(0,0,0,0.25);
-  z-index: 101;
+  z-index: 105;
   padding: 40px;
 }
 
@@ -1024,6 +1023,7 @@ li {
   margin-top: 10px;
   margin-right: 10px;
   border: 1px solid;
+  cursor: pointer;
 }
 
 .qa-searchBar {
@@ -1079,6 +1079,7 @@ li {
 .qa-answers-helpfulness, .qa-answers-side {
   font-size: 12px;
   padding-right: 8px;
+  cursor: pointer;
 }
 
 .qa-questions-side {
@@ -1086,6 +1087,7 @@ li {
   justify-content: flex-end;
   font-size: 12px;
   gap: 4px;
+  cursor: pointer;
 }
 
 .qa-answers-side {
@@ -1097,6 +1099,7 @@ li {
 
 .qa-answers-report {
   font-size: 12px;
+  cursor: pointer;
 }
 
 #qa-Yes {
@@ -1111,6 +1114,7 @@ li {
   margin-top: 20px;
   margin-right: 20px;
   border: 1px solid;
+  cursor: pointer;
 }
 
 .qa-button-icon {
@@ -1120,6 +1124,7 @@ li {
 .qa-twoButtons {
   display: flex;
 }
+
 .qa-load {
   font-family:'Montserrat',sans-serif;
   background-color: white;
@@ -1127,6 +1132,7 @@ li {
   font-size: 12px;
   border: none;
   padding-left: 20px;
+  cursor: pointer;
 }
 
 .qa-photos-main {
@@ -1141,23 +1147,25 @@ li {
   margin-top: 8px;
   margin-bottom: 8px;
   border: 1px solid;
+  cursor: pointer;
 }
 
 .qa-photos-plus {
   width: 100%;
-  height: 100%;
 }
 
 .qa-photos-icon {
   position: absolute;
   top: 2px;
   right: 10px;
+  cursor: pointer;
 }
 
 .qa-photos-icon-modal {
   position: absolute;
   top: 35px;
   right: 20px;
+  cursor: pointer;
 }
 
 .qa-notice {

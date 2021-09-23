@@ -54,13 +54,13 @@ var AddQuestionList = (props) => {
             <label className="qa-questions-modal-1">
               Your Question*
               <br/>
-              <textarea maxLength="1000" onChange={(e) => { e.preventDefault(); setAnswer(e.target.value); }}/>
+              <textarea maxLength="1000" rows="4" cols="50" onChange={(e) => { e.preventDefault(); setAnswer(e.target.value); }}/>
               <br/>
             </label>
             <label className="qa-questions-modal-2">
               What is your nickname*
               <br/>
-              <textarea maxLength="60" className="qa-withplaceholder" placeholder="Example: Zuko" onChange={(e) => { e.preventDefault(); setNickName(e.target.value); }}/>
+              <textarea maxLength="60" rows="4" cols="50" className="qa-withplaceholder" placeholder="Example: Zuko" onChange={(e) => { e.preventDefault(); setNickName(e.target.value); }}/>
               <br/>
               <p className="qa-notice">
                 For privacy reasons, do not use your full name or email address.
@@ -70,7 +70,7 @@ var AddQuestionList = (props) => {
             <label className="qa-questions-modal-3">
               What is your email*
               <br/>
-              <textarea maxLength="60" className="qa-withplaceholder" placeholder="Example: zuko@zuko.com" onChange={(e) => { e.preventDefault(); setEmailAdd(e.target.value); }}/>
+              <textarea maxLength="60" rows="4" cols="50" className="qa-withplaceholder" placeholder="Example: zuko@zuko.com" onChange={(e) => { e.preventDefault(); setEmailAdd(e.target.value); }}/>
               <br/>
               <p className="qa-notice">
                 For authentication reasons, you will not be emailed.
