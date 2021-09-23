@@ -47,14 +47,14 @@ router.delete('/:productId', (req, res) => {
   if ((userId in outfits)) {
 
     let outfit = outfits[userId];
-    var index = -1;
+    var index = 0;
 
-    for (let i = 0; i < outfit.length; i++) {
-      if (outfit[i].data.info.id === deleteId) {
+
+    outfit.forEach((item, i) => {
+      if (item.data.info.id === parseInt(deleteId)) {
         index = i;
-        break;
       }
-    }
+    });
     outfit.splice(index, 1);
   }
   res.json(outfits[userId]);
