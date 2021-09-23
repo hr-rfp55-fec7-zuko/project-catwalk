@@ -21,7 +21,7 @@ class ImageModal extends React.Component {
 
         <div className="add-review-modal-box">
           <i className="fas fa-times fa-3x add-review-close-icon-modal" onClick={this.closeModal} />
-          <img src={this.props.thumbnailURL} width='100%' height ='100%' aria-label="customer's product"></img>
+          <img className="rr-image-modal-image" src={this.props.thumbnailURL} width='100%' height ='100%' aria-label="customer's product"></img>
         </div>
       </>, document.getElementById('add-review-modal')
     );

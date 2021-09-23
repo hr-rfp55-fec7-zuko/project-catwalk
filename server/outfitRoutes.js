@@ -41,8 +41,7 @@ router.delete('/:productId', (req, res) => {
 
     let outfit = outfits[userId];
     var index = 0;
-
-
+    
     outfit.forEach((item, i) => {
       if (item.data.info.id === parseInt(deleteId)) {
         index = i;

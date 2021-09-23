@@ -9,11 +9,13 @@ class AddToCart extends React.Component {
     this.state = {
       style: this.props.style,
       addedToCart: false,
-      needSize: false
+      needSize: false,
+      outOfStock: false,
     };
     this.setSKU = this.setSKU.bind(this);
     this.setQuantity = this.setQuantity.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
+    this.setOutOfStock = this.setOutOfStock.bind(this);
   }
 
   setSKU(sku) {
@@ -66,6 +68,12 @@ class AddToCart extends React.Component {
     }
   }
 
+  setOutOfStock(boolean) {
+    this.setState({
+      outOfStock: boolean
+    });
+  }
+
   render() {
     return (
       <div className='po-add-cart'>
@@ -79,16 +87,18 @@ class AddToCart extends React.Component {
             <SizeSelector
               skus={this.state.style.skus}
               setSKU={this.setSKU}
-              needSize={this.state.needSize} />
+              needSize={this.state.needSize}
+              outOfStock={this.state.outOfStock} />
             <QuantitySelector
               totalQuantity={this.state.totalQuantity}
-              setQuantity={this.setQuantity} />
+              setQuantity={this.setQuantity}
+              outOfStock={this.state.outOfStock} />
           </div>
           <div className='add-cart-feat'>
-            <button
+            {!this.state.outOfStock && <button
               onClick={this.handleAddToCart} className='button__add-cart' >
               ADD TO CART
-            </button>
+            </button>}
             <p>{this.state.addedToCart ?
               `Added ${this.state.quantity} item(s) to cart!`
               : <br />}
@@ -110,6 +120,16 @@ class AddToCart extends React.Component {
         totalQuantity: null,
         quantity: null
       });
+      var skus = this.props.style.skus;
+      var totalStock = 0;
+      for (var sku in skus) {
+        totalStock += skus[sku].quantity;
+      }
+      if (totalStock === 0) {
+        this.setState({outOfStock: true});
+      } else {
+        this.setState({outOfStock: false});
+      }
       // if (this.state.selectedSKU && this.state.style.skus) {
       //   var skuArr = Object.keys(this.props.style.skus);
       //   for (var i = 0; i < skuArr.length; i++) {

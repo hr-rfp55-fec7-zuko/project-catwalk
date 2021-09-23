@@ -131,7 +131,7 @@ class ImageGallery extends React.Component {
                 return (
                   <img
                     key={index}
-                    src={image}
+                    src={image ? image : 'client/dist/images/default-placeholder.png'}
                     className={index === this.state.current ? 'thumbnail__slide thumbnail__slide-current' : 'thumbnail__slide'}
                     onClick={() => this.setSlideFromThumbnail(index)} />
                 );
@@ -172,7 +172,7 @@ class ImageGallery extends React.Component {
                       key={index}
                       id={this.state.zoomed ? 'zoomed-slide' : 'carousel__slide'}
                       className={this.state.expanded ? 'carousel__slide expanded-slide' : 'carousel__slide'}
-                      src={image}
+                      src={image ? image : '/client/dist/images/default-placeholder.png'}
                       onClick={!this.state.expanded ? this.expandSlide : this.zoomSlide}
                       onMouseMove={this.state.zoomed ? this.handleZoomMouseMove : null}
                       style={{
