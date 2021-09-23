@@ -36,6 +36,7 @@ class RatingBreakdown extends React.Component {
 
         <div className="rating-percentage-recommended">{percentageRecommended}% of reviews recommend this product</div>
         <br/>
+        
         {ratingsTuples.map((ratingTuple) =>
           <RatingBar key={ratingTuple[0]} reviewCount={reviewCount} ratingTuple={ratingTuple} toggleStarRatingFilter={this.props.toggleStarRatingFilter} handleClearStarFilters={this.handleClearStarFilters}/>)}
 
