@@ -109,9 +109,9 @@ class YourOutfitList extends React.Component {
     }
   }
 
-  deleteOutfit(productId) {
+  deleteOutfit(productNeedToDelete) {
     this.setState({ outfits: [] }, () => {
-      axios.delete(`/outfit/${productId}`)
+      axios.delete(`/outfit/${productNeedToDelete}`)
         .then(({ data }) => {
           if (data.length > 0) {
             this.setState({
