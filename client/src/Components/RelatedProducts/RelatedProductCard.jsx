@@ -110,7 +110,7 @@ class RelatedProductCard extends React.Component {
     let obj = {};
     combinedFeatures.forEach(item => {
       let obj1 = {};
-      if (!obj[item.feature]) {
+      if (!obj[item.value]) {
         obj[item.feature] = item.value;
         obj1['feature'] = item.feature;
         obj1['value'] = item.value;
