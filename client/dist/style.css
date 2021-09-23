@@ -1009,6 +1009,7 @@ li {
   right: 0;
   z-index: 100;
   background-color: rgba(0,0,0,0.3);
+  backdrop-filter: blur(5px) contrast(70%);
 }
 
 .qa-mainlist {
@@ -1144,7 +1145,7 @@ li {
   font-weight: 900;
   font-size: 12px;
   border: none;
-  padding-left: 20px;
+  margin-left: 20px;
   cursor: pointer;
 }
 
