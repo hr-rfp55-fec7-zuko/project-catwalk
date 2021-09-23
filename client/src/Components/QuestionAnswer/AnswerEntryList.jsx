@@ -38,31 +38,31 @@ var AnswerEntryList = (props) => {
   }, [props.questionId, subStatus, props.status]);
 
   if (answerList.length === 0) {
-    return <div></div>;
+    var aList = [];
+  } else {
+    var aList = answerList.map(item => {
+      return (
+        <div className="qa-eachA" key={item.answer_id}>
+          <p className="qa-answers-A">
+            A:
+          </p>
+          <p className="qa-answers-main">
+            {item.body}
+          </p>
+          <div className="break"></div>
+          {item.photos.length !== 0 &&
+            <AnswerPhotoList photos={item.photos} />
+          }
+          <p className="break"></p>
+          <p className="qa-answers-side">
+            by <span className="qa-seller" style={{fontWeight: item.answerer_name === 'Seller' ? 900 : 0}}>{item.answerer_name}</span>, {moment(item.date).format('LL')} |
+          </p>
+          <AnswerCountList helpfulness={item.helpfulness} answerId={item.answer_id}/>
+          <AnswerReportList answerId={item.answer_id}/>
+        </div>
+      );
+    });
   }
-
-  var aList = answerList.map(item => {
-    return (
-      <div className="qa-eachA" key={item.answer_id}>
-        <p className="qa-answers-A">
-          A:
-        </p>
-        <p className="qa-answers-main">
-          {item.body}
-        </p>
-        <div className="break"></div>
-        {item.photos.length !== 0 &&
-          <AnswerPhotoList photos={item.photos} />
-        }
-        <p className="break"></p>
-        <p className="qa-answers-side">
-          by <span className="qa-seller" style={{fontWeight: item.answerer_name === 'Seller' ? 900 : 0}}>{item.answerer_name}</span>, {moment(item.date).format('LL')} |
-        </p>
-        <AnswerCountList helpfulness={item.helpfulness} answerId={item.answer_id}/>
-        <AnswerReportList answerId={item.answer_id}/>
-      </div>
-    );
-  });
 
   var handleClick = (e) => {
     e.preventDefault();
