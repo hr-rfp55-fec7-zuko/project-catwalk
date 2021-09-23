@@ -9,24 +9,18 @@ class ProductBreakdown extends React.Component {
   }
 
   render() {
-
     let characteristics = this.props.characteristics;
-
     let characteristicTuples = [];
-
     for (var characteristic in characteristics) {
       characteristicTuples.push([characteristic, characteristics[characteristic].value, characteristic, characteristics[characteristic].id]);
     }
-
 
     return (
       <div className="product-breakdown">
         <h3>Product Breakdown</h3>
 
         {characteristicTuples.length > 0 &&
-
         characteristicTuples.map((tuple) => <ProductBar key={tuple[3]} characteristic={tuple[0]} score={tuple[1]}/>)
-
         }
 
       </div>
