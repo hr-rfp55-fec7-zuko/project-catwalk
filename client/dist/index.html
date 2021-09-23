@@ -1,16 +1,30 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Project Catwalk</title>
   <script src="https://kit.fontawesome.com/a16ffcdb44.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body>
+
+<body id="catWalk">
+  <ul class="mode">
+    <li class="darkModeIcon iconMode" onclick="changeMode()"></li>
+    <!-- <li class="lightModeIcon iconMode" onclick="changeMode()"><i class="fas fa-sun"></i></li> -->
+  </ul>
   <div id="app">
-    Hello! If you see this message, your React is not working!
+  </div>
+  Hello! If you see this message, your React is not working!
   </div>
   <div id="qa-questions-modal"></div>
   <div id="add-review-modal"></div>
   <script type="text/javascript" src="bundle.js"></script>
 </body>
+<script>
+  function changeMode() {
+    var element = document.getElementById("catWalk");
+    element.classList.toggle('darkMode');
+  }
+</script>
+
 </html>

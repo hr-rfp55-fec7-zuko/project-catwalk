@@ -18,13 +18,6 @@ router.post('/', (req, res) => {
   } else {
     outfitArr = outfits[userId];
     outfitArr.unshift(data);
-
-    // for (let i = 0; i < outfitArr.length; i++) {
-    //   if (outfitArr[i].productId !== data.productId) {
-    //     outfits[userId].unshift(data);
-    //     break;
-    //   }
-    // }
   }
 
   res.status(201).send(data);
