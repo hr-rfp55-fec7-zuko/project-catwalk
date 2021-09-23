@@ -43,14 +43,16 @@ router.get('/', (req, res) => {
 router.delete('/:productId', (req, res) => {
   var userId = fixUserID;
   var deleteId = req.params['productId'];
-  var index = -1;
 
   if ((userId in outfits)) {
+
     let outfit = outfits[userId];
-    let index;
-    for (let i = 0; i < outfits.length; i++) {
-      if (outfits[i].productId === deleteId) {
+    var index = -1;
+
+    for (let i = 0; i < outfit.length; i++) {
+      if (outfit[i].data.id === deleteId) {
         index = i;
+        break;
       }
     }
     outfit.splice(index, 1);
