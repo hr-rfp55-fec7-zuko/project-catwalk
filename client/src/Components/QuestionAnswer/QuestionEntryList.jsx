@@ -24,7 +24,7 @@ class QuestionEntryList extends React.Component {
   handleClick(e) {
     e.preventDefault();
     this.setState({displayQuestion: this.props.lists.length});
-    // console.log('selector:', e.target, 'section:', e.target.className.slice(0, 2), 'date:', Date().toLocaleString());
+    // console.log('selector:', e.target.className, 'section:', 'Questions and Answers', 'date:', Date().toLocaleString());
     this.props.clickTrack(e.target.className, 'Questions and Answers', Date().toLocaleString());
   }
 
