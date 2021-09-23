@@ -1,5 +1,5 @@
 
-const photoAPIKey = 'git ';
+const photoAPIKey = 'keyHere';
 
 export default photoAPIKey;
 
