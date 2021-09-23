@@ -12,7 +12,6 @@ class ReviewList extends React.Component {
       reviewLimit: 0,
       reviewPage: 1,
       addReviewFormVisible: false,
-      // addReviewFormVisible: true
       imageModalVisible: false,
       thumbnailURL: null
 
@@ -53,7 +52,6 @@ class ReviewList extends React.Component {
   }
 
   handleThumbnailClick(thumbnailURL) {
-    console.log('thumbnailURL', thumbnailURL);
     this.setState({imageModalVisible: !this.state.imageModalVisible, thumbnailURL: thumbnailURL});
   }
 

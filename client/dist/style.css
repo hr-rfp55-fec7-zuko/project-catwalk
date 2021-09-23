@@ -803,9 +803,9 @@ li {
 }
 
 /*Rating Bar Styling*/
-
 .rating-bar-container:hover {
     background-color:red;
+    width: 300px;
     padding:0.1em 0.2em;
 }
 
@@ -822,8 +822,7 @@ li {
 .rating-bar-inner-fill {
   width: 50%;
   height: 100%;
-  background: forestgreen;
-  /* display: inline-block; */
+  background: #8DAA91;
 }
 
 .rating-bar-right-text {
@@ -838,7 +837,7 @@ li {
   justify-content: center;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 2fr;
+  grid-template-rows: 1fr 1fr 1fr;
   grid-template-areas:
   "product-bar-title product-bar-title product-bar-title"
   "product-bar-outer product-bar-outer product-bar-outer"
@@ -874,6 +873,7 @@ li {
   font-size: 12px;
   display: inline;
   justify-self: start;
+  align-self: end;
 }
 
 .product-bar.high-label {
@@ -881,6 +881,7 @@ li {
   font-size: 12px;
   display: inline;
   justify-self: end;
+  align-self: end;
   padding-right: 20px;
 }
 
