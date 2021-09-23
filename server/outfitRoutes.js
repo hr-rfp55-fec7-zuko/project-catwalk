@@ -18,13 +18,6 @@ router.post('/', (req, res) => {
   } else {
     outfitArr = outfits[userId];
     outfitArr.unshift(data);
-
-    // for (let i = 0; i < outfitArr.length; i++) {
-    //   if (outfitArr[i].productId !== data.productId) {
-    //     outfits[userId].unshift(data);
-    //     break;
-    //   }
-    // }
   }
 
   res.status(201).send(data);
@@ -47,14 +40,13 @@ router.delete('/:productId', (req, res) => {
   if ((userId in outfits)) {
 
     let outfit = outfits[userId];
-    var index = -1;
-
-    for (let i = 0; i < outfit.length; i++) {
-      if (outfit[i].data.info.id === deleteId) {
+    var index = 0;
+    
+    outfit.forEach((item, i) => {
+      if (item.data.info.id === parseInt(deleteId)) {
         index = i;
-        break;
       }
-    }
+    });
     outfit.splice(index, 1);
   }
   res.json(outfits[userId]);
