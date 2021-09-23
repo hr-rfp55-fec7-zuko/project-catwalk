@@ -53,9 +53,8 @@ class AddReviewForm extends React.Component {
       if (property.includes('characteristics-')) {
         let splitProperties = property.split('-');
         let newProperty = splitProperties[1];
-        let characteristic_id = this.props.characteristics[newProperty].id;
-        // console.log(characteristic_id)
-        characteristics[characteristic_id] = parseInt(this.state[property]);
+        var characteristicId = this.props.characteristics[newProperty].id;
+        characteristics[characteristicId] = parseInt(this.state[property]);
       }
 
       // if (property.includes('characteristics')) {
@@ -101,22 +100,22 @@ class AddReviewForm extends React.Component {
                   return cb(null, photos, characteristics);
                 }
               })
-              .catch((err) => console.log('ERROR in Cloudinary POST Request'));
+              .catch((err) => console.error('ERROR in Cloudinary POST Request'));
           }
         };
 
         photoURLs(this.state.files, (error, data) => {
 
           var dataBody = {
-            "product_id": parseInt(this.props.product_id),
-            "rating": parseInt(this.state.rating),
-            "summary": this.state.summary + "",
-            "body": this.state.body + "",
-            "recommend": this.state.recommended === 'No' ? false : true,
-            "name": this.state.name,
-            "email": this.state.email + "",
-            "photos": photos,
-            "characteristics": characteristics
+            'product_id': parseInt(this.props.product_id),
+            'rating': parseInt(this.state.rating),
+            'summary': this.state.summary + '',
+            'body': this.state.body + '',
+            'recommend': this.state.recommended === 'No' ? false : true,
+            'name': this.state.name,
+            'email': this.state.email + '',
+            'photos': photos,
+            'characteristics': characteristics
           };
 
           this.props.submitReviewForm(dataBody);
@@ -533,7 +532,7 @@ Radio button alts
 
     */
 
-    /*
+/*
 
 
 submitReviewForm(event) {

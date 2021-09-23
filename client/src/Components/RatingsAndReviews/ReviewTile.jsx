@@ -64,8 +64,8 @@ class ReviewTile extends React.Component {
           <AvgRatingStars avgRating={review.rating} />
         </div>
         <div className="review-attribution">
-            <span className="review-user">{review.reviewer_name}, </span>
-            <span className="review-date">{date}</span>
+          <span className="review-user">{review.reviewer_name}, </span>
+          <span className="review-date">{date}</span>
         </div>
 
         <div className="review-summary">{review.summary}</div>
@@ -73,9 +73,9 @@ class ReviewTile extends React.Component {
 
 
         <div className="review-thumbnails">
-        {review.photos.length > 0 &&
+          {review.photos.length > 0 &&
           review.photos.map((photo) => <img src={photo.url} id={photo.id} className="review-thumbnail" onClick={this.handleThumbnailClick} toggleImageModalVisiblity={this.props.toggleImageModalVisiblity}/>)
-        }
+          }
         </div>
 
         {review.recommend &&
