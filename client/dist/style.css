@@ -1200,3 +1200,83 @@ li {
   margin-top: 2px;
   margin-right: 15px;
 }
+
+/*========= CSS for Dark Mode ===========*/
+
+.darkMode {
+  background-color: black;
+    color: white;
+  transition: 0.3s;
+}
+.darkMode .fa-check-circle:before {
+  color: black;
+}
+
+.mode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.iconMode {
+  background: rgb(224, 224, 224) url(./images/modeicon.png) no-repeat -40px 5px;
+  background-size: 80px;
+  height: 50px;
+  width: 50px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.darkMode .iconMode {
+  background: rgb(216, 216, 216) url(./images/modeicon.png) no-repeat 6px 5px;
+  background-size: 80px;
+}
+
+.darkMode .ModalWrapper {
+  background-color: rgba(0,0,0,0.3);
+}
+
+.mode li:hover {
+  transition: 0.3s;
+}
+
+.darkMode a {
+  color: #ffd49c;
+}
+
+.darkMode .po-image-gallery {
+  background-color: transparent ;
+}
+
+.darkMode .dropdown__select, .darkMode .dropdown__quantity, .darkMode .qa-searchBar,.darkMode .qa-load,.darkMode .qa-button ,.darkMode select,.darkMode textarea,.darkMode .ratings-button,.darkMode .add-review-modal-button {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.darkMode .qa-questions-modal-box ,.darkMode .add-review-modal-box{
+  background-color: rgb(119, 119, 119);
+}
+
+.darkMode .RelatedProductsList .card, .darkMode  .YourOutfit .card, .darkMode  #addOutfit .card {
+  background-color:#969696;
+}
+
+.darkMode .qa-photos-minus{
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.darkMode .AddOutfitContent {
+  background: linear-gradient(180deg, rgb(103 99 99), hsl(0deg 6% 58%));
+}
+.darkMode .button__add-cart{
+  background-color: #cf1f1f;
+  border-color: #cf1f1f;
+}
+
+.darkMode .app-title , .darkMode .stars-inner::before, .darkMode .soc-btn{
+  color: #e21515;
+}
+
+.darkMode .Comparison {
+  background-color: #6a6868;
+}
