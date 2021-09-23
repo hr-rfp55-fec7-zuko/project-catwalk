@@ -61,7 +61,7 @@ class RelatedProductCard extends React.Component {
         let url;
 
         if (!defaultProduct) {
-          url = data.photos[0].thumbnail_url;
+          url = data[0].photos[0].thumbnail_url;
           this.setState({
             salePrice: data.sale_price,
           });

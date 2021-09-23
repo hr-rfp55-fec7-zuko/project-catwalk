@@ -16,6 +16,7 @@ class YourOutfitCard extends React.Component {
     };
 
     this.changeProductOutfit = this.changeProductOutfit.bind(this);
+    this.hanldeDelete = this.hanldeDelete.bind(this);
   }
 
   componentDidMount() {
@@ -59,6 +60,11 @@ class YourOutfitCard extends React.Component {
     this.props.updateProductID(this.state.productIdInfo.id);
   }
 
+  hanldeDelete(event) {
+    event.preventDefault();
+    this.props.deleteOutfit(this.state.productIdInfo.id);
+  }
+
   render() {
     const { productIdInfo, featuredURL, salePrice, avgRating } = this.state;
     const sale = { textDecoration: salePrice ? 'line-through' : 'none' };
@@ -66,7 +72,7 @@ class YourOutfitCard extends React.Component {
     return (
       <div className="cardWrapper" id={productIdInfo.id}>
         <div className='card' >
-          <div className='CompareButton' onClick={this.props.deleteOutfit} ><i className="fa fa-times" aria-hidden="true"></i></div>
+          <div className='CompareButton' onClick={this.hanldeDelete} ><i className="fa fa-times" aria-hidden="true"></i></div>
           <div className='containerCard' onClick={this.changeProductOutfit}>
             <div className='pic'>
               <img src={featuredURL} alt={productIdInfo.name}></img>
