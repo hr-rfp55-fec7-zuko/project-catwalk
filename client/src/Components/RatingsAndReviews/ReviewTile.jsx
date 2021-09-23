@@ -66,7 +66,7 @@ class ReviewTile extends React.Component {
 
         <div className="review-thumbnails">
           {review.photos.length > 0 &&
-          review.photos.map((photo) => <img src={photo.url} id={photo.id} className="review-thumbnail" onClick={this.handleThumbnailClick} onClick={this.props.toggleImageModalVisiblity}/>)
+          review.photos.map((photo) => <img src={photo.url} id={photo.id} className='review-thumbnail' onClick={this.handleThumbnailClick}/>)
           }
         </div>
 
