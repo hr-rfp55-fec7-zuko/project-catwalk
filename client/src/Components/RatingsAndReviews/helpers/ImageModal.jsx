@@ -12,9 +12,7 @@ class ImageModal extends React.Component {
   }
 
   render() {
-
     return ReactDom.createPortal(
-
       <>
         <div className="add-review-modal-wrapper" >
           <div className="add-review-modal-backdrop" onClick={this.closeModal}></div>
@@ -22,13 +20,11 @@ class ImageModal extends React.Component {
         </div>
 
         <div className="add-review-modal-box">
-        <i className="fas fa-times fa-3x add-review-close-icon-modal" onClick={this.closeModal} />
-        <img src={this.props.thumbnailURL} width='100%' height ='100%' aria-label="customer's product"></img>
-      </div>
-    </>, document.getElementById('add-review-modal')
-
+          <i className="fas fa-times fa-3x add-review-close-icon-modal" onClick={this.closeModal} />
+          <img src={this.props.thumbnailURL} width='100%' height ='100%' aria-label="customer's product"></img>
+        </div>
+      </>, document.getElementById('add-review-modal')
     );
-
   }
 }
 

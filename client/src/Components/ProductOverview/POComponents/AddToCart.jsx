@@ -71,7 +71,7 @@ class AddToCart extends React.Component {
       <div className='po-add-cart'>
         {this.state.needSize ?
           <div className='select-size-msg' >
-            You need to select a size first!
+            Please select a size!
           </div>
           : <div className='select-size-msg'> <br /> </div>}
         <div className='select-parent'>
@@ -90,7 +90,7 @@ class AddToCart extends React.Component {
               ADD TO CART
             </button>
             <p>{this.state.addedToCart ?
-              `You added ${this.state.quantity} items to your cart!`
+              `Added ${this.state.quantity} item(s) to cart!`
               : <br />}
             </p>
           </div>

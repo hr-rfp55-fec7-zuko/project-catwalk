@@ -23,19 +23,11 @@ class ReviewTile extends React.Component {
 
 
     if (!this.state.helpfulOrReported) {
-
       if (action === 'Yes') {
         action = 'helpful';
       }
-
-      console.log('action - handleHelpfulOrReportClick', action);
-
       this.setState({helpfulOrReported: true});
-
-      console.log(this.props.review.review_id, action);
-
       this.props.submitHelpfulOrReport(this.props.review.review_id, action);
-
     }
   }
 
@@ -63,28 +55,25 @@ class ReviewTile extends React.Component {
         <div className="star-rating">
           <AvgRatingStars avgRating={review.rating} />
         </div>
+
         <div className="review-attribution">
-            <span className="review-user">{review.reviewer_name}, </span>
-            <span className="review-date">{date}</span>
+          <span className="review-user">{review.reviewer_name}, </span>
+          <span className="review-date">{date}</span>
         </div>
 
         <div className="review-summary">{review.summary}</div>
         <div className="review-body">{review.body}</div>
 
-
         <div className="review-thumbnails">
-        {review.photos.length > 0 &&
-          review.photos.map((photo) => <img src={photo.url} id={photo.id} className="review-thumbnail" onClick={this.handleThumbnailClick} toggleImageModalVisiblity={this.props.toggleImageModalVisiblity}/>)
-        }
+          {review.photos.length > 0 &&
+          review.photos.map((photo) => <img src={photo.url} id={photo.id} className="review-thumbnail" onClick={this.handleThumbnailClick} onClick={this.props.toggleImageModalVisiblity}/>)
+          }
         </div>
 
         {review.recommend &&
           <div className="review-recommend">
             <FontAwesomeIcon icon={faCheck}/> I recommend this product</div>
         }
-
-        {/* {photos} */}
-
 
         {review.response &&
           <div className="review-response"><h3>Response</h3>{review.response}</div>
@@ -107,10 +96,7 @@ class ReviewTile extends React.Component {
           {this.state.helpfulOrReported &&
           <><br/><span>Your feedback has been submitted</span></>
           }
-
         </div>
-
-
       </div>
     );
   }

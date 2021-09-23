@@ -105,7 +105,7 @@ class ImageGallery extends React.Component {
     return (
       <div className='po-image-gallery' >
         {this.state.expanded ?
-          (!this.state.zoomed && <div className='thumbnail-navtrack'>
+          <div className='thumbnail-navtrack'>
             {thumbPhotos.map((image, index) => {
               return (
                 <i
@@ -115,7 +115,7 @@ class ImageGallery extends React.Component {
                 ></i>
               );
             })}
-          </div>)
+          </div>
           : <div className='thumbnail-container' >
             {(this.state.current !== 0 && !this.state.zoomed) &&
               (<button
@@ -149,28 +149,41 @@ class ImageGallery extends React.Component {
             (<button
               className='carousel__button carousel__button--left'
               onClick={this.prevSlide}
-              style={this.state.expanded ? { left: '20px' } : { left: '100px' }} >
+              style={this.state.expanded ? { left: '20px' } : { left: '80px' }} >
               <i className="fas fa-arrow-left fa-lg"></i>
             </button>
             )}
           <div className='carousel__track' id='carousel__track' >
-            {fullPhotos.map((image, index) => {
-              if (index === this.state.current) {
-                return (
-                  <img
-                    key={index}
-                    id={this.state.zoomed ? 'zoomed-slide' : 'carousel__slide'}
-                    className={this.state.expanded ? 'carousel__slide expanded-slide' : 'carousel__slide'}
-                    src={image}
-                    onClick={!this.state.expanded ? this.expandSlide : this.zoomSlide}
-                    onMouseMove={this.state.zoomed ? this.handleZoomMouseMove : null}
-                    style={{
-                      objectPosition: `${this.state.imageX}% ${this.state.imageY}%`,
-                      transformOrigin: `${this.state.imageX}% ${this.state.imageY}%`
-                    }} />
-                );
-              }
-            })}
+            {length === 0 ?
+              <img
+                id={this.state.zoomed ? 'zoomed-slide' : 'carousel__slide'}
+                className={this.state.expanded ? 'carousel__slide expanded-slide' : 'carousel__slide'}
+                src={'/images/default-placeholder.png'}
+                onClick={!this.state.expanded ? this.expandSlide : this.zoomSlide}
+                onMouseMove={this.state.zoomed ? this.handleZoomMouseMove : null}
+                style={{
+                  objectPosition: `${this.state.imageX}% ${this.state.imageY}%`,
+                  transformOrigin: `${this.state.imageX}% ${this.state.imageY}%`
+                }} />
+              : fullPhotos.map((image, index) => {
+                if (index === this.state.current) {
+                  return (
+                    <img
+                      key={index}
+                      id={this.state.zoomed ? 'zoomed-slide' : 'carousel__slide'}
+                      className={this.state.expanded ? 'carousel__slide expanded-slide' : 'carousel__slide'}
+                      src={image}
+                      onClick={!this.state.expanded ? this.expandSlide : this.zoomSlide}
+                      onMouseMove={this.state.zoomed ? this.handleZoomMouseMove : null}
+                      style={{
+                        objectPosition: `${this.state.imageX}% ${this.state.imageY}%`,
+                        transformOrigin: `${this.state.imageX}% ${this.state.imageY}%`
+                      }} />
+                  );
+                }
+              })
+
+            }
           </div>
           {!this.state.zoomed &&
             <button
