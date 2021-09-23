@@ -7,6 +7,10 @@ class StarPicker extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      selectionLabel: null
+    };
+
     this.handleStarSelect = this.handleStarSelect.bind(this);
   }
 
@@ -14,6 +18,8 @@ class StarPicker extends React.Component {
     let button = event.target.parentElement.parentElement;
     let name = button.name;
     let id = button.id;
+
+    this.setState({selectionLabel: ratingMeanings.starValues[id]});
 
     this.props.handleStarSelect(name, id);
   }
@@ -26,12 +32,13 @@ class StarPicker extends React.Component {
           return (
             <>
               <button type="button" onClick={this.handleStarSelect} id={ratingValue} name="rating">
-                <FontAwesomeIcon onClick={this.handleRadioFormChange} key={ratingValue} className="star" value={ratingValue} icon={faStar} size={'2x'} color={ratingValue <= this.props.rating ? '#ffc107' : '#e4e5e9'}/>
+                <FontAwesomeIcon onClick={this.handleRadioFormChange} key={ratingValue} className="star" value={ratingValue} icon={faStar} size={'2x'} color={ratingValue <= this.props.rating ? '#ff0707' : '#e4e5e9'}/>
               </button>
             </>
           );
         })
         }
+        {this.state.selectionLabel ? this.state.selectionLabel : <></>}
       </div>
     );
   }
