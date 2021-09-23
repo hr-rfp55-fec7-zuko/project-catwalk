@@ -25,7 +25,7 @@ class RatingBreakdown extends React.Component {
 
     let ratingsTuplesDescending = [];
 
-    for (var j = ratingsTuplesAscendingOrder.length - 1; j > -1 ; j--) {
+    for (var j = ratingsTuplesAscendingOrder.length - 1; j > -1; j--) {
       ratingsTuplesDescending.push(ratingsTuplesAscendingOrder[j]);
     }
 
