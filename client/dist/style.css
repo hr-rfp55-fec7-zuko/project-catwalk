@@ -719,8 +719,12 @@ li {
 
 .review-list {
   max-height: 100vh;
-  overflow: scroll;
+  overflow: hidden;
   grid-area: review-list;
+}
+
+.review-list:hover {
+  overflow-y: scroll;
 }
 
 .rating-breakdown {
@@ -1069,7 +1073,11 @@ li {
 
 .qa-mainlist {
   max-height: 100vh;
-  overflow: scroll;
+  overflow: hidden;
+}
+
+.qa-mainlist:hover {
+  overflow-y:scroll;
 }
 
 .qa-questions-modal-box {
