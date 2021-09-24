@@ -739,7 +739,7 @@ li {
 
 /*Review Tile Styling*/
 .review-tile {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid grey;
   height: 350px;
   width: 80%;
   margin-top: 1%;
@@ -1302,7 +1302,7 @@ li {
 }
 
 .darkMode .po-image-gallery {
-  background-color: transparent ;
+  background-color: black;
 }
 
 .darkMode .qa-searchBar,.darkMode .qa-load,.darkMode .qa-button , .darkMode textarea,.darkMode .ratings-button,.darkMode .add-review-modal-button, .darkMode .qa-questions-modal-button {
