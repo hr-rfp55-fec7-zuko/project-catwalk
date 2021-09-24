@@ -719,13 +719,13 @@ li {
 
 .review-list {
   max-height: 100vh;
-  overflow: hidden;
+  overflow: scroll;
   grid-area: review-list;
 }
 
-.review-list:hover {
+/* .review-list:hover {
   overflow-y: scroll;
-}
+} */
 
 .rating-breakdown {
   grid-area: rating-breakdown;
@@ -1073,12 +1073,12 @@ li {
 
 .qa-mainlist {
   max-height: 100vh;
-  overflow: hidden;
+  overflow: scroll;
 }
 
-.qa-mainlist:hover {
+/* .qa-mainlist:hover {
   overflow-y:scroll;
-}
+} */
 
 .qa-questions-modal-box {
   position: fixed;
