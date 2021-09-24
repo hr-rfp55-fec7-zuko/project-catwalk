@@ -38,12 +38,14 @@ const helpers = {
   },
 
   determinePercentageRecommend: function(recommendedObject) {
-    if (Object.keys(recommendedObject).length === 0) {
+    var recommendationArray = Object.values(recommendedObject).map((val) => parseInt(val));
+    var totalRecommendations = recommendationArray.reduce((total, val) => total += parseInt(val));
+
+    if (recommendedObject[true] === undefined || totalRecommendations === 0) {
       return 0;
     }
 
-    let totalReviews = recommendedObject[true] + recommendedObject[false];
-    return (Math.round((recommendedObject[true] / totalReviews) * 100));
+    return (Math.round((recommendedObject[true] / totalRecommendations) * 100));
   }
 
 };
