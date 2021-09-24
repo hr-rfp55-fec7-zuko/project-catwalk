@@ -57,7 +57,6 @@ var AddQuestionList = (props) => {
               <textarea maxLength="1000" rows="4" cols="50" onChange={(e) => { e.preventDefault(); setAnswer(e.target.value); }}/>
               <br/>
             </label>
-            <br/>
             <label className="qa-questions-modal-2">
               What is your nickname*
               <br/>
@@ -76,6 +75,7 @@ var AddQuestionList = (props) => {
               <p className="qa-notice">
                 For authentication reasons, you will not be emailed.
               </p>
+              <br/>
             </label>
             <br />
             <button className="qa-questions-modal-button" type="submit">

@@ -719,12 +719,8 @@ li {
 
 .review-list {
   max-height: 100vh;
-  overflow: hidden;
+  overflow: scroll;
   grid-area: review-list;
-}
-
-.review-list:hover {
-  overflow-y: scroll;
 }
 
 .rating-breakdown {
@@ -1073,11 +1069,7 @@ li {
 
 .qa-mainlist {
   max-height: 100vh;
-  overflow: hidden;
-}
-
-.qa-mainlist:hover {
-  overflow-y:scroll;
+  overflow: scroll;
 }
 
 .qa-questions-modal-box {
@@ -1128,7 +1120,6 @@ li {
 }
 
 .break {
-  display: flex;
   flex-basis: 100%;
   height: 0;
 }
@@ -1137,11 +1128,9 @@ li {
   display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid grey;
-  padding-bottom: 10px;
 }
 
 .qa-answers-A, .qa-questions {
@@ -1211,7 +1200,7 @@ li {
   font-weight: 900;
   font-size: 12px;
   border: none;
-  margin-left: 14px;
+  margin-left: 20px;
   cursor: pointer;
 }
 
