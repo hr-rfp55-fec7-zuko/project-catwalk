@@ -37,11 +37,14 @@ class RatingBreakdown extends React.Component {
         <br/>
 
         {ratingsTuplesDescending.map((ratingTuple) =>
-          <RatingBar key={ratingTuple[0]} reviewCount={reviewCount} ratingTuple={ratingTuple} toggleStarRatingFilter={this.props.toggleStarRatingFilter} handleClearStarFilters={this.handleClearStarFilters}/>)
+          <RatingBar key={ratingTuple[0]} reviewCount={reviewCount} ratingTuple={ratingTuple} toggleStarRatingFilter={this.props.toggleStarRatingFilter} handleClearStarFilters={this.handleClearStarFilters} starFilters={this.props.starFilters}/>)
         }
 
         {this.props.clearFilterVisible &&
-          <a onClick={this.props.handleClearStarFilters}>Clear all filters</a>
+          <>
+            <span>Currently filtering: </span>
+            <a onClick={this.props.handleClearStarFilters}>Clear all filters</a> <br />
+          </>
         }
 
       </div>
