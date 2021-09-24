@@ -1139,6 +1139,8 @@ li {
   margin-bottom: 10px;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid gray;
+  padding-bottom: 10px;
 }
 
 .qa-answers-A, .qa-questions {
