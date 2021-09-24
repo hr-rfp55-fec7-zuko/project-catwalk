@@ -33,6 +33,7 @@ class RatingsAndReviews extends React.Component {
     this.submitHelpfulOrReport = this.submitHelpfulOrReport.bind(this);
     this.toggleStarRatingFilter = this.toggleStarRatingFilter.bind(this);
     this.handleClearStarFilters = this.handleClearStarFilters.bind(this);
+    this.handleSortChange = this.handleSortChange.bind(this);
   }
 
   componentDidMount() {
@@ -48,20 +49,34 @@ class RatingsAndReviews extends React.Component {
   //########---EVENT HANDLERS---#######//
   toggleStarRatingFilter(event) {
 
-    var filterValue = event.target.className.replace( /^\D+/g, '');
+    var filterValue = parseInt(event.target.className.replace( /^\D+/g, ''));
     var indexOfFilterValue = this.state.starFilters.indexOf(filterValue);
     var newFilterList, clearFilterVisibility;
 
-    if (indexOfFilterValue === 0 && this.state.starFilters.length === 1) {
-      newFilterList = [];
-      clearFilterVisibility = false;
-    } else if (indexOfFilterValue !== -1) {
-      let stateCopy = this.state.starFilters.slice();
-      newFilterList = stateCopy.splice((indexOfFilterValue - 1 || 0), 1);
-      clearFilterVisibility = true;
-    } else if (this.state.starFilters.length === 0) {
+    //if there is nothing in the list
+    if (this.state.starFilters.length === 0) {
       newFilterList = [filterValue];
       clearFilterVisibility = true;
+    //if the clicked filter is the only filter on the list
+    } else if (indexOfFilterValue === 0 && this.state.starFilters.length === 1) {
+      newFilterList = [];
+      clearFilterVisibility = false;
+    } else if (indexOfFilterValue === 0) {
+      newFilterList = this.state.starFilters.slice(1);
+
+      //if the filter value is alread on the list, locate it and take it out
+    } else if (indexOfFilterValue !== -1) {
+      newFilterList = this.state.starFilters.slice();
+      newFilterList.splice((indexOfFilterValue), 1);
+      clearFilterVisibility = true;
+    //if the filter value is not on the list, add it
+    } else if (indexOfFilterValue === -1) {
+      // newFilterList = [filterValue];
+      newFilterList = this.state.starFilters.slice();
+      newFilterList.push(filterValue);
+      clearFilterVisibility = true;
+
+
     } else {
       newFilterList = this.state.starFilters.slice();
       newFilterList.push(filterValue);
@@ -77,6 +92,12 @@ class RatingsAndReviews extends React.Component {
 
   handleClearStarFilters() {
     this.setState({starFilters: [], clearFilterVisible: false});
+  }
+
+  handleSortChange(event) {
+    let filter = event.target.value;
+    this.requestProductReviews(filter);
+    this.handleClearStarFilters();
   }
 
   //########---AJAX REQUESTS---#######//
@@ -125,9 +146,9 @@ class RatingsAndReviews extends React.Component {
       <div className="ratings-and-reviews" id="ratings-and-reviews">
 
         <>
-          <RatingBreakdown metaData={this.state.metaData} reviewCount={reviewCount} setAvgRating={this.setAvgRating} toggleStarRatingFilter={this.toggleStarRatingFilter} handleClearStarFilters={this.handleClearStarFilters} clearFilterVisible={this.state.clearFilterVisible}/>
+          <RatingBreakdown metaData={this.state.metaData} reviewCount={reviewCount} setAvgRating={this.setAvgRating} starFilters={this.state.starFilters} toggleStarRatingFilter={this.toggleStarRatingFilter} handleClearStarFilters={this.handleClearStarFilters} clearFilterVisible={this.state.clearFilterVisible}/>
           <ProductBreakdown characteristics={this.state.metaData.characteristics}/>
-          <SortBar reviewCount={reviewCount} requestProductReviews={this.requestProductReviews} reviewListCount={this.state.reviews.length}/>
+          <SortBar reviewCount={reviewCount} requestProductReviews={this.requestProductReviews} reviewListCount={this.state.reviews.length} handleSortChange={this.handleSortChange}/>
           <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount} submitHelpfulOrReport={this.submitHelpfulOrReport} product_name={this.props.product_name} submitReviewForm={this.submitReviewForm} product_id={this.props.product_id} starFilters={this.state.starFilters}/>
         </>
       </div>

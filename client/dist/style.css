@@ -773,7 +773,7 @@ li {
 }
 
 .rr-image-modal-image {
-  width: 100%
+  width: auto;
 }
 
 .review-recommend {
@@ -819,11 +819,17 @@ li {
 }
 
 /*Rating Bar Styling*/
-.rating-bar-container:hover {
+.rating-bar-container:hover, .rating-bar-container.filtered {
     background-color:red;
     width: 300px;
     padding:0.1em 0.2em;
     cursor: pointer;
+    color: white;
+}
+
+.rating-breakdown a {
+  text-decoration: underline;
+  color: red;
 }
 
 .rating-bar-outer {
@@ -966,7 +972,7 @@ li {
   transform: translate(-50%, -50%);
   overflow-y: auto;
   height: 70%;
-  width: 60%;
+  /* width: 60%; */
   background-color:white;
   box-shadow: 0 0 10px rgba(0,0,0,0.25);
   z-index: 101;
