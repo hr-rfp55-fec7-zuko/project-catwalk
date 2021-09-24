@@ -18,7 +18,7 @@ const AddAnswerModal = forwardRef((props, ref) => {
   if (show) {
     return ReactDom.createPortal(
       <div className="qa-questions-modal-wrapper">
-        <div onClick={close} className="qa-questions-modal-backdrop" />
+        <div className="qa-questions-modal-backdrop" />
         <div className="qa-questions-modal-box">
           {props.children}
         </div>
