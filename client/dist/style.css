@@ -618,8 +618,8 @@ li {
 .stars-outer{
   display: inline-block;
   position: relative;
-  font-family: FontAwesome;
-  font-weight: 1000;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 200;
 }
 
 .stars-outer::before {
@@ -882,7 +882,7 @@ li {
  .svg-inline--fa.fa-caret-up.fa-w-10{
   overflow: visible;
   vertical-align: middle;
-  color: dodgerblue;
+  color: #8DAA91;
 }
 
 .product-bar.low-label {
@@ -1009,6 +1009,7 @@ li {
   right: 0;
   z-index: 100;
   background-color: rgba(0,0,0,0.3);
+  backdrop-filter: blur(5px) contrast(70%);
 }
 
 .qa-mainlist {
@@ -1144,7 +1145,7 @@ li {
   font-weight: 900;
   font-size: 12px;
   border: none;
-  padding-left: 20px;
+  margin-left: 20px;
   cursor: pointer;
 }
 
@@ -1205,7 +1206,7 @@ li {
 
 .darkMode {
   background-color: black;
-    color: white;
+  color: white;
   transition: 0.3s;
 }
 .darkMode .fa-check-circle:before {
@@ -1242,23 +1243,24 @@ li {
 }
 
 .darkMode a {
-  color: #ffd49c;
+  color: white;
 }
 
 .darkMode .po-image-gallery {
   background-color: transparent ;
 }
 
-.darkMode .dropdown__select, .darkMode .dropdown__quantity, .darkMode .qa-searchBar,.darkMode .qa-load,.darkMode .qa-button ,.darkMode select,.darkMode textarea,.darkMode .ratings-button,.darkMode .add-review-modal-button {
-  background-color: rgba(255, 255, 255, 0.7);
+.darkMode .qa-searchBar,.darkMode .qa-load,.darkMode .qa-button , .darkMode textarea,.darkMode .ratings-button,.darkMode .add-review-modal-button, .darkMode .qa-questions-modal-button {
+  background-color: black;
+  color: white;
 }
 
 .darkMode .qa-questions-modal-box ,.darkMode .add-review-modal-box{
-  background-color: rgb(119, 119, 119);
+  background-color: black;
 }
 
 .darkMode .RelatedProductsList .card, .darkMode  .YourOutfit .card, .darkMode  #addOutfit .card {
-  background-color:#969696;
+  background-color: black;
 }
 
 .darkMode .qa-photos-minus{
@@ -1266,7 +1268,7 @@ li {
 }
 
 .darkMode .AddOutfitContent {
-  background: linear-gradient(180deg, rgb(103 99 99), hsl(0deg 6% 58%));
+  background: linear-gradient(180deg, rgb(0 0 0), hsl(0deg 100% 50% / 38%));
 }
 .darkMode .button__add-cart{
   background-color: #cf1f1f;
@@ -1277,6 +1279,28 @@ li {
   color: #e21515;
 }
 
-.darkMode .Comparison {
-  background-color: #6a6868;
+.darkMode .Comparison, .darkMode .product-bar-outer  {
+  background-color: black;
+}
+
+.darkMode .review-response {
+  background-color: rgb(60, 60, 60);
+}
+
+.darkMode i {
+  color: white;
+}
+
+.darkMode .fa-dragon{
+  color: red;
+}
+
+.darkMode select {
+  border-color: white;
+  background-color: black;
+  color: white;
+}
+
+.darkMode .RelatedProductsList .card, .darkMode .YourOutfit .card, .darkMode #addOutfit .card {
+  box-shadow: -1px 3px 2px 1px rgb(255 255 255 / 50%);
 }
