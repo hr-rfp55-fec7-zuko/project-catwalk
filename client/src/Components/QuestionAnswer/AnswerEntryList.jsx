@@ -88,11 +88,6 @@ var AnswerEntryList = (props) => {
           <button className="qa-load" onClick={(e) => handleClick(e)}>{btnVal ? 'See More Answers' : 'Collapse Answers'}</button>
         </React.Fragment>
       }
-      {aList.length > 0 &&
-        <React.Fragment>
-          <div className="break"></div>
-        </React.Fragment>
-      }
     </React.Fragment>
   );
 };
