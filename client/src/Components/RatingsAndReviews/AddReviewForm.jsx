@@ -85,6 +85,7 @@ class AddReviewForm extends React.Component {
           'characteristics': characteristics
         };
         this.props.submitReviewForm(dataBody);
+
       } else {
         var photos = [];
         var photoURLs = (filesArray, cb) => {
@@ -119,9 +120,6 @@ class AddReviewForm extends React.Component {
           console.log(dataBody);
         });
       }
-
-      console.log(dataBody);
-
       this.closeModal();
     }
   }
