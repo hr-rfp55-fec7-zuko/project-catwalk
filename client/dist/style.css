@@ -723,6 +723,10 @@ li {
   grid-area: review-list;
 }
 
+/* .review-list:hover {
+  overflow-y: scroll;
+} */
+
 .rating-breakdown {
   grid-area: rating-breakdown;
 }
@@ -1071,6 +1075,10 @@ li {
   max-height: 100vh;
   overflow: scroll;
 }
+
+/* .qa-mainlist:hover {
+  overflow-y:scroll;
+} */
 
 .qa-questions-modal-box {
   position: fixed;
