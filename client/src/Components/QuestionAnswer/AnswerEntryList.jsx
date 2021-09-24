@@ -42,24 +42,29 @@ var AnswerEntryList = (props) => {
   } else {
     var aList = answerList.map(item => {
       return (
-        <div className="qa-eachA" key={item.answer_id}>
-          <p className="qa-answers-A">
-            A:
-          </p>
-          <p className="qa-answers-main">
-            {item.body}
-          </p>
-          <div className="break"></div>
-          {item.photos.length !== 0 &&
-            <AnswerPhotoList photos={item.photos} />
-          }
-          <p className="break"></p>
-          <p className="qa-answers-side">
-            by <span className="qa-seller" style={{fontWeight: item.answerer_name === 'Seller' ? 900 : 0}}>{item.answerer_name}</span>, {moment(item.date).format('LL')} |
-          </p>
-          <AnswerCountList helpfulness={item.helpfulness} answerId={item.answer_id}/>
-          <AnswerReportList answerId={item.answer_id}/>
-        </div>
+        <React.Fragment key={item.answer_id}>
+          <div className="break"/>
+          <div className="qa-eachA">
+            <p className="qa-answers-A">
+              A:
+            </p>
+            <p className="qa-answers-main">
+              {item.body}
+            </p>
+            <div className="break"></div>
+            {item.photos.length !== 0 &&
+              <AnswerPhotoList photos={item.photos} />
+            }
+            <p className="break"></p>
+            <p className="qa-answers-side">
+              by <span className="qa-seller" style={{fontWeight: item.answerer_name === 'Seller' ? 900 : 0}}>{item.answerer_name}</span>, {moment(item.date).format('LL')} |
+            </p>
+            <AnswerCountList helpfulness={item.helpfulness} answerId={item.answer_id}/>
+            <AnswerReportList answerId={item.answer_id}/>
+            <br/>
+          </div>
+          <div className="break"/>
+        </React.Fragment>
       );
     });
   }
@@ -75,12 +80,15 @@ var AnswerEntryList = (props) => {
   };
 
   return (
-    <div>
+    <React.Fragment>
       {aList.slice(0, displayItem)}
       {aList.length > 2 &&
-        <button className="qa-load" onClick={(e) => handleClick(e)}>{btnVal ? 'See More Answers' : 'Collapse Answers'}</button>
+        <React.Fragment>
+          <div className="break"></div>
+          <button className="qa-load" onClick={(e) => handleClick(e)}>{btnVal ? 'See More Answers' : 'Collapse Answers'}</button>
+        </React.Fragment>
       }
-    </div>
+    </React.Fragment>
   );
 };
 
