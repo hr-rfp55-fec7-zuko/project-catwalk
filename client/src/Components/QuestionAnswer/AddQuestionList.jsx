@@ -58,6 +58,7 @@ var AddQuestionList = (props) => {
               <br/>
             </label>
             <label className="qa-questions-modal-2">
+              <br/>
               What is your nickname*
               <br/>
               <textarea maxLength="60" rows="4" cols="50" className="qa-withplaceholder" placeholder="Example: Zuko" onChange={(e) => { e.preventDefault(); setNickName(e.target.value); }}/>
@@ -77,7 +78,6 @@ var AddQuestionList = (props) => {
               </p>
               <br/>
             </label>
-            <br />
             <button className="qa-questions-modal-button" type="submit">
               Submit Question
             </button>
