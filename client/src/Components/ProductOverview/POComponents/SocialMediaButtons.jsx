@@ -9,7 +9,7 @@ var SocialMediaButtons = (props) => {
       <a href='https://www.twitter.com/'>
         <i className='fab fa-twitter fa-2x soc-btn'></i>
       </a>
-      <a href='https://www.pinterest.com/' target='_blank'>
+      <a href='https://www.pinterest.com/pin/create/button/' data-pin-do='buttonBookmark' data-pin-custom target='_blank'>
         <i className='fab fa-pinterest fa-2x soc-btn'></i>
       </a>
       <a href='https://www.instagram.com/' target='_blank'>
