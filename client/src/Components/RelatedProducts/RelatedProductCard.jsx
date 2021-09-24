@@ -11,10 +11,8 @@ class RelatedProductCard extends React.Component {
     const { parentProductIdInfo } = this.props;
     this.state = {
       productIdInfo: '',
-      parentProductIdInfo,
       featuredURL: '',
       openCompareModal: false,
-      parentProductFeatures: '',
       comparedFeatures: '',
       salePrice: '',
       avgRating: '',
@@ -40,12 +38,11 @@ class RelatedProductCard extends React.Component {
 
   fetchAPIProduct() {
     const { productId, parentProductIdInfo } = this.props;
-    const { currentProductFeatures, parentProductFeatures, rating, avgRating } = this.state;
+    const { currentProductFeatures, rating, avgRating } = this.state;
     axios.get(`/products/${productId}`)
       .then(({ data }) => {
         this.setState({
           productIdInfo: data,
-          parentProductFeatures: parentProductIdInfo.features,
           currentProductFeatures: data.features,
         });
 
@@ -96,15 +93,14 @@ class RelatedProductCard extends React.Component {
   }
 
   handleCompareClick() {
-    const { openCompareModal, parentProductFeatures, currentProductFeatures } = this.state;
+    const { openCompareModal, currentProductFeatures } = this.state;
     this.setState({
       openCompareModal: !openCompareModal,
     });
-    this.compareFeatures(parentProductFeatures, currentProductFeatures);
+    this.compareFeatures(this.props.parentProductIdInfo.features, currentProductFeatures);
   }
 
   compareFeatures(parentFeature, productFeature) {
-    // let combinedObj = parentFeature.concat(productFeature);
     let combinedFeatures = parentFeature.concat(productFeature);
     let output = [];
     let obj = {};
@@ -123,7 +119,7 @@ class RelatedProductCard extends React.Component {
   }
 
   render() {
-    const { productIdInfo, featuredURL, salePrice, openCompareModal, comparedFeatures, parentProductIdInfo, rating } = this.state;
+    const { productIdInfo, featuredURL, salePrice, openCompareModal, comparedFeatures, rating } = this.state;
     const sale = { textDecoration: salePrice ? 'line-through' : 'none' };
 
     return (
@@ -139,7 +135,7 @@ class RelatedProductCard extends React.Component {
                 <p className='category'>{productIdInfo.category}</p>
                 <h3 className='title' >{productIdInfo.name}</h3>
                 <p><span style={sale}>${productIdInfo.default_price}</span>{salePrice ? <span className='salePrice'> ${salePrice}</span> : null}</p>
-                <AvgRatingStars avgRating={AverageRating(rating)}/>
+                <AvgRatingStars avgRating={AverageRating(rating)} />
               </div>
             </div>
           </div>
@@ -148,7 +144,7 @@ class RelatedProductCard extends React.Component {
           <div>
             <ComparisonModal
               closeModal={this.handleCompareClick}
-              parentProduct={parentProductIdInfo}
+              parentProduct={this.props.parentProductIdInfo}
               compareProduct={productIdInfo}
               comparedFeatures={comparedFeatures}
             />
