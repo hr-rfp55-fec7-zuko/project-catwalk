@@ -24,6 +24,11 @@ h3 {
   font-size: 18px;
 }
 
+a {
+  text-decoration: underline;
+  color: black;
+}
+
 #app {
   max-width: 1200px;
   margin: auto;
@@ -74,7 +79,8 @@ h3 {
 .RelatedProductsList .card, .YourOutfit .card, #addOutfit .card {
   position: relative;
   width: 100%;
-  padding-bottom: 30px;
+  min-height: 350px;
+  /* padding-bottom: 30px; */
   box-shadow:-1px 3px 2px 1px rgb(94,74,74,0.15);
 }
 
@@ -100,7 +106,7 @@ h3 {
   position: absolute;
   top: 0px;
   left: 0px;
-  height: 95%;
+  height: 93%;
 }
 
 #addOutfit .card {
@@ -238,7 +244,7 @@ h3 {
 
 .ModalWrapper {
   background-color: rgba(0,0,0,0.5);
-  z-index: 5;
+  z-index: 15;
   width: 100%;
   height: 100%;
   position: fixed;
