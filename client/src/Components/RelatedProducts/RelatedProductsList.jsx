@@ -104,7 +104,7 @@ class RelatedProductsList extends React.Component {
             <RelatedProductCard
               parentProductId={productId}
               productId={product}
-              parentProductIdInfo={parentProductIdInfo}
+             parentProductIdInfo={parentProductIdInfo}
               key={product}
               updateProductID={this.props.updateProductID}
             />
