@@ -117,7 +117,6 @@ class AddReviewForm extends React.Component {
             'characteristics': characteristics
           };
           this.props.submitReviewForm(dataBody);
-          console.log(dataBody);
         });
       }
       this.closeModal();

@@ -121,7 +121,7 @@ class RatingsAndReviews extends React.Component {
 
   submitReviewForm(body) {
     return axios.post('/reviews/', {params: body})
-      .then((results) => console.log('AJAX POST RESULTS:', results.data, results))
+      // .then((results) => console.log('AJAX POST RESULTS:', results.data, results))
       .catch((error) => console.error('error', error));
   }
 
