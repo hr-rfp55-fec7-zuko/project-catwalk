@@ -36,9 +36,7 @@ class AddReviewForm extends React.Component {
 
   submitReviewForm(event) {
     event.preventDefault();
-
     var incompleteFields = [];
-
     for (var property in this.state) {
       if (property === 'submitted') {
         continue;
@@ -63,28 +61,33 @@ class AddReviewForm extends React.Component {
       // }
 
     }
-
     var emailReminder =
       !this.state.email.includes('@') ? 'Please enter valid email address.' : '';
-
     incompleteFields =
       incompleteFields.some((field => mandatoryFormFields.includes(field))) ? 'Please complete all mandatory form fields.' : '';
-
     var bodyLengthReminder =
       !(this.state.body.length >= 50) ? 'Reiew body must be at least 50 characters' : '';
-
     if (incompleteFields.length > 0 || emailReminder) {
       alert(`${incompleteFields}\n${emailReminder}\n${bodyLengthReminder}`);
 
     } else {
-
       if (this.state.files.length === 0) {
         var photos = [];
+        var dataBody = {
+          'product_id': parseInt(this.props.product_id),
+          'rating': parseInt(this.state.rating),
+          'summary': this.state.summary + '',
+          'body': this.state.body + '',
+          'recommend': this.state.recommended === 'No' ? false : true,
+          'name': this.state.name,
+          'email': this.state.email + '',
+          'photos': photos,
+          'characteristics': characteristics
+        };
+        this.props.submitReviewForm(dataBody);
 
       } else {
-
         var photos = [];
-
         var photoURLs = (filesArray, cb) => {
           for (var i = 0; i < filesArray.length; i++) {
             let formData = new FormData();
@@ -101,9 +104,7 @@ class AddReviewForm extends React.Component {
               .catch((err) => console.error('ERROR in Cloudinary POST Request'));
           }
         };
-
         photoURLs(this.state.files, (error, data) => {
-
           var dataBody = {
             'product_id': parseInt(this.props.product_id),
             'rating': parseInt(this.state.rating),
@@ -115,13 +116,10 @@ class AddReviewForm extends React.Component {
             'photos': photos,
             'characteristics': characteristics
           };
-
           this.props.submitReviewForm(dataBody);
-
-          this.closeModal();
-
         });
       }
+      this.closeModal();
     }
   }
 
