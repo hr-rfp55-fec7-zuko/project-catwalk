@@ -49,7 +49,7 @@ class RatingsAndReviews extends React.Component {
   //########---EVENT HANDLERS---#######//
   toggleStarRatingFilter(event) {
 
-    var filterValue = event.target.className.replace( /^\D+/g, '');
+    var filterValue = parseInt(event.target.className.replace( /^\D+/g, ''));
     var indexOfFilterValue = this.state.starFilters.indexOf(filterValue);
     var newFilterList, clearFilterVisibility;
 
@@ -146,7 +146,7 @@ class RatingsAndReviews extends React.Component {
       <div className="ratings-and-reviews" id="ratings-and-reviews">
 
         <>
-          <RatingBreakdown metaData={this.state.metaData} reviewCount={reviewCount} setAvgRating={this.setAvgRating} toggleStarRatingFilter={this.toggleStarRatingFilter} handleClearStarFilters={this.handleClearStarFilters} clearFilterVisible={this.state.clearFilterVisible}/>
+          <RatingBreakdown metaData={this.state.metaData} reviewCount={reviewCount} setAvgRating={this.setAvgRating} starFilters={this.state.starFilters} toggleStarRatingFilter={this.toggleStarRatingFilter} handleClearStarFilters={this.handleClearStarFilters} clearFilterVisible={this.state.clearFilterVisible}/>
           <ProductBreakdown characteristics={this.state.metaData.characteristics}/>
           <SortBar reviewCount={reviewCount} requestProductReviews={this.requestProductReviews} reviewListCount={this.state.reviews.length} handleSortChange={this.handleSortChange}/>
           <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount} submitHelpfulOrReport={this.submitHelpfulOrReport} product_name={this.props.product_name} submitReviewForm={this.submitReviewForm} product_id={this.props.product_id} starFilters={this.state.starFilters}/>
