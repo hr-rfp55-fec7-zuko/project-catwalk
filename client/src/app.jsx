@@ -57,6 +57,7 @@ class App extends React.Component {
   }
 
   render() {
+    document.querySelector('#common-css').removeAttribute('disabled');
     return (
       <div>
         <div className='top-bar'>
