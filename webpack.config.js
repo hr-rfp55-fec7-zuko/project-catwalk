@@ -33,6 +33,7 @@ module.exports = {
     // algorithm: 'gzip',
   }),
   new ImageMinimizerPlugin({
+    loader: true,
     minimizerOptions: {
       // Lossless optimization with custom option
       // Feel free to experiment with options for better result for you
