@@ -4,6 +4,7 @@ var DIST_DIR = path.join(__dirname, '/client/dist');
 
 const CompressionPlugin = require('compression-webpack-plugin');
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
   devtool: 'source-map',
