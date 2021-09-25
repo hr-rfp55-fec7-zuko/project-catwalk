@@ -18,26 +18,22 @@ This is the Hack Reactor Front End Capstone. The challenge was to create a moder
 ### React
 We utilized React on to implement a responsive, single-page application capable of rendering data from a third-party API. We implemented click tracking with higher order React components.
 
-### Nodejs
 
+### Node.js and Express
 <!-- - Despite being a front-end capstone that explicitly placed back-end implementation out of scope, used Nodejs to utilize Express. -->
-
-
-### Express
-
 <!-- - Simplified API requests by implementing a proxy server in Express.js that adds authentication while forwarding requests to an existing RESTful API. -->
-
+Although the emphasis of this project was front-end development, we utilized an Express for Node.js server to route requests to a RESTful API with necessary authorization added. Express compression middleware was used for optimization.
 
 ### CSS
-
 <!-- - Aside from being the sole technology used for the aesthetic styling of this application:
   - All styling, including functional implementations like the modals and image gallery, were written solely with CSS.
   - The use of Grid made the overlay button functionality and precise placement of static assets accessible and simple.
   - Flexbox was instrumental in handling the wealth of dynamic data being delivered to the page. -->
+A goal of this project was to deeply understand CSS without importing addtional styling frameworks, so all styling and functional implementations were written purely with CSS. The app includes both a light mode and a dark mode, which were implemented using only CSS.
 
 ### Webpack
-
 <!-- - Webpack was our solution to elegantly handle our numerous static assets, implement JSX, and harness ES6 in this project. -->
+
 
 ---
 
