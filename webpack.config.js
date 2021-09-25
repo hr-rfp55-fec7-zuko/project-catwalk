@@ -2,10 +2,13 @@ var path = require('path');
 var SRC_DIR = path.join(__dirname, '/client/src');
 var DIST_DIR = path.join(__dirname, '/client/dist');
 
+const CompressionPlugin = require('compression-webpack-plugin');
+
 module.exports = {
-  devtool: 'eval-source-map',
+  devtool: 'source-map',
+  // devtool: 'eval-source-map', // used to be, for development
   entry: `${SRC_DIR}/index.jsx`,
-  mode: 'development',
+  mode: 'production',
   output: {
     filename: 'bundle.js',
     path: DIST_DIR,
@@ -22,4 +25,9 @@ module.exports = {
       },
     ],
   },
+  plugins: [new CompressionPlugin({
+    // filename: 'bundle.js',
+    // include: /\/includes/,
+    // algorithm: 'gzip',
+  })],
 };
