@@ -1,4 +1,5 @@
 const express = require('express');
+const compression = require('compression');
 
 const reviews = require('./rrRoutes.js');
 const products = require('./productRoutes.js');
@@ -10,6 +11,8 @@ const axios = require('axios');
 
 const app = express();
 const PORT = 3000;
+
+app.use(compression());
 
 app.use(express.static(__dirname + '/../client/dist'));
 
