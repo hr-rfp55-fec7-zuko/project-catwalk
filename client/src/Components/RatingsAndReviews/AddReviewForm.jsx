@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import CharacteristicRadioFormField from './helpers/CharacteristicRadioFormField.jsx';
 import StarPicker from './helpers/StarPicker.jsx';
-import {PHOTOAPIKEY} from '/client/config.js';
+import { PHOTOAPIKEY } from '/client/config.js';
 import axios from 'axios';
+import { buildReviewObject } from './helpers/helpers.js';
 
 var mandatoryFormFields = ['name', 'email', 'rating', 'recommended', 'summary', 'body'];
 
@@ -36,6 +37,13 @@ class AddReviewForm extends React.Component {
 
   submitReviewForm(event) {
     event.preventDefault();
+
+    this.props.handleClick(event.target.id);
+
+    var formData = this.state;
+
+    // buildReviewObject(formData);
+
     var incompleteFields = [];
     for (var property in this.state) {
       if (property === 'submitted') {
@@ -53,12 +61,6 @@ class AddReviewForm extends React.Component {
         var characteristicId = this.props.characteristics[newProperty].id;
         characteristics[characteristicId] = parseInt(this.state[property]);
       }
-
-      // if (property.includes('characteristics')) {
-      //   var splitInput = property.split('-')
-      //   var newProperty = splitInput[1]
-      //   dataBody.characteristics[newProperty] = this.state.characteristics[newProperty]
-      // }
 
     }
     var emailReminder =
@@ -124,7 +126,7 @@ class AddReviewForm extends React.Component {
   }
 
   closeModal() {
-    this.props.toggleAddReviewFormVisible();
+    this.props.toggleAddReviewFormVisibility();
   }
 
   setStateProperty(property, value) {
@@ -261,7 +263,7 @@ class AddReviewForm extends React.Component {
                 </div>
 
                 <div className="form-question">
-                  <button type="submit" className="add-review-modal-button" onClick={this.submitReviewForm}>Submit Reivew</button>
+                  <button type="submit" className="add-review-modal-button" name="submit-review" id="submit-review" onClick={this.submitReviewForm}>Submit Reivew</button>
                 </div>
 
               </form>

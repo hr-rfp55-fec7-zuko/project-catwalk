@@ -46,6 +46,16 @@ const helpers = {
     }
 
     return (Math.round((recommendedObject[true] / totalRecommendations) * 100));
+  },
+
+  buildReviewObject(formDataObj) {
+    checkMandatoryFields(formData);
+
+  },
+
+  checkMandatoryFields(formData) {
+    var mandatoryFormFields = ['name', 'email', 'rating', 'recommended', 'summary', 'body'];
+
   }
 
 };
