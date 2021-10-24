@@ -12,19 +12,35 @@ class AddReviewForm extends React.Component {
   constructor(props) {
     super(props);
 
+    // this.state = {
+    //   rating: 0,
+    //   summary: '',
+    //   body: '',
+    //   recommended: null,
+    //   name: '',
+    //   email: '',
+    //   characteristics: {},
+    //   photos: [], //hosted photo url
+    //   selectedImages: [], //local url
+    //   files: [], //event.target.files
+    //   submitted: false
+    // };
+
     this.state = {
-      rating: 0,
-      summary: '',
-      body: '',
-      recommended: null,
-      name: '',
-      email: '',
-      characteristics: {},
+      formData: {
+        rating: 0,
+        summary: '',
+        body: '',
+        recommended: null,
+        name: '',
+        email: '',
+        characteristics: {}
+      },
       photos: [], //hosted photo url
       selectedImages: [], //local url
       files: [], //event.target.files
       submitted: false
-    };
+    },
 
     this.closeModal = this.closeModal.bind(this);
     this.handleStringFormChange = this.handleStringFormChange.bind(this);
@@ -130,7 +146,18 @@ class AddReviewForm extends React.Component {
   }
 
   setStateProperty(property, value) {
-    this.setState({ [property]: value });
+    // this.setState({ [property]: value });
+    if (property.includes("characteristics")) {
+      property = property.split("-");
+      property = property[1];
+
+      var characteristics = {...this.state.formData.characteristics}
+      characteristics[property] = value;
+
+      this.setState({formData: {...this.state.formData, characteristics: characteristics}})
+    } else {
+      this.setState({formData: {...this.state.formData, [property]: value} });
+    }
   }
 
   handleStringFormChange(event) {
@@ -249,7 +276,8 @@ class AddReviewForm extends React.Component {
                 <div className="form-question">
                   <label className="form-category">Review Body*</label><br />
                   <textarea minLength={50} maxLength={1000} rows={5} cols={50} id="body" name="body" value={this.state.body} onChange={this.handleStringFormChange} placeholder="Why did you like the product or not?" /><br />
-                  {this.state.body && this.state.body.length >= 50 ? <small>Minimum Reached</small> : <small>Review body must be at least 50 characters. {(50 - this.state.body.length)} characters remaining. </small>}
+
+                  {this.state.formData.body && this.state.formData.body.length >= 50 ? <small>Minimum Reached</small> : <small>Review body must be at least 50 characters. {(50 - this.state.formData.body.length)} characters remaining. </small>}
                 </div>
 
                 <div className="form-question">
