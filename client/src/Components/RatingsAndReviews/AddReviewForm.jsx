@@ -151,8 +151,10 @@ class AddReviewForm extends React.Component {
       property = property.split("-");
       property = property[1];
 
+      /*eslint-disable*/
       var characteristics = {...this.state.formData.characteristics}
       characteristics[property] = value;
+      /*eslint-disable*/
 
       this.setState({formData: {...this.state.formData, characteristics: characteristics}})
     } else {
