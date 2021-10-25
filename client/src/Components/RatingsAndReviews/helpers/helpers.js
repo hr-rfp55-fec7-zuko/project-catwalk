@@ -1,4 +1,9 @@
+import { PHOTOAPIKEY } from '/client/config.js';
+import axios from 'axios';
+
 const helpers = {
+
+  //########---Rating Visualizations---#######//
   determineTotalReviews: function(reviewsObject) {
     if (Object.keys(reviewsObject).length === 0) {
       return 0;
@@ -48,6 +53,30 @@ const helpers = {
     return (Math.round((recommendedObject[true] / totalRecommendations) * 100));
   },
 
+  //########---Form Validation & Submission---#######//
+  findFormIncompletes(formData) {
+    var mandatoryFormFields = ['name', 'email', 'rating', 'recommended', 'summary', 'body'];
+
+    var incompleteFields = [];
+
+    for (var property in formData) {
+      if (Boolean(formData[property]) !== true) {
+        incompleteFields.push(property);
+      }
+    }
+
+    var incompleteFieldReminder =
+      incompleteFields.some((field => mandatoryFormFields.includes(field))) ? 'Please complete all mandatory form fields.\n' : '';
+
+    var emailReminder =
+      !formData.email.includes('@') ? 'Please enter valid email address.\n' : '';
+
+    var bodyLengthReminder =
+      !(formData.body.length >= 50) ? 'Reiew body must be at least 50 characters' : '';
+
+    return incompleteFieldReminder + emailReminder + bodyLengthReminder;
+  },
+
   buildReviewObject(formDataObj, productId, charateristicIds, photos) {
 
     var productId = parseInt(productId);
@@ -74,28 +103,28 @@ const helpers = {
     };
   },
 
-  findFormIncompletes(formData) {
-    var mandatoryFormFields = ['name', 'email', 'rating', 'recommended', 'summary', 'body'];
+  getPhotoURLs(filesArray, callback) {
+    var photos = [];
+    for (var i = 0; i < filesArray.length; i++ ) {
+      var apiFormData = new FormData();
+      apiFormData.append('file', filesArray[i]);
+      apiFormData.append('upload_preset', PHOTOAPIKEY);
 
-    var incompleteFields = [];
-
-    for (var property in formData) {
-      if (Boolean(formData[property]) !== true) {
-        incompleteFields.push(property);
-      }
+      axios.post('https://api.cloudinary.com/v1_1/drbwyfh4x/upload', apiFormData)
+        .then((data) => {
+          photos.push(data.data.secure_url);
+          if (photos.length === filesArray.length) {
+            return callback(null, photos);
+          }
+        })
+        .catch((error) => {
+          console.error('ERROR in getPhotoURLs API Request', error);
+        });
     }
 
-    var incompleteFieldReminder =
-      incompleteFields.some((field => mandatoryFormFields.includes(field))) ? 'Please complete all mandatory form fields.\n' : '';
-
-    var emailReminder =
-      !formData.email.includes('@') ? 'Please enter valid email address.\n' : '';
-
-    var bodyLengthReminder =
-      !(formData.body.length >= 50) ? 'Reiew body must be at least 50 characters' : '';
-
-    return incompleteFieldReminder + emailReminder + bodyLengthReminder;
   }
+
+
 
 };
 

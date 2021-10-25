@@ -118,37 +118,47 @@ class AddReviewForm extends React.Component {
 
 
       } else {
-        var photos = [];
-        var photoURLs = (filesArray, cb) => {
-          for (var i = 0; i < filesArray.length; i++) {
-            let formData = new FormData();
-            formData.append('file', filesArray[i]);
-            formData.append('upload_preset', PHOTOAPIKEY);
+        // var photos = [];
+        // var photoURLs = (filesArray, cb) => {
+        //   for (var i = 0; i < filesArray.length; i++) {
+        //     let formData = new FormData();
+        //     formData.append('file', filesArray[i]);
+        //     formData.append('upload_preset', PHOTOAPIKEY);
 
-            axios.post('https://api.cloudinary.com/v1_1/drbwyfh4x/upload', formData)
-              .then((data) => {
-                photos.push(data.data.secure_url);
-                if (photos.length === filesArray.length) {
-                  return cb(null, photos, characteristics);
-                }
-              })
-              .catch((err) => console.error('ERROR in Cloudinary POST Request'));
-          }
-        };
-        photoURLs(this.state.files, (error, data) => {
-          var dataBody = {
-            'product_id': parseInt(this.props.product_id),
-            'rating': parseInt(this.state.rating),
-            'summary': this.state.summary + '',
-            'body': this.state.body + '',
-            'recommend': this.state.recommended === 'No' ? false : true,
-            'name': this.state.name,
-            'email': this.state.email + '',
-            'photos': photos,
-            'characteristics': characteristics
-          };
+        //     axios.post('https://api.cloudinary.com/v1_1/drbwyfh4x/upload', formData)
+        //       .then((data) => {
+        //         photos.push(data.data.secure_url);
+        //         if (photos.length === filesArray.length) {
+        //           return cb(null, photos, characteristics);
+        //         }
+        //       })
+        //       .catch((err) => console.error('ERROR in Cloudinary POST Request'));
+        //   }
+        // };
+
+        // photoURLs(this.state.files, (error, data) => {
+        //   var dataBody = {
+        //     'product_id': parseInt(this.props.product_id),
+        //     'rating': parseInt(this.state.rating),
+        //     'summary': this.state.summary + '',
+        //     'body': this.state.body + '',
+        //     'recommend': this.state.recommended === 'No' ? false : true,
+        //     'name': this.state.name,
+        //     'email': this.state.email + '',
+        //     'photos': photos,
+        //     'characteristics': characteristics
+        //   };
+        //   this.props.submitReviewForm(dataBody);
+        // });
+
+        helpers.getPhotoURLs(this.state.files, (error, data) => {
+          var dataBody = helpers.buildReviewObject(this.state.formData, this.props.product_id, this.props.characteristics, data)
+
+          console.log('databody', dataBody)
+
           this.props.submitReviewForm(dataBody);
-        });
+        })
+
       }
       // this.closeModal();
     }
