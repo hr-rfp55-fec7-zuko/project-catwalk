@@ -2,29 +2,11 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import CharacteristicRadioFormField from './helpers/CharacteristicRadioFormField.jsx';
 import StarPicker from './helpers/StarPicker.jsx';
-import { PHOTOAPIKEY } from '/client/config.js';
-import axios from 'axios';
 import helpers from './helpers/helpers.js';
-
-var mandatoryFormFields = ['name', 'email', 'rating', 'recommended', 'summary', 'body'];
 
 class AddReviewForm extends React.Component {
   constructor(props) {
     super(props);
-
-    // this.state = {
-    //   rating: 0,
-    //   summary: '',
-    //   body: '',
-    //   recommended: null,
-    //   name: '',
-    //   email: '',
-    //   characteristics: {},
-    //   photos: [], //hosted photo url
-    //   selectedImages: [], //local url
-    //   files: [], //event.target.files
-    //   submitted: false
-    // };
 
     this.state = {
       formData: {
@@ -36,138 +18,20 @@ class AddReviewForm extends React.Component {
         email: '',
         characteristics: {}
       },
-      photos: [], //hosted photo url
       selectedImages: [], //local url
-      files: [], //event.target.files
+      imageFiles: [], //event.target.files
       submitted: false
     },
 
-    this.closeModal = this.closeModal.bind(this);
     this.handleStringFormChange = this.handleStringFormChange.bind(this);
     this.handleRadioFormChange = this.handleRadioFormChange.bind(this);
-    this.submitReviewForm = this.submitReviewForm.bind(this);
     this.handleStarSelect = this.handleStarSelect.bind(this);
-    this.createHostedURL = this.createHostedURL.bind(this);
     this.handleImageChange = this.handleImageChange.bind(this);
+    this.submitReviewForm = this.submitReviewForm.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
-  submitReviewForm(event) {
-    event.preventDefault();
-
-    this.props.handleClick(event.target.id);
-
-    var formData = this.state.formData;
-
-    // buildReviewObject(formData);
-
-    // var incompleteFields = [];
-    // for (var property in this.state) {
-    //   if (property === 'submitted') {
-    //     continue;
-    //   }
-
-    //   if (property !== 'undefined' && !this.state[property]) {
-    //     incompleteFields.push(property);
-    //   }
-
-      // var characteristics = {};
-      // if (property.includes('characteristics-')) {
-      //   let splitProperties = property.split('-');
-      //   let newProperty = splitProperties[1];
-      //   var characteristicId = this.props.characteristics[newProperty].id;
-      //   characteristics[characteristicId] = parseInt(this.state[property]);
-      // }
-
-    // }
-    // var emailReminder =
-    //   !this.state.formData.email.includes('@') ? 'Please enter valid email address.' : '';
-    // incompleteFields =
-    //   incompleteFields.some((field => mandatoryFormFields.includes(field))) ? 'Please complete all mandatory form fields.' : '';
-    // var bodyLengthReminder =
-    //   !(this.state.formData.body.length >= 50) ? 'Reiew body must be at least 50 characters' : '';
-    // if (incompleteFields.length > 0 || emailReminder) {
-    //   alert(`${incompleteFields}\n${emailReminder}\n${bodyLengthReminder}`);
-
-    var hasValidationIssue = helpers.findFormIncompletes(formData);
-
-    if (hasValidationIssue) {
-      alert(hasValidationIssue)
-
-    } else {
-
-
-      if (this.state.files.length === 0) {
-        // var photos = [];
-        // var dataBody = {
-        //   'product_id': parseInt(this.props.product_id),
-        //   'rating': parseInt(this.state.rating),
-        //   'summary': this.state.summary + '',
-        //   'body': this.state.body + '',
-        //   'recommend': this.state.recommended === 'No' ? false : true,
-        //   'name': this.state.name,
-        //   'email': this.state.email + '',
-        //   'photos': photos,
-        //   'characteristics': characteristics
-        // };
-
-        // var formData = this.state.formData
-
-        var dataBody = helpers.buildReviewObject(this.state.formData, this.props.product_id, this.props.characteristics, [])
-
-        this.props.submitReviewForm(dataBody);
-
-
-      } else {
-        // var photos = [];
-        // var photoURLs = (filesArray, cb) => {
-        //   for (var i = 0; i < filesArray.length; i++) {
-        //     let formData = new FormData();
-        //     formData.append('file', filesArray[i]);
-        //     formData.append('upload_preset', PHOTOAPIKEY);
-
-        //     axios.post('https://api.cloudinary.com/v1_1/drbwyfh4x/upload', formData)
-        //       .then((data) => {
-        //         photos.push(data.data.secure_url);
-        //         if (photos.length === filesArray.length) {
-        //           return cb(null, photos, characteristics);
-        //         }
-        //       })
-        //       .catch((err) => console.error('ERROR in Cloudinary POST Request'));
-        //   }
-        // };
-
-        // photoURLs(this.state.files, (error, data) => {
-        //   var dataBody = {
-        //     'product_id': parseInt(this.props.product_id),
-        //     'rating': parseInt(this.state.rating),
-        //     'summary': this.state.summary + '',
-        //     'body': this.state.body + '',
-        //     'recommend': this.state.recommended === 'No' ? false : true,
-        //     'name': this.state.name,
-        //     'email': this.state.email + '',
-        //     'photos': photos,
-        //     'characteristics': characteristics
-        //   };
-        //   this.props.submitReviewForm(dataBody);
-        // });
-
-        helpers.getPhotoURLs(this.state.files, (error, data) => {
-          var dataBody = helpers.buildReviewObject(this.state.formData, this.props.product_id, this.props.characteristics, data)
-
-          console.log('databody', dataBody)
-
-          this.props.submitReviewForm(dataBody);
-        })
-
-      }
-      // this.closeModal();
-    }
-  }
-
-  closeModal() {
-    this.props.toggleAddReviewFormVisibility();
-  }
-
+  //########---State Updates---#######//
   setStateProperty(property, value) {
     // this.setState({ [property]: value });
     if (property.includes("characteristics")) {
@@ -183,6 +47,39 @@ class AddReviewForm extends React.Component {
     }
   }
 
+  //########---Form Submission---#######//
+  submitReviewForm(event) {
+    event.preventDefault();
+    this.props.handleClick(event.target.id);
+
+    var formData = this.state.formData;
+    var hasValidationIssue = helpers.findFormIncompletes(formData);
+
+    if (hasValidationIssue) {
+      alert(hasValidationIssue)
+
+    } else {
+      if (this.state.selectedImages.length === 0) {
+      // if (this.state.imageFiles.length === 0) {
+        var dataBody = helpers.buildReviewObject(this.state.formData, this.props.product_id, this.props.characteristics, [])
+
+        this.props.submitReviewForm(dataBody);
+
+      } else {
+        helpers.getPhotoURLs(this.state.imageFiles, (error, data) => {
+          var dataBody = helpers.buildReviewObject(this.state.formData, this.props.product_id, this.props.characteristics, data)
+
+          this.props.submitReviewForm(dataBody);
+        })
+      }
+      this.closeModal();
+    }
+  }
+  closeModal() {
+    this.props.toggleAddReviewFormVisibility();
+  }
+
+  //########---Form Fill Handlers---#######//
   handleStringFormChange(event) {
     this.setStateProperty(event.target.name, event.target.value);
   }
@@ -203,7 +100,7 @@ class AddReviewForm extends React.Component {
   handleImageChange(event) {
     event.preventDefault();
     if (event.target.files) {
-      if (event.target.files.length > 5 || this.state.files.length > 5) {
+      if (event.target.files.length > 5 || this.state.imageFiles.length > 5) {
         return alert('You may only upload up to 5 photos!');
       } else {
         var fileArray = Array.from(event.target.files);
@@ -212,7 +109,7 @@ class AddReviewForm extends React.Component {
 
         this.setState(prevState => ({
           selectedImages: prevState.selectedImages.concat(selectedImageArray),
-          files: prevState.files.concat(fileArray)
+          imageFiles: prevState.imageFiles.concat(fileArray)
         }));
 
         Array.from(event.target.files).map((file) => URL.revokeObjectURL(file));
@@ -220,19 +117,6 @@ class AddReviewForm extends React.Component {
     }
   }
 
-  createHostedURL(image, callback) {
-    let url;
-    let formData = new FormData();
-    formData.append('file', image);
-    formData.append('upload_preset', photoAPIKey);
-    axios.post('https://api.cloudinary.com/v1_1/drbwyfh4x/upload', formData)
-      .then((data) => {
-        url = res.data.secure_url;
-        return url;
-      })
-      .catch((err) => console.error('ERROR in Cloudinary POST Request'));
-
-  }
 
   render() {
     let characteristics = this.props.characteristics;
