@@ -48,9 +48,30 @@ const helpers = {
     return (Math.round((recommendedObject[true] / totalRecommendations) * 100));
   },
 
-  buildReviewObject(formDataObj) {
-    checkMandatoryFields(formData);
+  buildReviewObject(formDataObj, productId, photos) {
 
+    var productId = parseInt(productId);
+    var rating = parseInt(formDataObj.rating);
+    var recommended = formDataObj.recommended === 'No' ? false : true;
+
+    var characteristics = {};
+    for (var characteristic in formDataObj.characteristics) {
+      console.log(formDataObj.characteristics[characteristic]);
+      parseInt(formDataObj.characteristics[characteristic]);
+      characteristics[characteristic] = parseInt(formDataObj.characteristics[characteristic]);
+    }
+
+    return {
+      'product_id': productId,
+      'rating': rating,
+      'summary': formDataObj.summary,
+      'body': formDataObj.body,
+      'recommend': recommended,
+      'name': formDataObj.name,
+      'email': formDataObj.email,
+      'photos': photos,
+      'characteristics': characteristics
+    };
   },
 
   findFormIncompletes(formData) {

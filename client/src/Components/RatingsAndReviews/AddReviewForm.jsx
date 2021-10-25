@@ -60,7 +60,7 @@ class AddReviewForm extends React.Component {
 
     // buildReviewObject(formData);
 
-    var incompleteFields = [];
+    // var incompleteFields = [];
     // for (var property in this.state) {
     //   if (property === 'submitted') {
     //     continue;
@@ -94,20 +94,30 @@ class AddReviewForm extends React.Component {
       alert(hasValidationIssue)
 
     } else {
+
+
       if (this.state.files.length === 0) {
-        var photos = [];
-        var dataBody = {
-          'product_id': parseInt(this.props.product_id),
-          'rating': parseInt(this.state.rating),
-          'summary': this.state.summary + '',
-          'body': this.state.body + '',
-          'recommend': this.state.recommended === 'No' ? false : true,
-          'name': this.state.name,
-          'email': this.state.email + '',
-          'photos': photos,
-          'characteristics': characteristics
-        };
+        // var photos = [];
+        // var dataBody = {
+        //   'product_id': parseInt(this.props.product_id),
+        //   'rating': parseInt(this.state.rating),
+        //   'summary': this.state.summary + '',
+        //   'body': this.state.body + '',
+        //   'recommend': this.state.recommended === 'No' ? false : true,
+        //   'name': this.state.name,
+        //   'email': this.state.email + '',
+        //   'photos': photos,
+        //   'characteristics': characteristics
+        // };
+
+        // var formData = this.state.formData
+
+        var dataBody = helpers.buildReviewObject(this.state.formData, this.props.product_id, [])
+
+
+        console.log(dataBody)
         this.props.submitReviewForm(dataBody);
+
 
       } else {
         var photos = [];
