@@ -4,7 +4,7 @@ import CharacteristicRadioFormField from './helpers/CharacteristicRadioFormField
 import StarPicker from './helpers/StarPicker.jsx';
 import { PHOTOAPIKEY } from '/client/config.js';
 import axios from 'axios';
-import { buildReviewObject } from './helpers/helpers.js';
+import helpers from './helpers/helpers.js';
 
 var mandatoryFormFields = ['name', 'email', 'rating', 'recommended', 'summary', 'body'];
 
@@ -56,37 +56,42 @@ class AddReviewForm extends React.Component {
 
     this.props.handleClick(event.target.id);
 
-    var formData = this.state;
+    var formData = this.state.formData;
 
     // buildReviewObject(formData);
 
     var incompleteFields = [];
-    for (var property in this.state) {
-      if (property === 'submitted') {
-        continue;
-      }
+    // for (var property in this.state) {
+    //   if (property === 'submitted') {
+    //     continue;
+    //   }
 
-      if (property !== 'undefined' && !this.state[property]) {
-        incompleteFields.push(property);
-      }
+    //   if (property !== 'undefined' && !this.state[property]) {
+    //     incompleteFields.push(property);
+    //   }
 
-      var characteristics = {};
-      if (property.includes('characteristics-')) {
-        let splitProperties = property.split('-');
-        let newProperty = splitProperties[1];
-        var characteristicId = this.props.characteristics[newProperty].id;
-        characteristics[characteristicId] = parseInt(this.state[property]);
-      }
+      // var characteristics = {};
+      // if (property.includes('characteristics-')) {
+      //   let splitProperties = property.split('-');
+      //   let newProperty = splitProperties[1];
+      //   var characteristicId = this.props.characteristics[newProperty].id;
+      //   characteristics[characteristicId] = parseInt(this.state[property]);
+      // }
 
-    }
-    var emailReminder =
-      !this.state.email.includes('@') ? 'Please enter valid email address.' : '';
-    incompleteFields =
-      incompleteFields.some((field => mandatoryFormFields.includes(field))) ? 'Please complete all mandatory form fields.' : '';
-    var bodyLengthReminder =
-      !(this.state.body.length >= 50) ? 'Reiew body must be at least 50 characters' : '';
-    if (incompleteFields.length > 0 || emailReminder) {
-      alert(`${incompleteFields}\n${emailReminder}\n${bodyLengthReminder}`);
+    // }
+    // var emailReminder =
+    //   !this.state.formData.email.includes('@') ? 'Please enter valid email address.' : '';
+    // incompleteFields =
+    //   incompleteFields.some((field => mandatoryFormFields.includes(field))) ? 'Please complete all mandatory form fields.' : '';
+    // var bodyLengthReminder =
+    //   !(this.state.formData.body.length >= 50) ? 'Reiew body must be at least 50 characters' : '';
+    // if (incompleteFields.length > 0 || emailReminder) {
+    //   alert(`${incompleteFields}\n${emailReminder}\n${bodyLengthReminder}`);
+
+    var hasValidationIssue = helpers.findFormIncompletes(formData);
+
+    if (hasValidationIssue) {
+      alert(hasValidationIssue)
 
     } else {
       if (this.state.files.length === 0) {

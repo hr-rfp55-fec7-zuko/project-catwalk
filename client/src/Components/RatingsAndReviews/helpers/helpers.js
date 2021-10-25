@@ -53,9 +53,27 @@ const helpers = {
 
   },
 
-  checkMandatoryFields(formData) {
+  findFormIncompletes(formData) {
     var mandatoryFormFields = ['name', 'email', 'rating', 'recommended', 'summary', 'body'];
 
+    var incompleteFields = [];
+
+    for (var property in formData) {
+      if (Boolean(formData[property]) !== true) {
+        incompleteFields.push(property);
+      }
+    }
+
+    var incompleteFieldReminder =
+      incompleteFields.some((field => mandatoryFormFields.includes(field))) ? 'Please complete all mandatory form fields.\n' : '';
+
+    var emailReminder =
+      !formData.email.includes('@') ? 'Please enter valid email address.\n' : '';
+
+    var bodyLengthReminder =
+      !(formData.body.length >= 50) ? 'Reiew body must be at least 50 characters' : '';
+
+    return incompleteFieldReminder + emailReminder + bodyLengthReminder;
   }
 
 };
