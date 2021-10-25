@@ -159,7 +159,7 @@ class AddReviewForm extends React.Component {
 
                 <div className="form-question">
                   <label className="form-category">Overall Rating*</label><br />
-                  <StarPicker rating={this.state.rating} handleStarSelect={this.handleStarSelect} />
+                  <StarPicker rating={this.state.formData.rating} handleStarSelect={this.handleStarSelect} />
                 </div>
 
                 <div className="form-question" onChange={this.handleRadioFormChange}>
