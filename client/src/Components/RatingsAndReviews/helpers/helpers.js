@@ -48,7 +48,7 @@ const helpers = {
     return (Math.round((recommendedObject[true] / totalRecommendations) * 100));
   },
 
-  buildReviewObject(formDataObj, productId, photos) {
+  buildReviewObject(formDataObj, productId, charateristicIds, photos) {
 
     var productId = parseInt(productId);
     var rating = parseInt(formDataObj.rating);
@@ -56,9 +56,9 @@ const helpers = {
 
     var characteristics = {};
     for (var characteristic in formDataObj.characteristics) {
-      console.log(formDataObj.characteristics[characteristic]);
       parseInt(formDataObj.characteristics[characteristic]);
-      characteristics[characteristic] = parseInt(formDataObj.characteristics[characteristic]);
+      var id = charateristicIds[characteristic].id;
+      characteristics[id] = parseInt(formDataObj.characteristics[characteristic]);
     }
 
     return {

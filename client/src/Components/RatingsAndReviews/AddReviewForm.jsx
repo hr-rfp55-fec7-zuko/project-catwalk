@@ -112,10 +112,8 @@ class AddReviewForm extends React.Component {
 
         // var formData = this.state.formData
 
-        var dataBody = helpers.buildReviewObject(this.state.formData, this.props.product_id, [])
+        var dataBody = helpers.buildReviewObject(this.state.formData, this.props.product_id, this.props.characteristics, [])
 
-
-        console.log(dataBody)
         this.props.submitReviewForm(dataBody);
 
 
@@ -152,7 +150,7 @@ class AddReviewForm extends React.Component {
           this.props.submitReviewForm(dataBody);
         });
       }
-      this.closeModal();
+      // this.closeModal();
     }
   }
 
@@ -166,10 +164,8 @@ class AddReviewForm extends React.Component {
       property = property.split("-");
       property = property[1];
 
-      /*eslint-disable*/
       var characteristics = {...this.state.formData.characteristics}
       characteristics[property] = value;
-      /*eslint-disable*/
 
       this.setState({formData: {...this.state.formData, characteristics: characteristics}})
     } else {
