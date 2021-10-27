@@ -5,6 +5,7 @@ import RatingBreakdown from './RatingBreakdown.jsx';
 import ProductBreakdown from './ProductBreakdown.jsx';
 import helpers from './helpers/helpers.js';
 import axios from 'axios';
+import withClickTracked from '../../ClickTracker.jsx';
 
 class RatingsAndReviews extends React.Component {
   constructor(props) {
@@ -34,6 +35,7 @@ class RatingsAndReviews extends React.Component {
     this.toggleStarRatingFilter = this.toggleStarRatingFilter.bind(this);
     this.handleClearStarFilters = this.handleClearStarFilters.bind(this);
     this.handleSortChange = this.handleSortChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -101,6 +103,11 @@ class RatingsAndReviews extends React.Component {
   }
 
   //########---AJAX REQUESTS---#######//
+  handleClick(target) {
+    this.props.clickTrack(target, 'ratings-and-reviews', Date().toLocaleString());
+  }
+
+
   requestProductMetaData() {
     return axios({
       url: `/reviews/meta?product_id=${this.props.product_id}`,
@@ -121,7 +128,7 @@ class RatingsAndReviews extends React.Component {
 
   submitReviewForm(body) {
     return axios.post('/reviews/', {params: body})
-      // .then((results) => console.log('AJAX POST RESULTS:', results.data, results))
+      .then((results) => console.log('AJAX POST RESULTS:', results.data, results))
       .catch((error) => console.error('error', error));
   }
 
@@ -149,7 +156,7 @@ class RatingsAndReviews extends React.Component {
           <RatingBreakdown metaData={this.state.metaData} reviewCount={reviewCount} setAvgRating={this.setAvgRating} starFilters={this.state.starFilters} toggleStarRatingFilter={this.toggleStarRatingFilter} handleClearStarFilters={this.handleClearStarFilters} clearFilterVisible={this.state.clearFilterVisible}/>
           <ProductBreakdown characteristics={this.state.metaData.characteristics}/>
           <SortBar reviewCount={reviewCount} requestProductReviews={this.requestProductReviews} reviewListCount={this.state.reviews.length} handleSortChange={this.handleSortChange}/>
-          <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount} submitHelpfulOrReport={this.submitHelpfulOrReport} product_name={this.props.product_name} submitReviewForm={this.submitReviewForm} product_id={this.props.product_id} starFilters={this.state.starFilters}/>
+          <ReviewList reviews={this.state.reviews} characteristics={this.state.metaData.characteristics} requestProductReviews={this.requestProductReviews} reviewCount={reviewCount} submitHelpfulOrReport={this.submitHelpfulOrReport} product_name={this.props.product_name} submitReviewForm={this.submitReviewForm} product_id={this.props.product_id} starFilters={this.state.starFilters} handleClick={this.handleClick}/>
         </>
       </div>
     );
@@ -157,4 +164,4 @@ class RatingsAndReviews extends React.Component {
 }
 
 
-export default RatingsAndReviews;
+export default withClickTracked(RatingsAndReviews);

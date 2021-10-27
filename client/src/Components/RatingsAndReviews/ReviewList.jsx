@@ -17,14 +17,46 @@ class ReviewList extends React.Component {
 
     };
 
-    this.toggleAddReviewFormVisible = this.toggleAddReviewFormVisible.bind(this);
-    this.updateViewList = this.updateViewList.bind(this);
+    this.toggleAddReviewFormVisibility = this.toggleAddReviewFormVisibility.bind(this);
+    this.handleMoreReviewsClick = this.handleMoreReviewsClick.bind(this);
     this.handleThumbnailClick = this.handleThumbnailClick.bind(this);
     this.toggleImageModalVisiblity = this.toggleImageModalVisiblity.bind(this);
+    this.findReviews = this.findReviews.bind(this);
+
   }
 
+
+  //########---Modal Toggles---#######//
+  toggleAddReviewFormVisibility(e) {
+    if (e) {
+      this.props.handleClick(e.target.id);
+    }
+
+    this.setState({
+      addReviewFormVisible: !this.state.addReviewFormVisible
+    });
+  }
+
+  toggleImageModalVisiblity() {
+    this.setState({imageModalVisible: false, thumbnailURL: null});
+  }
+
+  //########---Click Handlers---#######//
+  handleMoreReviewsClick(e) {
+    if (e.target.id) {
+      this.props.handleClick(e.target.id);
+    }
+
+    this.findReviews();
+  }
+
+  handleThumbnailClick(thumbnailURL) {
+    this.setState({imageModalVisible: !this.state.imageModalVisible, thumbnailURL: thumbnailURL});
+  }
+
+  //########---Lifecycle Hooks---#######//
   componentDidMount() {
-    this.updateViewList();
+    this.findReviews();
   }
 
   componentDidUpdate(prevProps) {
@@ -33,13 +65,8 @@ class ReviewList extends React.Component {
     }
   }
 
-  toggleAddReviewFormVisible() {
-    this.setState({
-      addReviewFormVisible: !this.state.addReviewFormVisible
-    });
-  }
-
-  updateViewList() {
+  //########---Review-List Builders---#######//
+  findReviews() {
     if (this.state.reviewLimit >= this.props.reviews.length) {
       this.props.requestProductReviews(this.state.reviewPage + 1);
       this.setState({
@@ -51,15 +78,6 @@ class ReviewList extends React.Component {
     }
   }
 
-  handleThumbnailClick(thumbnailURL) {
-    this.setState({imageModalVisible: !this.state.imageModalVisible, thumbnailURL: thumbnailURL});
-  }
-
-  toggleImageModalVisiblity() {
-    this.setState({imageModalVisible: false, thumbnailURL: null});
-  }
-
-
   render() {
     let reviews = this.props.reviews;
     let characteristics = this.props.characteristics;
@@ -67,11 +85,7 @@ class ReviewList extends React.Component {
     if (reviews.length > 0) {
       var reviewList = [];
 
-      if (this.props.reviews.length <= this.state.reviewLimit) {
-        var listLength = this.props.reviews.length;
-      } else {
-        var listLength = this.state.reviewLimit;
-      }
+      var listLength = (this.props.reviews.length <= this.state.reviewLimit) ? this.props.reviews.length : this.state.reviewLimit;
 
       for (var i = 0; i < listLength; i++) {
         let review = reviews[i];
@@ -95,15 +109,14 @@ class ReviewList extends React.Component {
       var reviewList = <></>;
     }
 
-    if (this.state.reviewLimit <= this.props.reviews.length) {
-      var moreReviewsButton =
-        <button type="button" id="more-reviews" className="ratings-button" onClick={this.updateViewList}>More Reviews</button>;
-    } else {
-      var moreReviewsButton = <></>;
-    }
+    var moreReviewsButton =
+      this.state.reviewLimit <= this.props.reviews.length ?
+        <button type="button" id="more-reviews" className="ratings-button" onClick={this.handleMoreReviewsClick}>More Reviews</button>
+        :
+        <></>;
 
     if (this.state.imageModalVisible) {
-      var imageModal = <ImageModal key={this.state.thumbnail} thumbnailURL={this.state.thumbnailURL} toggleImageModalVisibility={this.toggleImageModalVisiblity}/>;
+      var imageModal = <ImageModal key={this.state.thumbnail} thumbnailURL={this.state.thumbnailURL} toggleImageModalVisibility={this.toggleImageModalVisiblity} />;
     } else {
       var imageModal = <></>;
     }
@@ -118,9 +131,9 @@ class ReviewList extends React.Component {
 
           {moreReviewsButton}
 
-          <button type="button" id="add-review" onClick={this.toggleAddReviewFormVisible} className='ratings-button'>Add A Review  +</button>
+          <button type="button" id="add-review" onClick={this.toggleAddReviewFormVisibility} className='ratings-button'>Add A Review  +</button>
 
-          {this.state.addReviewFormVisible && <AddReviewForm characteristics={characteristics} product_name={this.props.product_name} toggleAddReviewFormVisible={this.toggleAddReviewFormVisible} submitReviewForm={this.props.submitReviewForm}product_id={this.props.product_id} />}
+          {this.state.addReviewFormVisible && <AddReviewForm characteristics={characteristics} product_name={this.props.product_name} toggleAddReviewFormVisibility={this.toggleAddReviewFormVisibility} submitReviewForm={this.props.submitReviewForm} product_id={this.props.product_id} handleClick={this.props.handleClick}/>}
 
         </div>
       </>
