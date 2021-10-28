@@ -874,7 +874,7 @@ li {
 /*Rating Bar Styling*/
 .rating-bar-container:hover, .rating-bar-container.filtered {
     background-color:red;
-    width: 300px;
+    width: 80%;
     padding:0.1em 0.2em;
     cursor: pointer;
     color: white;
