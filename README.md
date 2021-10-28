@@ -40,7 +40,11 @@ We used webpack as our solution for bundling static assets. The compression, ima
 ## Product Overview
 
 ## Related Products and Your Outfit List
-Related product widgets consist of two parts. One is the Related products which present the user with products similar to the currently selected product, provided by the external API and it changes accordingly. Having carousel of cards let users navigate between the card. When a user clicks on the star icon in the upper righthand corner of the card, a modal will pop up comparing the feature of the current product and the selected product. The second part is the outfit section which provides the user a way to keep track of their favorite outfits. It gives the user the ability to save the current outfit or delete any outfit from their outfit list and even away from the application and maintain their list of saved outfits.
+![RatingsAndReviewsGif](/readMeAssets/relatedProduct.gif)
+Related product widgets consist of two parts. 
+One is the Related products which present the user with products similar to the currently selected product, provided by the external API and it changes accordingly. Having carousel of cards let users navigate between the card. When a user clicks on the star icon in the upper righthand corner of the card, a modal will pop up comparing the feature of the current product and the selected product. 
+
+The second part is the outfit section which provides the user a way to keep track of their favorite outfits. It gives the user the ability to save the current outfit or delete any outfit from their outfit list and even away from the application and maintain their list of saved outfits.
 
 ## Questions and Answers
 <!-- We implemented modals using React.CreatePortal. -->
