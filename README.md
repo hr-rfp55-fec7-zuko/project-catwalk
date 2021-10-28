@@ -29,33 +29,51 @@ Although the emphasis of this project was front-end development, we utilized an 
   - All styling, including functional implementations like the modals and image gallery, were written solely with CSS.
   - The use of Grid made the overlay button functionality and precise placement of static assets accessible and simple.
   - Flexbox was instrumental in handling the wealth of dynamic data being delivered to the page. -->
-A goal of this project was to deeply understand CSS without importing addtional styling frameworks, so all styling and functional implementations were written purely with CSS. The app includes both a light mode and a dark mode, which were implemented using only CSS.
+A goal of this project was to deeply understand CSS without importing addtional styling frameworks, so all styling and functional implementations were written purely with CSS. The app includes both a light mode and a dark mode, which were implemented using only CSS. We also utilized Google Fonts and Font Awesome.
 
 ### Webpack
+We used webpack as our solution for bundling static assets. The compression, imageminimizer and cssminimizer plugins help boost web performance.
 <!-- - Webpack was our solution to elegantly handle our numerous static assets, implement JSX, and harness ES6 in this project. -->
-
 
 ---
 
 ## Product Overview
 
 ## Related Products and Your Outfit List
+Related product widgets consist of two parts. One is the Related products which present the user with products similar to the currently selected product, provided by the external API and it changes accordingly. Having carousel of cards let users navigate between the card. When a user clicks on the star icon in the upper righthand corner of the card, a modal will pop up comparing the feature of the current product and the selected product. The second part is the outfit section which provides the user a way to keep track of their favorite outfits. It gives the user the ability to save the current outfit or delete any outfit from their outfit list and even away from the application and maintain their list of saved outfits.
 
 ## Questions and Answers
+<!-- We implemented modals using React.CreatePortal. -->
 
 ## Ratings and Reviews
+<!-- We implemented modals using React.CreatePortal. -->
+The ratings and reviews section includes a list of available reviews paired with a side panel displaying product metadata. The review list pulls in data from the API endpoint and dynamically renders individual reviews with varying sub-components.
+
+The review rating breakdowns and product characteristic meter bars on the left sidebar manipulate and render data from a different API endpoint, using a combination of React components and CSS styling. Each star rating bar acts as filter for the review list, allowing the user to refine the review list based on average rating.
+
+Additionally, selecting an option from the “sort by” dropdown menu sends a fresh request to the API for reviews ordered by the selected characteristic.
+
+Within individual review tiles, users can mark a review as helpful or report the review, sending a put request to the API to update the review meta-data. Clicking on a review image thumbnail renders a modal created using React DOM.
+
+Similarly, selecting the “add a review” button at the bottom of the review list renders a new React DOM modal housing a form that allows users to rate the overall product score and their satisfaction with characteristics, before writing their own review with an option to add photos. Submitting the form sends a post request to the API to save the data.
 
 
-## Installation
-Using npm, install project dependencies:
-```
-npm install
-```
-Using webpack, bundle the files:
-```
-npm run build
-```
-To run the server:
-```
-npm start
-```
+## Set up Instructions
+1. Clone this repository to your local machine
+2. Using npm, install project dependencies :
+
+   ```
+   npm install
+   ```
+3. Make a copy of the file `config.example.js` and rename it to `config.js`
+4. Update the GitHub and PHOTO API token (from Cloudinary)
+
+5. Using webpack, bundle the files:
+   ```
+   npm run build
+   ```
+6. To run the server:
+   ```
+   npm run start
+   ```
+7. Open localhost: 3000 in the browser
