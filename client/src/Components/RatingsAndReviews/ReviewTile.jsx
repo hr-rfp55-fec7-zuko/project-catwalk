@@ -57,8 +57,7 @@ class ReviewTile extends React.Component {
         </div>
 
         <div className="review-attribution">
-          <span className="review-user">{review.reviewer_name}, </span>
-          <span className="review-date">{date}</span>
+          {review.reviewer_name}, {date}
         </div>
 
         <div className="review-summary">{review.summary}</div>

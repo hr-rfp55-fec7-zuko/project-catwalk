@@ -778,22 +778,12 @@ li {
   grid-area: attribution;
   font-weight: 600;
   display: grid;
-  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   grid-template-areas: "checkmark user date";
   font-size: 80%;
-  align-content: right;
+  justify-self: end;
 }
-
-  .review-user {
-    grid-area: user;
-    justify-self: right;
-    padding-right: 15%;
-  }
-
-  .review-date {
-    grid-area: date;
-  }
 
 .review-summary {
   grid-area: summary;
@@ -874,7 +864,7 @@ li {
 /*Rating Bar Styling*/
 .rating-bar-container:hover, .rating-bar-container.filtered {
     background-color:red;
-    width: 300px;
+    width: 80%;
     padding:0.1em 0.2em;
     cursor: pointer;
     color: white;
