@@ -40,7 +40,9 @@ We used webpack as our solution for bundling static assets. The compression, ima
 ## Product Overview
 
 ## Related Products and Your Outfit List
-![RatingsAndReviewsGif](/readMeAssets/relatedProduct.gif)
+<p align="center">
+<img src="https://github.com/hr-rfp55-fec7-zuko/project-catwalk/blob/master/readMeAssets/relatedProduct.gif" width="350"></p>
+
 Related product widgets consist of two parts. 
 One is the Related products which present the user with products similar to the currently selected product, provided by the external API and it changes accordingly. Having carousel of cards let users navigate between the card. When a user clicks on the star icon in the upper righthand corner of the card, a modal will pop up comparing the feature of the current product and the selected product. 
 
