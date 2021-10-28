@@ -47,15 +47,18 @@ Related product widgets consist of two parts. One is the Related products which 
 
 ## Ratings and Reviews
 <!-- We implemented modals using React.CreatePortal. -->
-The ratings and reviews section includes a list of available reviews paired with a side panel displaying product metadata. The review list pulls in data from the API endpoint and dynamically renders individual reviews with varying sub-components.
 
-The review rating breakdowns and product characteristic meter bars on the left sidebar manipulate and render data from a different API endpoint, using a combination of React components and CSS styling. Each star rating bar acts as filter for the review list, allowing the user to refine the review list based on average rating.
+![RatingsAndReviewsGif](/readMeAssets/ratingsAndReviews.gif)
 
-Additionally, selecting an option from the “sort by” dropdown menu sends a fresh request to the API for reviews ordered by the selected characteristic.
+The ratings and reviews section includes a list of available reviews paired with a side panel displaying product metadata. The review list pulls in data from an API endpoint and dynamically renders individual reviews with varying sub-components.
+
+The side pannel includes a review rating breakdown and product characteristic meter bars. Each star rating bar acts as filter for the review list, allowing the user to refine the review list based on average rating.
+
+Selecting an option from the “sort by” dropdown menu sends a fresh request to the API for reviews ordered by the selected characteristic.
 
 Within individual review tiles, users can mark a review as helpful or report the review, sending a put request to the API to update the review meta-data. Clicking on a review image thumbnail renders a modal created using React DOM.
 
-Similarly, selecting the “add a review” button at the bottom of the review list renders a new React DOM modal housing a form that allows users to rate the overall product score and their satisfaction with characteristics, before writing their own review with an option to add photos. Submitting the form sends a post request to the API to save the data.
+Selecting the “add a review” button at the bottom of the review list renders a new React DOM modal housing a form that allows users to rate the overall product score and their satisfaction with characteristics, before writing their own review with an option to add photos. Submitting the form sends a post request to the API to save the data.
 
 
 ## Set up Instructions
