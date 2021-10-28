@@ -45,6 +45,17 @@ Related product widgets consist of two parts. One is the Related products which 
 ## Questions and Answers
 <!-- We implemented modals using React.CreatePortal. -->
 
+![QuestionsAndAnswersGif][QuestionsAndAnswers]
+
+The questions and answers section has below features and functionalities.
+
+   * Search bar to filter out any questions after user typing more than 3 characters
+   * User can upvote Helpfulness in each question and answer and question list and answer list are sorted by Helpfulness
+   * User can report question and answer. If a question or an answer is reported, it will be deleted upon future rendering.
+   * User can add answer to each question with image upload function.
+   * User can add new question.
+   * The question and answer list is rendered with 4 questions and 2 answers each by default. Users can click on See More Answers and More Answered Questions to look for more information.
+
 ## Ratings and Reviews
 <!-- We implemented modals using React.CreatePortal. -->
 
@@ -80,3 +91,8 @@ Selecting the “add a review” button at the bottom of the review list renders
    npm run start
    ```
 7. Open localhost: 3000 in the browser
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[QuestionsAndAnswers]: readMeAssets/QuestionAnswer.gif
