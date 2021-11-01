@@ -64,8 +64,8 @@ The questions and answers section has below features and functionalities.
 
 ## Ratings and Reviews
 <!-- We implemented modals using React.CreatePortal. -->
-
-![RatingsAndReviewsGif](/readMeAssets/ratingsAndReviews.gif)
+<p align="center">
+![RatingsAndReviewsGif](/readMeAssets/ratingsAndReviews.gif)</p>
 
 The ratings and reviews section includes a list of available reviews paired with a side panel displaying product metadata. The review list pulls in data from an API endpoint and dynamically renders individual reviews with varying sub-components.
 
