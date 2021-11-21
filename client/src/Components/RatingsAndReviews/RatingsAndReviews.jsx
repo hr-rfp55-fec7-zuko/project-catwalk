@@ -1,6 +1,6 @@
 import React from 'react';
 import SortBar from './SortBar.jsx';
-import ReviewList from './ReviewList.jsx';
+import ReviewList from './ReviewList/ReviewList.jsx';
 import RatingBreakdown from './RatingBreakdown.jsx';
 import ProductBreakdown from './ProductBreakdown.jsx';
 import helpers from './helpers/helpers.js';

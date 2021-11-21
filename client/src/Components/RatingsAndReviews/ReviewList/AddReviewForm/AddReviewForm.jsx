@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import CharacteristicRadioFormField from './helpers/CharacteristicRadioFormField.jsx';
-import StarPicker from './helpers/StarPicker.jsx';
-import helpers from './helpers/helpers.js';
+import CharacteristicRadioFormField from './FormFieldComponents/CharacteristicRadioFormField.jsx';
+import StarSelector from './FormFieldComponents/StarSelector.jsx';
+// import helpers from '../../helpers/helpers.js';
+import { findFormIncompletes, buildReviewObject, getPhotoURLs } from './helpers/helpers.js'
 
 class AddReviewForm extends React.Component {
   constructor(props) {
@@ -53,21 +54,24 @@ class AddReviewForm extends React.Component {
     this.props.handleClick(event.target.id);
 
     var formData = this.state.formData;
-    var hasValidationIssue = helpers.findFormIncompletes(formData);
+    // var hasValidationIssue = helpers.findFormIncompletes(formData);
+    var hasValidationIssue = findFormIncompletes(formData);
 
     if (hasValidationIssue) {
       alert(hasValidationIssue)
 
     } else {
       if (this.state.selectedImages.length === 0) {
-      // if (this.state.imageFiles.length === 0) {
-        var dataBody = helpers.buildReviewObject(this.state.formData, this.props.product_id, this.props.characteristics, [])
+        // var dataBody = helpers.buildReviewObject(this.state.formData, this.props.product_id, this.props.characteristics, [])
+        var dataBody = buildReviewObject(this.state.formData, this.props.product_id, this.props.characteristics, [])
 
         this.props.submitReviewForm(dataBody);
 
       } else {
-        helpers.getPhotoURLs(this.state.imageFiles, (error, data) => {
-          var dataBody = helpers.buildReviewObject(this.state.formData, this.props.product_id, this.props.characteristics, data)
+        // helpers.getPhotoURLs(this.state.imageFiles, (error, data) => {
+        getPhotoURLs(this.state.imageFiles, (error, data) => {
+          // var dataBody = helpers.buildReviewObject(this.state.formData, this.props.product_id, this.props.characteristics, data)
+          var dataBody = buildReviewObject(this.state.formData, this.props.product_id, this.props.characteristics, data)
 
           this.props.submitReviewForm(dataBody);
         })
@@ -159,7 +163,7 @@ class AddReviewForm extends React.Component {
 
                 <div className="form-question">
                   <label className="form-category">Overall Rating*</label><br />
-                  <StarPicker rating={this.state.formData.rating} handleStarSelect={this.handleStarSelect} />
+                  <StarSelector rating={this.state.formData.rating} handleStarSelect={this.handleStarSelect} />
                 </div>
 
                 <div className="form-question" onChange={this.handleRadioFormChange}>
