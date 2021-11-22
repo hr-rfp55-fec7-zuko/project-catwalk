@@ -6,4 +6,3 @@ coverage
 .gitignore
 photoAPIConfig.js
 fec7-zuko.cer
-webpack.config.js
