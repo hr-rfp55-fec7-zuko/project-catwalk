@@ -76,6 +76,7 @@ Selecting an option from the “sort by” dropdown menu sends a fresh request t
 Within individual review tiles, users can mark a review as helpful or report the review, sending a put request to the API to update the review meta-data. Clicking on a review image thumbnail renders a modal created using React DOM.
 
 Selecting the “add a review” button at the bottom of the review list renders a new React DOM modal housing a form that allows users to rate the overall product score and their satisfaction with characteristics, before writing their own review with an option to add photos. Submitting the form sends a post request to the API to save the data.
+
 ![RatingsAndReviewsGif](/readMeAssets/rrForm.gif)
 
 
