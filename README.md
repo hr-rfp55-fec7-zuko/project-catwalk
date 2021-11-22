@@ -43,8 +43,8 @@ We used webpack as our solution for bundling static assets. The compression, ima
 <p align="center">
 <img src="https://github.com/hr-rfp55-fec7-zuko/project-catwalk/blob/master/readMeAssets/relatedProduct.gif" width="350"></p>
 
-Related product widgets consist of two parts. 
-One is the Related products which present the user with products similar to the currently selected product, provided by the external API and it changes accordingly. Having carousel of cards let users navigate between the card. When a user clicks on the star icon in the upper righthand corner of the card, a modal will pop up comparing the feature of the current product and the selected product. 
+Related product widgets consist of two parts.
+One is the Related products which present the user with products similar to the currently selected product, provided by the external API and it changes accordingly. Having carousel of cards let users navigate between the card. When a user clicks on the star icon in the upper righthand corner of the card, a modal will pop up comparing the feature of the current product and the selected product.
 
 The second part is the outfit section which provides the user a way to keep track of their favorite outfits. It gives the user the ability to save the current outfit or delete any outfit from their outfit list and even away from the application and maintain their list of saved outfits.
 
@@ -76,6 +76,7 @@ Selecting an option from the “sort by” dropdown menu sends a fresh request t
 Within individual review tiles, users can mark a review as helpful or report the review, sending a put request to the API to update the review meta-data. Clicking on a review image thumbnail renders a modal created using React DOM.
 
 Selecting the “add a review” button at the bottom of the review list renders a new React DOM modal housing a form that allows users to rate the overall product score and their satisfaction with characteristics, before writing their own review with an option to add photos. Submitting the form sends a post request to the API to save the data.
+![RatingsAndReviewsGif](/readMeAssets/rrForm.gif)
 
 
 ## Set up Instructions
