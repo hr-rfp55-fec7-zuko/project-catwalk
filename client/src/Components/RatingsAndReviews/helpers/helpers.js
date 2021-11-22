@@ -28,7 +28,46 @@ const determineAverageRating = (ratingsObject) => {
   return (total / reviewCount).toFixed(2);
 };
 
+const filterReviewEntries = (filterValue, currentStarFiltersState) => {
+
+
+  const indexOfFilterValue = currentStarFiltersState.indexOf(filterValue);
+  let newFilterList, clearFilterVisibility;
+
+  if (currentStarFiltersState.length === 0) {
+    newFilterList = [filterValue];
+    clearFilterVisibility = true;
+  } else if (indexOfFilterValue === 0 && currentStarFiltersState.length === 1) {
+    newFilterList = [];
+    clearFilterVisibility = false;
+  } else if (indexOfFilterValue === 0) {
+    newFilterList = currentStarFiltersState.slice(1);
+  } else if (indexOfFilterValue !== -1) {
+    newFilterList = currentStarFiltersState.slice();
+    newFilterList.splice((indexOfFilterValue), 1);
+    clearFilterVisibility = true;
+  } else if (indexOfFilterValue === -1) {
+    newFilterList = currentStarFiltersState.slice();
+    newFilterList.push(filterValue);
+    clearFilterVisibility = true;
+  } else {
+    newFilterList = currentStarFiltersState.slice();
+    newFilterList.push(filterValue);
+    clearFilterVisibility = true;
+  }
+
+  if (newFilterList.length === 0) {
+    clearFilterVisibility = false;
+  }
+
+  const updatedStarFiltersState = {starFilters: newFilterList, clearFilterVisible: clearFilterVisibility};
+
+  return updatedStarFiltersState;
+
+};
+
 module.exports = {
   determineTotalReviews,
   determineAverageRating,
+  filterReviewEntries,
 };
