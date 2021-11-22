@@ -1,7 +1,7 @@
 import React from 'react';
-import helpers from './helpers/helpers.js';
-import AvgRatingStars from './helpers/AvgRatingStars.jsx';
-import RatingBar from './helpers/RatingBar.jsx';
+import { determineAverageRating, truncateAverageRating, determinePercentageRecommend } from './helpers/helpers.js';
+import AvgRatingStars from '../../helpers/AvgRatingStars.jsx';
+import RatingBar from './RatingBar.jsx';
 
 class RatingBreakdown extends React.Component {
   constructor(props) {
@@ -11,9 +11,10 @@ class RatingBreakdown extends React.Component {
   render() {
     let metaData = this.props.metaData;
     let reviewCount = this.props.reviewCount;
-    let avgRating = helpers.determineAverageRating(metaData.ratings);
-    let oneDecAvgRating = helpers.truncateAverageRating(avgRating);
-    let percentageRecommended = helpers.determinePercentageRecommend(metaData.recommended);
+    let avgRating = determineAverageRating(metaData.ratings);
+    let oneDecAvgRating = truncateAverageRating(avgRating);
+    let percentageRecommended = determinePercentageRecommend(metaData.recommended);
+
 
     for (var i = 1; i <= 5; i++ ) {
       if (metaData.ratings[i] === undefined) {

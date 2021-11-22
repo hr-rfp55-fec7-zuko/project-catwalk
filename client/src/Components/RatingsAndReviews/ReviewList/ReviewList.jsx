@@ -1,7 +1,7 @@
 import React from 'react';
 import ReviewTile from './ReviewTile.jsx';
-import AddReviewForm from './AddReviewForm.jsx';
-import ImageModal from './helpers/ImageModal.jsx';
+import AddReviewForm from './AddReviewForm/AddReviewForm.jsx';
+import ImageModal from './ImageModal.jsx';
 
 class ReviewList extends React.Component {
   constructor(props) {

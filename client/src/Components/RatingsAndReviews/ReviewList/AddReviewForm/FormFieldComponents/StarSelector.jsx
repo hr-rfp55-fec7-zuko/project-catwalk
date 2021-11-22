@@ -1,9 +1,9 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
-import ratingMeanings from './ratingMeanings.js';
+import ratingMeanings from '../../../helpers/ratingMeanings.js';
 
-class StarPicker extends React.Component {
+class StarSelector extends React.Component {
   constructor(props) {
     super(props);
 
@@ -44,5 +44,5 @@ class StarPicker extends React.Component {
   }
 }
 
-export default StarPicker;
+export default StarSelector;
 

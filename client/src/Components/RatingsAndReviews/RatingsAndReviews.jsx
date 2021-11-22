@@ -1,9 +1,10 @@
 import React from 'react';
-import SortBar from './SortBar.jsx';
-import ReviewList from './ReviewList.jsx';
-import RatingBreakdown from './RatingBreakdown.jsx';
-import ProductBreakdown from './ProductBreakdown.jsx';
+import SortBar from './SortBar/SortBar.jsx';
+import ReviewList from './ReviewList/ReviewList.jsx';
+import RatingBreakdown from './LeftSideBar/RatingBreakdown/RatingBreakdown.jsx';
+import ProductBreakdown from './LeftSideBar/ProductBreakdown/ProductBreakdown.jsx';
 import helpers from './helpers/helpers.js';
+import { determineTotalReviews, filterReviewEntries } from './helpers/helpers.js';
 import axios from 'axios';
 import withClickTracked from '../../ClickTracker.jsx';
 
@@ -50,46 +51,11 @@ class RatingsAndReviews extends React.Component {
 
   //########---EVENT HANDLERS---#######//
   toggleStarRatingFilter(event) {
+    const filterValue = parseInt(event.target.className.replace( /^\D+/g, ''));
+    const currentStarFiltersState = this.state.starFilters;
+    const updatedStarFiltersState = filterReviewEntries(filterValue, currentStarFiltersState);
 
-    var filterValue = parseInt(event.target.className.replace( /^\D+/g, ''));
-    var indexOfFilterValue = this.state.starFilters.indexOf(filterValue);
-    var newFilterList, clearFilterVisibility;
-
-    //if there is nothing in the list
-    if (this.state.starFilters.length === 0) {
-      newFilterList = [filterValue];
-      clearFilterVisibility = true;
-    //if the clicked filter is the only filter on the list
-    } else if (indexOfFilterValue === 0 && this.state.starFilters.length === 1) {
-      newFilterList = [];
-      clearFilterVisibility = false;
-    } else if (indexOfFilterValue === 0) {
-      newFilterList = this.state.starFilters.slice(1);
-
-      //if the filter value is alread on the list, locate it and take it out
-    } else if (indexOfFilterValue !== -1) {
-      newFilterList = this.state.starFilters.slice();
-      newFilterList.splice((indexOfFilterValue), 1);
-      clearFilterVisibility = true;
-    //if the filter value is not on the list, add it
-    } else if (indexOfFilterValue === -1) {
-      // newFilterList = [filterValue];
-      newFilterList = this.state.starFilters.slice();
-      newFilterList.push(filterValue);
-      clearFilterVisibility = true;
-
-
-    } else {
-      newFilterList = this.state.starFilters.slice();
-      newFilterList.push(filterValue);
-      clearFilterVisibility = true;
-    }
-
-    if (newFilterList.length === 0) {
-      clearFilterVisibility = false;
-    }
-
-    this.setState({starFilters: newFilterList, clearFilterVisible: clearFilterVisibility});
+    this.setState(updatedStarFiltersState);
   }
 
   handleClearStarFilters() {
@@ -106,7 +72,6 @@ class RatingsAndReviews extends React.Component {
   handleClick(target) {
     this.props.clickTrack(target, 'ratings-and-reviews', Date().toLocaleString());
   }
-
 
   requestProductMetaData() {
     return axios({
@@ -145,8 +110,7 @@ class RatingsAndReviews extends React.Component {
 
 
   render() {
-
-    let reviewCount = helpers.determineTotalReviews(this.state.metaData.ratings);
+    let reviewCount = determineTotalReviews(this.state.metaData.ratings);
 
     return (
 
