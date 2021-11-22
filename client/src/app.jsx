@@ -1,14 +1,11 @@
 import React from 'react';
-
+import axios from 'axios';
 import ProductOverview from './Components/ProductOverview/ProductOverview.jsx';
 import QuestionAnswer from './Components/QuestionAnswer/QuestionAnswer.jsx';
 import RelatedProductsView from './Components/RelatedProducts/RelatedProductsView.jsx';
 import YourOutfitList from './Components/YourOutfitList/YourOutfitList.jsx';
 import RatingsAndReviews from './Components/RatingsAndReviews/RatingsAndReviews.jsx';
-
-import axios from 'axios';
-
-import helpers from './Components/RatingsAndReviews/helpers/helpers.js';
+import { determineTotalReviews, determineAverageRating } from './Components/RatingsAndReviews/helpers/helpers.js';
 
 
 class App extends React.Component {
@@ -36,8 +33,8 @@ class App extends React.Component {
       .then((results) => results.data.ratings)
       .then((ratingsObj) => {
         this.setState({
-          totalReviews: helpers.determineTotalReviews(ratingsObj),
-          avgRating: helpers.determineAverageRating(ratingsObj)
+          totalReviews: determineTotalReviews(ratingsObj),
+          avgRating: determineAverageRating(ratingsObj)
         });
       })
       .catch((error) => console.error(error));

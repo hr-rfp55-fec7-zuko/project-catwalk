@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductBar from './helpers/ProductBar.jsx';
+import ProductBar from './ProductBar.jsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretUp } from '@fortawesome/free-solid-svg-icons';
 

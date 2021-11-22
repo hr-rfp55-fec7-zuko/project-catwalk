@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import CharacteristicRadioFormField from './FormFieldComponents/CharacteristicRadioFormField.jsx';
 import StarSelector from './FormFieldComponents/StarSelector.jsx';
-// import helpers from '../../helpers/helpers.js';
 import { findFormIncompletes, buildReviewObject, getPhotoURLs } from './helpers/helpers.js'
 
 class AddReviewForm extends React.Component {
@@ -34,7 +33,6 @@ class AddReviewForm extends React.Component {
 
   //########---State Updates---#######//
   setStateProperty(property, value) {
-    // this.setState({ [property]: value });
     if (property.includes("characteristics")) {
       property = property.split("-");
       property = property[1];
@@ -54,7 +52,6 @@ class AddReviewForm extends React.Component {
     this.props.handleClick(event.target.id);
 
     var formData = this.state.formData;
-    // var hasValidationIssue = helpers.findFormIncompletes(formData);
     var hasValidationIssue = findFormIncompletes(formData);
 
     if (hasValidationIssue) {
@@ -62,15 +59,12 @@ class AddReviewForm extends React.Component {
 
     } else {
       if (this.state.selectedImages.length === 0) {
-        // var dataBody = helpers.buildReviewObject(this.state.formData, this.props.product_id, this.props.characteristics, [])
         var dataBody = buildReviewObject(this.state.formData, this.props.product_id, this.props.characteristics, [])
 
         this.props.submitReviewForm(dataBody);
 
       } else {
-        // helpers.getPhotoURLs(this.state.imageFiles, (error, data) => {
         getPhotoURLs(this.state.imageFiles, (error, data) => {
-          // var dataBody = helpers.buildReviewObject(this.state.formData, this.props.product_id, this.props.characteristics, data)
           var dataBody = buildReviewObject(this.state.formData, this.props.product_id, this.props.characteristics, data)
 
           this.props.submitReviewForm(dataBody);

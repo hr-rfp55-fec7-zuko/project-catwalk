@@ -1,9 +1,10 @@
 import React from 'react';
-import SortBar from './SortBar.jsx';
+import SortBar from './SortBar/SortBar.jsx';
 import ReviewList from './ReviewList/ReviewList.jsx';
-import RatingBreakdown from './RatingBreakdown.jsx';
-import ProductBreakdown from './ProductBreakdown.jsx';
+import RatingBreakdown from './LeftSideBar/RatingBreakdown/RatingBreakdown.jsx';
+import ProductBreakdown from './LeftSideBar/ProductBreakdown/ProductBreakdown.jsx';
 import helpers from './helpers/helpers.js';
+import { determineTotalReviews } from './helpers/helpers.js';
 import axios from 'axios';
 import withClickTracked from '../../ClickTracker.jsx';
 
@@ -146,7 +147,8 @@ class RatingsAndReviews extends React.Component {
 
   render() {
 
-    let reviewCount = helpers.determineTotalReviews(this.state.metaData.ratings);
+    // let reviewCount = helpers.determineTotalReviews(this.state.metaData.ratings);
+    let reviewCount = determineTotalReviews(this.state.metaData.ratings);
 
     return (
 
