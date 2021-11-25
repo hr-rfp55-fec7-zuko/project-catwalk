@@ -65,7 +65,8 @@ The questions and answers section has below features and functionalities.
 ## Ratings and Reviews
 <!-- We implemented modals using React.CreatePortal. -->
 
-![RatingsAndReviewsGif](/readMeAssets/ratingsAndReviews.gif)
+<p align="center">
+<img src="https://github.com/hr-rfp55-fec7-zuko/project-catwalk/blob/master/readMeAssets/ratingsAndReviews.gif"></p>
 
 The ratings and reviews section includes a list of available reviews paired with a side panel displaying product metadata. The review list pulls in data from an API endpoint and dynamically renders individual reviews with varying sub-components.
 
@@ -77,8 +78,8 @@ Within individual review tiles, users can mark a review as helpful or report the
 
 Selecting the “add a review” button at the bottom of the review list renders a new React DOM modal housing a form that allows users to rate the overall product score and their satisfaction with characteristics, before writing their own review with an option to add photos. Submitting the form sends a post request to the API to save the data.
 
-![RatingsAndReviewsGif](/readMeAssets/rrForm.gif)
-
+<p align="center">
+<img src="https://github.com/hr-rfp55-fec7-zuko/project-catwalk/blob/master/readMeAssets/rrForm.gif"></p>
 
 ## Set up Instructions
 1. Clone this repository to your local machine
