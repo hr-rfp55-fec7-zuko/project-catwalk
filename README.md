@@ -9,7 +9,7 @@
 
 
 ## Project Catwalk
-This is the Hack Reactor Front End Capstone. The challenge was to create a modernized retail portal based on design specifications and requirements outlined by project stakeholders. As a group, we created a dynamic e-commerce browsing experience on an accelerated development timeline, with each team member builing out one of the four required components.
+This is a modernized retail portal based on design specifications and requirements outlined by project stakeholders. As an agile team of four, we created a dynamic e-commerce browsing experience on an accelerated development timeline, with each team member builing out one of the four required components.
 
 <!-- Insert gif of overall image  -->
 
@@ -38,6 +38,9 @@ We used webpack as our solution for bundling static assets. The compression, ima
 ---
 
 ## Product Overview
+<p align="center">
+<img src="https://github.com/hr-rfp55-fec7-zuko/project-catwalk/blob/master/readMeAssets/productOverview.png" ></p>
+The Product Overview contains an image carousel that can be toggled by left and right arrows, along with the thumbnail track. The gallery can expand over the product information for a zoomed in view that will track the user's cursor position for dynamic zoom. Customers can toggle styles and add products to their cart, as well as share products on social media sites.
 
 ## Related Products and Your Outfit List
 <p align="center">
