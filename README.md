@@ -40,6 +40,7 @@ We used webpack as our solution for bundling static assets. The compression, ima
 ## Product Overview
 <p align="center">
 <img src="https://github.com/hr-rfp55-fec7-zuko/project-catwalk/blob/master/readMeAssets/productOverview.png" width="350"></p>
+
 Developed by [Izzy Lee](https://github.com/isabell-lee)
 
 The Product Overview contains an image carousel that can be toggled by left and right arrows, along with the thumbnail track. The gallery can expand over the product information for a zoomed in view that will track the user's cursor position for dynamic zoom. Customers can toggle styles and add products to their cart, as well as share products on social media sites.
@@ -47,6 +48,7 @@ The Product Overview contains an image carousel that can be toggled by left and 
 ## Related Products and Your Outfit List
 <p align="center">
 <img src="https://github.com/hr-rfp55-fec7-zuko/project-catwalk/blob/master/readMeAssets/relatedProduct.gif" width="350"></p>
+
 Developed by [Van Nguyen](https://github.com/vannguyen-vn)
 
 Related product widgets consist of two parts.
