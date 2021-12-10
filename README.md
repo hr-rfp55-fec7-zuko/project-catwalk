@@ -39,12 +39,15 @@ We used webpack as our solution for bundling static assets. The compression, ima
 
 ## Product Overview
 <p align="center">
-<img src="https://github.com/hr-rfp55-fec7-zuko/project-catwalk/blob/master/readMeAssets/productOverview.png" ></p>
+<img src="https://github.com/hr-rfp55-fec7-zuko/project-catwalk/blob/master/readMeAssets/productOverview.png" width="350"></p>
+Developed by [Izzy Lee](https://github.com/isabell-lee)
+
 The Product Overview contains an image carousel that can be toggled by left and right arrows, along with the thumbnail track. The gallery can expand over the product information for a zoomed in view that will track the user's cursor position for dynamic zoom. Customers can toggle styles and add products to their cart, as well as share products on social media sites.
 
 ## Related Products and Your Outfit List
 <p align="center">
 <img src="https://github.com/hr-rfp55-fec7-zuko/project-catwalk/blob/master/readMeAssets/relatedProduct.gif" width="350"></p>
+Developed by [Van Nguyen](https://github.com/vannguyen-vn)
 
 Related product widgets consist of two parts.
 One is the Related products which present the user with products similar to the currently selected product, provided by the external API and it changes accordingly. Having carousel of cards let users navigate between the card. When a user clicks on the star icon in the upper righthand corner of the card, a modal will pop up comparing the feature of the current product and the selected product.
@@ -55,6 +58,7 @@ The second part is the outfit section which provides the user a way to keep trac
 <!-- We implemented modals using React.CreatePortal. -->
 
 ![QuestionsAndAnswersGif][QuestionsAndAnswers]
+Developed by [Iris Huang](https://github.com/irislavie)
 
 The questions and answers section has below features and functionalities.
 
@@ -70,6 +74,8 @@ The questions and answers section has below features and functionalities.
 
 <p align="center">
 <img src="https://github.com/hr-rfp55-fec7-zuko/project-catwalk/blob/master/readMeAssets/ratingsAndReviews.gif"></p>
+
+Developed by [Caitlin Kinney](https://github.com/thecaitlinkinney)
 
 The ratings and reviews section includes a list of available reviews paired with a side panel displaying product metadata. The review list pulls in data from an API endpoint and dynamically renders individual reviews with varying sub-components.
 
@@ -108,3 +114,4 @@ Selecting the “add a review” button at the bottom of the review list renders
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
 [QuestionsAndAnswers]: readMeAssets/QuestionAnswer.gif
+[ProductOverview]: readMeAssets/productOverview.png
